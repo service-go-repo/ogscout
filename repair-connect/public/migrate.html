@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Migrate Workshop Database</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        button { padding: 10px 20px; margin: 10px; font-size: 16px; }
+        .success { color: green; }
+        .error { color: red; }
+        pre { background: #f5f5f5; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Workshop Database Migration</h1>
+    <p>This will fix the workshop database structure to ensure search works properly.</p>
+    
+    <button onclick="runMigration()">Run Migration</button>
+    <button onclick="testSearch()">Test Search After Migration</button>
+    
+    <div id="result"></div>
+
+    <script>
+        async function runMigration() {
+            document.getElementById('result').innerHTML = '<p>Running migration...</p>';
+            
+            try {
+                const response = await fetch('/api/workshops/migrate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('result').innerHTML = `
+                        <div class="success">
+                            <h3>Migration Successful!</h3>
+                            <p>Migrated ${data.migratedCount} workshops</p>
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        </div>
+                    `;
+                } else {
+                    document.getElementById('result').innerHTML = `
+                        <div class="error">
+                            <h3>Migration Failed</h3>
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('result').innerHTML = `
+                    <div class="error">
+                        <h3>Error</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        async function testSearch() {
+            document.getElementById('result').innerHTML = '<p>Testing search...</p>';
+            
+            try {
+                const response = await fetch('/api/workshops/search', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        query: '',
+                        filters: {
+                            location: {
+                                coordinates: [55.4167, 25.1667], // International City, Dubai
+                                radius: 25
+                            }
+                        },
+                        page: 1,
+                        limit: 10
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('result').innerHTML = `
+                        <div class="success">
+                            <h3>Search Test Successful!</h3>
+                            <p>Found ${data.data.length} workshops</p>
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        </div>
+                    `;
+                } else {
+                    document.getElementById('result').innerHTML = `
+                        <div class="error">
+                            <h3>Search Test Failed</h3>
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('result').innerHTML = `
+                    <div class="error">
+                        <h3>Search Error</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

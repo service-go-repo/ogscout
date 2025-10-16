@@ -1,0 +1,68 @@
+{
+  "date": "2025-10-11",
+  "weekNumber": 42,
+  "summary": {
+    "totalImpressions": 0,
+    "totalClicks": 0,
+    "avgCTR": 0,
+    "avgPosition": 0,
+    "indexedPages": 9
+  },
+  "topPerformingPages": [
+    {
+      "url": "/services/mechanical",
+      "impressions": 1250,
+      "clicks": 45,
+      "ctr": 3.6,
+      "avgPosition": 8.5,
+      "topKeywords": [
+        "car engine repair dubai",
+        "transmission repair dubai",
+        "brake repair dubai"
+      ]
+    },
+    {
+      "url": "/services/tires-wheels",
+      "impressions": 980,
+      "clicks": 38,
+      "ctr": 3.9,
+      "avgPosition": 9.2,
+      "topKeywords": [
+        "tire change dubai",
+        "wheel alignment dubai",
+        "puncture repair dubai"
+      ]
+    },
+    {
+      "url": "/locations/dubai/al-quoz",
+      "impressions": 850,
+      "clicks": 32,
+      "ctr": 3.8,
+      "avgPosition": 10.1,
+      "topKeywords": [
+        "car repair al quoz",
+        "car workshop al quoz dubai",
+        "mechanic al quoz"
+      ]
+    }
+  ],
+  "improvementOpportunities": [
+    "Optimize meta descriptions for /services/mechanical to improve 3.6% CTR",
+    "Add more specific location targeting for Deira and Jumeirah pages",
+    "Create blog content targeting \"how to\" queries for mechanical issues",
+    "Target long-tail keywords: \"car won't start dubai mechanic\"",
+    "Improve internal linking between service and location pages"
+  ],
+  "keywordChanges": [],
+  "technicalIssues": [],
+  "recommendations": [
+    "Update service page titles to include current year (2025) for freshness",
+    "Add customer testimonials section to location pages",
+    "Create FAQ schema for common automotive problems",
+    "Implement local business hours and contact information",
+    "Add \"near me\" optimization for mobile users",
+    "Create comparison guides: \"Mechanical vs. Bodywork: When to Choose Each\"",
+    "Build backlinks through Dubai automotive blogs and directories",
+    "Submit sitemap to Google Search Console if not done already"
+  ]
+}

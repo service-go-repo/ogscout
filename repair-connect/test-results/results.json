@@ -1,0 +1,238 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\playwright.config.ts",
+    "rootDir": "C:/Users/yassi/Desktop/OGScout/repair-connect/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "C:/Users/yassi/Desktop/OGScout/repair-connect/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/yassi/Desktop/OGScout/repair-connect/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/yassi/Desktop/OGScout/repair-connect/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "C:/Users/yassi/Desktop/OGScout/repair-connect/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/yassi/Desktop/OGScout/repair-connect/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "C:/Users/yassi/Desktop/OGScout/repair-connect/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/yassi/Desktop/OGScout/repair-connect/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "Mobile Chrome",
+        "name": "Mobile Chrome",
+        "testDir": "C:/Users/yassi/Desktop/OGScout/repair-connect/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/yassi/Desktop/OGScout/repair-connect/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "Mobile Safari",
+        "name": "Mobile Safari",
+        "testDir": "C:/Users/yassi/Desktop/OGScout/repair-connect/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.56.0",
+    "workers": 4,
+    "webServer": {
+      "command": "npm run dev",
+      "url": "http://localhost:3000",
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "calendar-fix-test.spec.ts",
+      "file": "calendar-fix-test.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Calendar Grid Layout Fix",
+          "file": "calendar-fix-test.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "calendar dates should display in 7-column grid without inline-flex on td elements",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 2372,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"table-cell\"\u001b[39m\nReceived: \u001b[31m\"block\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"table-cell\"\u001b[39m\nReceived: \u001b[31m\"block\"\u001b[39m\n    at C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\e2e\\calendar-fix-test.spec.ts:98:26",
+                        "location": {
+                          "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\e2e\\calendar-fix-test.spec.ts",
+                          "column": 26,
+                          "line": 98
+                        },
+                        "snippet": "\u001b[0m \u001b[90m  96 |\u001b[39m       \u001b[36mreturn\u001b[39m window\u001b[33m.\u001b[39mgetComputedStyle(el)\u001b[33m.\u001b[39mdisplay\n \u001b[90m  97 |\u001b[39m     })\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  98 |\u001b[39m     expect(displayStyle)\u001b[33m.\u001b[39mtoBe(\u001b[32m'table-cell'\u001b[39m)\n \u001b[90m     |\u001b[39m                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  99 |\u001b[39m     console\u001b[33m.\u001b[39mlog(\u001b[32m'✓ TD elements display as table-cell'\u001b[39m)\n \u001b[90m 100 |\u001b[39m\n \u001b[90m 101 |\u001b[39m     \u001b[90m// Test 3: Verify all 7 td elements are in a single row\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\e2e\\calendar-fix-test.spec.ts",
+                            "column": 26,
+                            "line": 98
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"table-cell\"\u001b[39m\nReceived: \u001b[31m\"block\"\u001b[39m\n\n   96 |       return window.getComputedStyle(el).display\n   97 |     })\n>  98 |     expect(displayStyle).toBe('table-cell')\n      |                          ^\n   99 |     console.log('✓ TD elements display as table-cell')\n  100 |\n  101 |     // Test 3: Verify all 7 td elements are in a single row\n    at C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\e2e\\calendar-fix-test.spec.ts:98:26"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "✓ TD elements do not have inline-flex class\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-08T21:09:07.484Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\test-results\\calendar-fix-test-Calendar-94bc8--inline-flex-on-td-elements-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\test-results\\calendar-fix-test-Calendar-94bc8--inline-flex-on-td-elements-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\test-results\\calendar-fix-test-Calendar-94bc8--inline-flex-on-td-elements-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\e2e\\calendar-fix-test.spec.ts",
+                        "column": 26,
+                        "line": 98
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e826267297bf19022d20-c2b7e99568f2fde9847e",
+              "file": "calendar-fix-test.spec.ts",
+              "line": 4,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-10-08T21:09:05.765Z",
+    "duration": 4469.4400000000005,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

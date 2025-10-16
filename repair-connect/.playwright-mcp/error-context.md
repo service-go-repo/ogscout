@@ -1,0 +1,121 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e5]:
+        - link "RC Repair Connect" [ref=e7]:
+          - /url: /
+          - generic [ref=e9]: RC
+          - generic [ref=e10]: Repair Connect
+        - navigation [ref=e11]:
+          - link "Home" [ref=e13]:
+            - /url: /
+            - img [ref=e14]
+            - generic [ref=e19]: Home
+          - generic [ref=e20]:
+            - link "Find Workshops" [ref=e21]:
+              - /url: /workshops
+              - img [ref=e22]
+              - generic [ref=e25]: Find Workshops
+            - generic [ref=e26]: Browse verified repair shops
+          - link "How it Works" [ref=e29]:
+            - /url: /how-it-works
+            - img [ref=e30]
+            - generic [ref=e33]: How it Works
+          - link "About" [ref=e35]:
+            - /url: /about
+            - img [ref=e36]
+            - generic [ref=e41]: About
+          - link "Contact" [ref=e43]:
+            - /url: /contact
+            - img [ref=e44]
+            - generic [ref=e46]: Contact
+        - generic [ref=e47]:
+          - link "Login" [ref=e48]:
+            - /url: /auth/login
+          - link "Get Started Free" [ref=e49]:
+            - /url: /auth/register
+            - generic [ref=e50]: Get Started
+            - generic [ref=e51]: Free
+    - main [ref=e52]:
+      - generic [ref=e55]:
+        - generic [ref=e56]:
+          - heading "Welcome Back" [level=3] [ref=e57]
+          - paragraph [ref=e58]: Sign in to your Repair Connect account
+        - generic [ref=e59]:
+          - generic [ref=e60]:
+            - generic [ref=e61]:
+              - generic [ref=e62]: Email address
+              - textbox "Email address" [ref=e63]:
+                - /placeholder: Enter your email
+            - generic [ref=e64]:
+              - generic [ref=e65]: Password
+              - generic [ref=e66]:
+                - textbox "Password" [ref=e67]:
+                  - /placeholder: Enter your password
+                - button [ref=e68] [cursor=pointer]:
+                  - img [ref=e69]
+            - generic [ref=e72]:
+              - generic [ref=e73]:
+                - checkbox "Remember me" [ref=e74]
+                - generic [ref=e75]: Remember me
+              - link "Forgot password?" [ref=e76]:
+                - /url: /auth/forgot-password
+            - button "Sign In" [ref=e77] [cursor=pointer]
+          - paragraph [ref=e79]:
+            - text: Don't have an account?
+            - link "Sign up" [ref=e80]:
+              - /url: /auth/register
+    - contentinfo [ref=e81]:
+      - generic [ref=e82]:
+        - generic [ref=e83]:
+          - generic [ref=e84]:
+            - generic [ref=e85]:
+              - generic [ref=e87]: RC
+              - generic [ref=e88]: Repair Connect
+            - paragraph [ref=e89]: Connect with trusted car repair professionals in your area. Get instant quotes, compare prices, and book repairs with confidence.
+            - generic [ref=e90]:
+              - link "Follow us on Facebook" [ref=e91]:
+                - /url: "#"
+                - img [ref=e92]
+              - link "Follow us on Twitter" [ref=e94]:
+                - /url: "#"
+                - img [ref=e95]
+          - generic [ref=e97]:
+            - heading "Quick Links" [level=3] [ref=e98]
+            - list [ref=e99]:
+              - listitem [ref=e100]:
+                - link "Home" [ref=e101]:
+                  - /url: /
+              - listitem [ref=e102]:
+                - link "Find Workshops" [ref=e103]:
+                  - /url: /workshops
+              - listitem [ref=e104]:
+                - link "How It Works" [ref=e105]:
+                  - /url: /how-it-works
+              - listitem [ref=e106]:
+                - link "About" [ref=e107]:
+                  - /url: /about
+          - generic [ref=e108]:
+            - heading "Support" [level=3] [ref=e109]
+            - list [ref=e110]:
+              - listitem [ref=e111]:
+                - link "Contact Us" [ref=e112]:
+                  - /url: /contact
+              - listitem [ref=e113]:
+                - link "FAQ" [ref=e114]:
+                  - /url: /faq
+              - listitem [ref=e115]:
+                - link "Privacy Policy" [ref=e116]:
+                  - /url: /privacy
+              - listitem [ref=e117]:
+                - link "Terms of Service" [ref=e118]:
+                  - /url: /terms
+        - paragraph [ref=e120]: © 2025 Repair Connect. All rights reserved.
+    - region "Notifications alt+T"
+  - alert [ref=e121]
+  - button "Open Next.js Dev Tools" [ref=e127] [cursor=pointer]:
+    - img [ref=e128]
+```

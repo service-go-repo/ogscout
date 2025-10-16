@@ -1,0 +1,840 @@
+{
+  "metadata": {
+    "generated_date": "2025-10-11",
+    "location": "Dubai, UAE",
+    "total_keywords": 96,
+    "categories": 6
+  },
+  "keywords": {
+    "mechanical": [
+      {
+        "keyword": "car engine repair dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/mechanical",
+        "monthly_volume": "high",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "engine oil change near me dubai",
+        "intent": "local",
+        "priority": 5,
+        "target_url": "/services/mechanical",
+        "monthly_volume": "high",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "transmission repair dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/mechanical",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "car ac repair dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/mechanical",
+        "monthly_volume": "high",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "brake repair dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/mechanical",
+        "monthly_volume": "high",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "car overheating problem dubai",
+        "intent": "problem",
+        "priority": 4,
+        "target_url": "/services/mechanical",
+        "monthly_volume": "medium",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "engine diagnostic dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/mechanical",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "suspension repair dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/mechanical",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "clutch replacement dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/mechanical",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "car radiator repair dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/mechanical",
+        "monthly_volume": "low",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "timing belt replacement dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/mechanical",
+        "monthly_volume": "low",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "car exhaust repair dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/mechanical",
+        "monthly_volume": "low",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "fuel injection service dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/mechanical",
+        "monthly_volume": "low",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "car steering problem dubai",
+        "intent": "problem",
+        "priority": 4,
+        "target_url": "/services/mechanical",
+        "monthly_volume": "medium",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "engine noise diagnosis dubai",
+        "intent": "problem",
+        "priority": 3,
+        "target_url": "/services/mechanical",
+        "monthly_volume": "low",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "car won't start dubai mechanic",
+        "intent": "problem",
+        "priority": 4,
+        "target_url": "/services/mechanical",
+        "monthly_volume": "medium",
+        "difficulty": "low"
+      }
+    ],
+    "bodywork": [
+      {
+        "keyword": "car dent repair dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/bodywork",
+        "monthly_volume": "high",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "accident repair dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/bodywork",
+        "monthly_volume": "high",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "car body shop dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/bodywork",
+        "monthly_volume": "high",
+        "difficulty": "high"
+      },
+      {
+        "keyword": "bumper repair dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/bodywork",
+        "monthly_volume": "high",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "scratches removal dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/bodywork",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "panel beating dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/bodywork",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "door dent removal dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/bodywork",
+        "monthly_volume": "medium",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "car rust repair dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/bodywork",
+        "monthly_volume": "low",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "hail damage repair dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/bodywork",
+        "monthly_volume": "low",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "windscreen replacement dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/bodywork",
+        "monthly_volume": "high",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "car glass repair dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/bodywork",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "fender repair dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/bodywork",
+        "monthly_volume": "low",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "car frame straightening dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/bodywork",
+        "monthly_volume": "low",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "side mirror replacement dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/bodywork",
+        "monthly_volume": "medium",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "hood repair dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/bodywork",
+        "monthly_volume": "low",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "collision repair dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/bodywork",
+        "monthly_volume": "high",
+        "difficulty": "high"
+      }
+    ],
+    "painting": [
+      {
+        "keyword": "car painting dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/painting",
+        "monthly_volume": "high",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "car spray painting dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/painting",
+        "monthly_volume": "high",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "full car paint job dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/painting",
+        "monthly_volume": "high",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "car color change dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/painting",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "scratch paint repair dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/painting",
+        "monthly_volume": "high",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "bumper painting dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/painting",
+        "monthly_volume": "medium",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "car wrap dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/painting",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "ceramic coating dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/painting",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "ppf installation dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/painting",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "car polishing dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/painting",
+        "monthly_volume": "medium",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "paint protection film dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/painting",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "car detailing dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/painting",
+        "monthly_volume": "high",
+        "difficulty": "high"
+      },
+      {
+        "keyword": "door panel painting dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/painting",
+        "monthly_volume": "low",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "car paint restoration dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/painting",
+        "monthly_volume": "low",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "matte paint finish dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/painting",
+        "monthly_volume": "low",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "custom paint job dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/painting",
+        "monthly_volume": "low",
+        "difficulty": "medium"
+      }
+    ],
+    "electrical": [
+      {
+        "keyword": "car battery replacement dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/electrical",
+        "monthly_volume": "high",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "car electrical repair dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/electrical",
+        "monthly_volume": "high",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "alternator replacement dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/electrical",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "starter motor repair dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/electrical",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "car wiring repair dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/electrical",
+        "monthly_volume": "medium",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "car light repair dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/electrical",
+        "monthly_volume": "medium",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "car audio system installation dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/electrical",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "car alarm installation dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/electrical",
+        "monthly_volume": "low",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "headlight replacement dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/electrical",
+        "monthly_volume": "medium",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "car fuse box repair dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/electrical",
+        "monthly_volume": "low",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "car battery change near me",
+        "intent": "local",
+        "priority": 5,
+        "target_url": "/services/electrical",
+        "monthly_volume": "high",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "car dashboard lights repair dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/electrical",
+        "monthly_volume": "low",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "power window repair dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/electrical",
+        "monthly_volume": "medium",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "central locking repair dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/electrical",
+        "monthly_volume": "low",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "car ignition repair dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/electrical",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "car computer diagnostics dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/electrical",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      }
+    ],
+    "tires-wheels": [
+      {
+        "keyword": "tire change dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/tires-wheels",
+        "monthly_volume": "high",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "wheel alignment dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/tires-wheels",
+        "monthly_volume": "high",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "tire shop near me dubai",
+        "intent": "local",
+        "priority": 5,
+        "target_url": "/services/tires-wheels",
+        "monthly_volume": "high",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "wheel balancing dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/tires-wheels",
+        "monthly_volume": "high",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "puncture repair dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/tires-wheels",
+        "monthly_volume": "high",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "alloy wheel repair dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/tires-wheels",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "rim repair dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/tires-wheels",
+        "monthly_volume": "medium",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "tire rotation dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/tires-wheels",
+        "monthly_volume": "medium",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "performance tires dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/tires-wheels",
+        "monthly_volume": "low",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "cheap tires dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/tires-wheels",
+        "monthly_volume": "medium",
+        "difficulty": "high"
+      },
+      {
+        "keyword": "tire pressure check dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/tires-wheels",
+        "monthly_volume": "low",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "4x4 tires dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/tires-wheels",
+        "monthly_volume": "low",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "run flat tire replacement dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/tires-wheels",
+        "monthly_volume": "low",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "wheel refurbishment dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/tires-wheels",
+        "monthly_volume": "low",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "mobile tire service dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/tires-wheels",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "winter tires dubai",
+        "intent": "service",
+        "priority": 2,
+        "target_url": "/services/tires-wheels",
+        "monthly_volume": "very_low",
+        "difficulty": "low"
+      }
+    ],
+    "maintenance": [
+      {
+        "keyword": "car service dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/maintenance",
+        "monthly_volume": "high",
+        "difficulty": "high"
+      },
+      {
+        "keyword": "car maintenance dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/maintenance",
+        "monthly_volume": "high",
+        "difficulty": "high"
+      },
+      {
+        "keyword": "car service center dubai",
+        "intent": "local",
+        "priority": 5,
+        "target_url": "/services/maintenance",
+        "monthly_volume": "high",
+        "difficulty": "high"
+      },
+      {
+        "keyword": "oil change dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/maintenance",
+        "monthly_volume": "high",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "car inspection dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/maintenance",
+        "monthly_volume": "high",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "pre-purchase inspection dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/maintenance",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "car wash dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/maintenance",
+        "monthly_volume": "medium",
+        "difficulty": "high"
+      },
+      {
+        "keyword": "air filter replacement dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/maintenance",
+        "monthly_volume": "low",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "spark plug replacement dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/maintenance",
+        "monthly_volume": "low",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "coolant flush dubai",
+        "intent": "service",
+        "priority": 3,
+        "target_url": "/services/maintenance",
+        "monthly_volume": "low",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "transmission fluid change dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/maintenance",
+        "monthly_volume": "medium",
+        "difficulty": "low"
+      },
+      {
+        "keyword": "car tune up dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/maintenance",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "car AC servicing dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/maintenance",
+        "monthly_volume": "high",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "brake pad replacement dubai",
+        "intent": "service",
+        "priority": 5,
+        "target_url": "/services/maintenance",
+        "monthly_volume": "high",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "scheduled maintenance dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/maintenance",
+        "monthly_volume": "medium",
+        "difficulty": "medium"
+      },
+      {
+        "keyword": "car checkup dubai",
+        "intent": "service",
+        "priority": 4,
+        "target_url": "/services/maintenance",
+        "monthly_volume": "medium",
+        "difficulty": "low"
+      }
+    ]
+  },
+  "location_keywords": [
+    {
+      "keyword": "car repair al quoz",
+      "intent": "local",
+      "priority": 5,
+      "target_url": "/locations/dubai/al-quoz",
+      "monthly_volume": "high",
+      "difficulty": "medium"
+    },
+    {
+      "keyword": "car workshop al quoz dubai",
+      "intent": "local",
+      "priority": 5,
+      "target_url": "/locations/dubai/al-quoz",
+      "monthly_volume": "high",
+      "difficulty": "medium"
+    },
+    {
+      "keyword": "car garage deira",
+      "intent": "local",
+      "priority": 5,
+      "target_url": "/locations/dubai/deira",
+      "monthly_volume": "high",
+      "difficulty": "medium"
+    },
+    {
+      "keyword": "mechanic deira dubai",
+      "intent": "local",
+      "priority": 5,
+      "target_url": "/locations/dubai/deira",
+      "monthly_volume": "high",
+      "difficulty": "medium"
+    },
+    {
+      "keyword": "car service jumeirah",
+      "intent": "local",
+      "priority": 4,
+      "target_url": "/locations/dubai/jumeirah",
+      "monthly_volume": "medium",
+      "difficulty": "medium"
+    },
+    {
+      "keyword": "car repair near jumeirah beach",
+      "intent": "local",
+      "priority": 4,
+      "target_url": "/locations/dubai/jumeirah",
+      "monthly_volume": "medium",
+      "difficulty": "low"
+    }
+  ]
+}

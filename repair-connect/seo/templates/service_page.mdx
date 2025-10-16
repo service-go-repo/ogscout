@@ -1,0 +1,153 @@
+# Service Page Template
+
+This template provides the structure for creating new service category pages.
+
+## File Location
+```
+/src/app/services/[service-slug]/page.tsx
+```
+
+## Required Imports
+```typescript
+import React from 'react';
+import Link from 'next/link';
+import { [IconName] } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { FAQSection } from '@/components/seo/FAQSection';
+import { StructuredData } from '@/components/seo/StructuredData';
+import {
+  generateServiceMetadata,
+  generateServiceSchema,
+  generateBreadcrumbSchema,
+} from '@/lib/seo-utils';
+```
+
+## Service Data Object
+```typescript
+const serviceData = {
+  serviceName: '[Service Name]', // e.g., "Mechanical Repair"
+  serviceSlug: '[service-slug]', // e.g., "mechanical"
+  description: '[SEO-optimized description 150-160 chars]',
+  keywords: [
+    '[primary keyword 1]',
+    '[primary keyword 2]',
+    // ... 4-6 high-priority keywords
+  ],
+  commonProblems: [
+    '[Problem 1]',
+    '[Problem 2]',
+    // ... 8 common issues
+  ],
+  brands: [
+    'Toyota', 'BMW', 'Mercedes-Benz', 'Nissan', 'Honda',
+    'Ford', 'Chevrolet', 'Audi', 'Volkswagen', 'Hyundai',
+    'Kia', 'Lexus', 'Tesla', 'Range Rover',
+  ],
+};
+```
+
+## FAQs Structure
+```typescript
+const faqs = [
+  {
+    question: 'How much does [service] cost in Dubai?',
+    answer: '[Detailed answer with price ranges and factors]',
+  },
+  {
+    question: 'How long does [service] take?',
+    answer: '[Time estimates and factors affecting duration]',
+  },
+  {
+    question: 'Do workshops offer warranty on [service]?',
+    answer: '[Warranty information]',
+  },
+  {
+    question: 'Can I get [service] for all car brands?',
+    answer: '[Brand coverage information]',
+  },
+  {
+    question: 'What should I do if [related problem]?',
+    answer: '[Problem-solving guidance]',
+  },
+  {
+    question: 'How do I know if I need [service]?',
+    answer: '[Signs and symptoms]',
+  },
+];
+```
+
+## Page Sections
+
+### 1. Hero Section
+- Service badge with icon
+- H1: "Professional [Service Name] in Dubai"
+- Value proposition paragraph
+- Primary CTA: "Get Instant Quotes"
+- Secondary CTA: "Find Workshops Near You"
+- Trust indicators (3 checkmarks)
+
+### 2. Common Problems Section
+- H2: "Common [Service Category] Issues We Fix"
+- Grid of 8 problem cards with checkmarks
+- Hover effects on cards
+
+### 3. How It Works Section
+- H2: "How It Works"
+- 3-step process cards
+- Numbered icons (1, 2, 3)
+
+### 4. Brands Section
+- H2: "All Brands Welcome"
+- Badge grid of supported brands
+- Hover effects on badges
+
+### 5. FAQ Section
+- Uses FAQSection component
+- Includes FAQ schema markup
+- Accordion-style Q&A
+
+### 6. CTA Section
+- H2: "Ready to Fix Your Car?"
+- Final value proposition
+- Primary CTA button
+- Gradient background card
+
+## Metadata Configuration
+```typescript
+export const metadata = generateServiceMetadata(serviceData);
+```
+
+## Schema Markup
+```typescript
+const serviceSchema = generateServiceSchema(serviceData);
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Services', url: '/services' },
+  { name: serviceData.serviceName, url: `/services/${serviceData.serviceSlug}` },
+]);
+```
+
+## Styling Guidelines
+- Use Twitter color theme for primary elements
+- Maintain consistent spacing (py-16 for sections)
+- Border-2 for prominent cards
+- Shadow-lg for elevated elements
+- Hover effects on interactive elements
+
+## SEO Checklist
+- [ ] Unique, descriptive title (50-60 chars)
+- [ ] Compelling meta description (150-160 chars)
+- [ ] 4-6 high-priority keywords included
+- [ ] H1 contains target keyword + "Dubai"
+- [ ] Service schema markup implemented
+- [ ] FAQ schema markup included
+- [ ] Breadcrumb navigation present
+- [ ] Internal links to related pages
+- [ ] Mobile-responsive design
+- [ ] Accessibility compliance
+- [ ] Core Web Vitals optimized
+
+## Example File
+See `/src/app/services/mechanical/page.tsx` for complete implementation.

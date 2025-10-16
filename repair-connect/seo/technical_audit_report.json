@@ -1,0 +1,420 @@
+{
+  "timestamp": "2025-10-11T13:40:27.095Z",
+  "passed": 17,
+  "failed": 28,
+  "warnings": 18,
+  "issues": [
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\(customer)\\quotations\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\(customer)\\quotations\\request\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\(customer)\\quotations\\workshops\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\(customer)\\quotations\\[id]\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\(customer)\\workshops\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\(customer)\\workshops\\[id]\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "info",
+      "category": "Meta Tags",
+      "message": "Title length optimal",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\(workshop)\\customers\\page.tsx"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "Description too short (47 chars, recommended 150-160)",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\(workshop)\\customers\\page.tsx"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\(workshop)\\demo\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "Title too short (28 chars, recommended 50-60)",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\(workshop)\\demo\\page.tsx"
+    },
+    {
+      "severity": "info",
+      "category": "Meta Tags",
+      "message": "Description length optimal",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\(workshop)\\demo\\page.tsx"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\(workshop)\\migration-demo\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\(workshop)\\profile\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\(workshop)\\quotes\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\(workshop)\\quotes\\[id]\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "Title too short (25 chars, recommended 50-60)",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\(workshop)\\workshop\\customers\\page.tsx"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "Description too short (30 chars, recommended 150-160)",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\(workshop)\\workshop\\customers\\page.tsx"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "Title too short (27 chars, recommended 50-60)",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\(workshop)\\workshop\\jobs\\page.tsx"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "Description too short (31 chars, recommended 150-160)",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\(workshop)\\workshop\\jobs\\page.tsx"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "Title too short (28 chars, recommended 50-60)",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\appointments\\page.tsx"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "Description too short (24 chars, recommended 150-160)",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\appointments\\page.tsx"
+    },
+    {
+      "severity": "info",
+      "category": "Meta Tags",
+      "message": "Title length optimal",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\appointments\\[id]\\page.tsx"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "Description too short (35 chars, recommended 150-160)",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\appointments\\[id]\\page.tsx"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\auth\\error\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\auth\\login\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\auth\\register\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\cars\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\cars\\register\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\cars\\upload\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\cars\\[id]\\edit\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\cars\\[id]\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "info",
+      "category": "Meta Tags",
+      "message": "Title length optimal",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\completed-jobs\\page.tsx"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "Description too short (24 chars, recommended 150-160)",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\completed-jobs\\page.tsx"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\dashboard\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "Description too long (197 chars, recommended 150-160)",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\locations\\dubai\\al-quoz\\page.tsx"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "Description too short (69 chars, recommended 150-160)",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\locations\\dubai\\deira\\page.tsx"
+    },
+    {
+      "severity": "info",
+      "category": "Meta Tags",
+      "message": "Description length optimal",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\locations\\dubai\\jumeirah\\page.tsx"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\requests\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\service-requests\\new\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\service-requests\\[id]\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "Description too long (197 chars, recommended 150-160)",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\services\\bodywork\\page.tsx"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "Description too long (204 chars, recommended 150-160)",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\services\\electrical\\page.tsx"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "Description too long (188 chars, recommended 150-160)",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\services\\maintenance\\page.tsx"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "Description too long (176 chars, recommended 150-160)",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\services\\mechanical\\page.tsx"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "Description too long (204 chars, recommended 150-160)",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\services\\painting\\page.tsx"
+    },
+    {
+      "severity": "warning",
+      "category": "Meta Tags",
+      "message": "Description too long (185 chars, recommended 150-160)",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\services\\tires-wheels\\page.tsx"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\settings\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\test-calendar\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\test-dashboard\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "error",
+      "category": "Meta Tags",
+      "message": "Missing metadata export",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\workshop-management\\page.tsx",
+      "fix": "Add metadata export with title and description"
+    },
+    {
+      "severity": "info",
+      "category": "Structured Data",
+      "message": "Schema markup implemented",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\locations\\dubai\\al-quoz\\page.tsx"
+    },
+    {
+      "severity": "info",
+      "category": "Structured Data",
+      "message": "Schema markup implemented",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\locations\\dubai\\deira\\page.tsx"
+    },
+    {
+      "severity": "info",
+      "category": "Structured Data",
+      "message": "Schema markup implemented",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\locations\\dubai\\jumeirah\\page.tsx"
+    },
+    {
+      "severity": "info",
+      "category": "Structured Data",
+      "message": "Schema markup implemented",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\services\\bodywork\\page.tsx"
+    },
+    {
+      "severity": "info",
+      "category": "Structured Data",
+      "message": "Schema markup implemented",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\services\\electrical\\page.tsx"
+    },
+    {
+      "severity": "info",
+      "category": "Structured Data",
+      "message": "Schema markup implemented",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\services\\maintenance\\page.tsx"
+    },
+    {
+      "severity": "info",
+      "category": "Structured Data",
+      "message": "Schema markup implemented",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\services\\mechanical\\page.tsx"
+    },
+    {
+      "severity": "info",
+      "category": "Structured Data",
+      "message": "Schema markup implemented",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\services\\painting\\page.tsx"
+    },
+    {
+      "severity": "info",
+      "category": "Structured Data",
+      "message": "Schema markup implemented",
+      "file": "C:\\Users\\yassi\\Desktop\\OGScout\\repair-connect\\src\\app\\services\\tires-wheels\\page.tsx"
+    },
+    {
+      "severity": "info",
+      "category": "Robots.txt",
+      "message": "robots.txt found and configured"
+    },
+    {
+      "severity": "info",
+      "category": "Robots.txt",
+      "message": "Sitemap reference found in robots.txt"
+    },
+    {
+      "severity": "info",
+      "category": "Sitemaps",
+      "message": "Main sitemap found"
+    }
+  ],
+  "recommendations": [
+    "Convert 14 images to WebP format for better performance",
+    "Implement automated internal linking between service and location pages",
+    "Add breadcrumb navigation to all pages",
+    "Run Lighthouse audit for Core Web Vitals",
+    "Implement lazy loading for images below the fold",
+    "Consider implementing code splitting for larger components"
+  ],
+  "score": 41
+}

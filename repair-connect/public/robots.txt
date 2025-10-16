@@ -1,0 +1,23 @@
+# Robots.txt for Repair Connect
+# https://repairconnect.ae
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Disallow admin and API routes
+Disallow: /api/
+Disallow: /auth/
+Disallow: /dashboard/
+Disallow: /_next/
+
+# Disallow test and development pages
+Disallow: /test-*
+
+# Sitemap location
+Sitemap: https://repairconnect.ae/sitemap.xml
+Sitemap: https://repairconnect.ae/sitemap-services.xml
+Sitemap: https://repairconnect.ae/sitemap-locations.xml
+
+# Crawl-delay (optional, adjust as needed)
+# Crawl-delay: 1

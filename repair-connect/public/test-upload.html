@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Upload</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .upload-area { border: 2px dashed #ccc; padding: 40px; text-align: center; margin: 20px 0; }
+        .result { margin: 20px 0; padding: 20px; background: #f5f5f5; border-radius: 5px; }
+        .error { background: #ffebee; color: #c62828; }
+        .success { background: #e8f5e8; color: #2e7d32; }
+    </style>
+</head>
+<body>
+    <h1>Test Cloudinary Upload</h1>
+    
+    <div class="upload-area">
+        <input type="file" id="fileInput" accept="image/*" />
+        <br><br>
+        <button onclick="testUpload()">Test Upload</button>
+    </div>
+    
+    <div id="result" class="result" style="display: none;"></div>
+    
+    <script>
+        async function testUpload() {
+            const fileInput = document.getElementById('fileInput');
+            const resultDiv = document.getElementById('result');
+            
+            if (!fileInput.files || fileInput.files.length === 0) {
+                showResult('Please select a file first', 'error');
+                return;
+            }
+            
+            const file = fileInput.files[0];
+            console.log('Selected file:', file.name, file.size, file.type);
+            
+            const formData = new FormData();
+            formData.append('files', file);
+            
+            try {
+                showResult('Uploading...', 'info');
+                
+                const response = await fetch('/api/test-upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                console.log('Upload result:', result);
+                
+                if (result.success) {
+                    showResult(`Upload successful! Public ID: ${result.data.public_id}`, 'success');
+                } else {
+                    showResult(`Upload failed: ${result.error}`, 'error');
+                }
+                
+            } catch (error) {
+                console.error('Upload error:', error);
+                showResult(`Upload error: ${error.message}`, 'error');
+            }
+        }
+        
+        function showResult(message, type) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = message;
+            resultDiv.className = `result ${type}`;
+            resultDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

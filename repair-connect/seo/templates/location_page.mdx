@@ -1,0 +1,196 @@
+# Location Page Template
+
+This template provides the structure for creating new location-based pages.
+
+## File Location
+```
+/src/app/locations/[emirate]/[area-slug]/page.tsx
+```
+
+## Required Imports
+```typescript
+import React from 'react';
+import Link from 'next/link';
+import { MapPin, Wrench, Car, ArrowRight, CheckCircle, Star } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { StructuredData } from '@/components/seo/StructuredData';
+import {
+  generateLocationMetadata,
+  generateLocationSchema,
+  generateBreadcrumbSchema,
+} from '@/lib/seo-utils';
+```
+
+## Location Data Object
+```typescript
+const locationData = {
+  locationName: '[Area Name]', // e.g., "Al Quoz"
+  locationSlug: '[area-slug]', // e.g., "al-quoz"
+  area: '[Area Description]', // e.g., "Al Quoz Industrial Area"
+  landmarks: [
+    '[Landmark 1]',
+    '[Landmark 2]',
+    '[Landmark 3]',
+    '[Landmark 4]',
+    // 4-6 notable landmarks
+  ],
+  description: '[SEO-optimized description mentioning area and workshops]',
+};
+```
+
+## Services Array
+```typescript
+const services = [
+  {
+    name: 'Mechanical Repair',
+    icon: Wrench,
+    slug: 'mechanical',
+    description: 'Engine, transmission, brake, and AC repair',
+  },
+  {
+    name: 'Bodywork & Collision',
+    icon: Car,
+    slug: 'bodywork',
+    description: 'Dent repair, accident damage, bumper work',
+  },
+  // ... all 6 service categories
+];
+```
+
+## Page Sections
+
+### 1. Hero Section
+- Location badge with MapPin icon
+- H1: "Car Workshops in [Location Name]"
+- Local description paragraph mentioning:
+  - Area characteristics
+  - Accessibility information
+  - Notable landmarks
+- Primary CTA: "Get Instant Quotes"
+- Secondary CTA: "Browse Workshops"
+- Local features (3 checkmarks with stats)
+
+### 2. About Location Section
+- Card layout with MapPin icon
+- H2: "Why [Location] for Car Repairs?"
+- Local narrative (2-3 paragraphs):
+  - Area history and characteristics
+  - Workshop concentration
+  - Accessibility and convenience
+  - Target demographics
+- Landmarks badges
+
+### 3. Services Available Section
+- H2: "Services Available in [Location]"
+- Grid of 6 service cards
+- Each card includes:
+  - Icon
+  - Service name
+  - Description
+  - "Learn More" link to service page
+
+### 4. Workshop Stats Section
+- Gradient card with 4 metrics:
+  - Number of verified workshops
+  - Average rating
+  - Monthly cars serviced
+  - Emergency services availability
+- Adjust numbers based on area size
+
+### 5. Getting Here Section
+- H2: "Getting to [Location]"
+- Two cards: "By Car" and "By Public Transport"
+- Area-specific directions
+- Checkmarks for key points
+
+### 6. CTA Section
+- H2: "Book Your Car Service in [Location] Today"
+- Final value proposition
+- Two CTAs: "Request Quotes" and "View Workshops"
+
+## Stats Guidelines by Area Type
+
+### Industrial Areas (e.g., Al Quoz, Musaffah)
+- Workshops: 80-150+
+- Rating: 4.7-4.8
+- Monthly cars: 2,000-2,500+
+- Special stat: Years of experience / 24/7 service
+
+### Residential Areas (e.g., Jumeirah, Khalifa City)
+- Workshops: 30-50+
+- Rating: 4.8-4.9
+- Monthly cars: 1,000-1,500+
+- Special stat: Premium service / Certified technicians
+
+### Mixed Areas (e.g., Deira, Sharjah University City)
+- Workshops: 50-80+
+- Rating: 4.7-4.8
+- Monthly cars: 1,500-2,000+
+- Special stat: Diverse options / Competitive pricing
+
+## Metadata Configuration
+```typescript
+export const metadata = generateLocationMetadata(locationData);
+```
+
+## Schema Markup
+```typescript
+const locationSchema = generateLocationSchema(locationData);
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Locations', url: '/locations' },
+  { name: '[Emirate]', url: '/locations/[emirate]' },
+  { name: locationData.locationName, url: `/locations/[emirate]/${locationData.locationSlug}` },
+]);
+```
+
+## Local SEO Best Practices
+
+### Content Localization
+- Mention specific street names and landmarks
+- Reference local business districts
+- Include area-specific information
+- Add distance/time from major landmarks
+
+### Geographic Keywords
+- [location] + car repair
+- [location] + workshops
+- [location] + mechanic
+- near [landmark]
+- [emirate] [location] car service
+
+### Local Signals
+- Consistent NAP (Name, Address, Phone)
+- Embed Google Maps (when available)
+- Local business hours
+- Area-specific phone numbers
+- Reference nearby workshops
+
+## Accessibility Information
+Include details about:
+- Major road access
+- Metro/bus stations
+- Parking availability
+- Distance from key areas
+- Traffic considerations
+
+## SEO Checklist
+- [ ] Unique title with location + "Car Workshops"
+- [ ] Meta description mentions area and services
+- [ ] H1 contains location name prominently
+- [ ] LocalBusiness schema implemented
+- [ ] Breadcrumb schema included
+- [ ] 4-6 location-specific landmarks mentioned
+- [ ] Internal links to all service pages
+- [ ] Local keywords naturally integrated
+- [ ] Directions section included
+- [ ] Mobile-responsive design
+- [ ] Fast load times
+- [ ] Accessibility compliance
+
+## Example Files
+- See `/src/app/locations/dubai/al-quoz/page.tsx` for industrial area
+- See `/src/app/locations/dubai/jumeirah/page.tsx` for residential area
+- See `/src/app/locations/dubai/deira/page.tsx` for mixed area

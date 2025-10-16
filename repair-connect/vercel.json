@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/workshops/stats/update",
+      "schedule": "0 */6 * * *"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fix Database</title>
+</head>
+<body>
+    <h1>Fix Database Issues</h1>
+    <button onclick="fixDatabase()">Fix Geospatial Index & Coordinates</button>
+    <div id="result"></div>
+
+    <script>
+        async function fixDatabase() {
+            try {
+                const response = await fetch('/api/workshops/fix-index', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                document.getElementById('result').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            } catch (error) {
+                document.getElementById('result').innerHTML = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Workshop Search</title>
+</head>
+<body>
+    <h1>Test Workshop Search</h1>
+    <button onclick="testSearch()">Test Search API</button>
+    <button onclick="testSearchWithLocation()">Test Search with Location</button>
+    <div id="result"></div>
+
+    <script>
+        async function testSearch() {
+            try {
+                const response = await fetch('/api/workshops/search', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        query: '',
+                        filters: {},
+                        page: 1,
+                        limit: 10
+                    })
+                });
+                
+                const data = await response.json();
+                document.getElementById('result').innerHTML = '<h3>Search Result:</h3><pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            } catch (error) {
+                document.getElementById('result').innerHTML = '<h3>Error:</h3>' + error.message;
+            }
+        }
+
+        async function testSearchWithLocation() {
+            try {
+                const response = await fetch('/api/workshops/search', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        query: '',
+                        filters: {
+                            location: {
+                                coordinates: [55.4167, 25.1667], // International City, Dubai
+                                radius: 25
+                            }
+                        },
+                        page: 1,
+                        limit: 10
+                    })
+                });
+                
+                const data = await response.json();
+                document.getElementById('result').innerHTML = '<h3>Location Search Result:</h3><pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            } catch (error) {
+                document.getElementById('result').innerHTML = '<h3>Error:</h3>' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>

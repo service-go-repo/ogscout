@@ -1,0 +1,27 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#f3f4f6"/>
+  <rect x="50" y="80" width="300" height="140" rx="20" fill="#e5e7eb" stroke="#d1d5db" stroke-width="2"/>
+  
+  <!-- Car body -->
+  <path d="M80 160 L100 140 L300 140 L320 160 L320 200 L80 200 Z" fill="#9ca3af"/>
+  
+  <!-- Windows -->
+  <rect x="110" y="145" width="60" height="35" rx="5" fill="#6b7280"/>
+  <rect x="180" y="145" width="80" height="35" rx="5" fill="#6b7280"/>
+  <rect x="270" y="145" width="40" height="35" rx="5" fill="#6b7280"/>
+  
+  <!-- Wheels -->
+  <circle cx="120" cy="200" r="20" fill="#374151"/>
+  <circle cx="120" cy="200" r="12" fill="#1f2937"/>
+  <circle cx="280" cy="200" r="20" fill="#374151"/>
+  <circle cx="280" cy="200" r="12" fill="#1f2937"/>
+  
+  <!-- Headlights -->
+  <ellipse cx="85" cy="170" rx="8" ry="12" fill="#fbbf24"/>
+  <ellipse cx="315" cy="170" rx="8" ry="12" fill="#ef4444"/>
+  
+  <!-- Text -->
+  <text x="200" y="250" text-anchor="middle" fill="#6b7280" font-family="Arial, sans-serif" font-size="14">
+    Car Image Unavailable
+  </text>
+</svg>

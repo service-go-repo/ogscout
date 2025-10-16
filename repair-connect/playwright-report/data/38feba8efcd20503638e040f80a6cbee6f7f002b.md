@@ -1,0 +1,205 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e5]:
+        - link "RC Repair Connect" [ref=e7] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e9]: RC
+          - generic [ref=e10]: Repair Connect
+        - navigation [ref=e11]:
+          - link "Home" [ref=e13] [cursor=pointer]:
+            - /url: /
+            - img [ref=e14]
+            - generic [ref=e19]: Home
+          - generic [ref=e20]:
+            - link "Find Workshops" [ref=e21] [cursor=pointer]:
+              - /url: /workshops
+              - img [ref=e22]
+              - generic [ref=e25]: Find Workshops
+            - generic [ref=e26]: Browse verified repair shops
+          - link "How it Works" [ref=e29] [cursor=pointer]:
+            - /url: /how-it-works
+            - img [ref=e30]
+            - generic [ref=e33]: How it Works
+          - link "About" [ref=e35] [cursor=pointer]:
+            - /url: /about
+            - img [ref=e36]
+            - generic [ref=e41]: About
+          - link "Contact" [ref=e43] [cursor=pointer]:
+            - /url: /contact
+            - img [ref=e44]
+            - generic [ref=e46]: Contact
+        - generic [ref=e47]:
+          - link "Login" [ref=e48] [cursor=pointer]:
+            - /url: /auth/login
+          - link "Get Started Free" [ref=e49] [cursor=pointer]:
+            - /url: /auth/register
+            - generic [ref=e50]: Get Started
+            - generic [ref=e51]: Free
+    - main [ref=e52]:
+      - generic [ref=e53]:
+        - generic [ref=e56]:
+          - generic [ref=e57]:
+            - generic [ref=e58]:
+              - heading "Get Your Car Fixed by Trusted Professionals" [level=1] [ref=e59]
+              - paragraph [ref=e60]: Register your car, document any damage, receive instant quotes from verified repair shops, and book your repair with confidence. It's that simple.
+            - generic [ref=e61]:
+              - link "Register Your Car" [ref=e62] [cursor=pointer]:
+                - /url: /cars/register
+              - link "How It Works" [ref=e63] [cursor=pointer]:
+                - /url: /how-it-works
+            - generic [ref=e64]:
+              - generic [ref=e65]:
+                - img [ref=e67]
+                - generic [ref=e70]: 10,000+ Happy Customers
+              - generic [ref=e71]:
+                - img [ref=e73]
+                - generic [ref=e76]: Verified Repair Shops
+              - generic [ref=e77]:
+                - img [ref=e79]
+                - generic [ref=e82]: Instant Quotes
+              - generic [ref=e83]:
+                - img [ref=e85]
+                - generic [ref=e88]: 24/7 Support
+          - generic [ref=e91]:
+            - img [ref=e93]
+            - generic [ref=e96]:
+              - paragraph [ref=e97]: Register & Get Quotes
+              - paragraph [ref=e98]: Quick, easy, and free
+        - generic [ref=e100]:
+          - generic [ref=e101]:
+            - heading "How Repair Connect Works" [level=2] [ref=e102]
+            - paragraph [ref=e103]: Get your car repaired in three simple steps. Fast, reliable, and transparent.
+          - generic [ref=e104]:
+            - generic [ref=e105]:
+              - generic [ref=e106]:
+                - img [ref=e108]
+                - heading "Upload Damage" [level=3] [ref=e111]
+              - paragraph [ref=e113]: Take photos of your car damage and get instant estimates
+            - generic [ref=e114]:
+              - generic [ref=e115]:
+                - img [ref=e117]
+                - heading "Get Quotes" [level=3] [ref=e119]
+              - paragraph [ref=e121]: Receive competitive quotes from verified repair shops
+            - generic [ref=e122]:
+              - generic [ref=e123]:
+                - img [ref=e125]
+                - heading "Book Repair" [level=3] [ref=e127]
+              - paragraph [ref=e129]: Schedule your repair with trusted professionals
+        - generic [ref=e132]:
+          - generic [ref=e134]:
+            - generic [ref=e135]:
+              - img [ref=e136]
+              - generic [ref=e141]: 10,000+
+            - paragraph [ref=e142]: Happy Customers
+          - generic [ref=e144]:
+            - generic [ref=e145]:
+              - img [ref=e146]
+              - generic [ref=e148]: 500+
+            - paragraph [ref=e149]: Verified Shops
+          - generic [ref=e151]:
+            - generic [ref=e152]:
+              - img [ref=e153]
+              - generic [ref=e156]: < 24h
+            - paragraph [ref=e157]: Average Response
+          - generic [ref=e159]:
+            - generic [ref=e160]:
+              - img [ref=e161]
+              - generic [ref=e163]: "4.9"
+            - paragraph [ref=e164]: Average Rating
+        - generic [ref=e169]:
+          - generic [ref=e170]:
+            - heading "Ready to Get Your Car Fixed?" [level=2] [ref=e171]
+            - paragraph [ref=e172]: Join thousands of satisfied customers who trust Repair Connect for their car repair needs.
+          - generic [ref=e173]:
+            - link "Get Started Now" [ref=e174] [cursor=pointer]:
+              - /url: /cars/register
+            - link "Find Repair Shops" [ref=e175] [cursor=pointer]:
+              - /url: /shops
+    - contentinfo [ref=e176]:
+      - generic [ref=e177]:
+        - generic [ref=e178]:
+          - generic [ref=e179]:
+            - generic [ref=e180]:
+              - generic [ref=e182]: RC
+              - generic [ref=e183]: Repair Connect
+            - paragraph [ref=e184]: Connect with trusted car repair professionals in your area. Get instant quotes, compare prices, and book repairs with confidence.
+            - generic [ref=e185]:
+              - link "Follow us on Facebook" [ref=e186] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e187]
+              - link "Follow us on Twitter" [ref=e189] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e190]
+          - generic [ref=e192]:
+            - heading "Quick Links" [level=3] [ref=e193]
+            - list [ref=e194]:
+              - listitem [ref=e195]:
+                - link "Home" [ref=e196] [cursor=pointer]:
+                  - /url: /
+              - listitem [ref=e197]:
+                - link "Find Workshops" [ref=e198] [cursor=pointer]:
+                  - /url: /workshops
+              - listitem [ref=e199]:
+                - link "How It Works" [ref=e200] [cursor=pointer]:
+                  - /url: /how-it-works
+              - listitem [ref=e201]:
+                - link "About" [ref=e202] [cursor=pointer]:
+                  - /url: /about
+          - generic [ref=e203]:
+            - heading "Support" [level=3] [ref=e204]
+            - list [ref=e205]:
+              - listitem [ref=e206]:
+                - link "Contact Us" [ref=e207] [cursor=pointer]:
+                  - /url: /contact
+              - listitem [ref=e208]:
+                - link "FAQ" [ref=e209] [cursor=pointer]:
+                  - /url: /faq
+              - listitem [ref=e210]:
+                - link "Privacy Policy" [ref=e211] [cursor=pointer]:
+                  - /url: /privacy
+              - listitem [ref=e212]:
+                - link "Terms of Service" [ref=e213] [cursor=pointer]:
+                  - /url: /terms
+        - paragraph [ref=e215]: © 2025 Repair Connect. All rights reserved.
+    - region "Notifications alt+T"
+  - generic [ref=e218]:
+    - heading "Calendar Grid Test" [level=1] [ref=e219]
+    - generic [ref=e223]:
+      - generic [ref=e224]:
+        - button "‹" [ref=e225] [cursor=pointer]
+        - generic [ref=e226]: October 2025
+        - button "›" [ref=e227] [cursor=pointer]
+      - table [ref=e228]:
+        - rowgroup [ref=e229]:
+          - row "Su Mo Tu We Th Fr Sa" [ref=e230]:
+            - cell "Su" [ref=e231]
+            - cell "Mo" [ref=e232]
+            - cell "Tu" [ref=e233]
+            - cell "We" [ref=e234]
+            - cell "Th" [ref=e235]
+            - cell "Fr" [ref=e236]
+            - cell "Sa" [ref=e237]
+        - rowgroup [ref=e238]:
+          - row "1 2 3 4 5 6 7" [ref=e239]:
+            - cell "1" [ref=e240]:
+              - button "1" [ref=e241] [cursor=pointer]
+            - cell "2" [ref=e242]:
+              - button "2" [ref=e243] [cursor=pointer]
+            - cell "3" [ref=e244]:
+              - button "3" [ref=e245] [cursor=pointer]
+            - cell "4" [ref=e246]:
+              - button "4" [ref=e247] [cursor=pointer]
+            - cell "5" [ref=e248]:
+              - button "5" [ref=e249] [cursor=pointer]
+            - cell "6" [ref=e250]:
+              - button "6" [ref=e251] [cursor=pointer]
+            - cell "7" [ref=e252]:
+              - button "7" [ref=e253] [cursor=pointer]
+  - alert [ref=e254]
+  - button "Open Next.js Dev Tools" [ref=e260] [cursor=pointer]:
+    - img [ref=e261]
+```

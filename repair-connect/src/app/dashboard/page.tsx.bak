@@ -1,0 +1,649 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import { useSession } from 'next-auth/react'
+import { redirect } from 'next/navigation'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Car,
+  Upload,
+  FileText,
+  Settings,
+  BarChart3,
+  Plus,
+  DollarSign,
+  MessageSquare,
+  Clock,
+  TrendingUp,
+  Users,
+  CheckCircle,
+  AlertCircle,
+  ArrowRight,
+  Sparkles,
+  Calendar as CalendarIcon
+} from 'lucide-react'
+import AppointmentDashboard from '@/components/appointments/appointment-dashboard'
+
+interface DashboardStats {
+  carCount: number
+  activeRequests: number
+  completedJobs: number
+  monthlyRevenue: number
+  // Quotation stats
+  pendingQuotes: number
+  receivedQuotes: number
+  acceptedQuotes: number
+  // Workshop stats
+  quoteRequests: number
+  submittedQuotes: number
+  wonQuotes: number
+  // Appointment stats
+  todayAppointments: number
+  pendingAppointments: number
+  upcomingAppointments: number
+}
+
+export default function DashboardPage() {
+  const { data: session, status } = useSession()
+  const [stats, setStats] = useState<DashboardStats>({
+    carCount: 0,
+    activeRequests: 0,
+    completedJobs: 0,
+    monthlyRevenue: 0,
+    pendingQuotes: 0,
+    receivedQuotes: 0,
+    acceptedQuotes: 0,
+    quoteRequests: 0,
+    submittedQuotes: 0,
+    wonQuotes: 0,
+    todayAppointments: 0,
+    pendingAppointments: 0,
+    upcomingAppointments: 0
+  })
+  const [isLoading, setIsLoading] = useState(true)
+
+  const isCustomer = session?.user?.role === 'customer'
+  const isWorkshop = session?.user?.role === 'workshop'
+
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      redirect('/auth/login')
+    }
+
+    const fetchStats = async () => {
+      try {
+        if (isCustomer) {
+          // Fetch customer stats
+          const [carsResponse, quotationsResponse] = await Promise.all([
+            fetch('/api/cars'),
+            fetch('/api/quotations')
+          ])
+
+          if (carsResponse.ok) {
+            const carsData = await carsResponse.json()
+            setStats(prev => ({
+              ...prev,
+              carCount: carsData.data?.cars?.length || 0
+            }))
+          }
+
+          if (quotationsResponse.ok) {
+            const quotationsData = await quotationsResponse.json()
+            const quotations = quotationsData.data?.quotations || []
+
+            setStats(prev => ({
+              ...prev,
+              pendingQuotes: quotations.filter((q: any) => q.status === 'pending').length,
+              receivedQuotes: quotations.filter((q: any) => q.status === 'quoted').length,
+              acceptedQuotes: quotations.filter((q: any) => q.status === 'accepted').length
+            }))
+          }
+
+        } else if (isWorkshop) {
+          // Fetch workshop quotation and appointment stats
+          const [quotationsResponse, appointmentsResponse] = await Promise.all([
+            fetch('/api/quotations'),
+            fetch('/api/appointments')
+          ])
+
+          if (quotationsResponse.ok) {
+            const quotationsData = await quotationsResponse.json()
+            const quotations = quotationsData.data?.quotations || []
+
+            // Count quotes where this workshop is involved
+            let quoteRequests = 0
+            let submittedQuotes = 0
+            let wonQuotes = 0
+
+            quotations.forEach((q: any) => {
+              const myQuote = q.quotes?.find((quote: any) => quote.workshopId === session?.user?.id)
+              if (myQuote) {
+                if (myQuote.status === 'pending') quoteRequests++
+                else if (myQuote.status === 'submitted') submittedQuotes++
+                else if (myQuote.status === 'accepted') wonQuotes++
+              } else if (!q.targetWorkshops || q.targetWorkshops.includes(session?.user?.id)) {
+                quoteRequests++
+              }
+            })
+
+            setStats(prev => ({
+              ...prev,
+              quoteRequests,
+              submittedQuotes,
+              wonQuotes
+            }))
+          }
+
+          if (appointmentsResponse.ok) {
+            const appointmentsData = await appointmentsResponse.json()
+            const appointments = appointmentsData.data?.appointments || []
+
+            // Calculate appointment stats
+            const today = new Date().toISOString().split('T')[0]
+            const todayAppointments = appointments.filter((apt: any) =>
+              apt.scheduledDate.split('T')[0] === today
+            ).length
+
+            const pendingAppointments = appointments.filter((apt: any) =>
+              apt.status === 'requested'
+            ).length
+
+            const upcomingAppointments = appointments.filter((apt: any) => {
+              const aptDate = new Date(apt.scheduledDate)
+              const nextWeek = new Date()
+              nextWeek.setDate(nextWeek.getDate() + 7)
+              return aptDate > new Date() && aptDate <= nextWeek
+            }).length
+
+            setStats(prev => ({
+              ...prev,
+              todayAppointments,
+              pendingAppointments,
+              upcomingAppointments
+            }))
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching dashboard stats:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    if (session) {
+      fetchStats()
+    }
+  }, [session, status, isCustomer, isWorkshop])
+
+  if (status === 'loading') {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+      </div>
+    )
+  }
+
+  if (!session) {
+    return null
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900">
+            Welcome back, {session.user?.name || session.user?.email}!
+          </h1>
+          <p className="mt-2 text-gray-600">
+            {isCustomer
+              ? "Manage your vehicles and get repair quotes from trusted workshops."
+              : "Manage your workshop, respond to quote requests, and grow your business."
+            }
+          </p>
+        </div>
+
+        {/* Customer Quick Stats & Actions */}
+        {isCustomer && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            {/* Request Quote - Primary CTA */}
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100">
+              <Link href="/quotations/request">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium text-blue-900">Request Quote</CardTitle>
+                  <div className="relative">
+                    <Plus className="h-4 w-4 text-blue-600" />
+                    <Sparkles className="h-2 w-2 text-blue-400 absolute -top-1 -right-1" />
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold text-blue-900">New!</div>
+                  <p className="text-xs text-blue-700">
+                    Get competitive repair quotes
+                  </p>
+                </CardContent>
+              </Link>
+            </Card>
+
+            {/* My Quotes */}
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+              <Link href="/quotations">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">My Quotes</CardTitle>
+                  <DollarSign className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">{stats.receivedQuotes}</div>
+                  <p className="text-xs text-muted-foreground">
+                    {stats.pendingQuotes} pending, {stats.acceptedQuotes} accepted
+                  </p>
+                </CardContent>
+              </Link>
+            </Card>
+
+            {/* Register Car */}
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+              <Link href="/cars/register">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Register Car</CardTitle>
+                  <Plus className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">+</div>
+                  <p className="text-xs text-muted-foreground">
+                    Add a new vehicle
+                  </p>
+                </CardContent>
+              </Link>
+            </Card>
+
+            {/* My Cars */}
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+              <Link href="/cars">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">My Cars</CardTitle>
+                  <Car className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">{isLoading ? '...' : stats.carCount}</div>
+                  <p className="text-xs text-muted-foreground">
+                    Vehicles registered
+                  </p>
+                </CardContent>
+              </Link>
+            </Card>
+          </div>
+        )}
+
+        {/* Workshop Quick Stats & Actions */}
+        {isWorkshop && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            {/* Quote Requests - Primary CTA */}
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer border-purple-200 bg-gradient-to-br from-purple-50 to-purple-100">
+              <Link href="/quotes">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium text-purple-900">Quote Requests</CardTitle>
+                  <div className="relative">
+                    <MessageSquare className="h-4 w-4 text-purple-600" />
+                    <Sparkles className="h-2 w-2 text-purple-400 absolute -top-1 -right-1" />
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold text-purple-900">{stats.quoteRequests}</div>
+                  <p className="text-xs text-purple-700">
+                    New opportunities available
+                  </p>
+                </CardContent>
+              </Link>
+            </Card>
+
+            {/* Submitted Quotes */}
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+              <Link href="/quotes?tab=submitted">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Submitted Quotes</CardTitle>
+                  <Clock className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">{stats.submittedQuotes}</div>
+                  <p className="text-xs text-muted-foreground">
+                    Awaiting customer response
+                  </p>
+                </CardContent>
+              </Link>
+            </Card>
+
+            {/* Won Quotes */}
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+              <Link href="/quotes?tab=accepted">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Won Quotes</CardTitle>
+                  <CheckCircle className="h-4 w-4 text-green-500" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold text-green-600">{stats.wonQuotes}</div>
+                  <p className="text-xs text-muted-foreground">
+                    Accepted this month
+                  </p>
+                </CardContent>
+              </Link>
+            </Card>
+
+            {/* Revenue */}
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">This Month</CardTitle>
+                <TrendingUp className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">$0</div>
+                <p className="text-xs text-muted-foreground">
+                  Revenue earned
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* Appointment Management Section for Workshops */}
+        {isWorkshop && (
+          <div className="mb-8">
+            <div className="mb-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-2">Appointment Management</h2>
+              <p className="text-gray-600">Manage your scheduled appointments and availability</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer border-green-200 bg-gradient-to-br from-green-50 to-green-100">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium text-green-900">Today's Schedule</CardTitle>
+                  <CalendarIcon className="h-4 w-4 text-green-600" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold text-green-900">{stats.todayAppointments}</div>
+                  <p className="text-xs text-green-700">
+                    Appointments today
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Pending Confirmations</CardTitle>
+                  <AlertCircle className="h-4 w-4 text-orange-500" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold text-orange-600">{stats.pendingAppointments}</div>
+                  <p className="text-xs text-muted-foreground">
+                    Need your confirmation
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Next 7 Days</CardTitle>
+                  <Clock className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">{stats.upcomingAppointments}</div>
+                  <p className="text-xs text-muted-foreground">
+                    Upcoming appointments
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Full Appointment Dashboard */}
+            <Card>
+              <CardContent className="p-6">
+                <AppointmentDashboard />
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* Customer Appointment Section */}
+        {isCustomer && stats.acceptedQuotes > 0 && (
+          <div className="mb-8">
+            <div className="mb-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-2">My Appointments</h2>
+              <p className="text-gray-600">Track your scheduled service appointments</p>
+            </div>
+
+            <Card className="border-blue-200 bg-blue-50">
+              <CardContent className="p-6">
+                <div className="text-center">
+                  <CalendarIcon className="h-12 w-12 mx-auto mb-4 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-blue-900 mb-2">
+                    Ready to Schedule?
+                  </h3>
+                  <p className="text-blue-700 mb-4">
+                    You have accepted quotes waiting for appointment scheduling.
+                  </p>
+                  <Button asChild className="bg-blue-600 hover:bg-blue-700">
+                    <Link href="/quotations">
+                      <CalendarIcon className="h-4 w-4 mr-2" />
+                      Schedule Appointments
+                    </Link>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* Feature Highlights & Quick Actions */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          {/* New Quotation System Highlight */}
+          <Card className="border-2 border-dashed border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50">
+            <CardHeader>
+              <div className="flex items-center space-x-2">
+                <Sparkles className="h-5 w-5 text-blue-500" />
+                <CardTitle className="text-blue-900">New! Quotation System</CardTitle>
+              </div>
+              <CardDescription className="text-blue-700">
+                {isCustomer
+                  ? "Get competitive quotes from multiple workshops instantly"
+                  : "Respond to customer requests and win more business"
+                }
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {isCustomer ? (
+                <>
+                  <div className="flex items-center justify-between p-3 bg-white rounded-lg border">
+                    <div className="flex items-center space-x-3">
+                      <Plus className="h-5 w-5 text-blue-500" />
+                      <div>
+                        <p className="font-medium text-sm">Request Quotes</p>
+                        <p className="text-xs text-gray-600">Get multiple repair estimates</p>
+                      </div>
+                    </div>
+                    <ArrowRight className="h-4 w-4 text-gray-400" />
+                  </div>
+
+                  <div className="flex items-center justify-between p-3 bg-white rounded-lg border">
+                    <div className="flex items-center space-x-3">
+                      <DollarSign className="h-5 w-5 text-green-500" />
+                      <div>
+                        <p className="font-medium text-sm">Compare & Choose</p>
+                        <p className="text-xs text-gray-600">Side-by-side comparison</p>
+                      </div>
+                    </div>
+                    <ArrowRight className="h-4 w-4 text-gray-400" />
+                  </div>
+
+                  <Button asChild className="w-full bg-blue-600 hover:bg-blue-700">
+                    <Link href="/quotations/request">
+                      <Plus className="mr-2 h-4 w-4" />
+                      Request Your First Quote
+                    </Link>
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <div className="flex items-center justify-between p-3 bg-white rounded-lg border">
+                    <div className="flex items-center space-x-3">
+                      <MessageSquare className="h-5 w-5 text-purple-500" />
+                      <div>
+                        <p className="font-medium text-sm">Browse Requests</p>
+                        <p className="text-xs text-gray-600">Find new opportunities</p>
+                      </div>
+                    </div>
+                    <ArrowRight className="h-4 w-4 text-gray-400" />
+                  </div>
+
+                  <div className="flex items-center justify-between p-3 bg-white rounded-lg border">
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-500" />
+                      <div>
+                        <p className="font-medium text-sm">Submit Quotes</p>
+                        <p className="text-xs text-gray-600">Win more customers</p>
+                      </div>
+                    </div>
+                    <ArrowRight className="h-4 w-4 text-gray-400" />
+                  </div>
+
+                  <Button asChild className="w-full bg-purple-600 hover:bg-purple-700">
+                    <Link href="/quotes">
+                      <MessageSquare className="mr-2 h-4 w-4" />
+                      View Quote Requests
+                    </Link>
+                  </Button>
+                </>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Quick Actions */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Quick Actions</CardTitle>
+              <CardDescription>
+                {isCustomer ? "Manage your vehicles and repairs" : "Manage your workshop"}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              {isCustomer ? (
+                <>
+                  <Button asChild variant="outline" className="w-full justify-start">
+                    <Link href="/cars">
+                      <Car className="mr-2 h-4 w-4" />
+                      View My Cars ({stats.carCount})
+                    </Link>
+                  </Button>
+
+                  <Button asChild variant="outline" className="w-full justify-start">
+                    <Link href="/quotations">
+                      <DollarSign className="mr-2 h-4 w-4" />
+                      My Quotes ({stats.receivedQuotes})
+                    </Link>
+                  </Button>
+
+                  <Button asChild variant="outline" className="w-full justify-start">
+                    <Link href="/workshops">
+                      <Users className="mr-2 h-4 w-4" />
+                      Find Workshops
+                    </Link>
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button asChild variant="outline" className="w-full justify-start">
+                    <Link href="/profile">
+                      <Settings className="mr-2 h-4 w-4" />
+                      Workshop Profile
+                    </Link>
+                  </Button>
+
+                  <Button asChild variant="outline" className="w-full justify-start">
+                    <Link href="/quotes?tab=submitted">
+                      <Clock className="mr-2 h-4 w-4" />
+                      Pending Quotes ({stats.submittedQuotes})
+                    </Link>
+                  </Button>
+
+                  <Button asChild variant="outline" className="w-full justify-start">
+                    <Link href="/workshop/customers">
+                      <Users className="mr-2 h-4 w-4" />
+                      Customer Management
+                    </Link>
+                  </Button>
+                </>
+              )}
+
+              <Button variant="outline" className="w-full justify-start">
+                <FileText className="mr-2 h-4 w-4" />
+                Help & Support
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Recent Activity */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Recent Activity</CardTitle>
+            <CardDescription>
+              Your latest actions and updates
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="flex items-center space-x-4">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <div className="flex-1">
+                  <p className="text-sm font-medium">Account created</p>
+                  <p className="text-xs text-muted-foreground">Welcome to Repair Connect!</p>
+                </div>
+              </div>
+
+              {isCustomer && stats.carCount > 0 && (
+                <div className="flex items-center space-x-4">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <div className="flex-1">
+                    <p className="text-sm font-medium">Vehicle registered</p>
+                    <p className="text-xs text-muted-foreground">You can now request quotes for repairs</p>
+                  </div>
+                </div>
+              )}
+
+              {stats.receivedQuotes > 0 && (
+                <div className="flex items-center space-x-4">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <div className="flex-1">
+                    <p className="text-sm font-medium">Quotes received</p>
+                    <p className="text-xs text-muted-foreground">Compare and choose the best offer</p>
+                  </div>
+                </div>
+              )}
+
+              {isWorkshop && stats.wonQuotes > 0 && (
+                <div className="flex items-center space-x-4">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <div className="flex-1">
+                    <p className="text-sm font-medium">Quote accepted</p>
+                    <p className="text-xs text-muted-foreground">Congratulations! You won a new customer</p>
+                  </div>
+                </div>
+              )}
+
+              {(stats.receivedQuotes === 0 && stats.wonQuotes === 0 && stats.carCount === 0) && (
+                <div className="text-center py-8">
+                  <AlertCircle className="h-8 w-8 text-gray-400 mx-auto mb-2" />
+                  <p className="text-sm text-gray-600">No recent activity</p>
+                  <p className="text-xs text-gray-500">
+                    {isCustomer ? "Start by registering a car or requesting a quote" : "Check for new quote requests"}
+                  </p>
+                </div>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  )
+}
