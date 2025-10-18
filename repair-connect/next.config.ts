@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Enable standalone output for Docker
+  // Disabled standalone output - was causing CSS loading issues
   output: 'standalone',
   eslint: {
     // Skip ESLint during build for faster builds
@@ -17,10 +17,8 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  experimental: {
-    workerThreads: false,
-    cpus: 1
-  },
+  // Removed experimental workerThreads and cpus settings
+  // These were causing CSS minification to corrupt media queries
 };
 
 export default nextConfig;
