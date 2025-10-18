@@ -241,7 +241,7 @@ export function WorkshopSelectionView() {
         {
           damageDescription: selectedService.description || `Quote request for service: ${selectedService.requestedServices?.join(', ')}`,
           requestedServices: selectedService.requestedServices || ['repair'],
-          urgency: selectedService.priority === 'urgent' ? 'urgent' : 'medium',
+          urgency: selectedService.priority === 'urgent' ? 'high' : 'medium',
           sourceServiceRequestId: selectedService._id,
         }
       )
@@ -294,7 +294,7 @@ export function WorkshopSelectionView() {
         <div className="flex flex-wrap gap-2 mb-4">
           <Badge variant="outline" className="text-xs">
             <span className="font-medium">Car:</span>&nbsp;
-            {selectedCar?.make} {selectedCar?.model} ({selectedCar?.year})
+            {selectedCar?.basicInfo?.make} {selectedCar?.basicInfo?.model} ({selectedCar?.basicInfo?.year})
           </Badge>
           <Badge variant="outline" className="text-xs">
             <span className="font-medium">Service:</span>&nbsp;

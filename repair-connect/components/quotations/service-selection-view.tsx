@@ -186,7 +186,7 @@ export function ServiceSelectionView() {
               {
                 damageDescription: service.description || `Quote request for service: ${service.requestedServices?.join(', ')}`,
                 requestedServices: service.requestedServices || ['repair'],
-                urgency: service.priority === 'urgent' ? 'urgent' : 'medium',
+                urgency: service.priority === 'urgent' ? 'high' : 'medium',
                 sourceServiceRequestId: service._id,
               }
             )
