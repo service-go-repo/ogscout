@@ -141,7 +141,7 @@ jobs:
     - name: Scan Docker image with Trivy
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:prod-${{ github.sha }}
+        image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ steps.build.outputs.digest }}
         format: 'sarif'
         output: 'trivy-image-results.sarif'
 
@@ -212,7 +212,8 @@ jobs:
     - name: Update image tag in kustomization
       working-directory: k8s/overlays/prod
       run: |
-        kustomize edit set image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:prod-${{ github.sha }}
+        SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
+        kustomize edit set image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:prod-${SHORT_SHA}
 
     - name: Deploy to Kubernetes
       working-directory: k8s/overlays/prod
