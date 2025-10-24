@@ -84,8 +84,9 @@ jobs:
       - name: Set up Kubeconfig
         run: |
           mkdir -p $HOME/.kube
-          echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
-
+          cat <<EOF > $HOME/.kube/config
+          ${{ secrets.KUBECONFIG }}
+          EOF
       - name: Install kubectl
         uses: azure/setup-kubectl@v3
         with:
