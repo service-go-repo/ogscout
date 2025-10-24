@@ -50,14 +50,14 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUP_USERNAME }}
+          username: ${{ secrets.DOKERHUP_USERNAME }}
           password: ${{ secrets.DOCKERHUP_TOKEN }}
 
       - name: Extract metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.DOCKERHUP_USERNAME }}/nextjs-app
+          images: ${{ secrets.DOKERHUP_USERNAME }}/nextjs-app
           tags: |
             type=ref,event=branch
             type=sha,prefix={{branch}}-
@@ -96,6 +96,6 @@ jobs:
           kubectl apply -f k8s/namespace.yaml
           kubectl apply -f k8s/secrets.yaml
           kubectl apply -f k8s/mongodb.yaml
-          kubectl set image deployment/nextjs-app nextjs-app=${{ secrets.DOCKERHUB_USERNAME }}/nextjs-app:latest -n nextjs-app
+          kubectl set image deployment/nextjs-app nextjs-app=${{ secrets.DOKERHUP_USERNAME }}/nextjs-app:latest -n nextjs-app
           kubectl apply -f k8s/nextjs-app.yaml
           kubectl rollout status deployment/nextjs-app -n nextjs-app --timeout=300s
