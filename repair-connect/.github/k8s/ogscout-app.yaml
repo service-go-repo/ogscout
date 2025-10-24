@@ -16,7 +16,7 @@ spec:
     spec:                                                                                          
       containers:                                                                                  
         - name: ogscout-app                                                                        
-          image: YOUR_DOCKERHUB_USERNAME/nextjs-app:latest                                         
+          image: omuhieldin/nextjs-app:latest                                         
           ports:                                                                                   
             - containerPort: 3000                                                                  
           env:                                                                                     
