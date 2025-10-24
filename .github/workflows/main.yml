@@ -50,14 +50,14 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          username: ${{ secrets.DOCKERHUP_USERNAME }}
+          password: ${{ secrets.DOCKERHUP_TOKEN }}
 
       - name: Extract metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.DOCKERHUB_USERNAME }}/nextjs-app
+          images: ${{ secrets.DOCKERHUP_USERNAME }}/nextjs-app
           tags: |
             type=ref,event=branch
             type=sha,prefix={{branch}}-
