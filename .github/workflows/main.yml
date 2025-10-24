@@ -24,12 +24,15 @@ jobs:
         cache-dependency-path: repair-connect/package-lock.json
 
     - name: Install dependencies
+      working-directory: repair-connect
       run: npm ci
 
     - name: Run tests
+      working-directory: repair-connect
       run: npm test || true  # Allow workflow to continue even if tests fail
 
     - name: Run linting
+      working-directory: repair-connect
       run: npm run lint
 
   build-and-push:
