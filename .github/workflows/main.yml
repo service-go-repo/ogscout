@@ -40,6 +40,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+
     steps:
       - uses: actions/checkout@v4
 
@@ -71,8 +72,18 @@ jobs:
     needs: build-and-push
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+
     steps:
       - uses: actions/checkout@v4
+
+      - name: Copy k8s manifests to server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "k8s/*"
+          target: "/opt/nextjs-app/k8s/"
 
       - name: Deploy to Kubernetes via SSH
         uses: appleboy/ssh-action@v1.0.0
@@ -85,51 +96,42 @@ jobs:
           script: |
             set -e
             echo "🚀 Starting deployment process..."
+            
+            # Navigate to k8s folder
+            cd /opt/nextjs-app/k8s
 
-            # Navigate to project directory (create if missing)
-            if [ ! -d "/opt/nextjs-app" ]; then
-              sudo mkdir -p /opt/nextjs-app/k8s
-            fi
-            cd /opt/nextjs-app
-
-            # Copy k8s manifests from repository
-            echo "📁 Copying Kubernetes manifests..."
-            sudo cp -r $GITHUB_WORKSPACE/k8s/* ./k8s/ || echo "No k8s directory found, continuing..."
-
-            # Apply Kubernetes manifests
             echo "📋 Applying Kubernetes manifests..."
-
             # Create namespace if it doesn't exist
             kubectl create namespace $K8S_NAMESPACE --dry-run=client -o yaml | kubectl apply -f -
 
             # Apply secrets
-            if [ -f "./k8s/secrets.yaml" ]; then
-              kubectl apply -f ./k8s/secrets.yaml -n $K8S_NAMESPACE
+            if [ -f "./secrets.yaml" ]; then
+              kubectl apply -f ./secrets.yaml -n $K8S_NAMESPACE
             else
-              echo "⚠️  secrets.yaml not found, skipping..."
+              echo "⚠️ secrets.yaml not found, skipping..."
             fi
 
             # Apply MongoDB
-            if [ -f "./k8s/mongodb.yaml" ]; then
-              kubectl apply -f ./k8s/mongodb.yaml -n $K8S_NAMESPACE
-              echo "⏳ Waiting for MongoDB to be ready..."
+            if [ -f "./mongodb.yaml" ]; then
+              kubectl apply -f ./mongodb.yaml -n $K8S_NAMESPACE
+              echo "⏳ Waiting for MongoDB..."
               kubectl wait --for=condition=ready pod -l app=mongodb -n $K8S_NAMESPACE --timeout=300s
             else
-              echo "⚠️  mongodb.yaml not found, skipping..."
+              echo "⚠️ mongodb.yaml not found, skipping..."
             fi
 
             # Apply Next.js app
-            if [ -f "./k8s/nextjs-app.yaml" ]; then
-              kubectl apply -f ./k8s/nextjs-app.yaml -n $K8S_NAMESPACE
+            if [ -f "./nextjs-app.yaml" ]; then
+              kubectl apply -f ./nextjs-app.yaml -n $K8S_NAMESPACE
               kubectl set image deployment/nextjs-app nextjs-app=${{ secrets.DOCKERHUB_USERNAME }}/nextjs-app:latest -n $K8S_NAMESPACE
               kubectl rollout status deployment/nextjs-app -n $K8S_NAMESPACE --timeout=300s
             else
-              echo "⚠️  nextjs-app.yaml not found, creating basic deployment..."
+              echo "⚠️ nextjs-app.yaml not found, creating basic deployment..."
               kubectl create deployment nextjs-app \
                 --image=${{ secrets.DOCKERHUB_USERNAME }}/nextjs-app:latest \
                 --namespace=$K8S_NAMESPACE \
                 --dry-run=client -o yaml | kubectl apply -f -
-
+              
               kubectl expose deployment nextjs-app \
                 --port=3000 \
                 --target-port=3000 \
@@ -138,8 +140,8 @@ jobs:
             fi
 
             # Apply namespace manifest if exists
-            if [ -f "./k8s/namespace.yaml" ]; then
-              kubectl apply -f ./k8s/namespace.yaml
+            if [ -f "./namespace.yaml" ]; then
+              kubectl apply -f ./namespace.yaml
             fi
 
             # Verify deployment
@@ -147,30 +149,3 @@ jobs:
             kubectl get pods -n $K8S_NAMESPACE -o wide
             kubectl get svc -n $K8S_NAMESPACE
             kubectl get deployments -n $K8S_NAMESPACE
-
-      - name: Verify Application Health
-        uses: appleboy/ssh-action@v1.0.0
-        env:
-          K8S_NAMESPACE: ${{ env.K8S_NAMESPACE }}
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            echo "🏥 Performing health checks..."
-            sleep 30
-
-            APP_POD=$(kubectl get pods -n $K8S_NAMESPACE -l app=nextjs-app -o jsonpath='{.items[0].metadata.name}' 2>/dev/null || echo "")
-
-            if [ ! -z "$APP_POD" ]; then
-              echo "📊 Checking application logs..."
-              kubectl logs $APP_POD -n $K8S_NAMESPACE --tail=10
-
-              echo "🔍 Checking pod status..."
-              kubectl describe pod $APP_POD -n $K8S_NAMESPACE | grep -A 10 "Status:"
-            else
-              echo "⚠️  No Next.js app pod found"
-            fi
-
-            echo "📋 Final cluster status:"
-            kubectl get all -n $K8S_NAMESPACE
