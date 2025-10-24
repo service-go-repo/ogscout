@@ -1,0 +1,12 @@
+# ============================================
+# Production HPA Patches
+# More aggressive scaling for production
+# ============================================
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ogscout-hpa
+spec:
+  minReplicas: 3
+  maxReplicas: 20

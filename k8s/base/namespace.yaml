@@ -1,0 +1,23 @@
+# ============================================
+# Kubernetes Namespaces for Environment Isolation
+# ============================================
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ogscout-dev
+  labels:
+    name: ogscout-dev
+    environment: development
+    app: ogscout
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ogscout-prod
+  labels:
+    name: ogscout-prod
+    environment: production
+    app: ogscout

@@ -1,22 +1,30 @@
 # ============================================
+# Multi-stage Dockerfile for Next.js Production
+# Optimized for size, security, and performance
+# ============================================
+
+# ============================================
 # Stage 1: Dependencies
+# Install production dependencies only
 # ============================================
 FROM node:20-alpine AS deps
 
-# Add libc6-compat for compatibility
+# Add libc6-compat for compatibility with Next.js
 RUN apk add --no-cache libc6-compat
 
 WORKDIR /app
 
-# Copy package files for dependency installation
+# Copy package files
 COPY package.json package-lock.json* ./
 
-# Install dependencies with clean cache
+# Install dependencies based on lock file
+# Use npm ci for reproducible builds
 RUN npm ci --only=production && \
     npm cache clean --force
 
 # ============================================
 # Stage 2: Builder
+# Build the Next.js application
 # ============================================
 FROM node:20-alpine AS builder
 
@@ -25,27 +33,25 @@ WORKDIR /app
 # Copy dependencies from deps stage
 COPY --from=deps /app/node_modules ./node_modules
 
-# Copy all application files
+# Copy all source files
 COPY . .
 
-# Copy environment file for build
-COPY .env.production .env.production
-
-# Set environment variables for build
-ENV NEXT_TELEMETRY_DISABLED=1
-# ENV NODE_ENV=production
-
-# Install all dependencies (including devDependencies for build)
+# Install ALL dependencies (including devDependencies for build)
 RUN npm ci
 
-# Add tsx globally (needed for sitemap script)
-RUN npm install -g tsx
+# Disable Next.js telemetry during build
+ENV NEXT_TELEMETRY_DISABLED=1
 
-# Build the Next.js application with environment variables
+# Set NODE_ENV to production for optimized build
+ENV NODE_ENV=production
+
+# Build the Next.js application
+# The prebuild script will generate sitemaps
 RUN npm run build
 
 # ============================================
-# Stage 3: Runner (Production)
+# Stage 3: Runner
+# Minimal production runtime
 # ============================================
 FROM node:20-alpine AS runner
 
@@ -55,31 +61,33 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Create non-root user for security
+# Create a non-root user for security
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
-# Copy necessary files from builder
-COPY --from=builder /app/next.config.ts ./
+# Copy only necessary files from builder
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/next.config.ts ./next.config.ts
 
-# Copy built application with proper permissions
+# Copy the standalone build output
+# Next.js standalone output includes only necessary files
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 # Switch to non-root user
 USER nextjs
 
-# Expose port
+# Expose application port
 EXPOSE 3000
 
+# Set runtime environment variables
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-# Health check
+# Health check to ensure container is healthy
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
   CMD node -e "require('http').get('http://localhost:3000/api/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
 
-# Start the application
+# Start the Next.js application
 CMD ["node", "server.js"]

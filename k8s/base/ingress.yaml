@@ -1,0 +1,67 @@
+# ============================================
+# Kubernetes Ingress with TLS/SSL Support
+# Routes external traffic to the application
+# Supports both HTTP and HTTPS with automatic redirect
+# ============================================
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ogscout-ingress
+  labels:
+    app: ogscout
+  annotations:
+    # Nginx Ingress Controller annotations
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "60"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "60"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "60"
+
+    # Security headers
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      more_set_headers "X-Frame-Options: DENY";
+      more_set_headers "X-Content-Type-Options: nosniff";
+      more_set_headers "X-XSS-Protection: 1; mode=block";
+      more_set_headers "Referrer-Policy: strict-origin-when-cross-origin";
+
+    # Rate limiting (optional)
+    nginx.ingress.kubernetes.io/limit-rps: "100"
+
+    # Cert-manager annotation for automatic TLS certificate
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+
+spec:
+  ingressClassName: nginx
+
+  tls:
+  - hosts:
+    - ogscout.com
+    - www.ogscout.com
+    secretName: ogscout-tls-secret
+
+  rules:
+  # Main domain
+  - host: ogscout.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ogscout-service
+            port:
+              number: 3000
+
+  # WWW subdomain
+  - host: www.ogscout.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ogscout-service
+            port:
+              number: 3000

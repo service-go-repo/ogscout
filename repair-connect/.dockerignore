@@ -47,6 +47,8 @@ e2e
 *.md
 !README.md
 docs
+redesign-workflow
+scripts
 
 # Docker
 Dockerfile*
@@ -79,3 +81,19 @@ temp
 
 # Playwright
 .playwright-mcp
+
+# Screenshots and test artifacts
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Debug and check scripts
+check-*.js
+debug-*.js
+extract-*.js
+test-*.js
+
+# MCP
+.mcp.json
+.claude

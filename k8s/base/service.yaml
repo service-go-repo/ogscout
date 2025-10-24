@@ -1,0 +1,26 @@
+# ============================================
+# Kubernetes Service for OGScout App
+# Exposes the application within the cluster
+# ============================================
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ogscout-service
+  labels:
+    app: ogscout
+    component: frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: ogscout
+    component: frontend
+  ports:
+  - name: http
+    port: 3000
+    targetPort: http
+    protocol: TCP
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10800

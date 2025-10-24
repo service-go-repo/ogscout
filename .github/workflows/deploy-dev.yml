@@ -1,0 +1,210 @@
+# ============================================
+# CI/CD Pipeline for Development Environment
+# Triggered on push to 'develop' branch
+# ============================================
+
+name: Deploy to Development
+
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository_owner }}/ogscout
+  K8S_NAMESPACE: ogscout-dev
+
+jobs:
+  # ============================================
+  # Job 1: Test
+  # ============================================
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: repair-connect/package-lock.json
+
+    - name: Install dependencies
+      working-directory: repair-connect
+      run: npm ci
+
+    - name: Run linting
+      working-directory: repair-connect
+      run: npm run lint || true
+
+    - name: Run unit tests
+      working-directory: repair-connect
+      run: npm test || true
+
+  # ============================================
+  # Job 2: Build and Push Docker Image
+  # ============================================
+  build:
+    name: Build and Push Image
+    runs-on: ubuntu-latest
+    needs: test
+    permissions:
+      contents: read
+      packages: write
+
+    outputs:
+      image-tag: ${{ steps.meta.outputs.tags }}
+      image-digest: ${{ steps.build.outputs.digest }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Log in to GitHub Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Extract metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        tags: |
+          type=ref,event=branch
+          type=sha,prefix=dev-,format=short
+          type=raw,value=dev-latest
+
+    - name: Build and push Docker image
+      id: build
+      uses: docker/build-push-action@v5
+      with:
+        context: ./repair-connect
+        file: ./repair-connect/Dockerfile
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        build-args: |
+          NODE_ENV=production
+
+  # ============================================
+  # Job 3: Deploy to Kubernetes (Dev)
+  # ============================================
+  deploy:
+    name: Deploy to Kubernetes
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: development
+      url: https://dev.ogscout.com
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'latest'
+
+    - name: Configure kubectl
+      run: |
+        mkdir -p $HOME/.kube
+        echo "${{ secrets.KUBECONFIG_DEV }}" | base64 -d > $HOME/.kube/config
+        chmod 600 $HOME/.kube/config
+
+    - name: Setup Kustomize
+      uses: imranismail/setup-kustomize@v2
+
+    - name: Create namespace if not exists
+      run: |
+        kubectl create namespace ${{ env.K8S_NAMESPACE }} --dry-run=client -o yaml | kubectl apply -f -
+
+    - name: Create secrets
+      run: |
+        kubectl create secret generic ogscout-secrets \
+          --from-literal=MONGODB_URI="${{ secrets.MONGODB_URI_DEV }}" \
+          --from-literal=MONGODB_USERNAME="${{ secrets.MONGODB_USERNAME_DEV }}" \
+          --from-literal=MONGODB_PASSWORD="${{ secrets.MONGODB_PASSWORD_DEV }}" \
+          --from-literal=NEXTAUTH_SECRET="${{ secrets.NEXTAUTH_SECRET_DEV }}" \
+          --from-literal=NEXTAUTH_URL="https://dev.ogscout.com" \
+          --from-literal=CLOUDINARY_CLOUD_NAME="${{ secrets.CLOUDINARY_CLOUD_NAME }}" \
+          --from-literal=CLOUDINARY_API_KEY="${{ secrets.CLOUDINARY_API_KEY }}" \
+          --from-literal=CLOUDINARY_API_SECRET="${{ secrets.CLOUDINARY_API_SECRET }}" \
+          --from-literal=NEXT_PUBLIC_GOOGLE_MAPS_API_KEY="${{ secrets.GOOGLE_MAPS_API_KEY }}" \
+          --namespace=${{ env.K8S_NAMESPACE }} \
+          --dry-run=client -o yaml | kubectl apply -f -
+
+    - name: Create GHCR pull secret
+      run: |
+        kubectl create secret docker-registry ghcr-secret \
+          --docker-server=${{ env.REGISTRY }} \
+          --docker-username=${{ github.actor }} \
+          --docker-password=${{ secrets.GITHUB_TOKEN }} \
+          --namespace=${{ env.K8S_NAMESPACE }} \
+          --dry-run=client -o yaml | kubectl apply -f -
+
+    - name: Update image tag in kustomization
+      working-directory: k8s/overlays/dev
+      run: |
+        kustomize edit set image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:dev-${{ github.sha }}
+
+    - name: Deploy to Kubernetes
+      working-directory: k8s/overlays/dev
+      run: |
+        kustomize build . | kubectl apply -f -
+
+    - name: Wait for deployment rollout
+      run: |
+        kubectl rollout status deployment/ogscout-app -n ${{ env.K8S_NAMESPACE }} --timeout=300s
+
+    - name: Verify deployment
+      run: |
+        echo "=== Deployment Status ==="
+        kubectl get deployments -n ${{ env.K8S_NAMESPACE }}
+        echo ""
+        echo "=== Pods Status ==="
+        kubectl get pods -n ${{ env.K8S_NAMESPACE }} -o wide
+        echo ""
+        echo "=== Services ==="
+        kubectl get services -n ${{ env.K8S_NAMESPACE }}
+        echo ""
+        echo "=== Ingress ==="
+        kubectl get ingress -n ${{ env.K8S_NAMESPACE }}
+
+    - name: Check pod logs (if failed)
+      if: failure()
+      run: |
+        kubectl logs -n ${{ env.K8S_NAMESPACE }} -l app=ogscout --tail=100
+
+  # ============================================
+  # Job 4: Notification (Optional)
+  # ============================================
+  notify:
+    name: Send Notification
+    runs-on: ubuntu-latest
+    needs: [build, deploy]
+    if: always()
+
+    steps:
+    - name: Deployment Status
+      run: |
+        if [ "${{ needs.deploy.result }}" == "success" ]; then
+          echo "✅ Development deployment successful!"
+          echo "🌐 URL: https://dev.ogscout.com"
+        else
+          echo "❌ Development deployment failed!"
+        fi

@@ -1,0 +1,29 @@
+# ============================================
+# Development Ingress Patches
+# Uses dev subdomain
+# ============================================
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ogscout-ingress
+  annotations:
+    # Use staging Let's Encrypt for dev
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+spec:
+  tls:
+  - hosts:
+    - dev.ogscout.com
+    secretName: ogscout-dev-tls-secret
+
+  rules:
+  - host: dev.ogscout.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ogscout-service
+            port:
+              number: 3000

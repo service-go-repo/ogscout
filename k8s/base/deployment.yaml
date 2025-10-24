@@ -1,0 +1,139 @@
+# ============================================
+# Kubernetes Deployment for OGScout Next.js App
+# Production-ready with proper resource limits,
+# health checks, and security settings
+# ============================================
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ogscout-app
+  labels:
+    app: ogscout
+    component: frontend
+spec:
+  # Number of replicas will be managed by HPA
+  replicas: 2
+
+  # Deployment strategy for zero-downtime updates
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+
+  selector:
+    matchLabels:
+      app: ogscout
+      component: frontend
+
+  template:
+    metadata:
+      labels:
+        app: ogscout
+        component: frontend
+    spec:
+      # Security context for the pod
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        runAsGroup: 1001
+        fsGroup: 1001
+
+      containers:
+      - name: ogscout-app
+        # Image will be replaced by CI/CD pipeline
+        image: ghcr.io/your-org/ogscout:latest
+        imagePullPolicy: Always
+
+        ports:
+        - name: http
+          containerPort: 3000
+          protocol: TCP
+
+        # Environment variables from ConfigMap
+        envFrom:
+        - configMapRef:
+            name: ogscout-config
+        - secretRef:
+            name: ogscout-secrets
+
+        # Resource limits and requests
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+
+        # Liveness probe - checks if container is alive
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+
+        # Readiness probe - checks if container is ready to serve traffic
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: http
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+          successThreshold: 1
+
+        # Startup probe - gives container more time to start
+        startupProbe:
+          httpGet:
+            path: /api/health
+            port: http
+          initialDelaySeconds: 0
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 12
+          successThreshold: 1
+
+        # Security context for the container
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: false
+          runAsNonRoot: true
+          runAsUser: 1001
+          capabilities:
+            drop:
+            - ALL
+
+        # Volume mounts (if needed)
+        # volumeMounts:
+        # - name: tmp
+        #   mountPath: /tmp
+
+      # Volumes (if needed)
+      # volumes:
+      # - name: tmp
+      #   emptyDir: {}
+
+      # Image pull secrets for private registries
+      imagePullSecrets:
+      - name: ghcr-secret
+
+      # Affinity rules for better pod distribution
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - ogscout
+              topologyKey: kubernetes.io/hostname
