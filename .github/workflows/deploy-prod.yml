@@ -48,10 +48,6 @@ jobs:
       working-directory: repair-connect
       run: npm test || true
 
-    # - name: Run E2E tests
-    #   working-directory: repair-connect
-    #   run: npm run test:e2e
-
   # ============================================
   # Job 2: Security Scan
   # ============================================
@@ -117,11 +113,7 @@ jobs:
       with:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         tags: |
-          type=ref,event=branch
-          type=sha,prefix=prod-,format=short
-          type=semver,pattern={{version}}
-          type=semver,pattern={{major}}.{{minor}}
-          type=raw,value=latest
+          type=raw,value=prod-${{ github.sha }}
           type=raw,value=prod-latest
 
     - name: Build and push Docker image
@@ -153,7 +145,6 @@ jobs:
 
   # ============================================
   # Job 4: Deploy to Kubernetes (Production)
-  # Requires manual approval
   # ============================================
   deploy:
     name: Deploy to Kubernetes
@@ -172,10 +163,13 @@ jobs:
       with:
         version: 'latest'
 
-    - name: Configure kubectl
+    - name: Configure kubectl (auto-detect base64)
+      shell: bash
       run: |
         mkdir -p $HOME/.kube
-        echo "${{ secrets.KUBECONFIG }}" | base64 -d > $HOME/.kube/config
+        echo "${{ secrets.KUBECONFIG_PROD }}" | grep -q "apiVersion" && \
+          echo "${{ secrets.KUBECONFIG_PROD }}" > $HOME/.kube/config || \
+          echo "${{ secrets.KUBECONFIG_PROD }}" | base64 -d > $HOME/.kube/config
         chmod 600 $HOME/.kube/config
 
     - name: Setup Kustomize
