@@ -10,7 +10,6 @@ namespace: ogscout-dev
 
 # Base resources
 resources:
-- ../../base/namespace.yaml
 - ../../base/configmap.yaml
 - ../../base/deployment.yaml
 - ../../base/service.yaml
