@@ -13,24 +13,28 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: repair-connect  # 👈 all npm commands run here
+
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-        cache-dependency-path: repair-connect/package-lock.json
-    
-    - name: Install dependencies
-      run: npm ci
-    
-    - name: Run tests
-      run: npm test
-    
-    - name: Run linting
-      run: npm run lint
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: repair-connect/package-lock.json  # 👈 correct path
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Run linting
+        run: npm run lint
 
   build-and-push:
     needs: test
@@ -38,38 +42,38 @@ jobs:
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
     
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
-    
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v3
-      with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
-    
-    - name: Extract metadata
-      id: meta
-      uses: docker/metadata-action@v5
-      with:
-        images: ${{ secrets.DOCKERHUB_USERNAME }}/nextjs-app
-        tags: |
-          type=ref,event=branch
-          type=ref,event=pr
-          type=semver,pattern={{version}}
-          type=semver,pattern={{major}}.{{minor}}
-          type=sha,prefix={{branch}}-
-    
-    - name: Build and push Docker image
-      uses: docker/build-push-action@v5
-      with:
-        context: .
-        push: true
-        tags: ${{ steps.meta.outputs.tags }}
-        labels: ${{ steps.meta.outputs.labels }}
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
+      - uses: actions/checkout@v4
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/nextjs-app
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,prefix={{branch}}-
+      
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   deploy:
     needs: build-and-push
@@ -77,23 +81,23 @@ jobs:
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
     
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up Kubeconfig
-      run: |
-        mkdir -p $HOME/.kube
-        echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
-        
-    - name: Install kubectl
-      uses: azure/setup-kubectl@v3
-      with:
-        version: 'v1.28.0'
-    
-    - name: Deploy to Kubernetes
-      run: |
-        kubectl apply -f k8s/namespace.yaml
-        kubectl apply -f k8s/secrets.yaml
-        kubectl apply -f k8s/mongodb.yaml
-        kubectl set image deployment/nextjs-app nextjs-app=${{ secrets.DOCKERHUB_USERNAME }}/nextjs-app:latest -n nextjs-app
-        kubectl apply -f k8s/nextjs-app.yaml
-        kubectl rollout status deployment/nextjs-app -n nextjs-app --timeout=300s
+      - uses: actions/checkout@v4
+      
+      - name: Set up Kubeconfig
+        run: |
+          mkdir -p $HOME/.kube
+          echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
+          
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'v1.28.0'
+      
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl apply -f k8s/namespace.yaml
+          kubectl apply -f k8s/secrets.yaml
+          kubectl apply -f k8s/mongodb.yaml
+          kubectl set image deployment/nextjs-app nextjs-app=${{ secrets.DOCKERHUB_USERNAME }}/nextjs-app:latest -n nextjs-app
+          kubectl apply -f k8s/nextjs-app.yaml
+          kubectl rollout status deployment/nextjs-app -n nextjs-app --timeout=300s
