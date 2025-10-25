@@ -37,8 +37,9 @@ spec:
 
   tls:
   - hosts:
-    - ogscout.com
-    - www.ogscout.com
+    #- ogscout.com
+    #-www.ogscout.com
+    - ns19.domaincontrol.com
     secretName: ogscout-tls-secret
 
   rules:
