@@ -21,6 +21,7 @@ labels:
 patches:
   - path: deployment-patch.yaml
   - path: hpa-patch.yaml
+  - path: ingress-patch.yaml
 
 # ConfigMap generator for prod-specific config
 configMapGenerator:

@@ -1,0 +1,107 @@
+# ============================================
+# MongoDB Backup CronJob
+# Runs daily backups of the database
+# ============================================
+
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: mongodb-backup
+  labels:
+    app: mongodb
+    component: database-backup
+spec:
+  # Run daily at 2 AM
+  schedule: "0 2 * * *"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: mongodb
+            component: database-backup
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: mongodb-backup
+            image: mongo:7.0
+            command:
+            - /bin/bash
+            - -c
+            - |
+              BACKUP_DIR="/backup"
+              TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+              BACKUP_FILE="repair-connect_${TIMESTAMP}.gz"
+
+              echo "Starting backup at $(date)"
+              echo "Backup file: ${BACKUP_FILE}"
+
+              # Create backup directory
+              mkdir -p ${BACKUP_DIR}
+
+              # Run mongodump
+              mongodump \
+                --host=mongodb \
+                --username=$MONGO_ROOT_USERNAME \
+                --password=$MONGO_ROOT_PASSWORD \
+                --authenticationDatabase=admin \
+                --db=repair-connect \
+                --archive=${BACKUP_DIR}/${BACKUP_FILE} \
+                --gzip
+
+              if [ $? -eq 0 ]; then
+                echo "Backup completed successfully!"
+                echo "Backup size: $(du -h ${BACKUP_DIR}/${BACKUP_FILE} | cut -f1)"
+
+                # Optional: Upload to cloud storage
+                # aws s3 cp ${BACKUP_DIR}/${BACKUP_FILE} s3://your-bucket/mongodb-backups/
+
+                # Clean up old backups (keep last 7 days)
+                find ${BACKUP_DIR} -name "repair-connect_*.gz" -mtime +7 -delete
+
+                echo "Backup retention: Kept last 7 days"
+              else
+                echo "Backup failed!"
+                exit 1
+              fi
+
+            env:
+            - name: MONGO_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secret
+                  key: MONGO_ROOT_USERNAME
+            - name: MONGO_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secret
+                  key: MONGO_ROOT_PASSWORD
+
+            volumeMounts:
+            - name: backup-storage
+              mountPath: /backup
+
+          volumes:
+          - name: backup-storage
+            persistentVolumeClaim:
+              claimName: mongodb-backup-pvc
+---
+# ============================================
+# PersistentVolumeClaim for Backups
+# ============================================
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongodb-backup-pvc
+  labels:
+    app: mongodb
+    component: database-backup
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  # storageClassName: standard  # Uncomment and set your storage class

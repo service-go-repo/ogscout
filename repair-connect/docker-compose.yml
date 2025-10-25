@@ -9,14 +9,17 @@ services:
     ports:
       - "27017:27017"
     environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
       MONGO_INITDB_DATABASE: repair-connect
     volumes:
       - mongodb_data:/data/db
       - mongodb_config:/data/configdb
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
     networks:
       - repair-connect-network
     healthcheck:
-      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      test: ["CMD", "mongosh", "--username", "admin", "--password", "password", "--authenticationDatabase", "admin", "--eval", "db.adminCommand('ping')"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -34,8 +37,8 @@ services:
       - .env.production
     environment:
       - NODE_ENV=production
-      # Override MONGODB_URI to use Docker service name
-      - MONGODB_URI=mongodb://mongodb:27017/repair-connect
+      # Override MONGODB_URI to use Docker service name with authentication
+      - MONGODB_URI=mongodb://repair-connect-app:changeme123@mongodb:27017/repair-connect?authSource=repair-connect
     depends_on:
       mongodb:
         condition: service_healthy

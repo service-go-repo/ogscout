@@ -169,12 +169,27 @@ jobs:
         run: |
           kubectl create namespace ${{ env.K8S_NAMESPACE }} --dry-run=client -o yaml | kubectl apply -f - --validate=false
 
-      - name: Create secrets
+      - name: Create MongoDB secrets
         run: |
+          # MongoDB root credentials
+          kubectl create secret generic mongodb-secret \
+            --from-literal=MONGO_ROOT_USERNAME="admin" \
+            --from-literal=MONGO_ROOT_PASSWORD="${{ secrets.MONGODB_ROOT_PASSWORD }}" \
+            --namespace=${{ env.K8S_NAMESPACE }} \
+            --dry-run=client -o yaml | kubectl apply -f - --validate=false
+
+      - name: Create application secrets
+        run: |
+          # Build MongoDB URI for Kubernetes internal service
+          MONGODB_USER="${{ secrets.MONGODB_USERNAME_PROD }}"
+          MONGODB_PASS="${{ secrets.MONGODB_PASSWORD_PROD }}"
+          # Use Kubernetes service name
+          MONGODB_URI="mongodb://${MONGODB_USER}:${MONGODB_PASS}@mongodb:27017/repair-connect?authSource=repair-connect"
+
           kubectl create secret generic ogscout-secrets \
-            --from-literal=MONGODB_URI="${{ secrets.MONGODB_URI_PROD }}" \
-            --from-literal=MONGODB_USERNAME="${{ secrets.MONGODB_USERNAME_PROD }}" \
-            --from-literal=MONGODB_PASSWORD="${{ secrets.MONGODB_PASSWORD_PROD }}" \
+            --from-literal=MONGODB_URI="${MONGODB_URI}" \
+            --from-literal=MONGODB_USERNAME="${MONGODB_USER}" \
+            --from-literal=MONGODB_PASSWORD="${MONGODB_PASS}" \
             --from-literal=NEXTAUTH_SECRET="${{ secrets.NEXTAUTH_SECRET_PROD }}" \
             --from-literal=NEXTAUTH_URL="https://ogscout.com" \
             --from-literal=CLOUDINARY_CLOUD_NAME="${{ secrets.CLOUDINARY_CLOUD_NAME }}" \

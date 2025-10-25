@@ -13,3 +13,10 @@ data:
   PORT: "3000"
   HOSTNAME: "0.0.0.0"
   NEXT_TELEMETRY_DISABLED: "1"
+
+  # MongoDB connection (using Kubernetes service)
+  # Format: mongodb://username:password@service-name:port/database
+  # Note: Username and password come from secrets, this is just the host
+  MONGODB_HOST: "mongodb"
+  MONGODB_PORT: "27017"
+  MONGODB_DATABASE: "repair-connect"
