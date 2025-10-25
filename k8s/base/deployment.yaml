@@ -43,7 +43,7 @@ spec:
       containers:
       - name: ogscout-app
         # Image will be replaced by CI/CD pipeline
-        image: ghcr.io/your-org/ogscout:latest
+        image: ghcr.io/service-go-repo/ogscout:latest
         imagePullPolicy: Always
 
         ports:

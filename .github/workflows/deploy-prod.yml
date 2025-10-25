@@ -198,8 +198,8 @@ jobs:
         run: |
           SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
           echo "🖋 Updating image tag to prod-${SHORT_SHA}"
-          # Use the container name from deployment.yaml
-          kustomize edit set image ogscout-app=ghcr.io/${{ github.repository_owner }}/ogscout:prod-${SHORT_SHA}
+          # Update the image defined in kustomization.yaml
+          kustomize edit set image ghcr.io/service-go-repo/ogscout=ghcr.io/service-go-repo/ogscout:prod-${SHORT_SHA}
 
       - name: Deploy to Kubernetes
         working-directory: k8s/overlays/prod

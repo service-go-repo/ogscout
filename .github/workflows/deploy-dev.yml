@@ -161,7 +161,9 @@ jobs:
       working-directory: k8s/overlays/dev
       run: |
         SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
-        kustomize edit set image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:dev-${SHORT_SHA}
+        echo "🖋 Updating image tag to dev-${SHORT_SHA}"
+        # Update the image defined in kustomization.yaml
+        kustomize edit set image ghcr.io/service-go-repo/ogscout=ghcr.io/service-go-repo/ogscout:dev-${SHORT_SHA}
 
     - name: Deploy to Kubernetes
       working-directory: k8s/overlays/dev

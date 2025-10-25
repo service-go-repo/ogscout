@@ -1,0 +1,13 @@
+# ============================================
+# Base Kustomization
+# Common Kubernetes resources for all environments
+# ============================================
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - deployment.yaml
+  - service.yaml
+  - hpa.yaml
+  - ingress.yaml

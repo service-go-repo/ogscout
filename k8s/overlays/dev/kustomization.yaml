@@ -10,20 +10,17 @@ namespace: ogscout-dev
 
 # Base resources
 resources:
-- ../../base/configmap.yaml
-- ../../base/deployment.yaml
-- ../../base/service.yaml
-- ../../base/hpa.yaml
-- ../../base/ingress.yaml
+  - ../../base
 
-# Common labels for all resources
-commonLabels:
-  environment: development
+# Use "labels" instead of deprecated "commonLabels"
+labels:
+  - pairs:
+      environment: development
 
-# Patches for dev environment
-patchesStrategicMerge:
-- deployment-patch.yaml
-- ingress-patch.yaml
+# Use the modern "patches" field instead of deprecated "patchesStrategicMerge"
+patches:
+  - path: deployment-patch.yaml
+  - path: ingress-patch.yaml
 
 # ConfigMap generator for dev-specific config
 configMapGenerator:
@@ -35,5 +32,5 @@ configMapGenerator:
 
 # Image tags (will be updated by CI/CD)
 images:
-- name: ghcr.io/your-org/ogscout
-  newTag: latest
+  - name: ghcr.io/service-go-repo/ogscout
+    newTag: latest

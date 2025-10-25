@@ -10,10 +10,7 @@ namespace: ogscout-prod
 
 # Base resources
 resources:
-  - ../../base/deployment.yaml
-  - ../../base/service.yaml
-  - ../../base/hpa.yaml
-  - ../../base/ingress.yaml
+  - ../../base
 
 # Use "labels" instead of deprecated "commonLabels"
 labels:
