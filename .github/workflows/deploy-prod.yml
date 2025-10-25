@@ -194,16 +194,16 @@ jobs:
           --dry-run=client -o yaml | kubectl apply -f - --validate=false
 
     - name: Update image tag in deployment manifest
-      working-directory: k8s/overlays/prod
+      working-directory: k8s
       run: |
         SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
         echo "🖋 Updating image tag to prod-${SHORT_SHA}"
-        kustomize edit set image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:prod-${SHORT_SHA}
+        kustomize edit set image ghcr.io/${{ github.repository_owner }}/ogscout=ghcr.io/${{ github.repository_owner }}/ogscout:prod-${SHORT_SHA} overlays/prod
 
     - name: Deploy to Kubernetes
-      working-directory: k8s/overlays/prod
+      working-directory: k8s
       run: |
-        kustomize build . | kubectl apply -f - --validate=false
+        kustomize build overlays/prod | kubectl apply -f - --validate=false
 
     - name: Wait for deployment rollout
       run: |
