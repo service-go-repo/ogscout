@@ -28,7 +28,7 @@ configMapGenerator:
   behavior: merge
   literals:
   - NODE_ENV=development
-  - NEXTAUTH_URL=https://dev.ogscout.com
+  - NEXTAUTH_URL=https://ns19.domaincontrol.com
 
 # Image tags (will be updated by CI/CD)
 images:

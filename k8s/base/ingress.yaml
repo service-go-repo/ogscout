@@ -37,14 +37,12 @@ spec:
 
   tls:
   - hosts:
-    #- ogscout.com
-    #-www.ogscout.com
     - ns19.domaincontrol.com
     secretName: ogscout-tls-secret
 
   rules:
   # Main domain
-  - host: ogscout.com
+  - host: ns19.domaincontrol.com
     http:
       paths:
       - path: /
@@ -56,7 +54,7 @@ spec:
               number: 3000
 
   # WWW subdomain
-  - host: www.ogscout.com
+  - host: ns19.domaincontrol.com
     http:
       paths:
       - path: /

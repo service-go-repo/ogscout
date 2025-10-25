@@ -138,7 +138,7 @@ jobs:
     needs: build
     environment:
       name: production
-      url: https://ogscout.com
+      url: https://ns19.domaincontrol.com
 
     steps:
       - name: Checkout code
@@ -191,7 +191,7 @@ jobs:
             --from-literal=MONGODB_USERNAME="${MONGODB_USER}" \
             --from-literal=MONGODB_PASSWORD="${MONGODB_PASS}" \
             --from-literal=NEXTAUTH_SECRET="${{ secrets.NEXTAUTH_SECRET_PROD }}" \
-            --from-literal=NEXTAUTH_URL="https://ogscout.com" \
+            --from-literal=NEXTAUTH_URL="https://ns19.domaincontrol.com" \
             --from-literal=CLOUDINARY_CLOUD_NAME="${{ secrets.CLOUDINARY_CLOUD_NAME }}" \
             --from-literal=CLOUDINARY_API_KEY="${{ secrets.CLOUDINARY_API_KEY }}" \
             --from-literal=CLOUDINARY_API_SECRET="${{ secrets.CLOUDINARY_API_SECRET }}" \
@@ -239,7 +239,7 @@ jobs:
 
       - name: Check application health
         run: |
-          response=$(curl -s -o /dev/null -w "%{http_code}" https://ogscout.com/api/health)
+          response=$(curl -s -o /dev/null -w "%{http_code}" https://ns19.domaincontrol.com/api/health)
           if [ $response -eq 200 ]; then
             echo "✅ Health check passed! Application is healthy."
           else

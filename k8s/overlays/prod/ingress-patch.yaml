@@ -17,7 +17,7 @@ spec:
         - www.ns19.domaincontrol.com
       secretName: ogscout-tls-prod
   rules:
-    - host: ogscout.com
+    - host: ns19.domaincontrol.com
       http:
         paths:
           - path: /
