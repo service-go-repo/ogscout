@@ -1,17 +1,25 @@
 # ============================================
-# MongoDB StatefulSet
-# Provides persistent database storage
+# Simple MongoDB Deployment (No PersistentVolumes)
+# Use this for testing or if you don't have storage provisioning
+# ============================================
+#
+# WARNING: Data will be lost when pod restarts!
+# This uses emptyDir which is ephemeral storage
+#
+# To use this instead of StatefulSet:
+# 1. Comment out mongodb-statefulset.yaml in kustomization.yaml
+# 2. Uncomment mongodb-deployment-simple.yaml
 # ============================================
 
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
-  name: mongodb
+  name: mongodb-simple
   labels:
     app: mongodb
     component: database
+    deployment-type: simple
 spec:
-  serviceName: mongodb-service
   replicas: 1
   selector:
     matchLabels:
@@ -82,21 +90,9 @@ spec:
           timeoutSeconds: 3
           failureThreshold: 3
 
-  volumeClaimTemplates:
-  - metadata:
-      name: mongodb-data
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: manual
-      resources:
-        requests:
-          storage: 10Gi
-
-  - metadata:
-      name: mongodb-config
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: manual
-      resources:
-        requests:
-          storage: 1Gi
+      volumes:
+      # Using emptyDir - data will be lost on pod restart!
+      - name: mongodb-data
+        emptyDir: {}
+      - name: mongodb-config
+        emptyDir: {}

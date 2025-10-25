@@ -1,0 +1,76 @@
+# ============================================
+# PersistentVolumes for MongoDB
+# Manual PV creation for clusters without dynamic provisioning
+# ============================================
+#
+# NOTE: These use hostPath which is suitable for:
+# - Single-node clusters
+# - Development/testing environments
+# - Minikube, Docker Desktop, kind
+#
+# For production multi-node clusters, use:
+# - Cloud provider storage (AWS EBS, GCE PD, Azure Disk)
+# - NFS
+# - Ceph/Rook
+# - Or enable dynamic provisioning with StorageClass
+# ============================================
+
+---
+# PersistentVolume for MongoDB Data
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mongodb-data-pv
+  labels:
+    type: local
+    app: mongodb
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "/mnt/data/mongodb/data"
+    type: DirectoryOrCreate
+
+---
+# PersistentVolume for MongoDB Config
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mongodb-config-pv
+  labels:
+    type: local
+    app: mongodb
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "/mnt/data/mongodb/config"
+    type: DirectoryOrCreate
+
+---
+# PersistentVolume for MongoDB Backups
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mongodb-backup-pv
+  labels:
+    type: local
+    app: mongodb
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "/mnt/data/mongodb/backup"
+    type: DirectoryOrCreate

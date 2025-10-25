@@ -101,7 +101,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
+  storageClassName: manual
   resources:
     requests:
       storage: 20Gi
-  # storageClassName: standard  # Uncomment and set your storage class
