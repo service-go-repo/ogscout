@@ -26,27 +26,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'npm'
-        cache-dependency-path: repair-connect/package-lock.json
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: repair-connect/package-lock.json
 
-    - name: Install dependencies
-      working-directory: repair-connect
-      run: npm ci
+      - name: Install dependencies
+        working-directory: repair-connect
+        run: npm ci
 
-    - name: Run linting
-      working-directory: repair-connect
-      run: npm run lint || true
+      - name: Run linting
+        working-directory: repair-connect
+        run: npm run lint || true
 
-    - name: Run unit tests
-      working-directory: repair-connect
-      run: npm test || true
+      - name: Run unit tests
+        working-directory: repair-connect
+        run: npm test || true
 
   # ============================================
   # Job 2: Security Scan
@@ -60,22 +60,22 @@ jobs:
       security-events: write
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Run Trivy vulnerability scanner
-      uses: aquasecurity/trivy-action@master
-      with:
-        scan-type: 'fs'
-        scan-ref: './repair-connect'
-        format: 'sarif'
-        output: 'trivy-results.sarif'
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: './repair-connect'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
 
-    - name: Upload Trivy results to GitHub Security
-      uses: github/codeql-action/upload-sarif@v3
-      if: always()
-      with:
-        sarif_file: 'trivy-results.sarif'
+      - name: Upload Trivy results to GitHub Security
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
 
   # ============================================
   # Job 3: Build and Push Docker Image
@@ -94,40 +94,40 @@ jobs:
       image-digest: ${{ steps.build.outputs.digest }}
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-    - name: Log in to GitHub Container Registry
-      uses: docker/login-action@v3
-      with:
-        registry: ${{ env.REGISTRY }}
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Extract metadata
-      id: meta
-      uses: docker/metadata-action@v5
-      with:
-        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-        tags: |
-          type=sha,prefix=prod-,format=short
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=sha,prefix=prod-,format=short
 
-    - name: Build and push Docker image
-      id: build
-      uses: docker/build-push-action@v5
-      with:
-        context: ./repair-connect
-        file: ./repair-connect/Dockerfile
-        push: true
-        tags: ${{ steps.meta.outputs.tags }}
-        labels: ${{ steps.meta.outputs.labels }}
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
-        build-args: |
-          NODE_ENV=production
+      - name: Build and push Docker image
+        id: build
+        uses: docker/build-push-action@v5
+        with:
+          context: ./repair-connect
+          file: ./repair-connect/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            NODE_ENV=production
 
   # ============================================
   # Job 4: Deploy to Kubernetes (Production)
@@ -141,73 +141,74 @@ jobs:
       url: https://ogscout.com
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup kubectl
-      uses: azure/setup-kubectl@v3
-      with:
-        version: 'latest'
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
 
-    - name: Configure kubectl (non-base64 kubeconfig)
-      run: |
-        mkdir -p $HOME/.kube
-        echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
-        chmod 600 $HOME/.kube/config
-        echo "✅ Kubeconfig written successfully."
-        kubectl config current-context || echo "⚠️ Context check skipped."
+      - name: Configure kubectl (non-base64 kubeconfig)
+        run: |
+          mkdir -p $HOME/.kube
+          echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
+          chmod 600 $HOME/.kube/config
+          echo "✅ Kubeconfig written successfully."
+          kubectl config current-context || echo "⚠️ Context check skipped."
 
-    - name: Verify cluster connection
-      run: |
-        echo "🔍 Checking cluster connectivity..."
-        kubectl get nodes || (echo "❌ Cannot connect to cluster" && exit 1)
+      - name: Verify cluster connection
+        run: |
+          echo "🔍 Checking cluster connectivity..."
+          kubectl get nodes || (echo "❌ Cannot connect to cluster" && exit 1)
 
-    - name: Setup Kustomize
-      uses: imranismail/setup-kustomize@v2
+      - name: Setup Kustomize
+        uses: imranismail/setup-kustomize@v2
 
-    - name: Create namespace if not exists
-      run: |
-        kubectl create namespace ${{ env.K8S_NAMESPACE }} --dry-run=client -o yaml | kubectl apply -f - --validate=false
+      - name: Create namespace if not exists
+        run: |
+          kubectl create namespace ${{ env.K8S_NAMESPACE }} --dry-run=client -o yaml | kubectl apply -f - --validate=false
 
-    - name: Create secrets
-      run: |
-        kubectl create secret generic ogscout-secrets \
-          --from-literal=MONGODB_URI="${{ secrets.MONGODB_URI_PROD }}" \
-          --from-literal=MONGODB_USERNAME="${{ secrets.MONGODB_USERNAME_PROD }}" \
-          --from-literal=MONGODB_PASSWORD="${{ secrets.MONGODB_PASSWORD_PROD }}" \
-          --from-literal=NEXTAUTH_SECRET="${{ secrets.NEXTAUTH_SECRET_PROD }}" \
-          --from-literal=NEXTAUTH_URL="https://ogscout.com" \
-          --from-literal=CLOUDINARY_CLOUD_NAME="${{ secrets.CLOUDINARY_CLOUD_NAME }}" \
-          --from-literal=CLOUDINARY_API_KEY="${{ secrets.CLOUDINARY_API_KEY }}" \
-          --from-literal=CLOUDINARY_API_SECRET="${{ secrets.CLOUDINARY_API_SECRET }}" \
-          --from-literal=NEXT_PUBLIC_GOOGLE_MAPS_API_KEY="${{ secrets.GOOGLE_MAPS_API_KEY }}" \
-          --namespace=${{ env.K8S_NAMESPACE }} \
-          --dry-run=client -o yaml | kubectl apply -f - --validate=false
+      - name: Create secrets
+        run: |
+          kubectl create secret generic ogscout-secrets \
+            --from-literal=MONGODB_URI="${{ secrets.MONGODB_URI_PROD }}" \
+            --from-literal=MONGODB_USERNAME="${{ secrets.MONGODB_USERNAME_PROD }}" \
+            --from-literal=MONGODB_PASSWORD="${{ secrets.MONGODB_PASSWORD_PROD }}" \
+            --from-literal=NEXTAUTH_SECRET="${{ secrets.NEXTAUTH_SECRET_PROD }}" \
+            --from-literal=NEXTAUTH_URL="https://ogscout.com" \
+            --from-literal=CLOUDINARY_CLOUD_NAME="${{ secrets.CLOUDINARY_CLOUD_NAME }}" \
+            --from-literal=CLOUDINARY_API_KEY="${{ secrets.CLOUDINARY_API_KEY }}" \
+            --from-literal=CLOUDINARY_API_SECRET="${{ secrets.CLOUDINARY_API_SECRET }}" \
+            --from-literal=NEXT_PUBLIC_GOOGLE_MAPS_API_KEY="${{ secrets.GOOGLE_MAPS_API_KEY }}" \
+            --namespace=${{ env.K8S_NAMESPACE }} \
+            --dry-run=client -o yaml | kubectl apply -f - --validate=false
 
-    - name: Create GHCR pull secret
-      run: |
-        kubectl create secret docker-registry ghcr-secret \
-          --docker-server=${{ env.REGISTRY }} \
-          --docker-username=${{ github.actor }} \
-          --docker-password=${{ secrets.GITHUB_TOKEN }} \
-          --namespace=${{ env.K8S_NAMESPACE }} \
-          --dry-run=client -o yaml | kubectl apply -f - --validate=false
+      - name: Create GHCR pull secret
+        run: |
+          kubectl create secret docker-registry ghcr-secret \
+            --docker-server=${{ env.REGISTRY }} \
+            --docker-username=${{ github.actor }} \
+            --docker-password=${{ secrets.GITHUB_TOKEN }} \
+            --namespace=${{ env.K8S_NAMESPACE }} \
+            --dry-run=client -o yaml | kubectl apply -f - --validate=false
 
-    - name: Update image tag in deployment manifest
-      working-directory: k8s/overlays/prod
-      run: |
-        SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
-        echo "🖋 Updating image tag to prod-${SHORT_SHA}"
-        kustomize edit set image ogscout-app=ghcr.io/${{ github.repository_owner }}/ogscout:prod-${SHORT_SHA} -k .
+      - name: Update image tag in deployment manifest
+        working-directory: k8s/overlays/prod
+        run: |
+          SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
+          echo "🖋 Updating image tag to prod-${SHORT_SHA}"
+          # Use the container name from deployment.yaml
+          kustomize edit set image ogscout-app=ghcr.io/${{ github.repository_owner }}/ogscout:prod-${SHORT_SHA}
 
-    - name: Deploy to Kubernetes
-      working-directory: k8s/overlays/prod
-      run: |
-        kustomize build . | kubectl apply -f - --validate=false
+      - name: Deploy to Kubernetes
+        working-directory: k8s/overlays/prod
+        run: |
+          kustomize build . | kubectl apply -f - --validate=false
 
-    - name: Wait for deployment rollout
-      run: |
-        kubectl rollout status deployment/ogscout-app -n ${{ env.K8S_NAMESPACE }} --timeout=600s
+      - name: Wait for deployment rollout
+        run: |
+          kubectl rollout status deployment/ogscout-app -n ${{ env.K8S_NAMESPACE }} --timeout=600s
 
   # ============================================
   # Job 5: Health Check
@@ -218,14 +219,14 @@ jobs:
     needs: deploy
 
     steps:
-    - name: Wait for service to be ready
-      run: sleep 30
+      - name: Wait for service to be ready
+        run: sleep 30
 
-    - name: Check application health
-      run: |
-        response=$(curl -s -o /dev/null -w "%{http_code}" https://ogscout.com/api/health)
-        if [ $response -eq 200 ]; then
-          echo "✅ Health check passed! Application is healthy."
-        else
-          echo "❌ Health check failed! HTTP status: $response"
-          exit 1
+      - name: Check application health
+        run: |
+          response=$(curl -s -o /dev/null -w "%{http_code}" https://ogscout.com/api/health)
+          if [ $response -eq 200 ]; then
+            echo "✅ Health check passed! Application is healthy."
+          else
+            echo "❌ Health check failed! HTTP status: $response"
+            exit 1
