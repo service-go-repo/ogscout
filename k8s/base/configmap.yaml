@@ -1,0 +1,15 @@
+# ============================================
+# Base ConfigMap for Application Configuration
+# Contains common configuration shared across all environments
+# ============================================
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ogscout-config
+data:
+  # Common configuration
+  # Environment-specific values will be merged by overlays
+  PORT: "3000"
+  HOSTNAME: "0.0.0.0"
+  NEXT_TELEMETRY_DISABLED: "1"
