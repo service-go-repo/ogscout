@@ -10,29 +10,30 @@ namespace: ogscout-prod
 
 # Base resources
 resources:
-- ../../base/deployment.yaml
-- ../../base/service.yaml
-- ../../base/hpa.yaml
-- ../../base/ingress.yaml
+  - ../../base/deployment.yaml
+  - ../../base/service.yaml
+  - ../../base/hpa.yaml
+  - ../../base/ingress.yaml
 
-# Common labels for all resources
-commonLabels:
-  environment: production
+# Use "labels" instead of deprecated "commonLabels"
+labels:
+  - pairs:
+      environment: production
 
-# Patches for production environment
-patchesStrategicMerge:
-- deployment-patch.yaml
-- hpa-patch.yaml
+# Use the modern "patches" field instead of deprecated "patchesStrategicMerge"
+patches:
+  - path: deployment-patch.yaml
+  - path: hpa-patch.yaml
 
 # ConfigMap generator for prod-specific config
 configMapGenerator:
-- name: ogscout-config
-  behavior: merge
-  literals:
-  - NODE_ENV=production
-  - NEXTAUTH_URL=https://ogscout.com
+  - name: ogscout-config
+    behavior: merge
+    literals:
+      - NODE_ENV=production
+      - NEXTAUTH_URL=https://ogscout.com
 
-# Image tags (will be updated by CI/CD)
+# The CI/CD pipeline will dynamically update this image tag using "kustomize edit set image"
 images:
-- name: ghcr.io/your-org/ogscout
-  newTag: latest
+  - name: ghcr.io/service-go-repo/ogscout
+    newTag: latest
