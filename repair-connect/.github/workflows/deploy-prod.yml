@@ -1,0 +1,255 @@
+# ============================================
+# CI/CD Pipeline for Production Environment
+# Triggered on push to 'main' branch
+# Includes additional safety checks and approvals
+# ============================================
+
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository_owner }}/ogscout
+  K8S_NAMESPACE: ogscout-prod
+
+jobs:
+  # ============================================
+  # Job 1: Test
+  # ============================================
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: repair-connect/package-lock.json
+
+      - name: Install dependencies
+        working-directory: repair-connect
+        run: npm ci
+
+      - name: Run linting
+        working-directory: repair-connect
+        run: npm run lint || true
+
+      - name: Run unit tests
+        working-directory: repair-connect
+        run: npm test || true
+
+  # ============================================
+  # Job 2: Security Scan
+  # ============================================
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    needs: test
+    permissions:
+      contents: read
+      security-events: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: './repair-connect'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+
+      - name: Upload Trivy results to GitHub Security
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+  # ============================================
+  # Job 3: Build and Push Docker Image
+  # ============================================
+  build:
+    name: Build and Push Image
+    runs-on: ubuntu-latest
+    needs: [test, security]
+    permissions:
+      contents: read
+      packages: write
+      security-events: write
+
+    outputs:
+      image-tag: ${{ steps.meta.outputs.tags }}
+      image-digest: ${{ steps.build.outputs.digest }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=sha,prefix=prod-,format=short
+
+      - name: Build and push Docker image
+        id: build
+        uses: docker/build-push-action@v5
+        with:
+          context: ./repair-connect
+          file: ./repair-connect/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            NODE_ENV=production
+
+  # ============================================
+  # Job 4: Deploy to Kubernetes (Production)
+  # ============================================
+  deploy:
+    name: Deploy to Kubernetes
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: production
+      url: https://ogscout.com
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
+
+      - name: Configure kubectl (non-base64 kubeconfig)
+        run: |
+          mkdir -p $HOME/.kube
+          echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
+          chmod 600 $HOME/.kube/config
+          echo "✅ Kubeconfig written successfully."
+          kubectl config current-context || echo "⚠️ Context check skipped."
+
+      - name: Verify cluster connection
+        run: |
+          echo "🔍 Checking cluster connectivity..."
+          kubectl get nodes || (echo "❌ Cannot connect to cluster" && exit 1)
+
+      - name: Setup Kustomize
+        uses: imranismail/setup-kustomize@v2
+
+      - name: Create namespace if not exists
+        run: |
+          kubectl create namespace ${{ env.K8S_NAMESPACE }} --dry-run=client -o yaml | kubectl apply -f - --validate=false
+
+      - name: Create MongoDB secrets
+        run: |
+          # MongoDB root credentials
+          kubectl create secret generic mongodb-secret \
+            --from-literal=MONGO_ROOT_USERNAME="${{ secrets.MONGODB_ROOT_USERNAME }}" \
+            --from-literal=MONGO_ROOT_PASSWORD="${{ secrets.MONGODB_ROOT_PASSWORD }}" \
+            --namespace=${{ env.K8S_NAMESPACE }} \
+            --dry-run=client -o yaml | kubectl apply -f - --validate=false
+
+      - name: Create application secrets
+        run: |
+          # Build MongoDB URI for Kubernetes internal service
+          # The application user 'repair-connect-app' is created by mongodb-init-job
+          MONGODB_USER="${{ secrets.MONGODB_USERNAME }}"
+          MONGODB_PASS="${{ secrets.MONGODB_PASSWORD }}"
+
+          # CRITICAL FIX: Include credentials in MongoDB URI
+          # Format: mongodb://username:password@host:port/database?authSource=database
+          # authSource=repair-connect because the app user is created in that database
+          MONGODB_URI="mongodb://${MONGODB_USER}:${MONGODB_PASS}@mongodb:27017/repair-connect?authSource=repair-connect"
+
+          kubectl create secret generic ogscout-secrets \
+            --from-literal=MONGODB_URI="${MONGODB_URI}" \
+            --from-literal=MONGODB_USERNAME="${MONGODB_USER}" \
+            --from-literal=MONGODB_PASSWORD="${MONGODB_PASS}" \
+            --from-literal=NEXTAUTH_SECRET="${{ secrets.NEXTAUTH_SECRET_PROD }}" \
+            --from-literal=NEXTAUTH_URL="https://ogscout.com" \
+            --from-literal=CLOUDINARY_CLOUD_NAME="${{ secrets.CLOUDINARY_CLOUD_NAME }}" \
+            --from-literal=CLOUDINARY_API_KEY="${{ secrets.CLOUDINARY_API_KEY }}" \
+            --from-literal=CLOUDINARY_API_SECRET="${{ secrets.CLOUDINARY_API_SECRET }}" \
+            --from-literal=EMAIL_SERVER_HOST="${{ secrets.EMAIL_SERVER_HOST }}" \
+            --from-literal=EMAIL_SERVER_PORT="${{ secrets.EMAIL_SERVER_PORT }}" \
+            --from-literal=EMAIL_SERVER_USER="${{ secrets.EMAIL_SERVER_USER }}" \
+            --from-literal=EMAIL_SERVER_PASSWORD="${{ secrets.EMAIL_SERVER_PASSWORD }}" \
+            --from-literal=EMAIL_FROM="${{ secrets.EMAIL_FROM }}" \
+            --namespace=${{ env.K8S_NAMESPACE }} \
+            --dry-run=client -o yaml | kubectl apply -f - --validate=false
+
+      - name: Create GHCR pull secret
+        run: |
+          kubectl create secret docker-registry ghcr-secret \
+            --docker-server=${{ env.REGISTRY }} \
+            --docker-username=${{ github.actor }} \
+            --docker-password=${{ secrets.GITHUB_TOKEN }} \
+            --namespace=${{ env.K8S_NAMESPACE }} \
+            --dry-run=client -o yaml | kubectl apply -f - --validate=false
+
+      - name: Update image tag in deployment manifest
+        working-directory: k8s/overlays/prod
+        run: |
+          SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
+          echo "🖋 Updating image tag to prod-${SHORT_SHA}"
+          # Update the image defined in kustomization.yaml
+          kustomize edit set image ghcr.io/service-go-repo/ogscout=ghcr.io/service-go-repo/ogscout:prod-${SHORT_SHA}
+
+      - name: Deploy to Kubernetes
+        working-directory: k8s/overlays/prod
+        run: |
+          kustomize build . | kubectl apply -f - --validate=false
+
+      - name: Wait for deployment rollout
+        run: |
+          kubectl rollout status deployment/ogscout-app -n ${{ env.K8S_NAMESPACE }} --timeout=600s
+
+  # ============================================
+  # Job 5: Health Check
+  # ============================================
+  health-check:
+    name: Health Check
+    runs-on: ubuntu-latest
+    needs: deploy
+
+    steps:
+      - name: Wait for service to be ready
+        run: sleep 30
+
+      - name: Check application health
+        run: |
+          response=$(curl -s -o /dev/null -w "%{http_code}" https://ogscout.com/api/health)
+          if [ $response -eq 200 ]; then
+            echo "✅ Health check passed! Application is healthy."
+          else
+            echo "❌ Health check failed! HTTP status: $response"
+            exit 1

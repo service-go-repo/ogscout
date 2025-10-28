@@ -1,0 +1,26 @@
+# ============================================
+# Base ConfigMap for Application Configuration
+# Contains common configuration shared across all environments
+# ============================================
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ogscout-config
+data:
+  # Common configuration
+  # Environment-specific values will be merged by overlays
+  PORT: "3000"
+  HOSTNAME: "0.0.0.0"
+  NEXT_TELEMETRY_DISABLED: "1"
+
+  # MongoDB connection (using Kubernetes service)
+  # Note: The complete MONGODB_URI with credentials comes from secrets
+  # These are kept for backward compatibility if needed
+  MONGODB_HOST: "mongodb"
+  MONGODB_PORT: "27017"
+  MONGODB_DATABASE: "repair-connect"
+
+  # Public environment variables (Next.js NEXT_PUBLIC_ vars)
+  # These are safe to expose as they're included in the client-side bundle
+  NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: "dqgwzpqd7"
