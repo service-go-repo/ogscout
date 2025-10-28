@@ -173,7 +173,7 @@ jobs:
         run: |
           # MongoDB root credentials
           kubectl create secret generic mongodb-secret \
-            --from-literal=MONGO_ROOT_USERNAME="${{ secrets.MONGODB_ROOT_USERNAME }} \
+            --from-literal=MONGO_ROOT_USERNAME="${{ secrets.MONGODB_ROOT_USERNAME }}" \
             --from-literal=MONGO_ROOT_PASSWORD="${{ secrets.MONGODB_ROOT_PASSWORD }}" \
             --namespace=${{ env.K8S_NAMESPACE }} \
             --dry-run=client -o yaml | kubectl apply -f - --validate=false
