@@ -16,7 +16,7 @@ resources:
 
   # MongoDB resources
   - mongodb-pv.yaml
-  - mongodb-secret.yaml
+ # - mongodb-secret.yaml
   - mongodb-statefulset.yaml
   - mongodb-service.yaml
   - mongodb-init-job.yaml
