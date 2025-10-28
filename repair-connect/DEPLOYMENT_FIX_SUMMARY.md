@@ -48,10 +48,11 @@ MONGODB_URI="mongodb://${MONGODB_USER}:${MONGODB_PASS}@mongodb:27017/repair-conn
 - Init job was creating: `repair-connect-app`
 - GitHub secrets used: `MONGODB_USERNAME` (unknown value)
 - No consistency between environments
+- Password contained `@` symbol causing URI parsing errors
 
 **Fix Applied:**
 - Standardized on username: `ogscout`
-- Password: `ogScout@410`
+- Password: `ogScout410` (removed `@` to avoid URI parsing issues)
 - Updated in all locations:
   - `.env.production`
   - `k8s/base/mongodb-init-job.yaml`
@@ -99,7 +100,7 @@ You must set these secrets in your GitHub repository settings:
 MONGODB_ROOT_USERNAME=admin                    # MongoDB root user (for init only)
 MONGODB_ROOT_PASSWORD=your-secure-root-pass    # MongoDB root password
 MONGODB_USERNAME=ogscout                        # Application database user
-MONGODB_PASSWORD=ogScout@410                    # Application database password
+MONGODB_PASSWORD=ogScout410                     # Application database password (no special chars!)
 ```
 
 ### Application Secrets
@@ -173,15 +174,15 @@ KUBECONFIG=<your-kubeconfig-file-content>
 2. **Init job runs** (`mongodb-init-job.yaml`):
    - Connects using root credentials
    - Creates application user `ogscout` in `repair-connect` database
-   - Sets password to `ogScout@410`
+   - Sets password to `ogScout410`
    - Grants `readWrite` and `dbAdmin` roles
 
 3. **Application connects** using:
    ```
-   mongodb://ogscout:ogScout@410@mongodb:27017/repair-connect?authSource=repair-connect
+   mongodb://ogscout:ogScout410@mongodb:27017/repair-connect?authSource=repair-connect
    ```
    - Username: `ogscout`
-   - Password: `ogScout@410`
+   - Password: `ogScout410` (no special characters to avoid URI parsing errors)
    - Database: `repair-connect`
    - Auth Database: `repair-connect` (where user was created)
 
@@ -193,7 +194,7 @@ KUBECONFIG=<your-kubeconfig-file-content>
 1. **Set all GitHub Secrets** listed above
 2. **Verify secret values** match your actual credentials
 3. **Ensure MONGODB_USERNAME=ogscout** in GitHub secrets
-4. **Ensure MONGODB_PASSWORD=ogScout@410** in GitHub secrets
+4. **Ensure MONGODB_PASSWORD=ogScout410** in GitHub secrets (no `@` symbol!)
 
 ### After Deployment:
 1. Check pod logs for MongoDB connection:
@@ -266,7 +267,7 @@ KUBECONFIG=<your-kubeconfig-file-content>
 4. **Test connection manually:**
    ```bash
    kubectl run -it --rm mongo-test --image=mongo:7.0 -n ogscout-prod -- \
-     mongosh "mongodb://ogscout:ogScout@410@mongodb:27017/repair-connect?authSource=repair-connect"
+     mongosh "mongodb://ogscout:ogScout410@mongodb:27017/repair-connect?authSource=repair-connect"
    ```
 
 ---

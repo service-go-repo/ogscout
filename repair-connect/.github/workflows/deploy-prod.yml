@@ -181,7 +181,7 @@ jobs:
       - name: Create application secrets
         run: |
           # Build MongoDB URI for Kubernetes internal service
-          # The application user 'repair-connect-app' is created by mongodb-init-job
+          # The application user 'ogscout' is created by mongodb-init-job
           MONGODB_USER="${{ secrets.MONGODB_USERNAME }}"
           MONGODB_PASS="${{ secrets.MONGODB_PASSWORD }}"
 

@@ -10,8 +10,8 @@ db = db.getSiblingDB('repair-connect');
 // Create application user
 print('Creating application user...');
 db.createUser({
-  user: 'repair-connect-app',
-  pwd: 'changeme123',  // CHANGE THIS IN PRODUCTION!
+  user: 'ogscout',
+  pwd: 'ogScout410',  // For Docker Compose local development
   roles: [
     {
       role: 'readWrite',
@@ -65,8 +65,8 @@ print('MongoDB initialization completed successfully!');
 print('');
 print('Connection Details:');
 print('  Database: repair-connect');
-print('  Username: repair-connect-app');
-print('  Password: changeme123');
-print('  Connection String: mongodb://repair-connect-app:changeme123@mongodb:27017/repair-connect?authSource=repair-connect');
+print('  Username: ogscout');
+print('  Password: ogScout410');
+print('  Connection String: mongodb://ogscout:ogScout410@mongodb:27017/repair-connect?authSource=repair-connect');
 print('');
-print('⚠️  WARNING: Change the default password in production!');
+print('✅ User credentials match Kubernetes production configuration');

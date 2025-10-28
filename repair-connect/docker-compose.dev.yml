@@ -12,6 +12,7 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=development
+      # Development MongoDB without authentication for simplicity
       - MONGODB_URI=mongodb://mongodb:27017/repair-connect
       - NEXTAUTH_URL=http://localhost:3000
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
