@@ -29,7 +29,7 @@ configMapGenerator:
     behavior: merge
     literals:
       - NODE_ENV=production
-      - NEXTAUTH_URL=https://ns19.domaincontrol.com
+      - NEXTAUTH_URL=https://ogscout.com
 
 # The CI/CD pipeline will dynamically update this image tag using "kustomize edit set image"
 images:

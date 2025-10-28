@@ -13,11 +13,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - ns19.domaincontrol.com
-        - www.ns19.domaincontrol.com
+        - ogscout.com
+        - www.ogscout.com
       secretName: ogscout-tls-prod
   rules:
-    - host: ns19.domaincontrol.com
+    - host: ogscout.com
       http:
         paths:
           - path: /
@@ -27,7 +27,7 @@ spec:
                 name: ogscout-service
                 port:
                   number: 3000
-    - host: www.ns19.domaincontrol.com
+    - host: www.ogscout.com
       http:
         paths:
           - path: /

@@ -138,7 +138,7 @@ jobs:
     needs: build
     environment:
       name: production
-      url: https://ns19.domaincontrol.com
+      url: https://ogscout.com
 
     steps:
       - name: Checkout code
@@ -173,7 +173,7 @@ jobs:
         run: |
           # MongoDB root credentials
           kubectl create secret generic mongodb-secret \
-            --from-literal=MONGO_ROOT_USERNAME="admin" \
+            --from-literal=MONGO_ROOT_USERNAME="${{ secrets.MONGODB_ROOT_USERNAME }} \
             --from-literal=MONGO_ROOT_PASSWORD="${{ secrets.MONGODB_ROOT_PASSWORD }}" \
             --namespace=${{ env.K8S_NAMESPACE }} \
             --dry-run=client -o yaml | kubectl apply -f - --validate=false
@@ -181,8 +181,8 @@ jobs:
       - name: Create application secrets
         run: |
           # Build MongoDB URI for Kubernetes internal service
-          MONGODB_USER="${{ secrets.MONGODB_USERNAME_PROD }}"
-          MONGODB_PASS="${{ secrets.MONGODB_PASSWORD_PROD }}"
+          MONGODB_USER="${{ secrets.MONGODB_USERNAME }}"
+          MONGODB_PASS="${{ secrets.MONGODB_PASSWORD }}"
           # Use Kubernetes service name
           MONGODB_URI="mongodb://${MONGODB_USER}:${MONGODB_PASS}@mongodb:27017/repair-connect?authSource=repair-connect"
 
@@ -191,7 +191,7 @@ jobs:
             --from-literal=MONGODB_USERNAME="${MONGODB_USER}" \
             --from-literal=MONGODB_PASSWORD="${MONGODB_PASS}" \
             --from-literal=NEXTAUTH_SECRET="${{ secrets.NEXTAUTH_SECRET_PROD }}" \
-            --from-literal=NEXTAUTH_URL="https://ns19.domaincontrol.com" \
+            --from-literal=NEXTAUTH_URL="https://ogscout.com" \
             --from-literal=CLOUDINARY_CLOUD_NAME="${{ secrets.CLOUDINARY_CLOUD_NAME }}" \
             --from-literal=CLOUDINARY_API_KEY="${{ secrets.CLOUDINARY_API_KEY }}" \
             --from-literal=CLOUDINARY_API_SECRET="${{ secrets.CLOUDINARY_API_SECRET }}" \
@@ -239,7 +239,7 @@ jobs:
 
       - name: Check application health
         run: |
-          response=$(curl -s -o /dev/null -w "%{http_code}" https://ns19.domaincontrol.com/api/health)
+          response=$(curl -s -o /dev/null -w "%{http_code}" https://ogscout.com/api/health)
           if [ $response -eq 200 ]; then
             echo "✅ Health check passed! Application is healthy."
           else

@@ -13,11 +13,11 @@ metadata:
 spec:
   tls:
   - hosts:
-    - dev.ns19.domaincontrol.com
+    - ogscout.com
     secretName: ogscout-dev-tls-secret
 
   rules:
-  - host: dev.ns19.domaincontrol.com
+  - host: ogscout.com
     http:
       paths:
       - path: /
