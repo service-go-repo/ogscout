@@ -132,6 +132,7 @@ jobs:
   # ============================================
   # Job 4: Deploy to Kubernetes (Production)
   # ============================================
+  # MONGODB_URI="mongodb://${MONGODB_USER}:${MONGODB_PASS}@mongodb:27017/repair-connect"
   deploy:
     name: Deploy to Kubernetes
     runs-on: ubuntu-latest
@@ -184,7 +185,7 @@ jobs:
           MONGODB_USER="${{ secrets.MONGODB_USERNAME }}"
           MONGODB_PASS="${{ secrets.MONGODB_PASSWORD }}"
           # Use Kubernetes service name
-          MONGODB_URI="mongodb://${MONGODB_USER}:${MONGODB_PASS}@mongodb:27017/repair-connect"
+          MONGODB_URI="mongodb://@mongodb:27017/repair-connect"
 
           kubectl create secret generic ogscout-secrets \
             --from-literal=MONGODB_URI="${MONGODB_URI}" \

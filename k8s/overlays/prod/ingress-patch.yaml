@@ -9,7 +9,8 @@ metadata:
   name: ogscout-ingress
   annotations:
     # Production-specific annotations
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    #cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   tls:
     - hosts:
