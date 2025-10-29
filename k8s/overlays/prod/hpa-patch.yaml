@@ -9,4 +9,4 @@ metadata:
   name: ogscout-hpa
 spec:
   minReplicas: 1
-  maxReplicas: 3
+  maxReplicas: 1
