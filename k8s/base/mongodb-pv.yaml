@@ -27,7 +27,7 @@ metadata:
 spec:
   storageClassName: manual
   capacity:
-    storage: 2Gi
+    storage: 11Gi
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
