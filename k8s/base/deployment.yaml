@@ -13,7 +13,7 @@ metadata:
     component: frontend
 spec:
   # Number of replicas will be managed by HPA
-  replicas: 2
+  replicas: 1
 
   # Deployment strategy for zero-downtime updates
   strategy:
@@ -57,6 +57,11 @@ spec:
             name: ogscout-config
         - secretRef:
             name: ogscout-secrets
+        - secretRef:
+            name: mongodb-secret
+        env:
+        - name: MONGO_URI
+          value: "mongodb://$(MONGO_ROOT_USERNAME):$(MONGO_ROOT_PASSWORD)@mongodb:27017/repair-connect?authSource=admin"
 
         # Resource limits and requests
         resources:
