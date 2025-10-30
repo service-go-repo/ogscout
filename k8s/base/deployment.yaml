@@ -60,7 +60,7 @@ spec:
         - secretRef:
             name: mongodb-secret
         env:
-        - name: MONGO_URI
+        - name: MONGODB_URI
           value: "mongodb://$(MONGO_ROOT_USERNAME):$(MONGO_ROOT_PASSWORD)@mongodb-service:27017/repair-connect?authSource=admin"
 
         # Resource limits and requests
