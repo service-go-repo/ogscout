@@ -189,7 +189,7 @@ jobs:
 
           kubectl create secret generic ogscout-secrets \
             --from-literal=NEXTAUTH_SECRET="${{ secrets.NEXTAUTH_SECRET_PROD }}" \
-            --from-literal=NEXTAUTH_URL="https://ogscout.com" \
+            --from-literal=NEXTAUTH_URL="http://localhost:3000" \
             --from-literal=CLOUDINARY_CLOUD_NAME="${{ secrets.CLOUDINARY_CLOUD_NAME }}" \
             --from-literal=CLOUDINARY_API_KEY="${{ secrets.CLOUDINARY_API_KEY }}" \
             --from-literal=CLOUDINARY_API_SECRET="${{ secrets.CLOUDINARY_API_SECRET }}" \
