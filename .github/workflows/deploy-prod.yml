@@ -169,7 +169,7 @@ jobs:
       - name: Create namespace if not exists
         run: |
           kubectl create namespace ${{ env.K8S_NAMESPACE }} --dry-run=client -o yaml | kubectl apply -f - --validate=false
-        #--from-literal=MONGODB_URI="${MONGODB_URI}" \
+
       - name: Create MongoDB secrets
         run: |
           # MongoDB root credentials
@@ -184,8 +184,7 @@ jobs:
           # Build MongoDB URI for Kubernetes internal service
           MONGODB_USER="${{ secrets.MONGODB_USERNAME }}"
           MONGODB_PASS="${{ secrets.MONGODB_PASSWORD }}"
-          # Use Kubernetes service name
-          # MONGODB_URI="mongodb://:@mongodb:27017/repair-connect"
+          
 
           kubectl create secret generic ogscout-secrets \
             --from-literal=NEXTAUTH_SECRET="${{ secrets.NEXTAUTH_SECRET }}" \
