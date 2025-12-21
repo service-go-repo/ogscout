@@ -137,7 +137,8 @@ async function initializeDatabase() {
     // Create workshop indexes
     const workshopIndexes = [
       { spec: { "userId": 1 }, name: "userId_1" },
-      { spec: { "contact.email": 1 }, name: "contact.email_1" },
+      { spec: { "contact.email": 1 }, name: "contact.email" },
+      //{ spec: { "contact.email": 1 }, name: "contact.email_1" }, Edit by Mohammed Adam 
       { spec: { "isActive": 1 }, name: "isActive_1" },
       { spec: { "contact.location": "2dsphere" }, name: "location_2dsphere" }
     ];
