@@ -25,7 +25,12 @@ async function createWorkshopProfile(
   userData: WorkshopUser
 ) {
   const workshopsCollection = db.collection('workshops')
-  
+
+  // Runtime validation - ensure critical fields are not null/undefined
+  if (!registrationData.email || !registrationData.businessPhone) {
+    throw new Error('Email and business phone are required for workshop registration')
+  }
+
   // Create basic workshop profile from registration data
   const workshopProfile = {
     userId: userId,

@@ -22,7 +22,8 @@
       "Bash(npm run dev:*)",
       "Bash(timeout:*)",
       "Bash(rm:*)",
-      "Bash(npm run build)"
+      "Bash(npm run build)",
+      "Bash(node:*)"
     ],
     "deny": [],
     "ask": []

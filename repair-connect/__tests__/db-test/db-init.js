@@ -136,15 +136,15 @@ async function initializeDatabase() {
 
     // Create workshop indexes
     const workshopIndexes = [
-      { spec: { "userId": 1 }, name: "userId_1" },
-      { spec: { "contact.email": 1 }, name: "contact.email_1" },
-      { spec: { "isActive": 1 }, name: "isActive_1" },
-      { spec: { "contact.location": "2dsphere" }, name: "location_2dsphere" }
+      { spec: { "userId": 1 }, options: { unique: true }, name: "userId_1" },
+      { spec: { "contact.email": 1 }, options: { sparse: true }, name: "contact_email_1" },
+      { spec: { "isActive": 1 }, options: {}, name: "isActive_1" },
+      { spec: { "contact.location": "2dsphere" }, options: {}, name: "location_2dsphere" }
     ];
 
     for (const idx of workshopIndexes) {
       try {
-        await db.collection('workshops').createIndex(idx.spec, { name: idx.name });
+        await db.collection('workshops').createIndex(idx.spec, { ...idx.options, name: idx.name });
         logSuccess(`Created index: workshops.${idx.name}`);
       } catch (error) {
         if (error.code === 85 || error.code === 86) {

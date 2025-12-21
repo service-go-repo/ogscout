@@ -7,7 +7,7 @@ services:
     container_name: repair-connect-mongodb
     restart: unless-stopped
     ports:
-      - "27018:27017"
+      - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: cm9vdA
       MONGO_INITDB_ROOT_PASSWORD: Y205dmRB
