@@ -3,15 +3,14 @@ version: '3.8'
 services:
   # MongoDB Database
   mongodb:
-    image: mongo:7.0
+    image: mongo:7
     container_name: repair-connect-mongodb
     restart: unless-stopped
     ports:
-      - "27017:27017"
+      - "27018:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: admin123
-      MONGO_INITDB_DATABASE: repair-connect
+      MONGO_INITDB_ROOT_USERNAME: cm9vdA
+      MONGO_INITDB_ROOT_PASSWORD: Y205dmRB
     volumes:
       - mongodb_data:/data/db
       - mongodb_config:/data/configdb
@@ -19,7 +18,7 @@ services:
     networks:
       - repair-connect-network
     healthcheck:
-      test: ["CMD", "mongosh", "--username", "admin", "--password", "admin123", "--authenticationDatabase", "admin", "--eval", "db.adminCommand('ping')"]
+      test: ["CMD", "mongosh", "--username", "cm9vdA", "--password", "Y205dmRB", "--authenticationDatabase", "admin", "--eval", "db.adminCommand('ping')"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -37,9 +36,9 @@ services:
       - .env.production
     environment:
       - NODE_ENV=production
-      # Override MONGODB_URI to use Docker service name with authentication
-      # The user 'ogscout' is created by the init script in docker-entrypoint-initdb.d
-      - MONGODB_URI=mongodb://ogscout:ogScout410@mongodb:27017/repair-connect?authSource=repair-connect
+      # Connect to MongoDB container using service name
+      # The admin user is created by the init script
+      - MONGODB_URI=mongodb://ogscout:b2dTY291dDQxMA==@mongodb:27017/repair-connect
     depends_on:
       mongodb:
         condition: service_healthy

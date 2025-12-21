@@ -1,72 +1,31 @@
-// MongoDB Initialization Script for Docker Compose
-// This script runs when MongoDB container starts for the first time
-// Creates application user and indexes
+// MongoDB Initialization Script
+// Creates the repair-connect database and admin user
+// This runs when MongoDB container starts for the first time
 
 print('Starting MongoDB initialization...');
 
 // Switch to the repair-connect database
 db = db.getSiblingDB('repair-connect');
 
-// Create application user
-print('Creating application user...');
+// Create admin user with dbOwner role (same as standalone setup)
+print('Creating admin user...');
 db.createUser({
   user: 'ogscout',
-  pwd: 'ogScout410',  // For Docker Compose local development
+  pwd: 'b2dTY291dDQxMA==',
   roles: [
-    {
-      role: 'readWrite',
-      db: 'repair-connect'
-    },
-    {
-      role: 'dbAdmin',
-      db: 'repair-connect'
-    }
+    { role: 'dbOwner', db: 'repair-connect' }
   ]
 });
 
-print('Application user created successfully!');
-
-// Create indexes for better performance
-print('Creating indexes...');
-
-// Users collection
-db.users.createIndex({ "email": 1 }, { unique: true });
-print('✓ Created unique index on users.email');
-
-// Workshops collection
-db.workshops.createIndex({ "email": 1 }, { unique: true });
-print('✓ Created unique index on workshops.email');
-
-// Cars collection
-db.cars.createIndex({ "userId": 1 });
-print('✓ Created index on cars.userId');
-
-// Quotations collection
-db.quotations.createIndex({ "userId": 1 });
-db.quotations.createIndex({ "workshopId": 1 });
-db.quotations.createIndex({ "status": 1 });
-db.quotations.createIndex({ "createdAt": -1 });
-print('✓ Created indexes on quotations');
-
-// Appointments collection
-db.appointments.createIndex({ "userId": 1 });
-db.appointments.createIndex({ "workshopId": 1 });
-db.appointments.createIndex({ "status": 1 });
-db.appointments.createIndex({ "scheduledDate": 1 });
-print('✓ Created indexes on appointments');
-
-// Service Requests collection
-db.serviceRequests.createIndex({ "userId": 1 });
-db.serviceRequests.createIndex({ "status": 1 });
-db.serviceRequests.createIndex({ "createdAt": -1 });
-print('✓ Created indexes on serviceRequests');
-
-print('MongoDB initialization completed successfully!');
+print('✓ Admin user created successfully!');
 print('');
-print('Connection Details:');
+print('Database Configuration:');
 print('  Database: repair-connect');
-print('  Username: ogscout');
-print('  Password: ogScout410');
-print('  Connection String: mongodb://ogscout:ogScout410@mongodb:27017/repair-connect?authSource=repair-connect');
+print('  Username: admin');
+print('  Password: admin');
+print('  Role: dbOwner');
 print('');
-print('✅ User credentials match Kubernetes production configuration');
+print('Connection String:');
+print('  mongodb://admin:admin@mongodb:27017/repair-connect');
+print('');
+print('✅ MongoDB initialization completed!');
