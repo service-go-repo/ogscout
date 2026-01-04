@@ -19,16 +19,16 @@ function AuthErrorContent() {
   const error = searchParams.get('error') as keyof typeof errors
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="min-h-screen flex items-center justify-center bg-background-2 dark:bg-background-5">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <div className="mx-auto w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4">
-            <AlertCircle className="h-6 w-6 text-red-600" />
+          <div className="mx-auto w-12 h-12 bg-[var(--ns-red)]/20 rounded-full flex items-center justify-center mb-4">
+            <AlertCircle className="h-6 w-6 text-[var(--ns-red)]" />
           </div>
-          <CardTitle className="text-red-600">Authentication Error</CardTitle>
+          <CardTitle className="text-[var(--ns-red)]">Authentication Error</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <p className="text-gray-600 text-center">
+          <p className="text-secondary/60 dark:text-accent/60 text-center">
             {errors[error] || errors.Default}
           </p>
           <div className="flex flex-col space-y-2">
@@ -48,7 +48,7 @@ function AuthErrorContent() {
 export default function AuthError() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center bg-background-2 dark:bg-background-5">
         <Loader2 className="w-8 h-8 animate-spin" />
       </div>
     }>

@@ -53,7 +53,7 @@ export default function ImageViewer({ images, isOpen, onClose, title = "Vehicle 
           <DialogTitle className="flex items-center justify-between">
             <span>{title}</span>
             <div className="flex items-center gap-2">
-              <span className="text-sm text-gray-500">
+              <span className="text-sm text-secondary/60 dark:text-accent/60">
                 {currentIndex + 1} of {images.length}
               </span>
               <Button variant="ghost" size="sm" onClick={onClose}>
@@ -65,7 +65,7 @@ export default function ImageViewer({ images, isOpen, onClose, title = "Vehicle 
 
         <div className="relative flex-1 overflow-hidden">
           {/* Main Image */}
-          <div className="relative h-[60vh] bg-gray-100 flex items-center justify-center overflow-hidden">
+          <div className="relative h-[60vh] bg-background-3 dark:bg-background-7 flex items-center justify-center overflow-hidden">
             <div 
               className="relative transition-transform duration-200 ease-in-out"
               style={{ transform: `scale(${zoom})` }}
@@ -130,15 +130,15 @@ export default function ImageViewer({ images, isOpen, onClose, title = "Vehicle 
 
           {/* Thumbnail Strip */}
           {images.length > 1 && (
-            <div className="p-4 border-t bg-gray-50">
+            <div className="p-4 border-t bg-background-3 dark:bg-background-7">
               <div className="flex gap-2 overflow-x-auto pb-2">
                 {images.map((image, index) => (
                   <button
                     key={index}
                     className={`relative flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-colors ${
                       index === currentIndex 
-                        ? 'border-blue-500' 
-                        : 'border-gray-200 hover:border-gray-300'
+                        ? 'border-primary-500' 
+                        : 'border-[var(--stroke-3)] hover:border-[var(--stroke-3)]'
                     }`}
                     onClick={() => {
                       setCurrentIndex(index)

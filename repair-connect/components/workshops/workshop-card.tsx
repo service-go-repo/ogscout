@@ -51,7 +51,7 @@ export default function WorkshopCard({
                       {workshop.profile?.businessName || 'Unknown Workshop'}
                     </h3>
                     {workshop.isVerified && (
-                      <Badge variant="secondary" className="bg-green-100 text-green-800 text-xs">
+                      <Badge variant="secondary" className="bg-[var(--ns-green-light)] text-[var(--secondary)] text-xs">
                         <CheckCircle className="w-3 h-3 mr-1" />
                         Verified
                       </Badge>
@@ -64,7 +64,7 @@ export default function WorkshopCard({
                       totalReviews={workshop.stats?.totalReviews || 0}
                       size="sm"
                     />
-                    <div className="flex items-center text-muted-foreground text-sm">
+                    <div className="flex items-center text-secondary/60 dark:text-accent/60 text-sm">
                       <MapPin className="w-4 h-4 mr-1 flex-shrink-0" />
                       <span className="line-clamp-1">
                         {workshop.contact?.address?.emirate || workshop.contact?.address?.state || workshop.contact?.address?.city || 'Location not specified'}
@@ -87,19 +87,19 @@ export default function WorkshopCard({
                 </div>
               </div>
               
-              <p className="text-muted-foreground text-sm mb-3 line-clamp-2">
+              <p className="text-secondary/60 dark:text-accent/60 text-sm mb-3 line-clamp-2">
                 {workshop.profile?.description || 'No description available'}
               </p>
 
               {/* Services */}
               <div className="flex flex-wrap gap-1.5 mb-3">
                 {(workshop.profile?.specializations?.serviceTypes || []).slice(0, 4).map((service) => (
-                  <Badge key={service} variant="outline" className="text-xs border-primary text-primary">
+                  <Badge key={service} variant="outline" className="text-xs border-primary-500 text-primary-500">
                     {getServiceTypeLabel(service)}
                   </Badge>
                 ))}
                 {(workshop.profile?.specializations?.serviceTypes?.length || 0) > 4 && (
-                  <Badge variant="outline" className="text-xs border-primary text-primary">
+                  <Badge variant="outline" className="text-xs border-primary-500 text-primary-500">
                     +{(workshop.profile?.specializations?.serviceTypes?.length || 0) - 4} more
                   </Badge>
                 )}
@@ -120,7 +120,7 @@ export default function WorkshopCard({
               </div>
 
               {/* Quick Stats */}
-              <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs text-muted-foreground mb-4">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs text-secondary/60 dark:text-accent/60 mb-4">
                 {workshop.profile?.yearEstablished && (
                   <span className="whitespace-nowrap">Est. {workshop.profile.yearEstablished}</span>
                 )}
@@ -169,7 +169,7 @@ export default function WorkshopCard({
           
           <div className="flex flex-col items-end gap-1">
             {workshop.isVerified && (
-              <Badge variant="secondary" className="bg-green-100 text-green-800">
+              <Badge variant="secondary" className="bg-[var(--ns-green-light)] text-[var(--secondary)]">
                 <CheckCircle className="w-3 h-3 mr-1" />
                 Verified
               </Badge>
@@ -196,7 +196,7 @@ export default function WorkshopCard({
             />
           </div>
           
-          <div className="flex items-center text-gray-600 text-sm mt-1">
+          <div className="flex items-center text-secondary/60 dark:text-accent/60 text-sm mt-1">
             <MapPin className="w-4 h-4 mr-1" />
             {workshop.contact?.address?.emirate || workshop.contact?.address?.state || workshop.contact?.address?.city || 'Location not specified'}
             {(workshop.contact?.address?.emirate || workshop.contact?.address?.state || workshop.contact?.address?.city) && workshop.contact?.address?.zipCode && `, ${workshop.contact.address.zipCode}`}
@@ -208,19 +208,19 @@ export default function WorkshopCard({
       </CardHeader>
       
       <CardContent className="pt-0">
-        <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+        <p className="text-secondary/60 dark:text-accent/60 text-sm mb-3 line-clamp-2">
           {workshop.profile.description}
         </p>
         
         {/* Services */}
         <div className="flex flex-wrap gap-1 mb-3">
           {workshop.profile.specializations.serviceTypes.slice(0, 3).map((service) => (
-            <Badge key={service} variant="outline" className="text-xs border-primary text-primary">
+            <Badge key={service} variant="outline" className="text-xs border-primary-500 text-primary-500">
               {getServiceTypeLabel(service)}
             </Badge>
           ))}
           {workshop.profile.specializations.serviceTypes.length > 3 && (
-            <Badge variant="outline" className="text-xs border-primary text-primary">
+            <Badge variant="outline" className="text-xs border-primary-500 text-primary-500">
               +{workshop.profile.specializations.serviceTypes.length - 3}
             </Badge>
           )}
@@ -241,7 +241,7 @@ export default function WorkshopCard({
         </div>
         
         {/* Quick Stats */}
-        <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
+        <div className="flex items-center justify-between text-xs text-secondary/60 dark:text-accent/60 mb-4">
           <div className="flex items-center gap-2">
             {workshop.profile.yearEstablished && (
               <span>Est. {workshop.profile.yearEstablished}</span>

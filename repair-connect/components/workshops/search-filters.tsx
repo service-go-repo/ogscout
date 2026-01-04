@@ -194,7 +194,7 @@ export default function SearchFilters({
           variant="outline"
           size="sm"
           onClick={clearAllFilters}
-          className="text-muted-foreground"
+          className="text-secondary/60 dark:text-accent/60"
         >
           <RotateCcw className="w-4 h-4 mr-2" />
           Clear All
@@ -224,7 +224,7 @@ export default function SearchFilters({
                   step={5}
                   className="w-full"
                 />
-                <div className="flex justify-between text-xs text-muted-foreground/80 mt-1">
+                <div className="flex justify-between text-xs text-secondary/60 dark:text-accent/60/80 mt-1">
                   <span>5km</span>
                   <span>{localFilters.location?.radius || 25}km</span>
                   <span>100km</span>
@@ -356,7 +356,7 @@ export default function SearchFilters({
                     ? "default"
                     : "outline"
                 }
-                className="cursor-pointer hover:bg-muted/50 hyphens-auto"
+                className="cursor-pointer hover:bg-background-3/50 dark:bg-background-7/50 hyphens-auto"
                 style={{ wordBreak: "break-word" }}
                 onClick={() => handleServiceTypeToggle(serviceType)}
               >
@@ -385,7 +385,7 @@ export default function SearchFilters({
                     ? "default"
                     : "outline"
                 }
-                className="cursor-pointer hover:bg-muted/50 hyphens-auto"
+                className="cursor-pointer hover:bg-background-3/50 dark:bg-background-7/50 hyphens-auto"
                 style={{ wordBreak: "break-word" }}
                 onClick={() => handleCarBrandToggle(carBrand)}
               >
@@ -414,7 +414,7 @@ export default function SearchFilters({
                     ? "default"
                     : "outline"
                 }
-                className="cursor-pointer hover:bg-muted/50 hyphens-auto"
+                className="cursor-pointer hover:bg-background-3/50 dark:bg-background-7/50 hyphens-auto"
                 style={{ wordBreak: "break-word" }}
                 onClick={() => handleFeatureToggle(feature)}
               >

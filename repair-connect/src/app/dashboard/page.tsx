@@ -951,11 +951,11 @@ export default function DashboardPage() {
                         In Progress
                       </CardTitle>
                       <div className="p-2 rounded-lg border border-border">
-                        <Clock className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                        <Clock className="h-4 w-4 text-[var(--ns-yellow)]" />
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">
+                      <div className="text-2xl font-bold text-[var(--ns-yellow)]">
                         {formatNumber(stats.customerInProgressAppointments)}
                       </div>
                       <p className="text-xs text-muted-foreground mt-2">
@@ -975,11 +975,11 @@ export default function DashboardPage() {
                         Completed Jobs
                       </CardTitle>
                       <div className="p-2 rounded-lg border border-border">
-                        <CheckCircle className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                        <CheckCircle className="h-4 w-4 text-[var(--ns-green)]" />
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+                      <div className="text-2xl font-bold text-[var(--ns-green)]">
                         {formatNumber(stats.customerCompletedJobs)}
                       </div>
                       <p className="text-xs text-muted-foreground mt-2">
@@ -1002,7 +1002,7 @@ export default function DashboardPage() {
                         Total Spent
                       </CardTitle>
                       <div className="p-2 rounded-lg border border-border">
-                        <DollarSign className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                        <DollarSign className="h-4 w-4 text-[var(--ns-green)]" />
                       </div>
                     </CardHeader>
                     <CardContent>
@@ -1017,7 +1017,7 @@ export default function DashboardPage() {
                         </div>
                       ) : (
                         <>
-                          <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+                          <div className="text-2xl font-bold text-[var(--ns-green)]">
                             {formatCurrency(stats.customerTotalSpent)}
                           </div>
                           <p className="text-xs text-muted-foreground mt-2">
@@ -1151,11 +1151,11 @@ export default function DashboardPage() {
                       className="p-2 rounded-lg border border-border"
                       aria-hidden="true"
                     >
-                      <CheckCircle className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                      <CheckCircle className="h-4 w-4 text-[var(--ns-green)]" />
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+                    <div className="text-2xl font-bold text-[var(--ns-green)]">
                       {formatNumber(stats.wonQuotes)}
                     </div>
                     <p className="text-xs text-muted-foreground mt-2">
@@ -1179,11 +1179,11 @@ export default function DashboardPage() {
                       className="p-2 rounded-lg border border-border"
                       aria-hidden="true"
                     >
-                      <CheckCircle className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                      <CheckCircle className="h-4 w-4 text-[var(--ns-green)]" />
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+                    <div className="text-2xl font-bold text-[var(--ns-green)]">
                       {formatNumber(stats.completedJobs)}
                     </div>
                     <p className="text-xs text-muted-foreground mt-2">
@@ -1210,7 +1210,7 @@ export default function DashboardPage() {
                       className="p-2 rounded-lg border border-border"
                       aria-hidden="true"
                     >
-                      <DollarSign className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                      <DollarSign className="h-4 w-4 text-[var(--ns-green)]" />
                     </div>
                   </CardHeader>
                   <CardContent>
@@ -1225,7 +1225,7 @@ export default function DashboardPage() {
                       </div>
                     ) : (
                       <>
-                        <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+                        <div className="text-2xl font-bold text-[var(--ns-green)]">
                           {formatCurrency(stats.totalRevenue)}
                         </div>
                         <p className="text-xs text-muted-foreground mt-2">
@@ -1251,7 +1251,7 @@ export default function DashboardPage() {
                       className="p-2 rounded-lg border border-border"
                       aria-hidden="true"
                     >
-                      <Star className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                      <Star className="h-4 w-4 text-[var(--ns-yellow)]" />
                     </div>
                   </CardHeader>
                   <CardContent>
@@ -1270,7 +1270,7 @@ export default function DashboardPage() {
                       </div>
                     ) : (
                       <>
-                        <div className="text-2xl font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
+                        <div className="text-2xl font-bold text-[var(--ns-yellow)] flex items-center gap-1">
                           {stats.averageRating.toFixed(1)}
                           <Star
                             className="h-5 w-5 fill-current"
@@ -1344,11 +1344,11 @@ export default function DashboardPage() {
                         In Progress
                       </CardTitle>
                       <div className="p-2 rounded-lg border border-border">
-                        <PlayCircle className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                        <PlayCircle className="h-4 w-4 text-[var(--ns-cyan)]" />
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                      <div className="text-2xl font-bold text-[var(--ns-cyan)]">
                         {formatNumber(stats.inProgressJobs)}
                       </div>
                       <p className="text-xs text-muted-foreground mt-2">
@@ -1367,11 +1367,11 @@ export default function DashboardPage() {
                         Scheduled Today
                       </CardTitle>
                       <div className="p-2 rounded-lg border border-border">
-                        <CalendarIcon className="h-4 w-4 text-green-600 dark:text-green-400" />
+                        <CalendarIcon className="h-4 w-4 text-[var(--ns-green)]" />
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                      <div className="text-2xl font-bold text-[var(--ns-green)]">
                         {formatNumber(stats.scheduledToday)}
                       </div>
                       <p className="text-xs text-muted-foreground mt-2">
@@ -1390,11 +1390,11 @@ export default function DashboardPage() {
                         Upcoming
                       </CardTitle>
                       <div className="p-2 rounded-lg border border-border">
-                        <Clock className="h-4 w-4 text-orange-600 dark:text-orange-400" />
+                        <Clock className="h-4 w-4 text-[var(--ns-red)]" />
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                      <div className="text-2xl font-bold text-[var(--ns-red)]">
                         {formatNumber(stats.upcomingJobs)}
                       </div>
                       <p className="text-xs text-muted-foreground mt-2">
@@ -1441,11 +1441,11 @@ export default function DashboardPage() {
                       Today's Schedule
                     </CardTitle>
                     <div className="p-2 rounded-lg border border-border">
-                      <CalendarIcon className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                      <CalendarIcon className="h-4 w-4 text-[var(--ns-green)]" />
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+                    <div className="text-2xl font-bold text-[var(--ns-green)]">
                       {formatNumber(stats.todayAppointments)}
                     </div>
                     <p className="text-xs text-muted-foreground mt-2">
@@ -1462,11 +1462,11 @@ export default function DashboardPage() {
                       Pending Confirmations
                     </CardTitle>
                     <div className="p-2 rounded-lg border border-border">
-                      <AlertCircle className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                      <AlertCircle className="h-4 w-4 text-[var(--ns-yellow)]" />
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">
+                    <div className="text-2xl font-bold text-[var(--ns-yellow)]">
                       {formatNumber(stats.pendingAppointments)}
                     </div>
                     <p className="text-xs text-muted-foreground mt-2">
@@ -1516,14 +1516,14 @@ export default function DashboardPage() {
                       <div className="space-y-3">
                         <div className="flex items-center justify-between p-3 border border-border rounded-lg">
                           <div>
-                            <p className="font-semibold text-emerald-600 dark:text-emerald-400">
+                            <p className="font-semibold text-[var(--ns-green)]">
                               Active Appointments
                             </p>
                             <p className="text-sm text-muted-foreground">
                               {stats.todayAppointments} scheduled today
                             </p>
                           </div>
-                          <CheckCircle className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
+                          <CheckCircle className="h-8 w-8 text-[var(--ns-green)]" />
                         </div>
                         <Button className="w-full" variant="outline">
                           <CalendarIcon className="h-4 w-4 mr-2" />
@@ -1559,7 +1559,7 @@ export default function DashboardPage() {
                       <div className="space-y-3">
                         <div className="flex items-center justify-between p-3 border border-border rounded-lg">
                           <div>
-                            <p className="font-semibold text-amber-600 dark:text-amber-400">
+                            <p className="font-semibold text-[var(--ns-yellow)]">
                               Confirmation Needed
                             </p>
                             <p className="text-sm text-muted-foreground">
@@ -1567,7 +1567,7 @@ export default function DashboardPage() {
                               confirmation
                             </p>
                           </div>
-                          <AlertCircle className="h-8 w-8 text-amber-600 dark:text-amber-400" />
+                          <AlertCircle className="h-8 w-8 text-[var(--ns-yellow)]" />
                         </div>
                         <Button className="w-full" variant="outline" asChild>
                           <Link href="/appointments">
@@ -1578,8 +1578,8 @@ export default function DashboardPage() {
                       </div>
                     ) : (
                       <div className="text-center py-8">
-                        <CheckCircle className="h-12 w-12 mx-auto mb-4 text-emerald-600 dark:text-emerald-400/30" />
-                        <p className="text-emerald-600 dark:text-emerald-400 font-semibold">
+                        <CheckCircle className="h-12 w-12 mx-auto mb-4 text-[var(--ns-green)]/30" />
+                        <p className="text-[var(--ns-green)] font-semibold">
                           All caught up!
                         </p>
                         <p className="text-sm text-muted-foreground">

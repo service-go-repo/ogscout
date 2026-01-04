@@ -46,8 +46,8 @@ function CarImageDisplay({ car }: { car: CarProfileSummary }) {
   // If no thumbnail URL, show "No Image" text
   if (!car.thumbnailUrl) {
     return (
-      <div className="w-full h-full flex items-center justify-center bg-gray-100">
-        <span className="text-gray-500 text-sm">No Image</span>
+      <div className="w-full h-full flex items-center justify-center bg-muted">
+        <span className="text-muted-foreground text-sm">No Image</span>
       </div>
     )
   }
@@ -189,13 +189,13 @@ export default function MyCarsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-background py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">My Cars</h1>
-            <p className="mt-2 text-gray-600">
+            <h1 className="text-3xl font-bold text-foreground">My Cars</h1>
+            <p className="mt-2 text-muted-foreground">
               Manage your vehicles and track repair requests
             </p>
           </div>
@@ -228,15 +228,15 @@ export default function MyCarsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...Array(6)].map((_, i) => (
               <Card key={i} className="animate-pulse">
-                <div className="h-48 bg-gray-200 rounded-t-lg"></div>
+                <div className="h-48 bg-muted rounded-t-lg"></div>
                 <CardHeader>
-                  <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-                  <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+                  <div className="h-4 bg-muted rounded w-3/4"></div>
+                  <div className="h-3 bg-muted rounded w-1/2"></div>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
-                    <div className="h-3 bg-gray-200 rounded"></div>
-                    <div className="h-3 bg-gray-200 rounded w-2/3"></div>
+                    <div className="h-3 bg-muted rounded"></div>
+                    <div className="h-3 bg-muted rounded w-2/3"></div>
                   </div>
                 </CardContent>
               </Card>
@@ -246,9 +246,9 @@ export default function MyCarsPage() {
 
         {/* Error State */}
         {error && (
-          <Card className="border-red-200 bg-red-50">
+          <Card className="border-destructive/20 bg-destructive/10">
             <CardContent className="pt-6">
-              <div className="flex items-center space-x-2 text-red-600">
+              <div className="flex items-center space-x-2 text-destructive">
                 <AlertCircle className="w-5 h-5" />
                 <span>{error}</span>
               </div>
@@ -269,10 +269,10 @@ export default function MyCarsPage() {
                   className="mx-auto"
                 />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              <h3 className="text-lg font-semibold text-foreground mb-2">
                 No cars yet
               </h3>
-              <p className="text-gray-600 mb-6">
+              <p className="text-muted-foreground mb-6">
                 Register your first car to get started with service requests and repair management.
               </p>
               <Button asChild>
@@ -301,17 +301,17 @@ export default function MyCarsPage() {
                 </div>
               </CardContent>
             </Card>
-            <Card className="border-green-200 hover:border-green-300 transition-colors">
+            <Card className="border-[var(--ns-green)]/20 hover:border-[var(--ns-green)]/40 transition-colors">
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-muted-foreground mb-1">Active</p>
-                    <div className="text-3xl font-bold text-green-600">
+                    <div className="text-3xl font-bold text-[var(--ns-green)]">
                       {cars.filter(car => car.status === 'active').length}
                     </div>
                   </div>
-                  <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center">
-                    <CheckCircle className="h-6 w-6 text-green-600" />
+                  <div className="h-12 w-12 rounded-full bg-[var(--ns-green-light)] flex items-center justify-center">
+                    <CheckCircle className="h-6 w-6 text-[var(--ns-green)]" />
                   </div>
                 </div>
               </CardContent>
@@ -356,10 +356,10 @@ export default function MyCarsPage() {
               <Card className="text-center py-12">
                 <CardContent>
                   <Search className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
                     No cars found
                   </h3>
-                  <p className="text-gray-600 mb-4">
+                  <p className="text-muted-foreground mb-4">
                     No cars match your search criteria. Try adjusting your search.
                   </p>
                   <Button onClick={() => setSearchQuery('')} variant="outline">
@@ -372,7 +372,7 @@ export default function MyCarsPage() {
                 {filteredCars.map((car) => (
               <Card key={car._id?.toString()} className="hover:shadow-lg transition-shadow">
                 {/* Car Image */}
-                <div className="relative h-48 bg-gray-100 rounded-t-lg overflow-hidden">
+                <div className="relative h-48 bg-muted rounded-t-lg overflow-hidden">
                   <CarImageDisplay car={car} />
                   
                   {/* Status Badge */}
@@ -407,7 +407,7 @@ export default function MyCarsPage() {
                   {/* Car Info */}
                   {car.nickname && (
                     <div className="mb-4">
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-muted-foreground">
                         <span className="font-medium">{car.nickname}</span>
                       </p>
                     </div>
@@ -416,7 +416,7 @@ export default function MyCarsPage() {
                   {/* Service Requests */}
                   {car.totalServiceRequests > 0 && (
                     <div className="mb-4">
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-muted-foreground">
                         {car.totalServiceRequests} service request{car.totalServiceRequests !== 1 ? 's' : ''}
                       </p>
                     </div>
@@ -441,10 +441,10 @@ export default function MyCarsPage() {
                       size="sm"
                       onClick={() => handleDeleteCar(car._id?.toString() || '')}
                       disabled={isDeleting === car._id?.toString()}
-                      className="text-red-600 hover:text-red-700 hover:bg-red-50 disabled:opacity-50"
+                      className="text-destructive hover:text-destructive/80 hover:bg-destructive/10 disabled:opacity-50"
                     >
                       {isDeleting === car._id?.toString() ? (
-                        <div className="w-3 h-3 border-2 border-red-600 border-t-transparent rounded-full animate-spin" />
+                        <div className="w-3 h-3 border-2 border-destructive border-t-transparent rounded-full animate-spin" />
                       ) : (
                         <Trash2 className="w-3 h-3" />
                       )}

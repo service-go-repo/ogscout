@@ -236,7 +236,7 @@ export default function AppointmentDashboard() {
 
     if (!slotStatus.hasAppointment) {
       return (
-        <div key={hour} className="p-2 border-b border-gray-100 text-gray-400 text-sm">
+        <div key={hour} className="p-2 border-b border-[var(--stroke-3)] text-secondary/40 dark:text-accent/40 text-sm">
           {timeStr} - Available
         </div>
       )
@@ -244,7 +244,7 @@ export default function AppointmentDashboard() {
 
     const apt = slotStatus.appointment!
     return (
-      <div key={hour} className="p-3 border-b border-gray-100 bg-gray-50">
+      <div key={hour} className="p-3 border-b border-[var(--stroke-3)] bg-background-3 dark:bg-background-7">
         <div className="flex items-center justify-between mb-2">
           <div className="font-medium text-sm">
             {apt.scheduledStartTime} - {apt.scheduledEndTime}
@@ -258,8 +258,8 @@ export default function AppointmentDashboard() {
             <Car className="h-3 w-3" />
             <span>{apt.vehicleInfo.year} {apt.vehicleInfo.make} {apt.vehicleInfo.model}</span>
           </div>
-          <div className="text-xs text-gray-600">{apt.customerName}</div>
-          <div className="text-xs text-gray-500">
+          <div className="text-xs text-secondary/60 dark:text-accent/60">{apt.customerName}</div>
+          <div className="text-xs text-secondary/60 dark:text-accent/60">
             Services: {apt.services.map(s => s.serviceType).join(', ')}
           </div>
         </div>
@@ -317,7 +317,7 @@ export default function AppointmentDashboard() {
                   <p className="text-xs sm:text-sm font-medium text-muted-foreground truncate">Pending</p>
                   <p className="text-xl sm:text-2xl font-bold text-foreground">{stats.upcoming.pendingConfirmation}</p>
                 </div>
-                <AlertCircle className="h-6 w-6 sm:h-8 sm:w-8 text-amber-600 dark:text-amber-400 self-start sm:self-auto" />
+                <AlertCircle className="h-6 w-6 sm:h-8 sm:w-8 text-[var(--ns-yellow)] dark:text-[var(--ns-yellow)] self-start sm:self-auto" />
               </div>
               <div className="mt-2 text-xs text-muted-foreground truncate">
                 Need confirmation
@@ -332,7 +332,7 @@ export default function AppointmentDashboard() {
                   <p className="text-xs sm:text-sm font-medium text-muted-foreground truncate">Next 7 Days</p>
                   <p className="text-xl sm:text-2xl font-bold text-foreground">{stats.upcoming.next7Days}</p>
                 </div>
-                <TrendingUp className="h-6 w-6 sm:h-8 sm:w-8 text-emerald-600 dark:text-emerald-400 self-start sm:self-auto" />
+                <TrendingUp className="h-6 w-6 sm:h-8 sm:w-8 text-[var(--ns-green)] dark:text-[var(--ns-green)] self-start sm:self-auto" />
               </div>
               <div className="mt-2 text-xs text-muted-foreground truncate">
                 Upcoming soon
@@ -347,7 +347,7 @@ export default function AppointmentDashboard() {
                   <p className="text-xs sm:text-sm font-medium text-muted-foreground truncate">This Week</p>
                   <p className="text-xl sm:text-2xl font-bold text-foreground">{stats.thisWeek.completed}</p>
                 </div>
-                <CheckCircle className="h-6 w-6 sm:h-8 sm:w-8 text-emerald-600 dark:text-emerald-400 self-start sm:self-auto" />
+                <CheckCircle className="h-6 w-6 sm:h-8 sm:w-8 text-[var(--ns-green)] dark:text-[var(--ns-green)] self-start sm:self-auto" />
               </div>
               <div className="mt-2 text-xs text-muted-foreground truncate">
                 Completed
@@ -544,11 +544,11 @@ export default function AppointmentDashboard() {
             <Card>
               <CardHeader>
                 <CardTitle>Analytics</CardTitle>
-                <p className="text-sm text-gray-600">Coming soon</p>
+                <p className="text-sm text-secondary/60 dark:text-accent/60">Coming soon</p>
               </CardHeader>
               <CardContent>
-                <div className="text-center py-8 text-gray-500">
-                  <BarChart3 className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+                <div className="text-center py-8 text-secondary/60 dark:text-accent/60">
+                  <BarChart3 className="h-12 w-12 mx-auto mb-4 text-secondary/40 dark:text-accent/40" />
                   <p>Analytics features coming soon</p>
                 </div>
               </CardContent>
@@ -557,11 +557,11 @@ export default function AppointmentDashboard() {
             <Card>
               <CardHeader>
                 <CardTitle>Performance Metrics</CardTitle>
-                <p className="text-sm text-gray-600">Track your workshop performance</p>
+                <p className="text-sm text-secondary/60 dark:text-accent/60">Track your workshop performance</p>
               </CardHeader>
               <CardContent>
-                <div className="text-center py-8 text-gray-500">
-                  <TrendingUp className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+                <div className="text-center py-8 text-secondary/60 dark:text-accent/60">
+                  <TrendingUp className="h-12 w-12 mx-auto mb-4 text-secondary/40 dark:text-accent/40" />
                   <p>Metrics dashboard coming soon</p>
                 </div>
               </CardContent>

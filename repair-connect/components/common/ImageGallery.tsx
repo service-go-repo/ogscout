@@ -238,11 +238,11 @@ export function ImageGallery({
   if (images.length === 0) {
     return (
       <div className="text-center py-12">
-        <Grid3X3 className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-        <h3 className="text-lg font-medium text-gray-900 mb-2">
+        <Grid3X3 className="h-12 w-12 text-secondary/40 dark:text-accent/40 mx-auto mb-4" />
+        <h3 className="text-lg font-medium text-secondary dark:text-accent mb-2">
           No photos yet
         </h3>
-        <p className="text-gray-600">
+        <p className="text-secondary/60 dark:text-accent/60">
           Add photos to showcase your car
         </p>
       </div>
@@ -256,7 +256,7 @@ export function ImageGallery({
         {images.map((image, index) => (
           <div
             key={image.id}
-            className="relative group cursor-pointer aspect-square bg-gray-100 rounded-lg overflow-hidden"
+            className="relative group cursor-pointer aspect-square bg-background-3 dark:bg-background-7 rounded-lg overflow-hidden"
             onClick={() => openLightbox(index)}
           >
             <Image

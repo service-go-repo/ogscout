@@ -52,17 +52,17 @@ export function ProfileCompletionGuard({
 
   // Show profile completion prompt
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-background-2 dark:bg-background-5 flex items-center justify-center p-4">
       <div className="max-w-2xl w-full">
         <Card>
           <CardHeader className="text-center">
-            <div className="mx-auto w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4">
-              <User className="w-8 h-8 text-orange-600" />
+            <div className="mx-auto w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-4">
+              <User className="w-8 h-8 text-primary-500" />
             </div>
-            <CardTitle className="text-2xl font-bold text-gray-900">
+            <CardTitle className="text-2xl font-bold text-secondary dark:text-accent">
               Complete Your Workshop Profile
             </CardTitle>
-            <p className="text-gray-600 mt-2">
+            <p className="text-secondary/60 dark:text-accent/60 mt-2">
               Please complete your workshop profile to access all features and start receiving service requests.
             </p>
           </CardHeader>
@@ -71,18 +71,18 @@ export function ProfileCompletionGuard({
             {/* Progress Bar */}
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Profile Completion</span>
-                <span className="font-medium text-gray-900">{completionPercentage}%</span>
+                <span className="text-secondary/60 dark:text-accent/60">Profile Completion</span>
+                <span className="font-medium text-secondary dark:text-accent">{completionPercentage}%</span>
               </div>
               <Progress value={completionPercentage} className="h-2" />
             </div>
 
             {/* Completion Status */}
-            <div className="flex items-start space-x-3 p-4 bg-orange-50 rounded-lg border border-orange-200">
-              <AlertCircle className="w-5 h-5 text-orange-600 mt-0.5 flex-shrink-0" />
+            <div className="flex items-start space-x-3 p-4 bg-primary-50 rounded-lg border border-primary-200">
+              <AlertCircle className="w-5 h-5 text-primary-500 mt-0.5 flex-shrink-0" />
               <div>
-                <h3 className="font-medium text-orange-900">Profile Incomplete</h3>
-                <p className="text-sm text-orange-700 mt-1">
+                <h3 className="font-medium text-secondary dark:text-accent">Profile Incomplete</h3>
+                <p className="text-sm text-primary-700 mt-1">
                   Your profile needs to be at least 80% complete to access workshop features.
                 </p>
               </div>
@@ -91,17 +91,17 @@ export function ProfileCompletionGuard({
             {/* Missing Fields */}
             {missingFields.length > 0 && (
               <div className="space-y-3">
-                <h4 className="font-medium text-gray-900">Missing Information:</h4>
+                <h4 className="font-medium text-secondary dark:text-accent">Missing Information:</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   {missingFields.slice(0, 8).map((field, index) => (
-                    <div key={index} className="flex items-center space-x-2 text-sm text-gray-600">
-                      <div className="w-2 h-2 bg-orange-400 rounded-full flex-shrink-0"></div>
+                    <div key={index} className="flex items-center space-x-2 text-sm text-secondary/60 dark:text-accent/60">
+                      <div className="w-2 h-2 bg-primary-400 rounded-full flex-shrink-0"></div>
                       <span>{field}</span>
                     </div>
                   ))}
                 </div>
                 {missingFields.length > 8 && (
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-secondary/60 dark:text-accent/60">
                     +{missingFields.length - 8} more fields...
                   </p>
                 )}
@@ -110,7 +110,7 @@ export function ProfileCompletionGuard({
 
             {/* Benefits of Completion */}
             <div className="space-y-3">
-              <h4 className="font-medium text-gray-900">Complete your profile to unlock:</h4>
+              <h4 className="font-medium text-secondary dark:text-accent">Complete your profile to unlock:</h4>
               <div className="space-y-2">
                 {[
                   'Receive service requests from customers',
@@ -119,8 +119,8 @@ export function ProfileCompletionGuard({
                   'Access customer management tools',
                   'View analytics and performance metrics'
                 ].map((benefit, index) => (
-                  <div key={index} className="flex items-center space-x-2 text-sm text-gray-600">
-                    <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <div key={index} className="flex items-center space-x-2 text-sm text-secondary/60 dark:text-accent/60">
+                    <CheckCircle className="w-4 h-4 text-[var(--ns-green)] flex-shrink-0" />
                     <span>{benefit}</span>
                   </div>
                 ))}
@@ -142,7 +142,7 @@ export function ProfileCompletionGuard({
 
             {/* Help Text */}
             <div className="text-center pt-4 border-t">
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-secondary/60 dark:text-accent/60">
                 Need help? Contact our support team for assistance with setting up your workshop profile.
               </p>
             </div>

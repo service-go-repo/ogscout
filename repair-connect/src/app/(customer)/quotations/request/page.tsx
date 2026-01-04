@@ -132,40 +132,40 @@ export default function QuoteRequestPage() {
           <div className="flex items-center space-x-2 sm:space-x-4 min-w-max">
             {/* Step 1 - Select Car */}
             <div className="flex flex-col items-center">
-              <div className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full shadow-lg">
+              <div className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-[var(--ns-cyan)] text-white rounded-full shadow-lg">
                 <CarIcon className="h-6 w-6 sm:h-7 sm:w-7" />
               </div>
               <span className="mt-2 text-xs sm:text-sm font-medium text-primary whitespace-nowrap">
                 Select Car
               </span>
             </div>
-            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-r from-blue-300 to-purple-300 flex-shrink-0 self-center"></div>
+            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-r from-[var(--ns-cyan)] to-[var(--primary-400)] flex-shrink-0 self-center"></div>
             {/* Step 2 - Select Service */}
             <div className="flex flex-col items-center">
               <span className="mb-2 text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
                 Select Service
               </span>
-              <div className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-full shadow-lg">
+              <div className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-[var(--primary-500)] text-white rounded-full shadow-lg">
                 <ClipboardList className="h-6 w-6 sm:h-7 sm:w-7" />
               </div>
             </div>
-            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-r from-purple-300 to-orange-300 flex-shrink-0 self-center"></div>
+            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-r from-[var(--primary-400)] to-[var(--ns-yellow)] flex-shrink-0 self-center"></div>
             {/* Step 3 - Choose Workshops */}
             <div className="flex flex-col items-center">
-              <div className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-full shadow-lg">
+              <div className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-[var(--ns-yellow)] text-[var(--secondary)] rounded-full shadow-lg">
                 <Wrench className="h-6 w-6 sm:h-7 sm:w-7" />
               </div>
               <span className="mt-2 text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
                 Choose Workshops
               </span>
             </div>
-            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-r from-orange-300 to-green-300 flex-shrink-0 self-center"></div>
+            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-r from-[var(--ns-yellow)] to-[var(--ns-green)] flex-shrink-0 self-center"></div>
             {/* Step 4 - Receive Quotes */}
             <div className="flex flex-col items-center">
               <span className="mb-2 text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
                 Receive Quotes
               </span>
-              <div className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-full shadow-lg">
+              <div className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-[var(--ns-green)] text-[var(--secondary)] rounded-full shadow-lg">
                 <FileCheck className="h-6 w-6 sm:h-7 sm:w-7" />
               </div>
             </div>
@@ -213,7 +213,7 @@ export default function QuoteRequestPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-8">
           <Card>
             <CardContent className="p-4 sm:p-6 text-center">
-              <Zap className="h-10 w-10 sm:h-12 sm:w-12 text-amber-500 dark:text-amber-400 mx-auto mb-3 sm:mb-4" />
+              <Zap className="h-10 w-10 sm:h-12 sm:w-12 text-[var(--ns-yellow)] mx-auto mb-3 sm:mb-4" />
               <h3 className="text-base sm:text-lg font-semibold mb-2">Fast & Easy</h3>
               <p className="text-muted-foreground text-xs sm:text-sm">
                 Select your car, choose workshops, and receive quotes within
@@ -224,7 +224,7 @@ export default function QuoteRequestPage() {
 
           <Card>
             <CardContent className="p-4 sm:p-6 text-center">
-              <CheckCircle className="h-10 w-10 sm:h-12 sm:w-12 text-emerald-500 dark:text-emerald-400 mx-auto mb-3 sm:mb-4" />
+              <CheckCircle className="h-10 w-10 sm:h-12 sm:w-12 text-[var(--ns-green)] mx-auto mb-3 sm:mb-4" />
               <h3 className="text-base sm:text-lg font-semibold mb-2">Verified Workshops</h3>
               <p className="text-muted-foreground text-xs sm:text-sm">
                 All workshops are verified and rated by real customers for your

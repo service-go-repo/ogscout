@@ -41,7 +41,7 @@ export default function RatingDisplay({
       stars.push(
         <Star
           key={`full-${i}`}
-          className={`${sizeClasses[size]} fill-yellow-400 text-yellow-400`}
+          className={`${sizeClasses[size]} fill-[var(--ns-yellow)] text-[var(--ns-yellow)]`}
         />
       )
     }
@@ -50,9 +50,9 @@ export default function RatingDisplay({
     if (hasHalfStar) {
       stars.push(
         <div key="half" className={`${sizeClasses[size]} relative`}>
-          <Star className={`${sizeClasses[size]} text-gray-300 absolute`} />
+          <Star className={`${sizeClasses[size]} text-secondary/40 dark:text-accent/40 absolute`} />
           <div className="overflow-hidden w-1/2">
-            <Star className={`${sizeClasses[size]} fill-yellow-400 text-yellow-400`} />
+            <Star className={`${sizeClasses[size]} fill-[var(--ns-yellow)] text-[var(--ns-yellow)]`} />
           </div>
         </div>
       )
@@ -63,7 +63,7 @@ export default function RatingDisplay({
       stars.push(
         <Star
           key={`empty-${i}`}
-          className={`${sizeClasses[size]} text-gray-300`}
+          className={`${sizeClasses[size]} text-secondary/40 dark:text-accent/40`}
         />
       )
     }
@@ -78,12 +78,12 @@ export default function RatingDisplay({
           {[...Array(5)].map((_, i) => (
             <Star
               key={i}
-              className={`${sizeClasses[size]} text-gray-300`}
+              className={`${sizeClasses[size]} text-secondary/40 dark:text-accent/40`}
             />
           ))}
         </div>
         {showText && (
-          <span className={`text-gray-500 ${textSizeClasses[size]}`}>
+          <span className={`text-secondary/60 dark:text-accent/60 ${textSizeClasses[size]}`}>
             No reviews yet
           </span>
         )}
@@ -102,7 +102,7 @@ export default function RatingDisplay({
         </span>
       )}
       {showText && totalReviews !== undefined && (
-        <span className={`text-gray-500 ${textSizeClasses[size]}`}>
+        <span className={`text-secondary/60 dark:text-accent/60 ${textSizeClasses[size]}`}>
           ({totalReviews} review{totalReviews !== 1 ? 's' : ''})
         </span>
       )}

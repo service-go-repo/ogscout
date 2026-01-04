@@ -562,7 +562,7 @@ export default function WorkshopProfilePage() {
         <div
           className={`mb-6 p-4 rounded-lg flex items-center gap-2 ${
             saveMessage.type === "success"
-              ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-200 border border-emerald-200 dark:border-emerald-800"
+              ? "bg-[var(--ns-green-light)] text-[var(--ns-green)] border border-[var(--ns-green)]/20"
               : "bg-destructive/10 text-destructive border border-destructive/20"
           }`}
         >
@@ -583,7 +583,7 @@ export default function WorkshopProfilePage() {
             className={`px-4 py-2 rounded-full font-medium transition-all whitespace-nowrap flex items-center gap-2 ${
               activeTab === "business"
                 ? "bg-primary text-primary-foreground shadow-sm"
-                : "bg-white text-foreground border border-border hover:bg-gray-50"
+                : "bg-white text-foreground border border-border hover:bg-muted"
             }`}
           >
             <Building2 className="w-4 h-4" />
@@ -594,7 +594,7 @@ export default function WorkshopProfilePage() {
             className={`px-4 py-2 rounded-full font-medium transition-all whitespace-nowrap flex items-center gap-2 ${
               activeTab === "contact"
                 ? "bg-primary text-primary-foreground shadow-sm"
-                : "bg-white text-foreground border border-border hover:bg-gray-50"
+                : "bg-white text-foreground border border-border hover:bg-muted"
             }`}
           >
             <MapPin className="w-4 h-4" />
@@ -605,7 +605,7 @@ export default function WorkshopProfilePage() {
             className={`px-4 py-2 rounded-full font-medium transition-all whitespace-nowrap flex items-center gap-2 ${
               activeTab === "hours"
                 ? "bg-primary text-primary-foreground shadow-sm"
-                : "bg-white text-foreground border border-border hover:bg-gray-50"
+                : "bg-white text-foreground border border-border hover:bg-muted"
             }`}
           >
             <Clock className="w-4 h-4" />
@@ -616,7 +616,7 @@ export default function WorkshopProfilePage() {
             className={`px-4 py-2 rounded-full font-medium transition-all whitespace-nowrap flex items-center gap-2 ${
               activeTab === "specializations"
                 ? "bg-primary text-primary-foreground shadow-sm"
-                : "bg-white text-foreground border border-border hover:bg-gray-50"
+                : "bg-white text-foreground border border-border hover:bg-muted"
             }`}
           >
             <Settings className="w-4 h-4" />
@@ -627,7 +627,7 @@ export default function WorkshopProfilePage() {
             className={`px-4 py-2 rounded-full font-medium transition-all whitespace-nowrap flex items-center gap-2 ${
               activeTab === "appointments"
                 ? "bg-primary text-primary-foreground shadow-sm"
-                : "bg-white text-foreground border border-border hover:bg-gray-50"
+                : "bg-white text-foreground border border-border hover:bg-muted"
             }`}
           >
             <Calendar className="w-4 h-4" />
@@ -638,7 +638,7 @@ export default function WorkshopProfilePage() {
             className={`px-4 py-2 rounded-full font-medium transition-all whitespace-nowrap flex items-center gap-2 ${
               activeTab === "portfolio"
                 ? "bg-primary text-primary-foreground shadow-sm"
-                : "bg-white text-foreground border border-border hover:bg-gray-50"
+                : "bg-white text-foreground border border-border hover:bg-muted"
             }`}
           >
             <Briefcase className="w-4 h-4" />
@@ -649,7 +649,7 @@ export default function WorkshopProfilePage() {
             className={`px-4 py-2 rounded-full font-medium transition-all whitespace-nowrap flex items-center gap-2 ${
               activeTab === "certifications"
                 ? "bg-primary text-primary-foreground shadow-sm"
-                : "bg-white text-foreground border border-border hover:bg-gray-50"
+                : "bg-white text-foreground border border-border hover:bg-muted"
             }`}
           >
             <Award className="w-4 h-4" />
@@ -660,7 +660,7 @@ export default function WorkshopProfilePage() {
             className={`px-4 py-2 rounded-full font-medium transition-all whitespace-nowrap flex items-center gap-2 ${
               activeTab === "gallery"
                 ? "bg-primary text-primary-foreground shadow-sm"
-                : "bg-white text-foreground border border-border hover:bg-gray-50"
+                : "bg-white text-foreground border border-border hover:bg-muted"
             }`}
           >
             <Camera className="w-4 h-4" />

@@ -172,9 +172,9 @@ function NewServiceRequestPageContent() {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="animate-pulse space-y-6">
-          <div className="h-8 bg-gray-200 rounded w-1/3"></div>
-          <div className="h-64 bg-gray-200 rounded"></div>
-          <div className="h-48 bg-gray-200 rounded"></div>
+          <div className="h-8 bg-muted rounded w-1/3"></div>
+          <div className="h-64 bg-muted rounded"></div>
+          <div className="h-48 bg-muted rounded"></div>
         </div>
       </div>
     )
@@ -184,7 +184,7 @@ function NewServiceRequestPageContent() {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Car Not Found</h1>
+          <h1 className="text-2xl font-bold text-foreground mb-4">Car Not Found</h1>
           <Button onClick={() => router.push('/cars')}>
             <Car className="h-4 w-4 mr-2" />
             Back to My Cars

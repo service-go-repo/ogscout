@@ -96,7 +96,7 @@ export default function ActiveJobsComponent() {
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold">Active Jobs</h1>
-        <p className="text-gray-600 mt-2">
+        <p className="text-secondary/60 dark:text-accent/60 mt-2">
           Manage your current and upcoming service jobs
         </p>
       </div>
@@ -107,12 +107,12 @@ export default function ActiveJobsComponent() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">In Progress</p>
+                <p className="text-sm font-medium text-secondary/60 dark:text-accent/60">In Progress</p>
                 <p className="text-2xl font-bold">
                   {allAppointments.filter(a => a.status === 'in_progress').length}
                 </p>
               </div>
-              <PlayCircle className="h-8 w-8 text-blue-600" />
+              <PlayCircle className="h-8 w-8 text-[var(--ns-cyan)]" />
             </div>
           </CardContent>
         </Card>
@@ -121,7 +121,7 @@ export default function ActiveJobsComponent() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Scheduled Today</p>
+                <p className="text-sm font-medium text-secondary/60 dark:text-accent/60">Scheduled Today</p>
                 <p className="text-2xl font-bold">
                   {allAppointments.filter(a => {
                     const today = format(new Date(), 'yyyy-MM-dd')
@@ -130,7 +130,7 @@ export default function ActiveJobsComponent() {
                   }).length}
                 </p>
               </div>
-              <Calendar className="h-8 w-8 text-green-600" />
+              <Calendar className="h-8 w-8 text-[var(--ns-green)]" />
             </div>
           </CardContent>
         </Card>
@@ -139,7 +139,7 @@ export default function ActiveJobsComponent() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Upcoming</p>
+                <p className="text-sm font-medium text-secondary/60 dark:text-accent/60">Upcoming</p>
                 <p className="text-2xl font-bold">
                   {allAppointments.filter(a => {
                     const aptDate = new Date(a.scheduledDate)
@@ -147,7 +147,7 @@ export default function ActiveJobsComponent() {
                   }).length}
                 </p>
               </div>
-              <Clock className="h-8 w-8 text-orange-600" />
+              <Clock className="h-8 w-8 text-[var(--ns-yellow)]" />
             </div>
           </CardContent>
         </Card>
@@ -162,7 +162,7 @@ export default function ActiveJobsComponent() {
             className={`px-4 py-2 rounded-full font-medium transition-all whitespace-nowrap flex items-center gap-2 ${
               activeTab === 'in_progress'
                 ? 'bg-primary text-primary-foreground shadow-sm'
-                : 'bg-white text-foreground border border-border hover:bg-gray-50'
+                : 'bg-white text-foreground border border-border hover:bg-[var(--background-3)] dark:hover:bg-[var(--background-7)]'
             }`}
           >
             <PlayCircle className="w-4 h-4" />
@@ -174,7 +174,7 @@ export default function ActiveJobsComponent() {
             className={`px-4 py-2 rounded-full font-medium transition-all whitespace-nowrap flex items-center gap-2 ${
               activeTab === 'scheduled'
                 ? 'bg-primary text-primary-foreground shadow-sm'
-                : 'bg-white text-foreground border border-border hover:bg-gray-50'
+                : 'bg-white text-foreground border border-border hover:bg-[var(--background-3)] dark:hover:bg-[var(--background-7)]'
             }`}
           >
             <Calendar className="w-4 h-4" />
@@ -186,7 +186,7 @@ export default function ActiveJobsComponent() {
             className={`px-4 py-2 rounded-full font-medium transition-all whitespace-nowrap flex items-center gap-2 ${
               activeTab === 'upcoming'
                 ? 'bg-primary text-primary-foreground shadow-sm'
-                : 'bg-white text-foreground border border-border hover:bg-gray-50'
+                : 'bg-white text-foreground border border-border hover:bg-[var(--background-3)] dark:hover:bg-[var(--background-7)]'
             }`}
           >
             <Clock className="w-4 h-4" />
@@ -199,7 +199,7 @@ export default function ActiveJobsComponent() {
       <div className="relative">
         {/* Loading Overlay */}
         {loading && (
-          <div className="absolute inset-0 bg-white/80 backdrop-blur-sm z-10 flex items-center justify-center rounded-lg">
+          <div className="absolute inset-0 bg-[var(--background-1)]/80 dark:bg-[var(--background-6)]/80 backdrop-blur-sm z-10 flex items-center justify-center rounded-lg">
             <div className="flex flex-col items-center gap-2">
               <Loader2 className="h-8 w-8 animate-spin text-primary" />
               <p className="text-sm text-muted-foreground">Loading jobs...</p>
@@ -210,9 +210,9 @@ export default function ActiveJobsComponent() {
         {appointments.length === 0 ? (
           <Card>
             <CardContent className="p-12 text-center">
-              <Timer className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No jobs found</h3>
-              <p className="text-gray-500">
+              <Timer className="h-12 w-12 text-secondary/30 dark:text-accent/30 mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-secondary dark:text-accent mb-2">No jobs found</h3>
+              <p className="text-secondary/60 dark:text-accent/60">
                 {activeTab === 'in_progress'
                   ? "No jobs are currently in progress"
                   : activeTab === 'scheduled'
@@ -233,7 +233,7 @@ export default function ActiveJobsComponent() {
                         <Badge className={getAppointmentStatusColor(appointment.status)}>
                           {getAppointmentStatusLabel(appointment.status)}
                         </Badge>
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-secondary/60 dark:text-accent/60">
                           #{appointment._id.toString().slice(-8).toUpperCase()}
                         </span>
                       </div>
@@ -243,7 +243,7 @@ export default function ActiveJobsComponent() {
                 <CardContent className="space-y-3">
                   {/* Vehicle */}
                   <div className="flex items-center gap-2 text-sm">
-                    <Car className="h-4 w-4 text-gray-400" />
+                    <Car className="h-4 w-4 text-secondary/40 dark:text-accent/40" />
                     <span className="font-medium">
                       {appointment.vehicleInfo.year} {appointment.vehicleInfo.make} {appointment.vehicleInfo.model}
                     </span>
@@ -251,15 +251,15 @@ export default function ActiveJobsComponent() {
 
                   {/* Date & Time */}
                   <div className="flex items-center gap-2 text-sm">
-                    <Calendar className="h-4 w-4 text-gray-400" />
+                    <Calendar className="h-4 w-4 text-secondary/40 dark:text-accent/40" />
                     <span>{format(new Date(appointment.scheduledDate), 'MMM dd, yyyy')}</span>
-                    <Clock className="h-4 w-4 text-gray-400 ml-2" />
+                    <Clock className="h-4 w-4 text-secondary/40 dark:text-accent/40 ml-2" />
                     <span>{appointment.scheduledStartTime}</span>
                   </div>
 
                   {/* Customer Contact */}
                   <div className="flex items-center gap-2 text-sm">
-                    <Phone className="h-4 w-4 text-gray-400" />
+                    <Phone className="h-4 w-4 text-secondary/40 dark:text-accent/40" />
                     <span>{appointment.customerPhone}</span>
                   </div>
 

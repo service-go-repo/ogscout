@@ -97,7 +97,7 @@ export default function QuoteNotifications({ workshopId }: QuoteNotificationsPro
         >
           <Bell className="h-4 w-4" />
           {unreadCount > 0 && (
-            <Badge className="bg-red-500 text-white text-xs px-1 min-w-[16px] h-4">
+            <Badge className="bg-[var(--ns-red)] text-white text-xs px-1 min-w-[16px] h-4">
               {unreadCount}
             </Badge>
           )}
@@ -120,8 +120,8 @@ export default function QuoteNotifications({ workshopId }: QuoteNotificationsPro
               
               {recentNotifications.length === 0 ? (
                 <div className="text-center py-8">
-                  <Bell className="h-8 w-8 text-gray-300 mx-auto mb-2" />
-                  <p className="text-sm text-gray-600">No recent notifications</p>
+                  <Bell className="h-8 w-8 text-secondary/40 dark:text-accent/40 mx-auto mb-2" />
+                  <p className="text-sm text-secondary/60 dark:text-accent/60">No recent notifications</p>
                 </div>
               ) : (
                 <div className="space-y-3">
@@ -162,27 +162,27 @@ function NotificationCard({ notification, onDismiss }: NotificationCardProps) {
   const getStatusIcon = () => {
     switch (notification.quoteStatus) {
       case 'accepted':
-        return <CheckCircle className="h-4 w-4 text-green-500" />
+        return <CheckCircle className="h-4 w-4 text-[var(--ns-green)]" />
       case 'declined':
-        return <XCircle className="h-4 w-4 text-red-500" />
+        return <XCircle className="h-4 w-4 text-[var(--ns-red)]" />
       default:
-        return <Clock className="h-4 w-4 text-gray-500" />
+        return <Clock className="h-4 w-4 text-secondary/60 dark:text-accent/60" />
     }
   }
 
   const getStatusColor = () => {
     switch (notification.quoteStatus) {
       case 'accepted':
-        return 'text-green-700 bg-green-50 border-green-200'
+        return 'text-[var(--secondary)] bg-[var(--ns-green-light)] border-[var(--ns-green)]'
       case 'declined':
-        return 'text-red-700 bg-red-50 border-red-200'
+        return 'text-[var(--ns-red)] bg-[var(--ns-red)]/20 border-[var(--ns-red)]/30'
       default:
-        return 'text-gray-700 bg-gray-50 border-gray-200'
+        return 'text-secondary dark:text-accent bg-background-3 dark:bg-background-7 border-[var(--stroke-3)]'
     }
   }
 
   return (
-    <div className={`border rounded-lg p-3 ${getStatusColor()} ${!notification.read ? 'ring-2 ring-blue-200' : ''}`}>
+    <div className={`border rounded-lg p-3 ${getStatusColor()} ${!notification.read ? 'ring-2 ring-primary-500/20' : ''}`}>
       <div className="flex items-start justify-between">
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
@@ -191,7 +191,7 @@ function NotificationCard({ notification, onDismiss }: NotificationCardProps) {
               Quote {notification.quoteStatus}
             </span>
             {!notification.read && (
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+              <div className="w-2 h-2 bg-primary-500 rounded-full"></div>
             )}
           </div>
           
@@ -201,13 +201,13 @@ function NotificationCard({ notification, onDismiss }: NotificationCardProps) {
           </p>
           
           {notification.quoteAmount && notification.quoteStatus === 'accepted' && (
-            <div className="flex items-center gap-1 text-sm font-medium text-green-700">
+            <div className="flex items-center gap-1 text-sm font-medium text-[var(--ns-green)]">
               <DollarSign className="h-3 w-3" />
               AED {notification.quoteAmount.toLocaleString()}
             </div>
           )}
           
-          <p className="text-xs text-gray-600 mt-1">
+          <p className="text-xs text-secondary/60 dark:text-accent/60 mt-1">
             {format(new Date(notification.timestamp), 'MMM dd, HH:mm')}
           </p>
         </div>

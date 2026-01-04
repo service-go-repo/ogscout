@@ -83,6 +83,20 @@ module.exports = {
   theme: {
   	extend: {
   		colors: {
+  			// === NextSaaS Design System v2.0 Colors ===
+
+  			// Primary Purple Scale
+  			'primary-50': 'var(--primary-50)',
+  			'primary-100': 'var(--primary-100)',
+  			'primary-200': 'var(--primary-200)',
+  			'primary-300': 'var(--primary-300)',
+  			'primary-400': 'var(--primary-400)',
+  			'primary-500': 'var(--primary-500)',
+  			'primary-600': 'var(--primary-600)',
+  			'primary-700': 'var(--primary-700)',
+  			'primary-800': 'var(--primary-800)',
+
+  			// Legacy shadcn compatibility
   			background: 'var(--background)',
   			foreground: 'var(--foreground)',
   			card: 'var(--card)',
@@ -111,10 +125,29 @@ module.exports = {
   			'sidebar-border': 'var(--sidebar-border)',
   			'sidebar-ring': 'var(--sidebar-ring)'
   		},
+  		fontSize: {
+  			// === NextSaaS Typography Scale ===
+  			'heading-1': ['4.25rem', { lineHeight: '110%' }],  // 68px - Hero titles
+  			'heading-2': ['3.25rem', { lineHeight: '120%' }],  // 52px - Major section headers
+  			'heading-3': ['2.5rem', { lineHeight: '120%' }],   // 40px - Section headers
+  			'heading-4': ['2rem', { lineHeight: '130%' }],     // 32px - Card titles
+  			'heading-5': ['1.5rem', { lineHeight: '140%' }],   // 24px - Component titles
+  			'heading-6': ['1.25rem', { lineHeight: '140%' }],  // 20px - Labels
+  			'tagline-1': ['1rem', { lineHeight: '150%' }],     // 16px - Primary body
+  			'tagline-2': ['0.875rem', { lineHeight: '150%' }], // 14px - Secondary text
+  			'tagline-3': ['0.75rem', { lineHeight: '150%' }],  // 12px - Small text
+  		},
   		borderRadius: {
-  			lg: 'var(--radius-lg)',
-  			md: 'var(--radius-md)',
-  			sm: 'var(--radius-sm)'
+  			// === NextSaaS Border Radius System ===
+  			'none': '0',
+  			'sm': '0.25rem',    // 4px
+  			DEFAULT: '0.5rem',   // 8px
+  			'md': '0.625rem',    // 10px
+  			'lg': '0.75rem',     // 12px
+  			'xl': '0.75rem',     // 12px - inner containers
+  			'2xl': '1rem',       // 16px - images
+  			'3xl': '1.25rem',    // 20px - outer containers/cards
+  			'full': '9999px',    // Pills/buttons
   		},
   		fontFamily: {
   			sans: [
@@ -141,12 +174,13 @@ module.exports = {
   			]
   		},
   		boxShadow: {
-  			sm: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
-  			DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
-  			md: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
-  			lg: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
-  			xl: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
-  			'2xl': '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+  			// === NextSaaS Soft Shadow System ===
+  			sm: 'var(--shadow-1)',      // Subtle shadow for cards
+  			DEFAULT: 'var(--shadow-2)', // Default shadow
+  			md: 'var(--shadow-3)',      // Medium elevation
+  			lg: 'var(--shadow-4)',      // High elevation
+  			xl: 'var(--shadow-5)',      // Very high elevation
+  			'2xl': 'var(--shadow-5)',   // Maximum elevation
   			none: 'none'
   		},
   		keyframes: {

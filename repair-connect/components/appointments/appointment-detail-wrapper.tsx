@@ -51,9 +51,9 @@ export default function AppointmentDetailWrapper({
   return (
     <div className="relative">
       {loading && (
-        <div className="absolute top-0 left-0 right-0 bg-blue-50 border border-blue-200 rounded-lg p-2 flex items-center justify-center gap-2 mb-4 z-10">
-          <Loader2 className="h-4 w-4 animate-spin text-blue-600" />
-          <span className="text-sm text-blue-600">Updating appointment...</span>
+        <div className="absolute top-0 left-0 right-0 bg-primary-50 border border-primary-200 rounded-lg p-2 flex items-center justify-center gap-2 mb-4 z-10">
+          <Loader2 className="h-4 w-4 animate-spin text-primary-500" />
+          <span className="text-sm text-primary-500">Updating appointment...</span>
         </div>
       )}
       <AppointmentDetail

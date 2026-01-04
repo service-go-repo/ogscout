@@ -68,7 +68,7 @@ export function LoginForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-muted/30 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-background-3 dark:bg-background-7/30 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md lg:max-w-lg w-full space-y-8">
         <Card>
           <CardHeader className="text-center">
@@ -81,7 +81,7 @@ export function LoginForm() {
           </CardHeader>
           <CardContent className="space-y-6">
             {error && (
-              <div className="bg-destructive/10 border border-destructive/20 text-destructive px-4 py-3 rounded-md text-sm">
+              <div className="bg-[var(--ns-red)]/10 border border-[var(--ns-red)]/20 text-[var(--ns-red)] px-4 py-3 rounded-md text-sm">
                 {error}
               </div>
             )}
@@ -102,7 +102,7 @@ export function LoginForm() {
                   placeholder="Enter your email"
                 />
                 {errors.email && (
-                  <p className="mt-1 text-sm text-destructive">
+                  <p className="mt-1 text-sm text-[var(--ns-red)]">
                     {errors.email.message}
                   </p>
                 )}
@@ -130,14 +130,14 @@ export function LoginForm() {
                     onClick={() => setShowPassword(!showPassword)}
                   >
                     {showPassword ? (
-                      <EyeOff className="h-4 w-4 text-muted-foreground/60" />
+                      <EyeOff className="h-4 w-4 text-secondary/60 dark:text-accent/60/60" />
                     ) : (
-                      <Eye className="h-4 w-4 text-muted-foreground/60" />
+                      <Eye className="h-4 w-4 text-secondary/60 dark:text-accent/60/60" />
                     )}
                   </button>
                 </div>
                 {errors.password && (
-                  <p className="mt-1 text-sm text-destructive">
+                  <p className="mt-1 text-sm text-[var(--ns-red)]">
                     {errors.password.message}
                   </p>
                 )}
@@ -174,7 +174,7 @@ export function LoginForm() {
             </form>
 
             <div className="text-center">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-secondary/60 dark:text-accent/60">
                 Don&apos;t have an account?{" "}
                 <Link
                   href="/auth/register"

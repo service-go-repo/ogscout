@@ -327,7 +327,7 @@ export default function AppointmentSettingsComponent({
             className={`px-4 py-2 rounded-full font-medium transition-all whitespace-nowrap flex items-center gap-2 ${
               activeTab === "general"
                 ? "bg-primary text-primary-foreground shadow-sm"
-                : "bg-white text-foreground border border-border hover:bg-gray-50"
+                : "bg-white text-foreground border border-border hover:bg-background-3"
             }`}
           >
             <Settings className="w-4 h-4" />
@@ -338,7 +338,7 @@ export default function AppointmentSettingsComponent({
             className={`px-4 py-2 rounded-full font-medium transition-all whitespace-nowrap flex items-center gap-2 ${
               activeTab === "slots"
                 ? "bg-primary text-primary-foreground shadow-sm"
-                : "bg-white text-foreground border border-border hover:bg-gray-50"
+                : "bg-white text-foreground border border-border hover:bg-background-3"
             }`}
           >
             <Clock className="w-4 h-4" />
@@ -349,7 +349,7 @@ export default function AppointmentSettingsComponent({
             className={`px-4 py-2 rounded-full font-medium transition-all whitespace-nowrap flex items-center gap-2 ${
               activeTab === "services"
                 ? "bg-primary text-primary-foreground shadow-sm"
-                : "bg-white text-foreground border border-border hover:bg-gray-50"
+                : "bg-white text-foreground border border-border hover:bg-background-3"
             }`}
           >
             <Users className="w-4 h-4" />
@@ -360,7 +360,7 @@ export default function AppointmentSettingsComponent({
             className={`px-4 py-2 rounded-full font-medium transition-all whitespace-nowrap flex items-center gap-2 ${
               activeTab === "availability"
                 ? "bg-primary text-primary-foreground shadow-sm"
-                : "bg-white text-foreground border border-border hover:bg-gray-50"
+                : "bg-white text-foreground border border-border hover:bg-background-3"
             }`}
           >
             <Calendar className="w-4 h-4" />
@@ -371,7 +371,7 @@ export default function AppointmentSettingsComponent({
             className={`px-4 py-2 rounded-full font-medium transition-all whitespace-nowrap flex items-center gap-2 ${
               activeTab === "policies"
                 ? "bg-primary text-primary-foreground shadow-sm"
-                : "bg-white text-foreground border border-border hover:bg-gray-50"
+                : "bg-white text-foreground border border-border hover:bg-background-3"
             }`}
           >
             <AlertCircle className="w-4 h-4" />
@@ -862,7 +862,7 @@ export default function AppointmentSettingsComponent({
         <div
           className={`p-4 rounded-lg flex items-center gap-2 ${
             saveMessage.type === "success"
-              ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-200 border border-emerald-200 dark:border-emerald-800"
+              ? "bg-[var(--ns-green-light)] text-[var(--secondary)] dark:bg-[var(--ns-green)] dark:text-[var(--secondary)] border border-[var(--ns-green)] dark:border-[var(--ns-green)]"
               : "bg-destructive/10 text-destructive border border-destructive/20"
           }`}
         >

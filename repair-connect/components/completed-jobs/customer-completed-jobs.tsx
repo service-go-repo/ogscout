@@ -142,7 +142,7 @@ export default function CustomerCompletedJobsComponent() {
                 <p className="text-xs md:text-sm font-medium text-muted-foreground">Total Completed</p>
                 <p className="text-xl md:text-2xl font-bold">{totalCompleted}</p>
               </div>
-              <CheckCircle className="h-6 w-6 md:h-8 md:w-8 text-emerald-600 dark:text-emerald-400" />
+              <CheckCircle className="h-6 w-6 md:h-8 md:w-8 text-[var(--ns-green)]" />
             </div>
           </CardContent>
         </Card>
@@ -154,7 +154,7 @@ export default function CustomerCompletedJobsComponent() {
                 <p className="text-xs md:text-sm font-medium text-muted-foreground">Total Spent</p>
                 <p className="text-xl md:text-2xl font-bold">AED {totalSpent.toFixed(2)}</p>
               </div>
-              <Star className="h-6 w-6 md:h-8 md:w-8 text-amber-500 dark:text-amber-400" />
+              <Star className="h-6 w-6 md:h-8 md:w-8 text-[var(--ns-yellow)]" />
             </div>
           </CardContent>
         </Card>
@@ -166,7 +166,7 @@ export default function CustomerCompletedJobsComponent() {
                 <p className="text-xs md:text-sm font-medium text-muted-foreground">Avg. Rating</p>
                 <p className="text-xl md:text-2xl font-bold">{averageRating.toFixed(1)}</p>
               </div>
-              <Star className="h-6 w-6 md:h-8 md:w-8 text-amber-500 dark:text-amber-400" />
+              <Star className="h-6 w-6 md:h-8 md:w-8 text-[var(--ns-yellow)]" />
             </div>
           </CardContent>
         </Card>
@@ -227,7 +227,7 @@ export default function CustomerCompletedJobsComponent() {
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
                         <h3 className="text-xl font-semibold">{appointment.workshopName}</h3>
-                        <Badge className="bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200">
+                        <Badge className="bg-[var(--ns-green-light)] text-secondary dark:text-secondary">
                           <CheckCircle className="h-3 w-3 mr-1" />
                           Completed
                         </Badge>
@@ -244,8 +244,8 @@ export default function CustomerCompletedJobsComponent() {
                             key={i}
                             className={`h-4 w-4 ${
                               i < appointment.customerRating!
-                                ? 'fill-yellow-400 text-yellow-400'
-                                : 'text-gray-300'
+                                ? 'fill-[var(--ns-yellow)] text-[var(--ns-yellow)]'
+                                : 'text-secondary/30 dark:text-accent/30'
                             }`}
                           />
                         ))}
@@ -275,7 +275,7 @@ export default function CustomerCompletedJobsComponent() {
 
                     <div>
                       <div className="text-xs font-medium text-muted-foreground mb-1">TOTAL COST</div>
-                      <div className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+                      <div className="text-sm font-semibold text-[var(--ns-green)]">
                         AED {appointment.totalAmount?.toFixed(2) || '0.00'}
                       </div>
                     </div>

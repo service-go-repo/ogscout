@@ -61,7 +61,7 @@ export function Footer() {
       <StructuredData data={organizationSchema} />
 
       <motion.footer
-        className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white"
+        className="bg-[var(--secondary)] dark:bg-[var(--background-8)] text-[var(--primary-50)]"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -87,7 +87,7 @@ export function Footer() {
                 </div>
                 <span className="font-bold text-2xl">{APP_NAME}</span>
               </Link>
-              <p className="text-slate-300 mb-6 text-sm leading-relaxed">
+              <p className="text-[var(--primary-50)]/80 mb-6 text-tagline-2 leading-relaxed">
                 Dubai&apos;s leading car workshop matching platform. Connect with verified repair
                 professionals, get instant quotes, and book with confidence.
               </p>
@@ -100,11 +100,11 @@ export function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2.5 bg-slate-800 hover:bg-primary rounded-lg transition-colors group"
+                    className="p-2.5 bg-[var(--accent)]/10 hover:bg-primary-500 rounded-lg transition-all hover:-translate-y-1 group"
                     aria-label={`Follow us on ${social.name}`}
                   >
                     <social.icon
-                      className="h-5 w-5 text-slate-400 group-hover:text-white"
+                      className="h-5 w-5 text-[var(--primary-50)]/60 group-hover:text-white"
                       aria-hidden="true"
                     />
                   </a>
@@ -125,7 +125,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-slate-300 hover:text-primary transition-colors inline-block"
+                      className="text-tagline-2 text-[var(--primary-50)]/80 hover:text-primary-500 transition-colors inline-block"
                     >
                       {link.name}
                     </Link>
@@ -149,10 +149,10 @@ export function Footer() {
                     <li key={service.slug}>
                       <Link
                         href={`/services/${service.slug}`}
-                        className="text-sm text-slate-300 hover:text-primary transition-colors inline-flex items-center space-x-2 group"
+                        className="text-tagline-2 text-[var(--primary-50)]/80 hover:text-primary-500 transition-colors inline-flex items-center space-x-2 group"
                       >
                         <Icon
-                          className="h-4 w-4 text-slate-400 group-hover:text-primary"
+                          className="h-4 w-4 text-[var(--primary-50)]/60 group-hover:text-primary-500"
                           aria-hidden="true"
                         />
                         <span>{service.name}</span>
@@ -176,8 +176,8 @@ export function Footer() {
               <ul className="space-y-4">
                 {/* Address */}
                 <li className="flex items-start space-x-3">
-                  <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <div className="text-sm text-slate-300">
+                  <MapPin className="h-5 w-5 text-primary-500 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                  <div className="text-tagline-2 text-[var(--primary-50)]/80">
                     <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
                       <span itemProp="streetAddress">Sheikh Zayed Road</span>
                       <br />
@@ -189,10 +189,10 @@ export function Footer() {
 
                 {/* Phone */}
                 <li className="flex items-start space-x-3">
-                  <Phone className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
+                  <Phone className="h-5 w-5 text-primary-500 mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <a
                     href="tel:+97145551234"
-                    className="text-sm text-slate-300 hover:text-primary transition-colors"
+                    className="text-tagline-2 text-[var(--primary-50)]/80 hover:text-primary-500 transition-colors"
                     itemProp="telephone"
                   >
                     +971 4 XXX XXXX
@@ -201,10 +201,10 @@ export function Footer() {
 
                 {/* Email */}
                 <li className="flex items-start space-x-3">
-                  <Mail className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
+                  <Mail className="h-5 w-5 text-primary-500 mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <a
                     href="mailto:info@repairconnect.ae"
-                    className="text-sm text-slate-300 hover:text-primary transition-colors"
+                    className="text-tagline-2 text-[var(--primary-50)]/80 hover:text-primary-500 transition-colors"
                     itemProp="email"
                   >
                     info@repairconnect.ae
@@ -213,8 +213,8 @@ export function Footer() {
 
                 {/* Working Hours */}
                 <li className="flex items-start space-x-3">
-                  <Clock className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <div className="text-sm text-slate-300">
+                  <Clock className="h-5 w-5 text-primary-500 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                  <div className="text-tagline-2 text-[var(--primary-50)]/80">
                     <div>Mon - Fri: 8:00 AM - 6:00 PM</div>
                     <div>Sat: 9:00 AM - 2:00 PM</div>
                     <div>Sun: Closed</div>
@@ -226,26 +226,26 @@ export function Footer() {
 
           {/* Newsletter Section (Optional - Placeholder) */}
           <motion.div
-            className="mt-12 pt-8 border-t border-slate-700"
+            className="mt-12 pt-8 border-t border-[var(--accent)]/10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5 }}
           >
             <div className="max-w-2xl mx-auto text-center">
-              <h3 className="font-bold text-xl mb-2">Stay Updated</h3>
-              <p className="text-slate-300 text-sm mb-4">
+              <h3 className="font-bold text-heading-6 mb-2">Stay Updated</h3>
+              <p className="text-[var(--primary-50)]/80 text-tagline-2 mb-4">
                 Subscribe to our newsletter for car maintenance tips, special offers, and updates.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-2.5 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                  className="flex-1 px-4 py-2.5 rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/20 text-white placeholder-[var(--primary-50)]/40 focus:outline-none focus:ring-2 focus:ring-primary-500 text-tagline-2"
                   aria-label="Email for newsletter"
                 />
                 <button
-                  className="px-6 py-2.5 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition-colors text-sm whitespace-nowrap"
+                  className="px-6 py-2.5 bg-primary-500 text-white rounded-full font-medium hover:bg-primary-600 transition-colors text-tagline-2 whitespace-nowrap"
                   type="button"
                 >
                   Subscribe
@@ -256,31 +256,31 @@ export function Footer() {
 
           {/* Bottom Bar */}
           <motion.div
-            className="mt-12 pt-8 border-t border-slate-700 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0"
+            className="mt-12 pt-8 border-t border-[var(--accent)]/10 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6 }}
           >
-            <p className="text-sm text-slate-400">
+            <p className="text-tagline-2 text-[var(--primary-50)]/60">
               © {new Date().getFullYear()} {APP_NAME}. All rights reserved.
             </p>
             <div className="flex flex-wrap justify-center gap-6">
               <Link
                 href="/privacy"
-                className="text-sm text-slate-400 hover:text-primary transition-colors"
+                className="text-tagline-2 text-[var(--primary-50)]/60 hover:text-primary-500 transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
                 href="/terms"
-                className="text-sm text-slate-400 hover:text-primary transition-colors"
+                className="text-tagline-2 text-[var(--primary-50)]/60 hover:text-primary-500 transition-colors"
               >
                 Terms of Service
               </Link>
               <Link
                 href="/cookies"
-                className="text-sm text-slate-400 hover:text-primary transition-colors"
+                className="text-tagline-2 text-[var(--primary-50)]/60 hover:text-primary-500 transition-colors"
               >
                 Cookie Policy
               </Link>

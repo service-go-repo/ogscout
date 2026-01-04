@@ -35,56 +35,56 @@ const statusConfig: Record<
     label: 'Sending...',
     icon: Loader2,
     colorClasses:
-      'bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800',
+      'bg-[var(--ns-cyan-light)] text-secondary border-[var(--ns-cyan)]',
     description: 'Quote request is being sent',
   },
   submitted: {
     label: 'Quote Sent',
     icon: Check,
     colorClasses:
-      'bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800',
+      'bg-[var(--ns-green-light)] text-secondary border-[var(--ns-green)]',
     description: 'Quote request sent, awaiting workshop response',
   },
   viewed: {
     label: 'Viewed',
     icon: Eye,
     colorClasses:
-      'bg-purple-50 dark:bg-purple-950 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800',
+      'bg-primary-100 text-secondary border-primary-300',
     description: 'Workshop has viewed your quote request',
   },
   quoted: {
     label: 'Quote Received',
     icon: FileText,
     colorClasses:
-      'bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800',
+      'bg-primary-100 text-secondary border-primary-300',
     description: 'Workshop has sent you a quote',
   },
   accepted: {
     label: 'Accepted',
     icon: CheckCircle,
     colorClasses:
-      'bg-green-50 dark:bg-green-950 text-green-700 dark:text-green-300 border-green-200 dark:border-green-800',
+      'bg-[var(--ns-green-light)] text-secondary border-[var(--ns-green)]',
     description: 'You accepted this quote',
   },
   rejected: {
     label: 'Declined',
     icon: XCircle,
     colorClasses:
-      'bg-gray-50 dark:bg-gray-950 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-800',
+      'bg-[var(--background-3)] dark:bg-[var(--background-7)] text-secondary/60 dark:text-accent/60 border-[var(--stroke-3)] dark:border-[var(--stroke-7)]',
     description: 'You declined this quote',
   },
   expired: {
     label: 'Expired',
     icon: AlertCircle,
     colorClasses:
-      'bg-orange-50 dark:bg-orange-950 text-orange-700 dark:text-orange-300 border-orange-200 dark:border-orange-800',
+      'bg-[var(--ns-yellow-light)] text-secondary border-[var(--ns-yellow)]',
     description: 'Quote request has expired',
   },
   failed: {
     label: 'Failed',
     icon: XCircle,
     colorClasses:
-      'bg-red-50 dark:bg-red-950 text-red-700 dark:text-red-300 border-red-200 dark:border-red-800',
+      'bg-[var(--ns-red)]/20 text-secondary border-[var(--ns-red)]',
     description: 'Failed to send quote request',
   },
 };

@@ -410,7 +410,7 @@ export default function SettingsPage() {
         <div
           className={`mb-6 p-4 rounded-lg flex items-center gap-2 ${
             saveMessage.type === 'success'
-              ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-200 border border-emerald-200 dark:border-emerald-800'
+              ? 'bg-[var(--ns-green-light)] text-[var(--ns-green)] border border-[var(--ns-green)]/20'
               : 'bg-destructive/10 text-destructive border border-destructive/20'
           }`}
         >

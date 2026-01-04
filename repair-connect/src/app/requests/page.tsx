@@ -119,13 +119,13 @@ export default function ServiceRequestsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-background py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Service Requests</h1>
-            <p className="mt-2 text-gray-600">
+            <h1 className="text-3xl font-bold text-foreground">Service Requests</h1>
+            <p className="mt-2 text-muted-foreground">
               Track your repair requests and communicate with workshops
             </p>
           </div>
@@ -143,13 +143,13 @@ export default function ServiceRequestsPage() {
             {[...Array(3)].map((_, i) => (
               <Card key={i} className="animate-pulse">
                 <CardHeader>
-                  <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-                  <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+                  <div className="h-4 bg-muted rounded w-3/4"></div>
+                  <div className="h-3 bg-muted rounded w-1/2"></div>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
-                    <div className="h-3 bg-gray-200 rounded"></div>
-                    <div className="h-3 bg-gray-200 rounded w-2/3"></div>
+                    <div className="h-3 bg-muted rounded"></div>
+                    <div className="h-3 bg-muted rounded w-2/3"></div>
                   </div>
                 </CardContent>
               </Card>
@@ -159,9 +159,9 @@ export default function ServiceRequestsPage() {
 
         {/* Error State */}
         {error && (
-          <Card className="border-red-200 bg-red-50">
+          <Card className="border-destructive/20 bg-destructive/10">
             <CardContent className="pt-6">
-              <div className="flex items-center space-x-2 text-red-600">
+              <div className="flex items-center space-x-2 text-destructive">
                 <AlertCircle className="w-5 h-5" />
                 <span>{error}</span>
               </div>
@@ -173,11 +173,11 @@ export default function ServiceRequestsPage() {
         {!isLoading && !error && requests.length === 0 && (
           <Card className="text-center py-12">
             <CardContent>
-              <FileText className="w-16 h-16 mx-auto text-gray-400 mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              <FileText className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
+              <h3 className="text-lg font-semibold text-foreground mb-2">
                 No service requests yet
               </h3>
-              <p className="text-gray-600 mb-6">
+              <p className="text-muted-foreground mb-6">
                 Register a car to start requesting repair services from workshops.
               </p>
               <div className="flex justify-center space-x-4">
@@ -230,7 +230,7 @@ export default function ServiceRequestsPage() {
                 </CardHeader>
 
                 <CardContent>
-                  <p className="text-gray-600 mb-4">{request.description}</p>
+                  <p className="text-muted-foreground mb-4">{request.description}</p>
                   
                   {request.estimatedCost && (
                     <div className="flex items-center space-x-2 mb-4">

@@ -54,27 +54,27 @@ export default function WorkshopCompetitionStatus({
   const getStatusIcon = () => {
     if (competitionStatus === 'closed') {
       return winnerInfo?.isWinner ?
-        <CheckCircle className="h-5 w-5 text-green-600" /> :
-        <XCircle className="h-5 w-5 text-red-600" />
+        <CheckCircle className="h-5 w-5 text-[var(--ns-green)]" /> :
+        <XCircle className="h-5 w-5 text-[var(--ns-red)]" />
     }
 
     if (hasSubmittedQuote) {
-      return <Clock className="h-5 w-5 text-blue-600" />
+      return <Clock className="h-5 w-5 text-primary-500" />
     }
 
-    return <AlertCircle className="h-5 w-5 text-orange-600" />
+    return <AlertCircle className="h-5 w-5 text-[var(--ns-yellow)]" />
   }
 
   const getStatusColor = () => {
     if (competitionStatus === 'closed') {
-      return winnerInfo?.isWinner ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'
+      return winnerInfo?.isWinner ? 'bg-[var(--ns-green-light)] border-[var(--ns-green)]' : 'bg-[var(--ns-red)]/10 border-[var(--ns-red)]'
     }
 
     if (hasSubmittedQuote) {
-      return 'bg-blue-50 border-blue-200'
+      return 'bg-primary-100 border-primary-500'
     }
 
-    return 'bg-orange-50 border-orange-200'
+    return 'bg-[var(--ns-yellow-light)] border-[var(--ns-yellow)]'
   }
 
   const canSubmitOrUpdate = competitionStatus === 'active'
@@ -90,25 +90,25 @@ export default function WorkshopCompetitionStatus({
       <CardContent className="space-y-4">
         {/* Status Message */}
         <div className="text-center p-4 bg-white/50 rounded-lg">
-          <p className="font-medium text-gray-900">{statusMessage}</p>
+          <p className="font-medium text-secondary dark:text-accent">{statusMessage}</p>
         </div>
 
         {/* Competition Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="text-center">
-            <div className="flex items-center justify-center gap-1 text-2xl font-bold text-gray-900">
+            <div className="flex items-center justify-center gap-1 text-2xl font-bold text-secondary dark:text-accent">
               <Users className="h-6 w-6" />
               {totalCompetitors + 1}
             </div>
-            <div className="text-sm text-gray-600">Total Participants</div>
+            <div className="text-sm text-secondary/60 dark:text-accent/60">Total Participants</div>
           </div>
 
           <div className="text-center">
-            <div className="flex items-center justify-center gap-1 text-2xl font-bold text-blue-600">
+            <div className="flex items-center justify-center gap-1 text-2xl font-bold text-primary-500">
               <TrendingUp className="h-6 w-6" />
               {competitorsSubmitted + (hasSubmittedQuote ? 1 : 0)}
             </div>
-            <div className="text-sm text-gray-600">Quotes Submitted</div>
+            <div className="text-sm text-secondary/60 dark:text-accent/60">Quotes Submitted</div>
           </div>
 
           <div className="text-center">
@@ -118,7 +118,7 @@ export default function WorkshopCompetitionStatus({
                 {competitionStatus}
               </Badge>
             </div>
-            <div className="text-sm text-gray-600">Competition</div>
+            <div className="text-sm text-secondary/60 dark:text-accent/60">Competition</div>
           </div>
         </div>
 
@@ -127,18 +127,18 @@ export default function WorkshopCompetitionStatus({
           <div className="bg-white/70 rounded-lg p-4 border">
             <div className="flex items-center justify-between">
               <div>
-                <div className="font-medium text-gray-900">Your Quote</div>
-                <div className="text-sm text-gray-600">
+                <div className="font-medium text-secondary dark:text-accent">Your Quote</div>
+                <div className="text-sm text-secondary/60 dark:text-accent/60">
                   Status: <Badge variant="secondary">Submitted</Badge>
                 </div>
               </div>
               {quoteAmount && (
                 <div className="text-right">
-                  <div className="text-2xl font-bold text-gray-900 flex items-center gap-1">
+                  <div className="text-2xl font-bold text-secondary dark:text-accent flex items-center gap-1">
                     <DollarSign className="h-5 w-5" />
                     {quoteAmount.toLocaleString()}
                   </div>
-                  <div className="text-sm text-gray-600">AED</div>
+                  <div className="text-sm text-secondary/60 dark:text-accent/60">AED</div>
                 </div>
               )}
             </div>
@@ -148,27 +148,27 @@ export default function WorkshopCompetitionStatus({
         {/* Winner Information (if competition closed) */}
         {competitionStatus === 'closed' && winnerInfo && (
           <div className={`rounded-lg p-4 border ${
-            winnerInfo.isWinner ? 'bg-green-100 border-green-200' : 'bg-gray-100 border-gray-200'
+            winnerInfo.isWinner ? 'bg-[var(--ns-green-light)] border-[var(--ns-green)]' : 'bg-background-3 dark:bg-background-7 border-[var(--stroke-3)]'
           }`}>
             {winnerInfo.isWinner ? (
               <div className="text-center">
-                <Trophy className="h-8 w-8 text-yellow-500 mx-auto mb-2" />
-                <div className="font-bold text-green-800 text-lg">Congratulations!</div>
-                <div className="text-green-700">Your quote was selected by the customer</div>
+                <Trophy className="h-8 w-8 text-[var(--ns-yellow)] mx-auto mb-2" />
+                <div className="font-bold text-[var(--secondary)] dark:text-[var(--accent)] text-lg">Congratulations!</div>
+                <div className="text-[var(--secondary)] dark:text-[var(--accent)]">Your quote was selected by the customer</div>
                 {winnerInfo.winningAmount && (
-                  <div className="text-2xl font-bold text-green-800 mt-2">
+                  <div className="text-2xl font-bold text-[var(--secondary)] dark:text-[var(--accent)] mt-2">
                     AED {winnerInfo.winningAmount.toLocaleString()}
                   </div>
                 )}
               </div>
             ) : (
               <div className="text-center">
-                <div className="font-medium text-gray-800">Competition Results</div>
-                <div className="text-gray-600">
+                <div className="font-medium text-secondary dark:text-accent">Competition Results</div>
+                <div className="text-secondary/60 dark:text-accent/60">
                   Winner: <span className="font-medium">{winnerInfo.winnerWorkshop}</span>
                 </div>
                 {winnerInfo.winningAmount && (
-                  <div className="text-xl font-bold text-gray-800 mt-1">
+                  <div className="text-xl font-bold text-secondary dark:text-accent mt-1">
                     Winning Amount: AED {winnerInfo.winningAmount.toLocaleString()}
                   </div>
                 )}
@@ -204,7 +204,7 @@ export default function WorkshopCompetitionStatus({
 
         {/* Competition Insights */}
         {competitionStatus === 'active' && (
-          <div className="text-xs text-gray-500 text-center space-y-1">
+          <div className="text-xs text-secondary/60 dark:text-accent/60 text-center space-y-1">
             <p>💡 <strong>Tips:</strong> You can submit or update your quote until the customer makes a decision</p>
             <p>🔒 Competitor quotes and pricing are hidden during the competition</p>
           </div>

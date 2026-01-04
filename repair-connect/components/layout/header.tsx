@@ -139,8 +139,8 @@ export function Header() {
 
       <motion.header
         className={cn(
-          'sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-shadow duration-300',
-          scrolled && 'shadow-md border-b border-border'
+          'sticky top-0 z-50 w-full bg-background-1/95 dark:bg-background-6/95 backdrop-blur supports-[backdrop-filter]:bg-background-1/60 dark:supports-[backdrop-filter]:bg-background-6/60 transition-shadow duration-300',
+          scrolled && 'shadow-md border-b border-stroke-3 dark:border-stroke-7'
         )}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -151,11 +151,11 @@ export function Header() {
             {/* Logo */}
             <Link
               href="/"
-              className="flex items-center space-x-2 text-xl sm:text-2xl font-bold text-primary hover:opacity-90 transition-opacity"
+              className="flex items-center space-x-2 text-xl sm:text-2xl font-bold text-primary-500 hover:opacity-90 transition-opacity"
               aria-label={`${APP_NAME} Home`}
             >
-              <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-                <Wrench className="h-5 w-5 text-primary-foreground" aria-hidden="true" />
+              <div className="h-8 w-8 rounded-lg bg-primary-500 flex items-center justify-center">
+                <Wrench className="h-5 w-5 text-white" aria-hidden="true" />
               </div>
               <span className="hidden sm:inline">{APP_NAME}</span>
               <span className="sm:hidden">RC</span>
@@ -171,10 +171,10 @@ export function Header() {
                       key={item.url}
                       href={item.url}
                       className={cn(
-                        'px-4 py-2 text-sm font-medium rounded-md transition-colors',
+                        'px-4 py-2 text-tagline-2 font-medium rounded-md transition-colors',
                         isActive(item.url)
-                          ? 'bg-primary/10 text-primary'
-                          : 'text-foreground hover:bg-accent hover:text-accent-foreground'
+                          ? 'bg-primary-500/10 text-primary-500'
+                          : 'text-secondary dark:text-accent hover:bg-background-3 dark:hover:bg-background-7'
                       )}
                       aria-current={isActive(item.url) ? 'page' : undefined}
                     >
@@ -189,7 +189,7 @@ export function Header() {
                         variant="ghost"
                         className={cn(
                           'flex items-center space-x-1',
-                          pathname?.startsWith('/services') && 'bg-primary/10 text-primary'
+                          pathname?.startsWith('/services') && 'bg-primary-500/10 text-primary-500'
                         )}
                       >
                         <span>Services</span>
@@ -205,10 +205,10 @@ export function Header() {
                               href={`/services/${service.slug}`}
                               className="flex items-start space-x-3 cursor-pointer py-3"
                             >
-                              <Icon className="h-5 w-5 text-primary mt-0.5" aria-hidden="true" />
+                              <Icon className="h-5 w-5 text-primary-500 mt-0.5" aria-hidden="true" />
                               <div>
-                                <div className="font-semibold">{service.name}</div>
-                                <div className="text-xs text-muted-foreground">{service.description}</div>
+                                <div className="font-medium">{service.name}</div>
+                                <div className="text-tagline-3 text-secondary/60 dark:text-accent/60">{service.description}</div>
                               </div>
                             </Link>
                           </DropdownMenuItem>
@@ -221,10 +221,10 @@ export function Header() {
                   <Link
                     href="/workshops"
                     className={cn(
-                      'px-4 py-2 text-sm font-medium rounded-md transition-colors',
+                      'px-4 py-2 text-tagline-2 font-medium rounded-md transition-colors',
                       isActive('/workshops')
-                        ? 'bg-primary/10 text-primary'
-                        : 'text-foreground hover:bg-accent hover:text-accent-foreground'
+                        ? 'bg-primary-500/10 text-primary-500'
+                        : 'text-secondary dark:text-accent hover:bg-background-3 dark:hover:bg-background-7 hover:text-accent-foreground'
                     )}
                     aria-current={isActive('/workshops') ? 'page' : undefined}
                   >
@@ -239,10 +239,10 @@ export function Header() {
                       key={item.href}
                       href={item.href}
                       className={cn(
-                        'flex items-center space-x-2 px-3 py-2 text-sm font-medium rounded-md transition-colors',
+                        'flex items-center space-x-2 px-3 py-2 text-tagline-2 font-medium rounded-md transition-colors',
                         isActive(item.href)
-                          ? 'bg-primary/10 text-primary'
-                          : 'text-foreground hover:bg-accent hover:text-accent-foreground'
+                          ? 'bg-primary-500/10 text-primary-500'
+                          : 'text-secondary dark:text-accent hover:bg-background-3 dark:hover:bg-background-7 hover:text-accent-foreground'
                       )}
                       aria-current={isActive(item.href) ? 'page' : undefined}
                     >
@@ -279,7 +279,7 @@ export function Header() {
             {/* Desktop Auth Buttons / User Menu */}
             <div className="hidden lg:flex items-center space-x-3">
               {status === 'loading' ? (
-                <div className="h-9 w-24 bg-muted animate-pulse rounded-md" />
+                <div className="h-9 w-24 bg-background-3 dark:bg-background-7 animate-pulse rounded-md" />
               ) : session ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -287,17 +287,17 @@ export function Header() {
                       <User className="h-4 w-4" aria-hidden="true" />
                       <span className="max-w-[120px] truncate">{session.user?.name}</span>
                       {!isComplete && session.user?.role === 'workshop' && (
-                        <Badge variant="destructive" className="text-xs px-1.5 py-0.5">
+                        <Badge variant="destructive" className="text-tagline-3 px-1.5 py-0.5">
                           {completionPercentage}%
                         </Badge>
                       )}
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-64">
-                    <div className="px-3 py-2 border-b border-border">
-                      <p className="text-sm font-semibold">{session.user?.name}</p>
-                      <p className="text-xs text-muted-foreground">{session.user?.email}</p>
-                      <Badge variant="outline" className="text-xs capitalize mt-1">
+                    <div className="px-3 py-2 border-b border-stroke-3 dark:border-stroke-7">
+                      <p className="text-tagline-2 font-semibold">{session.user?.name}</p>
+                      <p className="text-tagline-3 text-secondary/60 dark:text-accent/60">{session.user?.email}</p>
+                      <Badge variant="outline" className="text-tagline-3 capitalize mt-1">
                         {session.user?.role}
                       </Badge>
                     </div>
@@ -306,7 +306,7 @@ export function Header() {
                     {session.user?.role === 'customer' && (
                       <>
                         <div className="px-2 py-2">
-                          <p className="text-xs font-semibold text-muted-foreground uppercase px-2 mb-2">
+                          <p className="text-tagline-3 font-semibold text-secondary/60 dark:text-accent/60 uppercase px-2 mb-2">
                             Quick Actions
                           </p>
                           <DropdownMenuItem asChild>
@@ -314,7 +314,7 @@ export function Header() {
                               <Plus className="h-4 w-4" aria-hidden="true" />
                               <div>
                                 <div className="font-semibold">Request Quote</div>
-                                <div className="text-xs text-muted-foreground">Get repair estimates</div>
+                                <div className="text-tagline-3 text-secondary/60 dark:text-accent/60">Get repair estimates</div>
                               </div>
                             </Link>
                           </DropdownMenuItem>
@@ -350,7 +350,7 @@ export function Header() {
 
                     <DropdownMenuItem
                       onClick={() => signOut({ callbackUrl: '/' })}
-                      className="flex items-center space-x-2 cursor-pointer text-destructive focus:text-destructive"
+                      className="flex items-center space-x-2 cursor-pointer text-[var(--ns-red)] focus:text-[var(--ns-red)]"
                     >
                       <LogOut className="h-4 w-4" aria-hidden="true" />
                       <span>Sign Out</span>
@@ -439,8 +439,8 @@ export function Header() {
                               className={cn(
                                 'flex items-center space-x-3 px-4 py-3 rounded-lg text-base font-medium transition-colors',
                                 isActive(item.url)
-                                  ? 'bg-primary text-primary-foreground'
-                                  : 'text-foreground hover:bg-accent'
+                                  ? 'bg-primary-500 text-white'
+                                  : 'text-secondary dark:text-accent hover:bg-background-3 dark:hover:bg-background-7'
                               )}
                               onClick={() => setMobileMenuOpen(false)}
                             >
@@ -457,7 +457,7 @@ export function Header() {
                           transition={{ delay: 0.4 }}
                           className="pt-4"
                         >
-                          <div className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                          <div className="px-4 py-2 text-tagline-3 font-semibold text-secondary/60 dark:text-accent/60 uppercase tracking-wider">
                             Services
                           </div>
                           <div className="space-y-1">
@@ -467,13 +467,13 @@ export function Header() {
                                 <Link
                                   key={service.slug}
                                   href={`/services/${service.slug}`}
-                                  className="flex items-center space-x-3 px-4 py-3 rounded-lg text-base hover:bg-accent transition-colors"
+                                  className="flex items-center space-x-3 px-4 py-3 rounded-lg text-base hover:bg-background-3 dark:hover:bg-background-7 transition-colors"
                                   onClick={() => setMobileMenuOpen(false)}
                                 >
                                   <Icon className="h-5 w-5 text-primary flex-shrink-0" aria-hidden="true" />
                                   <div className="min-w-0">
                                     <div className="font-medium">{service.name}</div>
-                                    <div className="text-xs text-muted-foreground truncate">{service.description}</div>
+                                    <div className="text-tagline-3 text-secondary/60 dark:text-accent/60 truncate">{service.description}</div>
                                   </div>
                                 </Link>
                               );
@@ -493,8 +493,8 @@ export function Header() {
                             className={cn(
                               'flex items-center space-x-3 px-4 py-3 rounded-lg text-base font-medium transition-colors',
                               isActive('/workshops')
-                                ? 'bg-primary text-primary-foreground'
-                                : 'text-foreground hover:bg-accent'
+                                ? 'bg-primary-500 text-white'
+                                : 'text-secondary dark:text-accent hover:bg-background-3 dark:hover:bg-background-7'
                             )}
                             onClick={() => setMobileMenuOpen(false)}
                           >
@@ -542,8 +542,8 @@ export function Header() {
                               className={cn(
                                 'flex items-center space-x-3 px-4 py-3 rounded-lg text-base font-medium transition-colors',
                                 isActive(item.href)
-                                  ? 'bg-primary text-primary-foreground'
-                                  : 'text-foreground hover:bg-accent'
+                                  ? 'bg-primary-500 text-white'
+                                  : 'text-secondary dark:text-accent hover:bg-background-3 dark:hover:bg-background-7'
                               )}
                               onClick={() => setMobileMenuOpen(false)}
                             >
@@ -560,18 +560,18 @@ export function Header() {
                           transition={{ delay: 0.6 }}
                           className="pt-6 space-y-1"
                         >
-                          <div className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                          <div className="px-4 py-2 text-tagline-3 font-semibold text-secondary/60 dark:text-accent/60 uppercase tracking-wider">
                             Account
                           </div>
-                          <div className="px-4 py-3 bg-muted/50 rounded-lg">
-                            <p className="text-sm font-semibold">{session.user?.name}</p>
-                            <p className="text-xs text-muted-foreground">{session.user?.email}</p>
+                          <div className="px-4 py-3 bg-background-3 dark:bg-background-7/50 rounded-lg">
+                            <p className="text-tagline-2 font-semibold">{session.user?.name}</p>
+                            <p className="text-tagline-3 text-secondary/60 dark:text-accent/60">{session.user?.email}</p>
                             <div className="flex items-center gap-2 mt-2">
-                              <Badge variant="outline" className="text-xs capitalize">
+                              <Badge variant="outline" className="text-tagline-3 capitalize">
                                 {session.user?.role}
                               </Badge>
                               {!isComplete && session.user?.role === 'workshop' && (
-                                <Badge variant="destructive" className="text-xs">
+                                <Badge variant="destructive" className="text-tagline-3">
                                   Profile {completionPercentage}%
                                 </Badge>
                               )}
@@ -581,7 +581,7 @@ export function Header() {
                           {session.user?.role === 'workshop' && (
                             <Link
                               href="/profile"
-                              className="flex items-center space-x-3 px-4 py-3 rounded-lg text-base hover:bg-accent transition-colors"
+                              className="flex items-center space-x-3 px-4 py-3 rounded-lg text-base hover:bg-background-3 dark:hover:bg-background-7 transition-colors"
                               onClick={() => setMobileMenuOpen(false)}
                             >
                               <Building2 className="h-5 w-5" aria-hidden="true" />
@@ -591,7 +591,7 @@ export function Header() {
 
                           <Link
                             href="/settings"
-                            className="flex items-center space-x-3 px-4 py-3 rounded-lg text-base hover:bg-accent transition-colors"
+                            className="flex items-center space-x-3 px-4 py-3 rounded-lg text-base hover:bg-background-3 dark:hover:bg-background-7 transition-colors"
                             onClick={() => setMobileMenuOpen(false)}
                           >
                             <Settings className="h-5 w-5" aria-hidden="true" />
@@ -603,7 +603,7 @@ export function Header() {
                               setMobileMenuOpen(false);
                               signOut({ callbackUrl: '/' });
                             }}
-                            className="flex items-center space-x-3 px-4 py-3 rounded-lg text-base hover:bg-destructive/10 text-destructive transition-colors w-full"
+                            className="flex items-center space-x-3 px-4 py-3 rounded-lg text-base hover:bg-destructive/10 text-[var(--ns-red)] transition-colors w-full"
                           >
                             <LogOut className="h-5 w-5" aria-hidden="true" />
                             <span>Sign Out</span>

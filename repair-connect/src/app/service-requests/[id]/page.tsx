@@ -48,29 +48,29 @@ function getAppointmentStatusLabel(status: string): string {
 function getStatusColor(status: string): string {
   // Handle appointment statuses
   switch (status) {
-    case 'requested': return 'bg-blue-100 text-blue-800'
-    case 'confirmed': return 'bg-cyan-100 text-cyan-800'
-    case 'scheduled': return 'bg-purple-100 text-purple-800'
-    case 'in_progress': return 'bg-yellow-100 text-yellow-800'
-    case 'completed': return 'bg-green-100 text-green-800'
+    case 'requested': return 'bg-primary-100 text-secondary dark:text-secondary'
+    case 'confirmed': return 'bg-[var(--ns-cyan-light)] text-secondary dark:text-secondary'
+    case 'scheduled': return 'bg-primary-200 text-secondary dark:text-secondary'
+    case 'in_progress': return 'bg-[var(--ns-yellow-light)] text-secondary dark:text-secondary'
+    case 'completed': return 'bg-[var(--ns-green-light)] text-secondary dark:text-secondary'
     // Service request statuses
-    case 'draft': return 'bg-gray-100 text-gray-800'
-    case 'submitted': return 'bg-blue-100 text-blue-800'
-    case 'quoted': return 'bg-purple-100 text-purple-800'
-    case 'accepted': return 'bg-green-100 text-green-800'
-    case 'cancelled': return 'bg-red-100 text-red-800'
-    case 'expired': return 'bg-gray-100 text-gray-800'
-    default: return 'bg-gray-100 text-gray-800'
+    case 'draft': return 'bg-[var(--background-3)] text-secondary/60 dark:text-accent/60'
+    case 'submitted': return 'bg-primary-100 text-secondary dark:text-secondary'
+    case 'quoted': return 'bg-primary-200 text-secondary dark:text-secondary'
+    case 'accepted': return 'bg-[var(--ns-green-light)] text-secondary dark:text-secondary'
+    case 'cancelled': return 'bg-[var(--ns-red)]/20 text-secondary dark:text-accent'
+    case 'expired': return 'bg-[var(--background-3)] text-secondary/60 dark:text-accent/60'
+    default: return 'bg-[var(--background-3)] text-secondary/60 dark:text-accent/60'
   }
 }
 
 function getPriorityColor(priority: string): string {
   switch (priority) {
-    case 'urgent': return 'bg-red-100 text-red-800'
-    case 'high': return 'bg-orange-100 text-orange-800'
-    case 'medium': return 'bg-yellow-100 text-yellow-800'
-    case 'low': return 'bg-green-100 text-green-800'
-    default: return 'bg-gray-100 text-gray-800'
+    case 'urgent': return 'bg-[var(--ns-red)]/30 text-secondary dark:text-accent'
+    case 'high': return 'bg-[var(--ns-red)]/20 text-secondary dark:text-accent'
+    case 'medium': return 'bg-[var(--ns-yellow-light)] text-secondary dark:text-secondary'
+    case 'low': return 'bg-[var(--ns-green-light)] text-secondary dark:text-secondary'
+    default: return 'bg-[var(--background-3)] text-secondary/60 dark:text-accent/60'
   }
 }
 
@@ -92,10 +92,10 @@ function TimelineItem({ completed, pending, title, description, date, disabled }
       <div
         className={`relative z-10 w-5 h-5 rounded-full mt-0.5 flex items-center justify-center border-2 ${
           completed
-            ? 'bg-green-600 border-green-600'
+            ? 'bg-[var(--ns-green)] border-[var(--ns-green)]'
             : pending
-            ? 'bg-yellow-500 border-yellow-500 animate-pulse'
-            : 'bg-gray-200 border-gray-300'
+            ? 'bg-[var(--ns-yellow)] border-[var(--ns-yellow)] animate-pulse'
+            : 'bg-[var(--background-3)] border-[var(--stroke-3)]'
         }`}
       >
         {completed && (
@@ -103,15 +103,15 @@ function TimelineItem({ completed, pending, title, description, date, disabled }
         )}
       </div>
       <div className="flex-1">
-        <p className={`font-medium ${completed ? 'text-gray-900' : pending ? 'text-yellow-700' : 'text-gray-400'}`}>
+        <p className={`font-medium ${completed ? 'text-secondary dark:text-accent' : pending ? 'text-secondary dark:text-accent' : 'text-secondary/40 dark:text-accent/40'}`}>
           {title}
         </p>
         {showDate && (
-          <p className={`text-xs mt-0.5 ${completed ? 'text-gray-600' : 'text-gray-400'}`}>
+          <p className={`text-xs mt-0.5 ${completed ? 'text-secondary/60 dark:text-accent/60' : 'text-secondary/40 dark:text-accent/40'}`}>
             {format(new Date(date), 'MMM dd, yyyy \'at\' hh:mm a')}
           </p>
         )}
-        <p className={`text-sm mt-0.5 ${completed ? 'text-gray-600' : 'text-gray-400'}`}>
+        <p className={`text-sm mt-0.5 ${completed ? 'text-secondary/60 dark:text-accent/60' : 'text-secondary/40 dark:text-accent/40'}`}>
           {description}
         </p>
       </div>
@@ -209,9 +209,9 @@ export default function ServiceRequestDetailPage({ params }: ServiceRequestDetai
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="animate-pulse space-y-6">
-          <div className="h-8 bg-gray-200 rounded w-1/3"></div>
-          <div className="h-64 bg-gray-200 rounded"></div>
-          <div className="h-48 bg-gray-200 rounded"></div>
+          <div className="h-8 bg-[var(--background-3)] dark:bg-[var(--background-7)] rounded w-1/3"></div>
+          <div className="h-64 bg-[var(--background-3)] dark:bg-[var(--background-7)] rounded"></div>
+          <div className="h-48 bg-[var(--background-3)] dark:bg-[var(--background-7)] rounded"></div>
         </div>
       </div>
     )
@@ -221,7 +221,7 @@ export default function ServiceRequestDetailPage({ params }: ServiceRequestDetai
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Service Request Not Found</h1>
+          <h1 className="text-2xl font-bold text-secondary dark:text-accent mb-4">Service Request Not Found</h1>
           <Button onClick={() => router.push('/cars')}>
             <Car className="h-4 w-4 mr-2" />
             Back to My Cars
@@ -246,7 +246,7 @@ export default function ServiceRequestDetailPage({ params }: ServiceRequestDetai
           </Button>
           
           <div className="flex items-center gap-4">
-            <h1 className="text-3xl font-bold text-gray-900">
+            <h1 className="text-3xl font-bold text-secondary dark:text-accent">
               {serviceRequest.title}
             </h1>
             <Badge className={getStatusColor(appointment ? appointment.status : serviceRequest.status)}>
@@ -256,8 +256,8 @@ export default function ServiceRequestDetailPage({ params }: ServiceRequestDetai
               {serviceRequest.priority} priority
             </Badge>
           </div>
-          
-          <p className="text-gray-600 mt-2">
+
+          <p className="text-secondary/60 dark:text-accent/60 mt-2">
             Service request for {getCarDisplayName(car)}
           </p>
         </div>
@@ -289,12 +289,12 @@ export default function ServiceRequestDetailPage({ params }: ServiceRequestDetai
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h4 className="font-medium text-gray-900 mb-2">Description</h4>
-                <p className="text-gray-700">{serviceRequest.description}</p>
+                <h4 className="font-medium text-secondary dark:text-accent mb-2">Description</h4>
+                <p className="text-secondary/80 dark:text-accent/80">{serviceRequest.description}</p>
               </div>
-              
+
               <div>
-                <h4 className="font-medium text-gray-900 mb-2">Requested Services</h4>
+                <h4 className="font-medium text-secondary dark:text-accent mb-2">Requested Services</h4>
                 <div className="flex flex-wrap gap-2">
                   {serviceRequest.requestedServices.map((service) => (
                     <Badge key={service} className="capitalize bg-black text-white hover:bg-black/90">
@@ -303,11 +303,11 @@ export default function ServiceRequestDetailPage({ params }: ServiceRequestDetai
                   ))}
                 </div>
               </div>
-              
+
               {serviceRequest.additionalNotes && (
                 <div>
-                  <h4 className="font-medium text-gray-900 mb-2">Additional Notes</h4>
-                  <p className="text-gray-700">{serviceRequest.additionalNotes}</p>
+                  <h4 className="font-medium text-secondary dark:text-accent mb-2">Additional Notes</h4>
+                  <p className="text-secondary/80 dark:text-accent/80">{serviceRequest.additionalNotes}</p>
                 </div>
               )}
             </CardContent>
@@ -324,7 +324,7 @@ export default function ServiceRequestDetailPage({ params }: ServiceRequestDetai
             <CardContent>
               <div className="flex items-center gap-6">
                 {car.thumbnailUrl ? (
-                  <div className="w-24 h-24 rounded-lg overflow-hidden bg-gray-100">
+                  <div className="w-24 h-24 rounded-lg overflow-hidden bg-[var(--background-3)] dark:bg-[var(--background-7)]">
                     <img
                       src={car.thumbnailUrl}
                       alt={getCarDisplayName(car)}
@@ -332,14 +332,14 @@ export default function ServiceRequestDetailPage({ params }: ServiceRequestDetai
                     />
                   </div>
                 ) : (
-                  <div className="w-24 h-24 rounded-lg bg-gray-100 flex items-center justify-center">
-                    <Car className="h-8 w-8 text-gray-400" />
+                  <div className="w-24 h-24 rounded-lg bg-[var(--background-3)] dark:bg-[var(--background-7)] flex items-center justify-center">
+                    <Car className="h-8 w-8 text-secondary/40 dark:text-accent/40" />
                   </div>
                 )}
-                
+
                 <div>
                   <h3 className="font-semibold text-lg">{getCarDisplayName(car)}</h3>
-                  <div className="text-gray-600 space-y-1">
+                  <div className="text-secondary/60 dark:text-accent/60 space-y-1">
                     <p>Color: {car.color}</p>
                     {car.mileage && <p>Mileage: {car.mileage.toLocaleString()} km</p>}
                     {car.licensePlate && <p>License Plate: {car.licensePlate}</p>}
@@ -364,7 +364,7 @@ export default function ServiceRequestDetailPage({ params }: ServiceRequestDetai
                   {serviceRequest.photos.map((photo, index) => (
                     <div
                       key={photo.id}
-                      className="relative aspect-square rounded-lg overflow-hidden bg-gray-100 cursor-pointer hover:opacity-80 transition-opacity group"
+                      className="relative aspect-square rounded-lg overflow-hidden bg-[var(--background-3)] dark:bg-[var(--background-7)] cursor-pointer hover:opacity-80 transition-opacity group"
                       onClick={() => {
                         setSelectedImages(serviceRequest.photos.map(p => p.url))
                         setImageViewerOpen(true)
@@ -391,7 +391,7 @@ export default function ServiceRequestDetailPage({ params }: ServiceRequestDetai
                   {serviceRequest.videos?.map((video, index) => (
                     <div
                       key={video.id}
-                      className="relative aspect-square rounded-lg overflow-hidden bg-gray-100 cursor-pointer hover:opacity-80 transition-opacity group"
+                      className="relative aspect-square rounded-lg overflow-hidden bg-[var(--background-3)] dark:bg-[var(--background-7)] cursor-pointer hover:opacity-80 transition-opacity group"
                       onClick={() => window.open(video.url, '_blank')}
                     >
                       <video
@@ -442,7 +442,7 @@ export default function ServiceRequestDetailPage({ params }: ServiceRequestDetai
             <CardContent>
               <div className="relative space-y-6">
                 {/* Connecting Line */}
-                <div className="absolute left-[14px] top-3 bottom-3 w-0.5 bg-gray-200"></div>
+                <div className="absolute left-[14px] top-3 bottom-3 w-0.5 bg-[var(--stroke-3)] dark:bg-[var(--stroke-7)]"></div>
 
                 {/* Request Created */}
                 <TimelineItem
@@ -520,13 +520,13 @@ export default function ServiceRequestDetailPage({ params }: ServiceRequestDetai
             <CardContent className="space-y-4">
               <div className="text-center">
                 {(appointment?.status === 'completed' || serviceRequest.status === 'completed') ? (
-                  <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-2" />
+                  <CheckCircle className="h-12 w-12 text-[var(--ns-green)] mx-auto mb-2" />
                 ) : (appointment?.status === 'in_progress' || serviceRequest.status === 'in_progress') ? (
-                  <Clock className="h-12 w-12 text-yellow-500 mx-auto mb-2" />
+                  <Clock className="h-12 w-12 text-[var(--ns-yellow)] mx-auto mb-2" />
                 ) : serviceRequest.status === 'submitted' ? (
-                  <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-2" />
+                  <CheckCircle className="h-12 w-12 text-[var(--ns-green)] mx-auto mb-2" />
                 ) : (
-                  <AlertCircle className="h-12 w-12 text-yellow-500 mx-auto mb-2" />
+                  <AlertCircle className="h-12 w-12 text-[var(--ns-yellow)] mx-auto mb-2" />
                 )}
                 <p className="font-medium capitalize">
                   {appointment ? getAppointmentStatusLabel(appointment.status) : serviceRequest.status}
@@ -535,19 +535,19 @@ export default function ServiceRequestDetailPage({ params }: ServiceRequestDetai
               
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Priority:</span>
+                  <span className="text-secondary/60 dark:text-accent/60">Priority:</span>
                   <Badge className={getPriorityColor(serviceRequest.priority)}>
                     {serviceRequest.priority}
                   </Badge>
                 </div>
-                
+
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Contact:</span>
+                  <span className="text-secondary/60 dark:text-accent/60">Contact:</span>
                   <span className="capitalize">{serviceRequest.preferredContactMethod}</span>
                 </div>
-                
+
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Expires:</span>
+                  <span className="text-secondary/60 dark:text-accent/60">Expires:</span>
                   <span className="text-sm">
                     {format(new Date(serviceRequest.expiresAt), 'MMM dd')}
                   </span>
@@ -574,7 +574,7 @@ export default function ServiceRequestDetailPage({ params }: ServiceRequestDetai
                 View Car Details
               </Button>
 
-              <Button onClick={() => router.push('/quotations')} className="w-full bg-yellow-500 hover:bg-yellow-600 text-white">
+              <Button onClick={() => router.push('/quotations')} className="w-full bg-[var(--ns-yellow)] hover:bg-[var(--ns-yellow)]/80 text-secondary">
                 <DollarSign className="h-4 w-4 mr-2" />
                 My Quotations
               </Button>

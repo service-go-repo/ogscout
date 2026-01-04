@@ -161,7 +161,7 @@ export default function QuoteComparison({
               </div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+              <div className="text-2xl font-bold text-[var(--ns-green)] dark:text-[var(--ns-green)]">
                 {formatCurrency(
                   Math.min(...submittedQuotes.map((q) => q.totalAmount)),
                 )}
@@ -169,7 +169,7 @@ export default function QuoteComparison({
               <div className="text-sm text-muted-foreground">Lowest Quote</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">
+              <div className="text-2xl font-bold text-[var(--ns-yellow)] dark:text-[var(--ns-yellow)]">
                 {formatCurrency(
                   Math.max(...submittedQuotes.map((q) => q.totalAmount)),
                 )}
@@ -177,7 +177,7 @@ export default function QuoteComparison({
               <div className="text-sm text-muted-foreground">Highest Quote</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-violet-600 dark:text-violet-400">
+              <div className="text-2xl font-bold text-primary-500 dark:text-primary-400">
                 {formatCurrency(
                   submittedQuotes.reduce((sum, q) => sum + q.totalAmount, 0) /
                     submittedQuotes.length,
@@ -348,10 +348,10 @@ function QuoteCard({
       className={`
       transition-all duration-200
       ${isSelected ? "ring-2 ring-primary" : ""}
-      ${isAccepted ? "ring-2 ring-emerald-500 bg-gradient-to-br from-emerald-50/80 to-emerald-100/50 dark:from-emerald-950/30 dark:to-emerald-900/20 shadow-lg" : ""}
+      ${isAccepted ? "ring-2 ring-[var(--ns-green)] bg-gradient-to-br from-[var(--ns-green-light)]/80 to-[var(--ns-green-light)]/50 dark:from-[var(--ns-green)]/30 dark:to-[var(--ns-green)]/20 shadow-lg" : ""}
       ${isDeclined ? "bg-muted/30 opacity-75" : ""}
       ${disabled && !isDeclined ? "opacity-60" : disabled && isDeclined ? "" : "hover:shadow-md"}
-      ${isLowest && !isAccepted && !isDeclined ? "border-2 border-emerald-500 border-dashed" : ""}
+      ${isLowest && !isAccepted && !isDeclined ? "border-2 border-[var(--ns-green)] border-dashed" : ""}
     `}
     >
       <CardHeader className="pb-4">
@@ -372,13 +372,13 @@ function QuoteCard({
               <div className="flex items-center gap-2 flex-wrap">
                 <h3 className="font-semibold text-lg">{quote.workshopName}</h3>
                 {isAccepted && (
-                  <Badge className="bg-gradient-to-r from-emerald-600 to-emerald-500 text-white border-0 shadow-md">
+                  <Badge className="bg-gradient-to-r from-[var(--ns-green)] to-[var(--ns-green)] text-white border-0 shadow-md">
                     <CheckCircle className="h-3 w-3 mr-1" />
                     Winner
                   </Badge>
                 )}
                 {isLowest && !isAccepted && (
-                  <Badge className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white border-0">
+                  <Badge className="bg-gradient-to-r from-[var(--ns-green)] to-[var(--ns-green)] text-white border-0">
                     <DollarSign className="h-3 w-3 mr-1" />
                     Best Price
                   </Badge>
@@ -403,20 +403,20 @@ function QuoteCard({
                   </div>
                 )}
                 <div className="flex items-center gap-1">
-                  <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                  <Star className="h-3 w-3 fill-[var(--ns-yellow)] text-[var(--ns-yellow)]" />
                   <span>
                     {quote.rating?.serviceSpecific?.averageRating ||
                       quote.rating?.overall ||
                       0}
                     {quote.rating?.serviceSpecific && (
-                      <span className="text-xs text-gray-500 ml-1">
+                      <span className="text-xs text-secondary/60 dark:text-accent/60 ml-1">
                         (service-specific)
                       </span>
                     )}
                   </span>
                   {(quote.rating?.serviceSpecific?.reviewCount ||
                     quote.rating?.totalReviews) && (
-                    <span className="text-xs text-gray-500">
+                    <span className="text-xs text-secondary/60 dark:text-accent/60">
                       (
                       {quote.rating?.serviceSpecific?.reviewCount ||
                         quote.rating?.totalReviews}
@@ -548,7 +548,7 @@ function QuoteCard({
                   <span>{formatCurrency(quote.subtotal)}</span>
                 </div>
                 {quote.discount && quote.discount > 0 && (
-                  <div className="flex justify-between text-emerald-600 dark:text-emerald-400">
+                  <div className="flex justify-between text-[var(--ns-green)] dark:text-[var(--ns-green)]">
                     <span>Discount:</span>
                     <span>-{formatCurrency(quote.discount)}</span>
                   </div>
@@ -596,8 +596,8 @@ function QuoteCard({
 
             {/* Appointment Scheduled Info */}
             {isAccepted && hasExistingAppointment && appointmentData && (
-              <div className="bg-gradient-to-br from-emerald-50 to-cyan-50 dark:from-emerald-950/30 dark:to-cyan-950/30 rounded-lg p-4 border-2 border-emerald-200 dark:border-emerald-800">
-                <h4 className="font-medium mb-3 flex items-center gap-2 text-emerald-700 dark:text-emerald-300">
+              <div className="bg-gradient-to-br from-[var(--ns-green-light)] to-[var(--ns-cyan-light)] dark:from-[var(--ns-green)]/30 dark:to-[var(--ns-cyan)]/30 rounded-lg p-4 border-2 border-[var(--ns-green)] dark:border-[var(--ns-green)]">
+                <h4 className="font-medium mb-3 flex items-center gap-2 text-[var(--secondary)] dark:text-[var(--ns-green)]">
                   <Calendar className="h-4 w-4" />
                   Appointment Scheduled
                 </h4>
@@ -619,18 +619,18 @@ function QuoteCard({
                     </div>
                     <Badge
                       className={`
-                        ${appointmentData.status === 'confirmed' ? 'bg-emerald-500 text-white' : ''}
-                        ${appointmentData.status === 'scheduled' ? 'bg-blue-500 text-white' : ''}
-                        ${appointmentData.status === 'requested' ? 'bg-amber-500 text-white' : ''}
-                        ${appointmentData.status === 'in_progress' ? 'bg-violet-500 text-white' : ''}
-                        ${appointmentData.status === 'completed' ? 'bg-emerald-600 text-white' : ''}
+                        ${appointmentData.status === 'confirmed' ? 'bg-[var(--ns-green)] text-white' : ''}
+                        ${appointmentData.status === 'scheduled' ? 'bg-primary-500 text-white' : ''}
+                        ${appointmentData.status === 'requested' ? 'bg-[var(--ns-yellow)] text-white' : ''}
+                        ${appointmentData.status === 'in_progress' ? 'bg-primary-500 text-white' : ''}
+                        ${appointmentData.status === 'completed' ? 'bg-[var(--ns-green)] text-white' : ''}
                       `}
                     >
                       {appointmentData.status.replace('_', ' ')}
                     </Badge>
                   </div>
 
-                  <Separator className="bg-emerald-200 dark:bg-emerald-800" />
+                  <Separator className="bg-[var(--ns-green)]/30 dark:bg-[var(--ns-green)]/30" />
 
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
@@ -680,7 +680,7 @@ function QuoteCard({
                 size="sm"
                 onClick={onAccept}
                 disabled={isLoading}
-                className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 flex-1"
+                className="flex items-center gap-2 bg-[var(--ns-green)] hover:bg-[var(--ns-green)]/90 flex-1"
               >
                 <CheckCircle className="h-3 w-3" />
                 Accept Quote
@@ -701,13 +701,13 @@ function QuoteCard({
           {isAccepted && (
             <>
               {hasExistingAppointment ? (
-                <Badge className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white border-0 shadow-md flex items-center gap-1">
+                <Badge className="bg-gradient-to-r from-[var(--ns-cyan)] to-primary-500 text-white border-0 shadow-md flex items-center gap-1">
                   <Calendar className="h-3 w-3" />
                   Appointment Booked
                 </Badge>
               ) : (
                 <>
-                  <Badge className="bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200 flex items-center gap-1">
+                  <Badge className="bg-[var(--ns-green-light)] text-[var(--secondary)] dark:bg-[var(--ns-green)] dark:text-[var(--secondary)] flex items-center gap-1">
                     <CheckCircle className="h-3 w-3" />
                     Accepted
                   </Badge>
@@ -715,7 +715,7 @@ function QuoteCard({
                     <Button
                       size="sm"
                       onClick={onBookAppointment}
-                      className="flex items-center gap-2 w-full sm:w-auto bg-sky-500 hover:bg-sky-600"
+                      className="flex items-center gap-2 w-full sm:w-auto bg-primary-500 hover:bg-primary-600"
                     >
                       <Calendar className="h-3 w-3" />
                       Book Appointment

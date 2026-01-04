@@ -133,7 +133,7 @@ export default function CustomerAppointmentsComponent() {
                 <p className="text-xs md:text-sm font-medium text-muted-foreground">In Progress</p>
                 <p className="text-xl md:text-2xl font-bold">{inProgressCount}</p>
               </div>
-              <Timer className="h-6 w-6 md:h-8 md:w-8 text-amber-600 dark:text-amber-400" />
+              <Timer className="h-6 w-6 md:h-8 md:w-8 text-[var(--ns-yellow)] dark:text-[var(--ns-yellow)]" />
             </div>
           </CardContent>
         </Card>
@@ -145,7 +145,7 @@ export default function CustomerAppointmentsComponent() {
                 <p className="text-xs md:text-sm font-medium text-muted-foreground">Completed</p>
                 <p className="text-xl md:text-2xl font-bold">{completedCount}</p>
               </div>
-              <CheckCircle className="h-6 w-6 md:h-8 md:w-8 text-emerald-600 dark:text-emerald-400" />
+              <CheckCircle className="h-6 w-6 md:h-8 md:w-8 text-[var(--ns-green)] dark:text-[var(--ns-green)]" />
             </div>
           </CardContent>
         </Card>
@@ -320,7 +320,7 @@ export default function CustomerAppointmentsComponent() {
                   {/* Status-specific messages */}
                   {appointment.status === 'requested' && (
                     <div className="pt-3 border-t">
-                      <div className="flex items-start gap-2 text-sm text-amber-700 bg-amber-50 dark:bg-amber-950/20 dark:text-amber-400 p-3 rounded-md">
+                      <div className="flex items-start gap-2 text-sm text-[var(--secondary)] bg-[var(--ns-yellow-light)] dark:bg-[var(--ns-yellow)]/20 dark:text-[var(--ns-yellow)] p-3 rounded-md">
                         <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
                         <span>Waiting for workshop confirmation</span>
                       </div>
@@ -338,7 +338,7 @@ export default function CustomerAppointmentsComponent() {
 
                   {appointment.status === 'completed' && !appointment.customerReview && (
                     <div className="pt-3 border-t">
-                      <div className="flex items-start gap-2 text-sm text-emerald-700 bg-emerald-50 dark:bg-emerald-950/20 dark:text-emerald-400 p-3 rounded-md">
+                      <div className="flex items-start gap-2 text-sm text-[var(--secondary)] bg-[var(--ns-green-light)] dark:bg-[var(--ns-green)]/20 dark:text-[var(--ns-green)] p-3 rounded-md">
                         <CheckCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
                         <span>Service completed! Please leave a review</span>
                       </div>

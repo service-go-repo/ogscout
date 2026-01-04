@@ -77,11 +77,11 @@ export default function CarDetails({
   const getSeverityColor = (severity: string) => {
     switch (severity) {
       case "minor":
-        return "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200";
+        return "bg-[var(--ns-green-light)] text-[var(--secondary)] dark:bg-[var(--ns-green)] dark:text-[var(--secondary)]";
       case "moderate":
-        return "bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200";
+        return "bg-[var(--ns-yellow-light)] text-[var(--secondary)] dark:bg-[var(--ns-yellow)] dark:text-[var(--secondary)]";
       case "major":
-        return "bg-orange-100 text-orange-800 dark:bg-orange-950 dark:text-orange-200";
+        return "bg-[var(--ns-red)]/20 text-[var(--secondary)] dark:bg-[var(--ns-red)] dark:text-[var(--secondary)]";
       case "critical":
         return "bg-destructive/10 text-destructive";
       default:
@@ -94,9 +94,9 @@ export default function CarDetails({
       case "low":
         return "bg-primary/10 text-primary";
       case "medium":
-        return "bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200";
+        return "bg-[var(--ns-yellow-light)] text-[var(--secondary)] dark:bg-[var(--ns-yellow)] dark:text-[var(--secondary)]";
       case "high":
-        return "bg-orange-100 text-orange-800 dark:bg-orange-950 dark:text-orange-200";
+        return "bg-[var(--ns-red)]/20 text-[var(--secondary)] dark:bg-[var(--ns-red)] dark:text-[var(--secondary)]";
       case "urgent":
         return "bg-destructive/10 text-destructive";
       default:

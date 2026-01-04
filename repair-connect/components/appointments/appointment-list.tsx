@@ -292,7 +292,7 @@ export default function AppointmentList({
         <DropdownMenuItem
           key="cancel"
           onClick={() => handleCancelAppointment(appointment)}
-          className="text-red-600"
+          className="text-[var(--ns-red)]"
         >
           <XCircle className="h-4 w-4 mr-2" />
           Cancel Appointment
@@ -322,9 +322,9 @@ export default function AppointmentList({
         {[...Array(3)].map((_, i) => (
           <Card key={i} className="animate-pulse">
             <CardContent className="p-6">
-              <div className="h-4 bg-gray-200 rounded w-1/4 mb-2"></div>
-              <div className="h-3 bg-gray-200 rounded w-1/2 mb-4"></div>
-              <div className="h-3 bg-gray-200 rounded w-3/4"></div>
+              <div className="h-4 bg-[var(--stroke-3)] rounded w-1/4 mb-2"></div>
+              <div className="h-3 bg-[var(--stroke-3)] rounded w-1/2 mb-4"></div>
+              <div className="h-3 bg-[var(--stroke-3)] rounded w-3/4"></div>
             </CardContent>
           </Card>
         ))}
@@ -336,9 +336,9 @@ export default function AppointmentList({
     return (
       <Card>
         <CardContent className="p-8 text-center">
-          <Calendar className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">No appointments</h3>
-          <p className="text-gray-500">
+          <Calendar className="h-12 w-12 text-secondary/40 dark:text-accent/40 mx-auto mb-4" />
+          <h3 className="text-lg font-medium text-secondary dark:text-accent mb-2">No appointments</h3>
+          <p className="text-secondary/60 dark:text-accent/60">
             {userRole === 'customer'
               ? "You don't have any appointments yet."
               : "No appointments to show."}
@@ -363,8 +363,8 @@ export default function AppointmentList({
         return (
           <Card key={appointment._id.toString()} className={cn(
             "transition-colors",
-            isOverdue && "border-red-200 bg-red-50/30",
-            isToday && isUpcoming && "border-blue-200 bg-blue-50/30"
+            isOverdue && "border-[var(--ns-red)]/30 bg-[var(--ns-red)]/10",
+            isToday && isUpcoming && "border-primary-300 bg-primary-100/30"
           )}>
             <CardContent className="p-6">
               <div className="flex items-start justify-between">
@@ -384,19 +384,19 @@ export default function AppointmentList({
                           </Badge>
                         )}
                         {isToday && isUpcoming && (
-                          <Badge variant="default" className="text-xs bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                          <Badge variant="default" className="text-xs bg-primary-100 text-primary-500 dark:bg-primary-500/20 dark:text-primary-300">
                             <Clock className="h-3 w-3 mr-1" />
                             Today
                           </Badge>
                         )}
                         {!isToday && isUpcoming && hoursUntilAppointment <= 48 && hoursUntilAppointment > 24 && (
-                          <Badge variant="secondary" className="text-xs bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                          <Badge variant="secondary" className="text-xs bg-[var(--ns-green-light)] text-[var(--secondary)] dark:bg-[var(--ns-green)] dark:text-[var(--secondary)]">
                             <Calendar className="h-3 w-3 mr-1" />
                             Upcoming Soon
                           </Badge>
                         )}
                       </div>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-secondary/60 dark:text-accent/60">
                         Appointment #{appointment._id.toString().slice(-8).toUpperCase()}
                       </p>
                     </div>
@@ -422,7 +422,7 @@ export default function AppointmentList({
                     {/* Date & Time */}
                     <div>
                       <h4 className="font-medium mb-2">Date & Time</h4>
-                      <div className="space-y-1 text-sm text-gray-600">
+                      <div className="space-y-1 text-sm text-secondary/60 dark:text-accent/60">
                         <div className="flex items-center gap-2">
                           <Calendar className="h-4 w-4" />
                           <span>{format(new Date(appointment.scheduledDate), 'EEEE, MMMM dd, yyyy')}</span>
@@ -433,7 +433,7 @@ export default function AppointmentList({
                             {appointment.scheduledStartTime.substring(0, 5)} - {appointment.scheduledEndTime.substring(0, 5)}
                           </span>
                           {appointment.isMultiDayService && (
-                            <Badge variant="secondary" className="bg-amber-800 text-amber-100 dark:bg-amber-200 dark:text-amber-950 text-xs font-medium">
+                            <Badge variant="secondary" className="bg-[var(--ns-yellow)] text-[var(--secondary)] dark:bg-[var(--ns-yellow-light)] dark:text-[var(--secondary)] text-xs font-medium">
                               Multi-day Service
                             </Badge>
                           )}
@@ -444,7 +444,7 @@ export default function AppointmentList({
                     {/* Vehicle */}
                     <div>
                       <h4 className="font-medium mb-2">Vehicle</h4>
-                      <div className="space-y-1 text-sm text-gray-600">
+                      <div className="space-y-1 text-sm text-secondary/60 dark:text-accent/60">
                         <div className="flex items-center gap-2">
                           <Car className="h-4 w-4" />
                           <span>
@@ -452,7 +452,7 @@ export default function AppointmentList({
                           </span>
                         </div>
                         {appointment.vehicleInfo.licensePlate && (
-                          <div className="text-xs text-gray-500 ml-6">
+                          <div className="text-xs text-secondary/60 dark:text-accent/60 ml-6">
                             License: {appointment.vehicleInfo.licensePlate}
                           </div>
                         )}
@@ -480,14 +480,14 @@ export default function AppointmentList({
                   </div>
 
                   {/* Contact Info */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 border-t border-gray-100">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 border-t border-[var(--stroke-3)]">
                     {userRole === 'workshop' ? (
                       <div>
                         <h4 className="font-medium mb-2 flex items-center gap-2">
                           <User className="h-4 w-4" />
                           Customer
                         </h4>
-                        <div className="space-y-1 text-sm text-gray-600">
+                        <div className="space-y-1 text-sm text-secondary/60 dark:text-accent/60">
                           <div>{appointment.customerName}</div>
                           <div className="flex items-center gap-2">
                             <Phone className="h-3 w-3" />
@@ -505,7 +505,7 @@ export default function AppointmentList({
                           <Building2 className="h-4 w-4" />
                           Workshop
                         </h4>
-                        <div className="space-y-1 text-sm text-gray-600">
+                        <div className="space-y-1 text-sm text-secondary/60 dark:text-accent/60">
                           <div>{appointment.workshopName}</div>
                           <div className="flex items-center gap-2">
                             <Phone className="h-3 w-3" />
@@ -525,7 +525,7 @@ export default function AppointmentList({
                         <MapPin className="h-4 w-4" />
                         Service Location
                       </h4>
-                      <div className="text-sm text-gray-600">
+                      <div className="text-sm text-secondary/60 dark:text-accent/60">
                         {appointment.serviceLocation?.type === 'workshop' && 'At the workshop'}
                         {appointment.serviceLocation?.type === 'customer_location' && 'At customer location'}
                         {appointment.serviceLocation?.type === 'pickup_delivery' && 'Pickup & delivery'}
@@ -535,12 +535,12 @@ export default function AppointmentList({
 
                   {/* Notes */}
                   {(appointment.customerNotes || appointment.workshopNotes) && (
-                    <div className="pt-2 border-t border-gray-100">
+                    <div className="pt-2 border-t border-[var(--stroke-3)]">
                       <h4 className="font-medium mb-2 flex items-center gap-2">
                         <MessageSquare className="h-4 w-4" />
                         Notes
                       </h4>
-                      <div className="space-y-2 text-sm text-gray-600">
+                      <div className="space-y-2 text-sm text-secondary/60 dark:text-accent/60">
                         {appointment.customerNotes && (
                           <div>
                             <span className="font-medium">Customer: </span>
@@ -559,13 +559,13 @@ export default function AppointmentList({
 
                   {/* Action Buttons */}
                   {userRole === 'workshop' && (
-                    <div className="space-y-2 pt-4 border-t border-gray-100">
+                    <div className="space-y-2 pt-4 border-t border-[var(--stroke-3)]">
                       {appointment.status === 'requested' && (
                         <div className="flex gap-2">
                           <Button
                             onClick={() => handleStatusUpdate(appointment._id.toString(), 'confirmed')}
                             disabled={updating === appointment._id.toString()}
-                            className="flex-1 bg-green-600 hover:bg-green-700"
+                            className="flex-1 bg-[var(--ns-green)] hover:bg-[var(--ns-green)]/90"
                             size="sm"
                           >
                             <CheckCircle className="h-4 w-4 mr-2" />
@@ -575,7 +575,7 @@ export default function AppointmentList({
                             onClick={() => handleCancelAppointment(appointment)}
                             disabled={updating === appointment._id.toString()}
                             variant="outline"
-                            className="flex-1 border-red-300 text-red-700 hover:bg-red-50"
+                            className="flex-1 border-[var(--ns-red)] text-[var(--secondary)] hover:bg-[var(--ns-red)]/10"
                             size="sm"
                           >
                             <XCircle className="h-4 w-4 mr-2" />
@@ -624,7 +624,7 @@ export default function AppointmentList({
                           <Button
                             onClick={() => handleStatusUpdate(appointment._id.toString(), 'completed')}
                             disabled={updating === appointment._id.toString()}
-                            className="flex-1 bg-green-600 hover:bg-green-700"
+                            className="flex-1 bg-[var(--ns-green)] hover:bg-[var(--ns-green)]/90"
                             size="sm"
                           >
                             <CheckCircle className="h-4 w-4 mr-2" />
@@ -658,7 +658,7 @@ export default function AppointmentList({
           >
             Previous
           </Button>
-          <span className="px-4 py-2 text-sm text-gray-600">
+          <span className="px-4 py-2 text-sm text-secondary/60 dark:text-accent/60">
             Page {page} of {totalPages}
           </span>
           <Button

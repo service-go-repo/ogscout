@@ -170,7 +170,7 @@ export function SimpleCarRegistrationForm({
                   </SelectContent>
                 </Select>
                 {errors.make && (
-                  <p className="text-red-600 text-sm mt-1">{errors.make.message}</p>
+                  <p className="text-[var(--ns-red)] text-sm mt-1">{errors.make.message}</p>
                 )}
               </div>
 
@@ -182,7 +182,7 @@ export function SimpleCarRegistrationForm({
                   placeholder="e.g., Camry, Accord, Model 3"
                 />
                 {errors.model && (
-                  <p className="text-red-600 text-sm mt-1">{errors.model.message}</p>
+                  <p className="text-[var(--ns-red)] text-sm mt-1">{errors.model.message}</p>
                 )}
               </div>
 
@@ -226,7 +226,7 @@ export function SimpleCarRegistrationForm({
                   </SelectContent>
                 </Select>
                 {errors.year && (
-                  <p className="text-red-600 text-sm mt-1">{errors.year.message}</p>
+                  <p className="text-[var(--ns-red)] text-sm mt-1">{errors.year.message}</p>
                 )}
               </div>
             </div>
@@ -270,7 +270,7 @@ export function SimpleCarRegistrationForm({
                   </SelectContent>
                 </Select>
                 {errors.color && (
-                  <p className="text-red-600 text-sm mt-1">{errors.color.message}</p>
+                  <p className="text-[var(--ns-red)] text-sm mt-1">{errors.color.message}</p>
                 )}
               </div>
 
@@ -283,7 +283,7 @@ export function SimpleCarRegistrationForm({
                   placeholder="e.g., 50000"
                 />
                 {errors.mileage && (
-                  <p className="text-red-600 text-sm mt-1">{errors.mileage.message}</p>
+                  <p className="text-[var(--ns-red)] text-sm mt-1">{errors.mileage.message}</p>
                 )}
               </div>
             </div>

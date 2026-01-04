@@ -65,18 +65,18 @@ export default function MigrationDemoPage() {
     <div className="container mx-auto p-6 space-y-8">
       {/* Header */}
       <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-gray-900">
+        <h1 className="text-4xl font-bold text-foreground">
           Registration Data Migration Demo
         </h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
           See how workshop registration data can be automatically imported to create a complete workshop profile.
         </p>
         <div className="flex items-center justify-center gap-2">
-          <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+          <Badge variant="outline" className="bg-[var(--ns-cyan-light)] text-[var(--ns-cyan)] border-[var(--ns-cyan)]/20">
             <Database className="w-3 h-3 mr-1" />
             Data Migration
           </Badge>
-          <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+          <Badge variant="outline" className="bg-[var(--ns-green-light)] text-[var(--ns-green)] border-[var(--ns-green)]/20">
             <CheckCircle className="w-3 h-3 mr-1" />
             Automated Import
           </Badge>
@@ -94,31 +94,31 @@ export default function MigrationDemoPage() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center space-y-3">
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
-                <Database className="w-6 h-6 text-blue-600" />
+              <div className="w-12 h-12 bg-[var(--ns-cyan-light)] rounded-full flex items-center justify-center mx-auto">
+                <Database className="w-6 h-6 text-[var(--ns-cyan)]" />
               </div>
               <h3 className="font-semibold">1. Detect Registration Data</h3>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-muted-foreground">
                 System checks for existing workshop registration information from the signup process.
               </p>
             </div>
             
             <div className="text-center space-y-3">
-              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                <Download className="w-6 h-6 text-green-600" />
+              <div className="w-12 h-12 bg-[var(--ns-green-light)] rounded-full flex items-center justify-center mx-auto">
+                <Download className="w-6 h-6 text-[var(--ns-green)]" />
               </div>
               <h3 className="font-semibold">2. Import & Transform</h3>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-muted-foreground">
                 Registration data is automatically mapped to the workshop profile structure with proper formatting.
               </p>
             </div>
             
             <div className="text-center space-y-3">
-              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto">
-                <CheckCircle className="w-6 h-6 text-purple-600" />
+              <div className="w-12 h-12 bg-[var(--primary-100)] rounded-full flex items-center justify-center mx-auto">
+                <CheckCircle className="w-6 h-6 text-[var(--primary-600)]" />
               </div>
               <h3 className="font-semibold">3. Create Profile</h3>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-muted-foreground">
                 Complete workshop profile is created with all business information ready for management.
               </p>
             </div>
@@ -129,7 +129,7 @@ export default function MigrationDemoPage() {
       {/* Mock Registration Data Preview */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="space-y-6">
-          <h2 className="text-2xl font-bold text-gray-900">Sample Registration Data</h2>
+          <h2 className="text-2xl font-bold text-foreground">Sample Registration Data</h2>
           
           {/* Business Information */}
           <Card>
@@ -147,12 +147,12 @@ export default function MigrationDemoPage() {
                 </Badge>
               </div>
               
-              <div className="flex items-center gap-2 text-sm text-gray-600">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Phone className="w-4 h-4" />
                 {mockRegistrationData.businessPhone}
               </div>
               
-              <div className="flex items-start gap-2 text-sm text-gray-600">
+              <div className="flex items-start gap-2 text-sm text-muted-foreground">
                 <MapPin className="w-4 h-4 mt-0.5" />
                 <div>
                   <p>{mockRegistrationData.businessAddress.street}</p>
@@ -216,19 +216,19 @@ export default function MigrationDemoPage() {
                 <p className="font-medium">
                   {mockRegistrationData.ownerInfo.firstName} {mockRegistrationData.ownerInfo.lastName}
                 </p>
-                <p className="text-sm text-gray-600">{mockRegistrationData.ownerInfo.phone}</p>
+                <p className="text-sm text-muted-foreground">{mockRegistrationData.ownerInfo.phone}</p>
               </div>
               
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-sm">
                   <Shield className="w-4 h-4 text-blue-500" />
                   <span className="font-medium">Business License:</span>
-                  <span className="text-gray-600">{mockRegistrationData.businessLicense}</span>
+                  <span className="text-muted-foreground">{mockRegistrationData.businessLicense}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <Shield className="w-4 h-4 text-green-500" />
                   <span className="font-medium">Insurance:</span>
-                  <span className="text-gray-600">{mockRegistrationData.insuranceInfo}</span>
+                  <span className="text-muted-foreground">{mockRegistrationData.insuranceInfo}</span>
                 </div>
               </div>
             </CardContent>
@@ -238,7 +238,7 @@ export default function MigrationDemoPage() {
         {/* Migration Component */}
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-gray-900">Live Migration Demo</h2>
+            <h2 className="text-2xl font-bold text-foreground">Live Migration Demo</h2>
             <Button 
               variant="outline" 
               size="sm"
@@ -273,27 +273,27 @@ export default function MigrationDemoPage() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="text-center space-y-2">
-              <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
-                <RefreshCw className="w-5 h-5 text-blue-600" />
+              <div className="w-10 h-10 bg-[var(--ns-cyan-light)] rounded-full flex items-center justify-center mx-auto">
+                <RefreshCw className="w-5 h-5 text-[var(--ns-cyan)]" />
               </div>
               <h4 className="font-medium">Time Saving</h4>
-              <p className="text-sm text-gray-600">No need to re-enter business information</p>
+              <p className="text-sm text-muted-foreground">No need to re-enter business information</p>
             </div>
             
             <div className="text-center space-y-2">
-              <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                <CheckCircle className="w-5 h-5 text-green-600" />
+              <div className="w-10 h-10 bg-[var(--ns-green-light)] rounded-full flex items-center justify-center mx-auto">
+                <CheckCircle className="w-5 h-5 text-[var(--ns-green)]" />
               </div>
               <h4 className="font-medium">Accuracy</h4>
-              <p className="text-sm text-gray-600">Reduces data entry errors</p>
+              <p className="text-sm text-muted-foreground">Reduces data entry errors</p>
             </div>
             
             <div className="text-center space-y-2">
-              <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mx-auto">
-                <ArrowRight className="w-5 h-5 text-purple-600" />
+              <div className="w-10 h-10 bg-[var(--primary-100)] rounded-full flex items-center justify-center mx-auto">
+                <ArrowRight className="w-5 h-5 text-[var(--primary-600)]" />
               </div>
               <h4 className="font-medium">Seamless Flow</h4>
-              <p className="text-sm text-gray-600">Smooth transition from signup to profile</p>
+              <p className="text-sm text-muted-foreground">Smooth transition from signup to profile</p>
             </div>
             
             <div className="text-center space-y-2">
@@ -301,7 +301,7 @@ export default function MigrationDemoPage() {
                 <Database className="w-5 h-5 text-orange-600" />
               </div>
               <h4 className="font-medium">Data Consistency</h4>
-              <p className="text-sm text-gray-600">Maintains data integrity across systems</p>
+              <p className="text-sm text-muted-foreground">Maintains data integrity across systems</p>
             </div>
           </div>
         </CardContent>
@@ -319,7 +319,7 @@ export default function MigrationDemoPage() {
               <code className="bg-gray-100 px-3 py-2 rounded text-sm block">
                 GET /api/workshops/profile/migrate
               </code>
-              <p className="text-sm text-gray-600 mt-1">
+              <p className="text-sm text-muted-foreground mt-1">
                 Returns registration data and migration status for the authenticated workshop user.
               </p>
             </div>
@@ -329,7 +329,7 @@ export default function MigrationDemoPage() {
               <code className="bg-gray-100 px-3 py-2 rounded text-sm block">
                 POST /api/workshops/profile/migrate
               </code>
-              <p className="text-sm text-gray-600 mt-1">
+              <p className="text-sm text-muted-foreground mt-1">
                 Creates workshop profile from registration data with proper data transformation.
               </p>
             </div>

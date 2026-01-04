@@ -376,10 +376,10 @@ export default function AppointmentBooking({
           </CardTitle>
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-secondary/60 dark:text-accent/60">
                 {quotationData.vehicle.year} {quotationData.vehicle.make} {quotationData.vehicle.model}
               </p>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-secondary/60 dark:text-accent/60">
                 Estimated duration: {estimatedDuration} hours
               </p>
             </div>
@@ -395,16 +395,16 @@ export default function AppointmentBooking({
       <Card>
         <CardContent className="p-4">
           <div className="flex items-start gap-4">
-            <div className="h-16 w-16 rounded-lg bg-gray-100 flex items-center justify-center">
+            <div className="h-16 w-16 rounded-lg bg-background-3 dark:bg-background-7 flex items-center justify-center">
               {workshopInfo.logo ? (
                 <img src={workshopInfo.logo} alt={workshopInfo.name} className="h-full w-full object-cover rounded-lg" />
               ) : (
-                <Wrench className="h-8 w-8 text-gray-400" />
+                <Wrench className="h-8 w-8 text-secondary/40 dark:text-accent/40" />
               )}
             </div>
             <div className="flex-1">
               <h3 className="font-semibold">{workshopInfo.name}</h3>
-              <div className="space-y-1 text-sm text-gray-600">
+              <div className="space-y-1 text-sm text-secondary/60 dark:text-accent/60">
                 <div className="flex items-center gap-1">
                   <MapPin className="h-3 w-3" />
                   {workshopInfo.address}
@@ -454,24 +454,24 @@ export default function AppointmentBooking({
             <CardHeader>
               <CardTitle className="text-lg">Select Time</CardTitle>
               {selectedDate && (
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-secondary/60 dark:text-accent/60">
                   {format(selectedDate, 'EEEE, MMMM dd, yyyy')}
                 </p>
               )}
             </CardHeader>
             <CardContent>
               {!selectedDate ? (
-                <p className="text-gray-500 text-center py-8">Please select a date first</p>
+                <p className="text-secondary/60 dark:text-accent/60 text-center py-8">Please select a date first</p>
               ) : loading ? (
                 <div className="text-center py-8">
                   <Loader2 className="h-6 w-6 animate-spin mx-auto mb-2" />
-                  <p className="text-sm text-gray-500">Loading time slots...</p>
+                  <p className="text-sm text-secondary/60 dark:text-accent/60">Loading time slots...</p>
                 </div>
               ) : alternativeSlots.length === 0 ? (
                 <div className="text-center py-8">
-                  <AlertCircle className="h-8 w-8 text-gray-400 mx-auto mb-2" />
-                  <p className="text-gray-500">No available time slots for this date</p>
-                  <p className="text-xs text-gray-400">Please select another date</p>
+                  <AlertCircle className="h-8 w-8 text-secondary/40 dark:text-accent/40 mx-auto mb-2" />
+                  <p className="text-secondary/60 dark:text-accent/60">No available time slots for this date</p>
+                  <p className="text-xs text-secondary/40 dark:text-accent/40">Please select another date</p>
                 </div>
               ) : (
                 <div className="grid grid-cols-2 gap-2 max-h-64 overflow-y-auto">
@@ -506,7 +506,7 @@ export default function AppointmentBooking({
             <Card className="lg:col-span-2">
               <CardHeader>
                 <CardTitle className="text-lg">Quick Booking Options</CardTitle>
-                <p className="text-sm text-gray-600">Next available time slots</p>
+                <p className="text-sm text-secondary/60 dark:text-accent/60">Next available time slots</p>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -524,10 +524,10 @@ export default function AppointmentBooking({
                         <div className="font-semibold">
                           {format(new Date(slot.date), 'MMM dd')}
                         </div>
-                        <div className="text-sm text-gray-600">
+                        <div className="text-sm text-secondary/60 dark:text-accent/60">
                           {slot.startTime} - {addHoursToTime(slot.startTime, estimatedDuration)}
                         </div>
-                        <div className="text-xs text-gray-500">
+                        <div className="text-xs text-secondary/60 dark:text-accent/60">
                           {format(new Date(slot.date), 'EEEE')}
                         </div>
                       </div>
@@ -556,7 +556,7 @@ export default function AppointmentBooking({
           <Card>
             <CardHeader>
               <CardTitle>Appointment Details</CardTitle>
-              <div className="flex items-center gap-4 text-sm text-gray-600">
+              <div className="flex items-center gap-4 text-sm text-secondary/60 dark:text-accent/60">
                 <div className="flex items-center gap-1">
                   <CalendarIcon className="h-4 w-4" />
                   {selectedDate && format(selectedDate, 'MMM dd, yyyy')}
@@ -707,7 +707,7 @@ export default function AppointmentBooking({
           <Card>
             <CardHeader>
               <CardTitle>Confirm Your Appointment</CardTitle>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-secondary/60 dark:text-accent/60">
                 Please review your appointment details before confirming
               </p>
             </CardHeader>
@@ -718,15 +718,15 @@ export default function AppointmentBooking({
                   <h4 className="font-semibold mb-3">Appointment Details</h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex items-center gap-2">
-                      <CalendarIcon className="h-4 w-4 text-gray-400" />
+                      <CalendarIcon className="h-4 w-4 text-secondary/40 dark:text-accent/40" />
                       <span>{selectedDate && format(selectedDate, 'EEEE, MMMM dd, yyyy')}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Clock className="h-4 w-4 text-gray-400" />
+                      <Clock className="h-4 w-4 text-secondary/40 dark:text-accent/40" />
                       <span>{selectedTime} - {addHoursToTime(selectedTime, estimatedDuration)} ({estimatedDuration}h)</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-gray-400" />
+                      <MapPin className="h-4 w-4 text-secondary/40 dark:text-accent/40" />
                       <span>
                         {serviceLocation === 'workshop' && 'At the workshop'}
                         {serviceLocation === 'customer_location' && 'At your location'}
@@ -740,19 +740,19 @@ export default function AppointmentBooking({
                   <h4 className="font-semibold mb-3">Vehicle & Services</h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex items-center gap-2">
-                      <Car className="h-4 w-4 text-gray-400" />
+                      <Car className="h-4 w-4 text-secondary/40 dark:text-accent/40" />
                       <span>{quotationData.vehicle.year} {quotationData.vehicle.make} {quotationData.vehicle.model}</span>
                     </div>
                     {quotationData.vehicle.licensePlate && (
-                      <div className="text-xs text-gray-500 ml-6">
+                      <div className="text-xs text-secondary/60 dark:text-accent/60 ml-6">
                         License: {quotationData.vehicle.licensePlate}
                       </div>
                     )}
                     <div className="flex items-start gap-2 mt-3">
-                      <Wrench className="h-4 w-4 text-gray-400 mt-0.5" />
+                      <Wrench className="h-4 w-4 text-secondary/40 dark:text-accent/40 mt-0.5" />
                       <div>
                         <div className="font-medium">Requested Services:</div>
-                        <div className="text-gray-600">
+                        <div className="text-secondary/60 dark:text-accent/60">
                           {quotationData.requestedServices.join(', ')}
                         </div>
                       </div>
@@ -765,14 +765,14 @@ export default function AppointmentBooking({
               {enableReminders && (
                 <div>
                   <h4 className="font-semibold mb-3">Reminders</h4>
-                  <div className="text-sm text-gray-600">
+                  <div className="text-sm text-secondary/60 dark:text-accent/60">
                     <div className="flex items-center gap-1 mb-1">
                       <Bell className="h-3 w-3" />
                       You'll receive reminders {reminderTimes.sort((a, b) => b - a).map(t =>
                         t === 1 ? '1 hour' : `${t} hours`
                       ).join(', ')} before your appointment
                     </div>
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-secondary/60 dark:text-accent/60">
                       Via: {reminderMethods.join(', ')}
                     </div>
                   </div>
@@ -783,7 +783,7 @@ export default function AppointmentBooking({
               {customerNotes && (
                 <div>
                   <h4 className="font-semibold mb-3">Your Notes</h4>
-                  <div className="text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+                  <div className="text-sm text-secondary/60 dark:text-accent/60 bg-background-3 dark:bg-background-7 p-3 rounded-lg">
                     {customerNotes}
                   </div>
                 </div>
