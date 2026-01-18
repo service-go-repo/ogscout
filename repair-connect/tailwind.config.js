@@ -96,6 +96,20 @@ module.exports = {
   			'primary-700': 'var(--primary-700)',
   			'primary-800': 'var(--primary-800)',
 
+  			// Background scale
+  			'background-1': 'var(--background-1)',
+  			'background-2': 'var(--background-2)',
+  			'background-3': 'var(--background-3)',
+  			'background-4': 'var(--background-4)',
+  			'background-5': 'var(--background-5)',
+  			'background-6': 'var(--background-6)',
+  			'background-7': 'var(--background-7)',
+  			'background-8': 'var(--background-8)',
+  			'background-9': 'var(--background-9)',
+  			'background-10': 'var(--background-10)',
+  			'background-11': 'var(--background-11)',
+  			'background-12': 'var(--background-12)',
+
   			// Legacy shadcn compatibility
   			background: 'var(--background)',
   			foreground: 'var(--foreground)',

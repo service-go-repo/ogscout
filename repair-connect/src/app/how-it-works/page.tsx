@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Script from 'next/script';
 import {
   Wrench,
   Car,
@@ -33,6 +34,7 @@ import { AnimatedSection, StaggerContainer, StaggerItem, staggerItemVariants, Ho
 import { SectionHeader } from '@/components/shared/SectionHeader';
 import { StructuredData } from '@/components/seo/StructuredData';
 import { generatePageMetadata, generateHowToSchema, generateWebPageSchema, SERVICE_CATEGORIES } from '@/lib/seo';
+import { ProcessSteps } from '@/components/how-it-works/ProcessSteps';
 
 export const metadata = generatePageMetadata({
   title: 'How It Works - Easy Car Repair Booking Process',
@@ -122,11 +124,31 @@ const workshopBenefits = [
 ];
 
 const flowSteps = [
-  { label: 'Create Request', icon: Search },
-  { label: 'Receive Quotes', icon: Calculator },
-  { label: 'Compare Options', icon: Star },
-  { label: 'Book Service', icon: Calendar },
-  { label: 'Get It Fixed', icon: CheckCircle },
+  {
+    label: 'Create Request',
+    icon: Search,
+    description: 'Tell us what your car needs. Select your service type, describe the issue, and upload photos if needed. Our smart matching system finds the best workshops for your specific requirements.'
+  },
+  {
+    label: 'Receive Quotes',
+    icon: Calculator,
+    description: 'Get quotes from multiple verified workshops within hours. Each quote includes detailed pricing breakdown, estimated completion time, and workshop credentials.'
+  },
+  {
+    label: 'Compare Options',
+    icon: Star,
+    description: 'Review and compare all received quotes side by side. Check workshop ratings, customer reviews, response times, and specializations to make an informed decision.'
+  },
+  {
+    label: 'Book Service',
+    icon: Calendar,
+    description: 'Choose your preferred workshop and select a convenient time slot. Receive instant booking confirmation with all the details you need for your appointment.'
+  },
+  {
+    label: 'Get It Fixed',
+    icon: CheckCircle,
+    description: 'Drop off your car at the workshop and track repair progress in real-time. Get notified when your car is ready and enjoy peace of mind with our service guarantee.'
+  },
 ];
 
 const faqs = [
@@ -164,6 +186,7 @@ export default function HowItWorksPage() {
 
   return (
     <>
+      <Script src="/js/stack-card.min.js" strategy="afterInteractive" />
       <StructuredData data={howToSchema} />
       <StructuredData data={webPageSchema} />
 
@@ -275,86 +298,114 @@ export default function HowItWorksPage() {
         </section>
 
         {/* Service Categories */}
-        <section className="py-20 bg-background dark:bg-background-6" id="step-1">
+        <section className="pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px] xl:pt-[180px] md:pt-42 sm:pt-36 pt-32" id="step-1">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <AnimatedSection>
-              <SectionHeader
-                badge="Service Types"
-                title="All Services in One Place"
-                subtitle="Choose from our comprehensive range of car repair and maintenance services"
-              />
-            </AnimatedSection>
-
-            <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            <div className="text-center space-y-5 mb-[70px]">
+              <AnimatedSection delay={0.2}>
+                <Badge variant="outline" className="border-primary-500 text-primary-500 px-4 py-2">
+                  Our Services
+                </Badge>
+              </AnimatedSection>
+              <div className="space-y-3">
+                <AnimatedSection delay={0.3}>
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">
+                    All Services in One Place
+                  </h2>
+                </AnimatedSection>
+                <AnimatedSection delay={0.4}>
+                  <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                    Choose from our comprehensive range of car repair and maintenance services
+                  </p>
+                </AnimatedSection>
+              </div>
+            </div>
+            <div className="grid grid-cols-12 xl:gap-8 md:gap-8 gap-y-5">
               {SERVICE_CATEGORIES.map((service, index) => {
                 const IconComponent = serviceIcons[service.icon as keyof typeof serviceIcons];
+                const delays = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
 
                 return (
-                  <StaggerItem key={service.slug} variants={staggerItemVariants}>
-                    <HoverScale>
-                      <Card className="border-2 hover:border-primary-500/50 hover:shadow-lg transition-all h-full group">
-                        <CardHeader>
-                          <div className="h-14 w-14 rounded-xl bg-primary-500/10 group-hover:bg-primary-500/20 transition-colors flex items-center justify-center mb-4">
-                            <IconComponent className="h-7 w-7 text-primary-500" />
-                          </div>
-                          <CardTitle className="text-xl group-hover:text-primary-600 transition-colors">
-                            {service.name}
-                          </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                          <CardDescription className="text-base">
+                  <div key={service.slug} className="col-span-12 md:col-span-6 xl:col-span-4">
+                    <AnimatedSection delay={delays[index]}>
+                      <div className="px-6 py-8 rounded-[20px] bg-background-3 dark:bg-background-7 space-y-6 text-center grid items-center justify-center hover:translate-y-[-10px] transition-transform duration-500 ease-in-out">
+                        <div className="flex items-center justify-center">
+                          <IconComponent className="h-[52px] w-[52px] text-secondary dark:text-accent" />
+                        </div>
+                        <div className="space-y-2">
+                          <h3 className="text-heading-5">{service.name}</h3>
+                          <p className="max-w-[361px] mx-auto text-secondary/60 dark:text-accent/60">
                             {service.description}
-                          </CardDescription>
-                        </CardContent>
-                      </Card>
-                    </HoverScale>
-                  </StaggerItem>
+                          </p>
+                        </div>
+                        <div>
+                          <Link href={`/services/${service.slug}`} className="btn btn-white dark:btn-transparent dark:hover:btn-accent hover:btn-secondary btn-md">
+                            <span>Learn more</span>
+                          </Link>
+                        </div>
+                      </div>
+                    </AnimatedSection>
+                  </div>
                 );
               })}
-            </StaggerContainer>
+            </div>
           </div>
         </section>
 
         {/* Visual Flow */}
-        <section className="py-20 bg-gradient-to-br from-primary/10 via-primary-500/10 to-primary/10">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <AnimatedSection>
-              <SectionHeader
-                badge="Quick Overview"
-                title="From Request to Repair"
-                subtitle="Watch your car repair journey unfold seamlessly"
-              />
-            </AnimatedSection>
+        <section className="relative py-[50px] md:py-[80px] lg:py-[100px] bg-background-2 dark:bg-background-5">
+          <div className="main-container container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="xl:grid xl:grid-cols-12 xl:gap-[60px] xl:items-start space-y-8 xl:space-y-0">
+              {/* Left Column - Sticky Description on Desktop Only */}
+              <div className="xl:col-span-6 xl:sticky xl:top-28">
+                <AnimatedSection direction="left">
+                  <ProcessSteps
+                    steps={flowSteps.map(step => ({
+                      label: step.label,
+                      description: step.description
+                    }))}
+                  />
+                </AnimatedSection>
+              </div>
 
-            <AnimatedSection delay={0.2}>
-              <div className="max-w-5xl mx-auto">
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-2">
+              {/* Right Column - Stack Cards with Images */}
+              <div className="xl:col-span-6">
+                <div className="stack-cards js-stack-cards xl:max-w-full max-w-[820px] xl:mx-0 mx-auto">
                   {flowSteps.map((step, index) => {
-                    const IconComponent = step.icon;
+                    // Different decorative border configurations for each card
+                    const borderConfigs = [
+                      { top: 'top-[-62%] md:-top-[85%]', left: 'left-[-48%] md:-left-[68%]', rotate: 'rotate-[312deg]', size: 'md:size-[800px] size-[500px]' },
+                      { top: 'top-[-127%] md:-top-[130%]', left: 'left-[-103%] md:-left-[79%]', rotate: 'rotate-[255deg]', size: 'size-[800px] md:size-[1000px]' },
+                      { top: 'top-[-127%] md:-top-[130%]', left: 'left-[-107%] md:-left-[88%]', rotate: 'rotate-[240deg]', size: 'size-[800px] md:size-[1000px]' },
+                      { top: 'top-[-143%] md:-top-[117%]', left: 'left-[-72%] md:-left-[37%]', rotate: 'rotate-[245deg]', size: 'size-[1000px]' },
+                      { top: 'top-[-62%] md:-top-[85%]', left: 'left-[-48%] md:-left-[68%]', rotate: 'rotate-[312deg]', size: 'md:size-[800px] size-[500px]' },
+                    ];
+                    const config = borderConfigs[index % borderConfigs.length];
 
                     return (
-                      <div key={index} className="relative">
-                        <Card className="border-2 text-center">
-                          <CardContent className="p-6">
-                            <div className="h-12 w-12 rounded-full bg-primary-500/10 flex items-center justify-center mx-auto mb-3">
-                              <IconComponent className="h-6 w-6 text-primary-500" />
-                            </div>
-                            <p className="text-sm font-medium text-secondary dark:text-accent">
-                              {step.label}
-                            </p>
-                          </CardContent>
-                        </Card>
-                        {index < flowSteps.length - 1 && (
-                          <div className="hidden md:block absolute top-1/2 -right-1 transform translate-x-1/2 -translate-y-1/2 z-10">
-                            <ArrowRight className="h-5 w-5 text-primary-500" />
-                          </div>
-                        )}
+                      <div
+                        key={index}
+                        data-step-index={index}
+                        className="stack-cards__item js-stack-cards__item p-2 relative rounded-[20px] z-20 flex items-center justify-center sm:max-w-[483px] max-w-full sm:mx-0 mx-auto w-full overflow-hidden"
+                      >
+                        {/* Decorative Border Image */}
+                        <figure className={`absolute pointer-events-none ${config.top} ${config.left} -z-10 ${config.rotate} opacity-50 ${config.size} select-none`}>
+                          <img src="/images/bg-stack-cards/ns-img-522.png" alt="decorative border" />
+                        </figure>
+
+                        {/* Card Content - Process Image */}
+                        <div className="relative z-10 rounded-[14px] sm:max-w-[467px] max-w-full w-full bg-white dark:bg-black border border-primary-500/10 overflow-hidden">
+                          <img
+                            src={`/images/process/step-${index + 1}-placeholder.svg`}
+                            alt={step.label}
+                            className="w-full h-auto"
+                          />
+                        </div>
                       </div>
                     );
                   })}
                 </div>
               </div>
-            </AnimatedSection>
+            </div>
           </div>
         </section>
 

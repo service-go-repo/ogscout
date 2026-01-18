@@ -1,0 +1,10 @@
+<svg width="1000" height="750" viewBox="0 0 1000 750" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1000" height="750" fill="#F3F4F6"/>
+  <rect x="100" y="100" width="800" height="550" rx="20" fill="white"/>
+  <circle cx="500" cy="300" r="80" fill="#8B5CF6" opacity="0.1"/>
+  <path d="M460 300L480 320L540 260" stroke="#8B5CF6" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="300" y="420" width="400" height="20" rx="10" fill="#E5E7EB"/>
+  <rect x="300" y="460" width="300" height="20" rx="10" fill="#E5E7EB"/>
+  <text x="500" y="580" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#374151" text-anchor="middle">Step 1: Create Request</text>
+  <text x="500" y="630" font-family="Arial, sans-serif" font-size="20" fill="#9CA3AF" text-anchor="middle">Image Placeholder (1000×750)</text>
+</svg>

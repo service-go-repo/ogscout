@@ -1,0 +1,13 @@
+<svg width="1000" height="750" viewBox="0 0 1000 750" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1000" height="750" fill="#F3F4F6"/>
+  <rect x="100" y="100" width="800" height="550" rx="20" fill="white"/>
+  <circle cx="500" cy="300" r="80" fill="#3B82F6" opacity="0.1"/>
+  <rect x="450" y="250" width="100" height="120" rx="8" stroke="#3B82F6" stroke-width="6" fill="none"/>
+  <line x1="470" y1="280" x2="530" y2="280" stroke="#3B82F6" stroke-width="6" stroke-linecap="round"/>
+  <line x1="470" y1="310" x2="530" y2="310" stroke="#3B82F6" stroke-width="6" stroke-linecap="round"/>
+  <line x1="470" y1="340" x2="530" y2="340" stroke="#3B82F6" stroke-width="6" stroke-linecap="round"/>
+  <rect x="300" y="420" width="400" height="20" rx="10" fill="#E5E7EB"/>
+  <rect x="300" y="460" width="350" height="20" rx="10" fill="#E5E7EB"/>
+  <text x="500" y="580" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#374151" text-anchor="middle">Step 2: Receive Quotes</text>
+  <text x="500" y="630" font-family="Arial, sans-serif" font-size="20" fill="#9CA3AF" text-anchor="middle">Image Placeholder (1000×750)</text>
+</svg>

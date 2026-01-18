@@ -38,3 +38,5 @@ next-env.d.ts
 node_modules
 /repair-connect/nul
 /repair-connect/public/fonts/nul
+/repair-connect/.playwright-mcp
+/repair-connect/.playwright-mcp

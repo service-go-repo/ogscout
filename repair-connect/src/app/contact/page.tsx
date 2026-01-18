@@ -8,64 +8,25 @@ import * as z from 'zod';
 import {
   Phone,
   Mail,
-  Clock,
   MapPin,
-  Send,
-  CheckCircle,
-  ArrowRight,
   Loader2,
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Badge } from '@/components/ui/badge';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { AnimatedSection, StaggerContainer, StaggerItem, staggerItemVariants, HoverScale } from '@/components/shared/AnimatedSection';
-import { SectionHeader } from '@/components/shared/SectionHeader';
+import { cn } from '@/lib/utils';
 import { StructuredData } from '@/components/seo/StructuredData';
 import { generateContactPageSchema } from '@/lib/seo';
 import { toast } from 'sonner';
 
 const contactPageSchema = generateContactPageSchema();
 
-const contactInfo = [
-  {
-    icon: Phone,
-    title: 'Phone',
-    details: '+971-4-XXX-XXXX',
-    description: 'Mon-Fri: 8AM-6PM, Sat: 9AM-2PM',
-    href: 'tel:+9714XXXXXXX',
-  },
-  {
-    icon: Mail,
-    title: 'Email',
-    details: 'info@repairconnect.ae',
-    description: 'We reply within 24 hours',
-    href: 'mailto:info@repairconnect.ae',
-  },
-  {
-    icon: Clock,
-    title: 'Working Hours',
-    details: 'Sun-Fri: 8AM-6PM',
-    description: 'Saturday: 9AM-2PM',
-    href: null,
-  },
-];
-
 const formSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').max(100),
+  phone: z.string().min(8, 'Phone number is required'),
   email: z.string().email('Please enter a valid email address'),
-  phone: z.string().optional(),
   subject: z.string().min(5, 'Subject must be at least 5 characters').max(200),
   message: z.string().min(10, 'Message must be at least 10 characters').max(1000),
+  terms: z.boolean().refine((val) => val === true, {
+    message: 'You must agree to the terms and conditions',
+  }),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -73,14 +34,20 @@ type FormData = z.infer<typeof formSchema>;
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const form = useForm<FormData>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
-      email: '',
       phone: '',
+      email: '',
       subject: '',
       message: '',
+      terms: false,
     },
   });
 
@@ -93,10 +60,10 @@ export default function ContactPage() {
     console.log('Form submitted:', data);
 
     toast.success('Message sent successfully!', {
-      description: 'We\'ll get back to you within 24 hours.',
+      description: "We'll get back to you within 24 hours.",
     });
 
-    form.reset();
+    reset();
     setIsSubmitting(false);
   };
 
@@ -104,309 +71,334 @@ export default function ContactPage() {
     <>
       <StructuredData data={contactPageSchema} />
 
-      <div className="flex flex-col">
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-b from-background via-muted/20 to-background py-20 lg:py-32 border-b overflow-hidden">
-          <div className="absolute inset-0 bg-grid-primary/[0.02] pointer-events-none" />
-
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto text-center space-y-8">
-                <Badge variant="outline" className="border-primary text-primary px-4 py-2">
-                  Contact Us
-                </Badge>
-
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                  Get in{' '}
-                  <span className="text-primary relative">
-                    Touch
-                    <svg
-                      className="absolute -bottom-2 left-0 w-full"
-                      height="8"
-                      viewBox="0 0 200 8"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M1 5.5C30 2.5 60 1 100 1C140 1 170 2.5 199 5.5"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        className="text-primary"
-                      />
-                    </svg>
-                  </span>
-                </h1>
-
-                <p className="text-lg sm:text-xl text-muted-foreground">
-                  Have questions? We're here to help. Reach out to our team and we'll get back to you as soon as possible.
+      <main>
+        {/* Contact Section */}
+        <section
+          className="pb-20 md:pb-24 lg:pb-32 xl:pt-32 lg:pt-28 md:pt-24 pt-20"
+          aria-label="Contact Information and Form"
+        >
+          <div className="main-container">
+            <div className="space-y-16 md:space-y-20">
+              {/* Heading */}
+              <div className="max-w-2xl mx-auto text-center space-y-4">
+                <h2
+                  className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white leading-tight"
+                  data-ns-animate
+                  data-delay="0.2"
+                >
+                  Reach out to our support team for help.
+                </h2>
+                <p
+                  className="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed"
+                  data-ns-animate
+                  data-delay="0.3"
+                >
+                  Whether you have a question, need technical assistance, or just want some guidance, our support team is here to help. We're available around the clock to provide quick and friendly support.
                 </p>
               </div>
-            </AnimatedSection>
-          </div>
-        </section>
 
-        {/* Contact Info Cards */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {contactInfo.map((info, index) => {
-                const IconComponent = info.icon;
+              <div className="flex lg:items-stretch flex-col justify-center items-center gap-12 lg:flex-row lg:gap-10 xl:gap-16">
+                {/* Contact Info Cards */}
+                <div
+                  data-ns-animate
+                  data-delay="0.4"
+                  className="flex flex-col gap-6 md:flex-row lg:flex-col justify-between"
+                >
+                  {/* Address Card */}
+                  <div className="bg-[#1a1a1a] dark:bg-[#1a1a1a] rounded-[20px] p-10 space-y-6 w-full md:max-w-[320px] text-center relative overflow-hidden">
+                    {/* BG Overlay - Pink/Magenta gradient top-right */}
+                    <figure className="absolute select-none pointer-events-none w-[300px] h-[300px] overflow-hidden top-[-150px] right-[-100px]">
+                      <div className="size-full bg-gradient-to-bl from-pink-500/60 via-pink-600/40 to-transparent blur-2xl" />
+                    </figure>
 
-                return (
-                  <StaggerItem key={index} variants={staggerItemVariants}>
-                    <HoverScale>
-                      <Card
-                        className={`border-2 hover:border-primary/50 hover:shadow-xl transition-all h-full text-center ${
-                          info.href ? 'cursor-pointer' : ''
-                        }`}
-                        onClick={() => info.href && window.open(info.href, '_self')}
-                      >
-                        <CardHeader>
-                          <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                            <IconComponent className="h-8 w-8 text-primary" />
-                          </div>
-                          <CardTitle className="text-xl">{info.title}</CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-2">
-                          <p className="text-lg font-semibold text-foreground">
-                            {info.details}
-                          </p>
-                          <CardDescription className="text-base">
-                            {info.description}
-                          </CardDescription>
-                        </CardContent>
-                      </Card>
-                    </HoverScale>
-                  </StaggerItem>
-                );
-              })}
-            </StaggerContainer>
-          </div>
-        </section>
+                    <figure className="size-12 overflow-hidden mx-auto relative z-10">
+                      <div className="size-full rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm">
+                        <MapPin className="h-6 w-6 text-white" />
+                      </div>
+                    </figure>
 
-        {/* Contact Form Section */}
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <AnimatedSection>
-              <SectionHeader
-                badge="Send a Message"
-                title="We'd Love to Hear From You"
-                subtitle="Fill out the form below and our team will get back to you within 24 hours"
-              />
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.2}>
-              <div className="max-w-2xl mx-auto">
-                <Card className="border-2 shadow-xl">
-                  <CardContent className="p-6 sm:p-8">
-                    <Form {...form}>
-                      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                        <FormField
-                          control={form.control}
-                          name="name"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Name *</FormLabel>
-                              <FormControl>
-                                <Input
-                                  placeholder="Your full name"
-                                  {...field}
-                                  className="border-2"
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <FormField
-                          control={form.control}
-                          name="email"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Email *</FormLabel>
-                              <FormControl>
-                                <Input
-                                  type="email"
-                                  placeholder="your.email@example.com"
-                                  {...field}
-                                  className="border-2"
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <FormField
-                          control={form.control}
-                          name="phone"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Phone (Optional)</FormLabel>
-                              <FormControl>
-                                <Input
-                                  type="tel"
-                                  placeholder="+971 XX XXX XXXX"
-                                  {...field}
-                                  className="border-2"
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <FormField
-                          control={form.control}
-                          name="subject"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Subject *</FormLabel>
-                              <FormControl>
-                                <Input
-                                  placeholder="What is this regarding?"
-                                  {...field}
-                                  className="border-2"
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <FormField
-                          control={form.control}
-                          name="message"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Message *</FormLabel>
-                              <FormControl>
-                                <Textarea
-                                  placeholder="Tell us more about your inquiry..."
-                                  className="min-h-[150px] border-2"
-                                  {...field}
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <Button
-                          type="submit"
-                          size="lg"
-                          className="w-full"
-                          disabled={isSubmitting}
-                        >
-                          {isSubmitting ? (
-                            <>
-                              <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                              Sending...
-                            </>
-                          ) : (
-                            <>
-                              <Send className="mr-2 h-5 w-5" />
-                              Send Message
-                            </>
-                          )}
-                        </Button>
-                      </form>
-                    </Form>
-                  </CardContent>
-                </Card>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
-
-        {/* Map Section */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <AnimatedSection>
-              <SectionHeader
-                badge="Location"
-                title="Visit Our Office"
-                subtitle="We're located in the heart of Dubai's business district"
-              />
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.2}>
-              <div className="max-w-4xl mx-auto">
-                <Card className="border-2 overflow-hidden">
-                  <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-16 sm:p-24 flex flex-col items-center justify-center space-y-6">
-                    <div className="h-24 w-24 rounded-full bg-primary/20 flex items-center justify-center">
-                      <MapPin className="h-12 w-12 text-primary" />
+                    <div className="space-y-2.5 relative z-10">
+                      <p className="text-lg font-semibold text-white">Our Address</p>
+                      <p className="text-sm text-gray-300">Sheikh Zayed Road, Dubai, UAE</p>
                     </div>
-                    <div className="text-center space-y-2">
-                      <h3 className="text-2xl font-bold text-foreground">
-                        Sheikh Zayed Road
-                      </h3>
-                      <p className="text-lg text-muted-foreground">
-                        Dubai, United Arab Emirates
-                      </p>
-                      <Badge variant="secondary" className="mt-2">
-                        Opening Soon
-                      </Badge>
-                    </div>
-                    <p className="text-sm text-muted-foreground max-w-md text-center">
-                      Interactive map coming soon. For now, reach us via phone or email for directions.
-                    </p>
                   </div>
-                </Card>
+
+                  {/* Email Card */}
+                  <div className="bg-[#1a1a1a] dark:bg-[#1a1a1a] rounded-[20px] p-10 w-full md:max-w-[320px] text-center relative overflow-hidden">
+                    {/* BG Overlay - Yellow/Orange gradient from top */}
+                    <figure className="absolute select-none pointer-events-none w-[300px] h-[300px] overflow-hidden top-[-120px] left-[50%] -translate-x-1/2">
+                      <div className="size-full bg-gradient-to-b from-yellow-400/60 via-orange-500/40 to-transparent blur-2xl" />
+                    </figure>
+
+                    <div className="space-y-6 relative z-10">
+                      <figure className="size-12 overflow-hidden mx-auto">
+                        <div className="size-full rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm">
+                          <Mail className="h-6 w-6 text-white" />
+                        </div>
+                      </figure>
+
+                      <div className="space-y-2.5">
+                        <p className="text-lg font-semibold text-white">Email Us</p>
+                        <p className="text-sm text-gray-300">
+                          <a href="mailto:info@repairconnect.ae">info@repairconnect.ae</a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Phone Card */}
+                  <div className="bg-[#1a1a1a] dark:bg-[#1a1a1a] rounded-[20px] p-10 w-full md:max-w-[320px] text-center relative overflow-hidden">
+                    {/* BG Overlay - Orange gradient from top-left */}
+                    <figure className="absolute select-none pointer-events-none w-[300px] h-[300px] overflow-hidden top-[-120px] left-[-100px]">
+                      <div className="size-full bg-gradient-to-br from-orange-500/60 via-yellow-500/40 to-transparent blur-2xl" />
+                    </figure>
+
+                    <div className="space-y-6 relative z-10">
+                      <figure className="size-12 overflow-hidden mx-auto">
+                        <div className="size-full rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm">
+                          <Phone className="h-6 w-6 text-white" />
+                        </div>
+                      </figure>
+
+                      <div className="space-y-2.5">
+                        <p className="text-lg font-semibold text-white">Call Us</p>
+                        <p className="text-sm text-gray-300">
+                          <a href="tel:+9714XXXXXXX">+971 4 XXX XXXX</a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Contact Form */}
+                <div
+                  data-ns-animate
+                  data-delay="0.3"
+                  className="max-w-[700px] w-full bg-white dark:bg-[#1a1a1a] rounded-3xl p-8 md:p-10 lg:p-12 shadow-sm"
+                >
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+                    {/* Name and Phone Number */}
+                    <div className="flex items-start flex-col md:flex-row gap-8 justify-between">
+                      {/* Name */}
+                      <div className="space-y-2.5 w-full">
+                        <label
+                          htmlFor="name"
+                          className="block text-sm text-gray-700 dark:text-gray-300 font-medium"
+                        >
+                          Your name
+                        </label>
+                        <input
+                          {...register('name')}
+                          type="text"
+                          id="name"
+                          placeholder="Enter your name"
+                          autoComplete="name"
+                          className={cn(
+                            'w-full px-4 py-3 h-12 rounded-lg border bg-gray-50 dark:bg-[#252525] text-sm placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none dark:text-white text-gray-900 transition-colors',
+                            errors.name
+                              ? 'border-red-500 focus:border-red-500'
+                              : 'border-gray-200 dark:border-gray-700 focus:border-gray-400 dark:focus:border-gray-500'
+                          )}
+                        />
+                        {errors.name && (
+                          <p className="text-xs text-red-500">{errors.name.message}</p>
+                        )}
+                      </div>
+
+                      {/* Phone Number */}
+                      <div className="space-y-2.5 w-full">
+                        <label
+                          htmlFor="phone"
+                          className="block text-sm text-gray-700 dark:text-gray-300 font-medium"
+                        >
+                          Your number
+                        </label>
+                        <input
+                          {...register('phone')}
+                          type="tel"
+                          id="phone"
+                          placeholder="Enter your number"
+                          autoComplete="tel"
+                          className={cn(
+                            'w-full px-4 py-3 h-12 rounded-lg border bg-gray-50 dark:bg-[#252525] text-sm placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none dark:text-white text-gray-900 transition-colors',
+                            errors.phone
+                              ? 'border-red-500 focus:border-red-500'
+                              : 'border-gray-200 dark:border-gray-700 focus:border-gray-400 dark:focus:border-gray-500'
+                          )}
+                        />
+                        {errors.phone && (
+                          <p className="text-xs text-red-500">{errors.phone.message}</p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Email */}
+                    <div className="space-y-2.5">
+                      <label
+                        htmlFor="email"
+                        className="block text-sm text-gray-700 dark:text-gray-300 font-medium"
+                      >
+                        Email address
+                      </label>
+                      <input
+                        {...register('email')}
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        autoComplete="email"
+                        className={cn(
+                          'w-full px-4 py-3 h-12 rounded-lg border bg-gray-50 dark:bg-[#252525] text-sm placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none dark:text-white text-gray-900 transition-colors',
+                          errors.email
+                            ? 'border-red-500 focus:border-red-500'
+                            : 'border-gray-200 dark:border-gray-700 focus:border-gray-400 dark:focus:border-gray-500'
+                        )}
+                      />
+                      {errors.email && (
+                        <p className="text-xs text-red-500">{errors.email.message}</p>
+                      )}
+                    </div>
+
+                    {/* Subject */}
+                    <div className="space-y-2.5">
+                      <label
+                        htmlFor="subject"
+                        className="block text-sm text-gray-700 dark:text-gray-300 font-medium"
+                      >
+                        Subject
+                      </label>
+                      <input
+                        {...register('subject')}
+                        type="text"
+                        id="subject"
+                        placeholder="Enter your subject"
+                        className={cn(
+                          'w-full px-4 py-3 h-12 rounded-lg border bg-gray-50 dark:bg-[#252525] text-sm placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none dark:text-white text-gray-900 transition-colors',
+                          errors.subject
+                            ? 'border-red-500 focus:border-red-500'
+                            : 'border-gray-200 dark:border-gray-700 focus:border-gray-400 dark:focus:border-gray-500'
+                        )}
+                      />
+                      {errors.subject && (
+                        <p className="text-xs text-red-500">{errors.subject.message}</p>
+                      )}
+                    </div>
+
+                    {/* Message */}
+                    <div className="space-y-2.5">
+                      <label
+                        htmlFor="message"
+                        className="block text-sm text-gray-700 dark:text-gray-300 font-medium"
+                      >
+                        Write message
+                      </label>
+                      <textarea
+                        {...register('message')}
+                        id="message"
+                        rows={6}
+                        placeholder="Enter your messages"
+                        className={cn(
+                          'w-full px-4 py-3 rounded-lg border bg-gray-50 dark:bg-[#252525] text-sm placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none dark:text-white text-gray-900 transition-colors resize-none',
+                          errors.message
+                            ? 'border-red-500 focus:border-red-500'
+                            : 'border-gray-200 dark:border-gray-700 focus:border-gray-400 dark:focus:border-gray-500'
+                        )}
+                      />
+                      {errors.message && (
+                        <p className="text-xs text-red-500">{errors.message.message}</p>
+                      )}
+                    </div>
+
+                    {/* Terms Checkbox */}
+                    <fieldset className="flex items-start gap-3">
+                      <div className="flex items-center gap-3 pt-0.5">
+                        <input
+                          {...register('terms')}
+                          id="terms"
+                          type="checkbox"
+                          className="sr-only peer"
+                        />
+                        <label htmlFor="terms" className="cursor-pointer">
+                          <span className="size-4 rounded border border-gray-300 dark:border-gray-600 relative after:absolute after:size-2 after:bg-black dark:after:bg-white after:rounded-sm after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:opacity-0 peer-checked:after:opacity-100 peer-checked:border-black dark:peer-checked:border-white cursor-pointer block transition-all" />
+                        </label>
+                      </div>
+                      <label
+                        htmlFor="terms"
+                        className="text-sm cursor-pointer text-gray-600 dark:text-gray-400"
+                      >
+                        I agree with the{' '}
+                        <Link href="#" className="text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300">
+                          terms and conditions
+                        </Link>
+                      </label>
+                    </fieldset>
+                    {errors.terms && (
+                      <p className="text-xs text-red-500 -mt-4">{errors.terms.message}</p>
+                    )}
+
+                    {/* Submit Button */}
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className={cn(
+                        'w-full h-12 rounded-full text-sm font-medium transition-all duration-200',
+                        isSubmitting
+                          ? 'bg-gray-800 dark:bg-gray-600 opacity-70 cursor-not-allowed text-white'
+                          : 'bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-100'
+                      )}
+                    >
+                      {isSubmitting ? (
+                        <span className="flex items-center justify-center gap-2">
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                          Sending...
+                        </span>
+                      ) : (
+                        'Submit'
+                      )}
+                    </button>
+                  </form>
+                </div>
               </div>
-            </AnimatedSection>
+            </div>
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-br from-primary to-primary/80 text-primary-foreground relative overflow-hidden">
-          <div className="absolute inset-0 bg-grid-white/[0.05] pointer-events-none" />
-
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto text-center space-y-8">
-                <div className="space-y-4">
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
-                    Looking for a Workshop?
-                  </h2>
-                  <p className="text-lg sm:text-xl text-primary-foreground/90">
-                    Browse our network of verified workshops and get instant quotes for your car repair needs.
+        {/* Contact Map */}
+        <section
+          className="md:pt-[80px] lg:pt-[100px] pb-[100px] md:pb-[150px] lg:pb-[200px]"
+          aria-label="Location Map"
+        >
+          <div className="main-container">
+            <div
+              data-ns-animate
+              data-delay="0.1"
+              className="rounded-[20px] bg-white dark:bg-background-6 p-2.5"
+            >
+              <div className="w-full min-h-[300px] lg:min-h-[566px] overflow-hidden rounded-2xl bg-gradient-to-br from-primary-500/10 to-primary-500/5 flex flex-col items-center justify-center space-y-6 p-16">
+                <div className="h-24 w-24 rounded-full bg-primary-500/20 flex items-center justify-center">
+                  <MapPin className="h-12 w-12 text-primary-500" />
+                </div>
+                <div className="text-center space-y-2">
+                  <h3 className="text-2xl font-bold text-secondary dark:text-accent">
+                    Sheikh Zayed Road
+                  </h3>
+                  <p className="text-lg text-secondary/60 dark:text-accent/60">
+                    Dubai, United Arab Emirates
                   </p>
+                  <div className="mt-4 inline-block px-4 py-2 bg-primary-500/10 rounded-full">
+                    <span className="text-tagline-2 text-primary-500 font-medium">
+                      Opening Soon
+                    </span>
+                  </div>
                 </div>
-
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button
-                    size="xl"
-                    variant="secondary"
-                    asChild
-                    className="shadow-lg"
-                  >
-                    <Link href="/workshops">
-                      Find Workshops
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Link>
-                  </Button>
-                  <Button
-                    size="xl"
-                    variant="outline"
-                    asChild
-                    className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
-                  >
-                    <Link href="/about">Learn More</Link>
-                  </Button>
-                </div>
-
-                <div className="flex items-center justify-center gap-2 text-sm pt-4">
-                  <CheckCircle className="h-4 w-4" />
-                  <span>Instant quotes from verified workshops</span>
-                </div>
+                <p className="text-tagline-2 text-secondary/60 dark:text-accent/60 max-w-md text-center">
+                  Interactive map coming soon. For now, reach us via phone or email for
+                  directions.
+                </p>
               </div>
-            </AnimatedSection>
+            </div>
           </div>
         </section>
-      </div>
+      </main>
     </>
   );
 }

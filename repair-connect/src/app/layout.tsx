@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -26,6 +27,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+      </head>
       <body
         className="font-sans antialiased bg-background text-foreground"
       >
@@ -39,13 +46,15 @@ export default function RootLayout({
             <AuthProvider>
               <AuthWrapperClient>
                 <Header />
-                <main className="flex-1">{children}</main>
+                <main className="flex-1 pt-24">{children}</main>
                 <Footer />
                 <Toaster />
               </AuthWrapperClient>
             </AuthProvider>
           </div>
         </ThemeProvider>
+        <Script src="/js/swiper.min.js" strategy="afterInteractive" />
+        <Script src="/js/main.js" strategy="afterInteractive" />
       </body>
     </html>
   );

@@ -138,31 +138,37 @@ export function Header() {
       <StructuredData data={navigationSchema} />
 
       <motion.header
-        className={cn(
-          'sticky top-0 z-50 w-full bg-background-1/95 dark:bg-background-6/95 backdrop-blur supports-[backdrop-filter]:bg-background-1/60 dark:supports-[backdrop-filter]:bg-background-6/60 transition-shadow duration-300',
-          scrolled && 'shadow-md border-b border-stroke-3 dark:border-stroke-7'
-        )}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
+        className="fixed top-5 z-50 w-full"
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex h-16 items-center justify-between" aria-label="Main navigation">
-            {/* Logo */}
+        <nav
+          className={cn(
+            'rounded-full mx-auto w-full flex items-center justify-between px-2.5 py-2.5 bg-white/60 dark:bg-background-7 backdrop-blur-[25px] border border-stroke-1 dark:border-white/10 transition-all duration-300',
+            'max-w-[350px] min-[425px]:max-w-[400px] min-[500px]:max-w-[500px] sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] 2xl:max-w-[1290px]',
+            scrolled && 'shadow-lg'
+          )}
+          aria-label="Main navigation"
+        >
+          {/* Logo */}
+          <div className="flex-shrink-0">
             <Link
               href="/"
-              className="flex items-center space-x-2 text-xl sm:text-2xl font-bold text-primary-500 hover:opacity-90 transition-opacity"
+              className="flex items-center space-x-2 text-lg sm:text-xl font-bold text-primary-500 hover:opacity-90 transition-opacity"
               aria-label={`${APP_NAME} Home`}
             >
-              <div className="h-8 w-8 rounded-lg bg-primary-500 flex items-center justify-center">
-                <Wrench className="h-5 w-5 text-white" aria-hidden="true" />
+              <div className="h-7 w-7 rounded-lg bg-primary-500 flex items-center justify-center">
+                <Wrench className="h-4 w-4 text-white" aria-hidden="true" />
               </div>
-              <span className="hidden sm:inline">{APP_NAME}</span>
-              <span className="sm:hidden">RC</span>
+              <span className="hidden lg:inline">{APP_NAME}</span>
+              <span className="lg:hidden">RC</span>
             </Link>
+          </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-1">
+          {/* Desktop Navigation - Centered */}
+          <div className="hidden lg:flex items-center justify-center flex-1 mx-4">
+            <div className="flex items-center space-x-1">
               {!session ? (
                 <>
                   {/* Public Navigation */}
@@ -171,10 +177,10 @@ export function Header() {
                       key={item.url}
                       href={item.url}
                       className={cn(
-                        'px-4 py-2 text-tagline-2 font-medium rounded-md transition-colors',
+                        'px-4 py-2 text-tagline-2 font-normal rounded-full border transition-all duration-200',
                         isActive(item.url)
-                          ? 'bg-primary-500/10 text-primary-500'
-                          : 'text-secondary dark:text-accent hover:bg-background-3 dark:hover:bg-background-7'
+                          ? 'border-stroke-2 dark:border-stroke-7 bg-background-3/50 dark:bg-background-7/50 text-secondary dark:text-accent'
+                          : 'border-transparent text-secondary/60 dark:text-accent/60 hover:text-secondary dark:hover:text-accent hover:border-stroke-2 dark:hover:border-stroke-7'
                       )}
                       aria-current={isActive(item.url) ? 'page' : undefined}
                     >
@@ -188,8 +194,10 @@ export function Header() {
                       <Button
                         variant="ghost"
                         className={cn(
-                          'flex items-center space-x-1',
-                          pathname?.startsWith('/services') && 'bg-primary-500/10 text-primary-500'
+                          'flex items-center gap-1 px-4 py-2 rounded-full border font-normal text-tagline-2 transition-all duration-200',
+                          pathname?.startsWith('/services')
+                            ? 'border-stroke-2 dark:border-stroke-7 bg-background-3/50 dark:bg-background-7/50 text-secondary dark:text-accent'
+                            : 'border-transparent text-secondary/60 dark:text-accent/60 hover:text-secondary dark:hover:text-accent hover:border-stroke-2 dark:hover:border-stroke-7'
                         )}
                       >
                         <span>Services</span>
@@ -221,10 +229,10 @@ export function Header() {
                   <Link
                     href="/workshops"
                     className={cn(
-                      'px-4 py-2 text-tagline-2 font-medium rounded-md transition-colors',
+                      'px-4 py-2 text-tagline-2 font-normal rounded-full border transition-all duration-200',
                       isActive('/workshops')
-                        ? 'bg-primary-500/10 text-primary-500'
-                        : 'text-secondary dark:text-accent hover:bg-background-3 dark:hover:bg-background-7 hover:text-accent-foreground'
+                        ? 'border-stroke-2 dark:border-stroke-7 bg-background-3/50 dark:bg-background-7/50 text-secondary dark:text-accent'
+                        : 'border-transparent text-secondary/60 dark:text-accent/60 hover:text-secondary dark:hover:text-accent hover:border-stroke-2 dark:hover:border-stroke-7'
                     )}
                     aria-current={isActive('/workshops') ? 'page' : undefined}
                   >
@@ -239,10 +247,10 @@ export function Header() {
                       key={item.href}
                       href={item.href}
                       className={cn(
-                        'flex items-center space-x-2 px-3 py-2 text-tagline-2 font-medium rounded-md transition-colors',
+                        'flex items-center gap-1.5 px-3 py-2 text-tagline-2 font-normal rounded-full border transition-all duration-200',
                         isActive(item.href)
-                          ? 'bg-primary-500/10 text-primary-500'
-                          : 'text-secondary dark:text-accent hover:bg-background-3 dark:hover:bg-background-7 hover:text-accent-foreground'
+                          ? 'border-stroke-2 dark:border-stroke-7 bg-background-3/50 dark:bg-background-7/50 text-secondary dark:text-accent'
+                          : 'border-transparent text-secondary/60 dark:text-accent/60 hover:text-secondary dark:hover:text-accent hover:border-stroke-2 dark:hover:border-stroke-7'
                       )}
                       aria-current={isActive(item.href) ? 'page' : undefined}
                     >
@@ -275,15 +283,16 @@ export function Header() {
                 </>
               )}
             </div>
+          </div>
 
-            {/* Desktop Auth Buttons / User Menu */}
-            <div className="hidden lg:flex items-center space-x-3">
+          {/* Desktop Auth Buttons / User Menu */}
+          <div className="hidden lg:flex items-center space-x-2 flex-shrink-0">
               {status === 'loading' ? (
-                <div className="h-9 w-24 bg-background-3 dark:bg-background-7 animate-pulse rounded-md" />
+                <div className="h-9 w-24 bg-background-3 dark:bg-background-7 animate-pulse rounded-full" />
               ) : session ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="flex items-center space-x-2">
+                    <Button variant="outline" className="flex items-center space-x-2 rounded-full">
                       <User className="h-4 w-4" aria-hidden="true" />
                       <span className="max-w-[120px] truncate">{session.user?.name}</span>
                       {!isComplete && session.user?.role === 'workshop' && (
@@ -359,31 +368,28 @@ export function Header() {
                 </DropdownMenu>
               ) : (
                 <>
-                  <Button variant="outline" asChild>
+                  <Button variant="outline" asChild className="rounded-full">
                     <Link href="/auth/login">Log In</Link>
                   </Button>
-                  <Button asChild>
+                  <Button asChild className="rounded-full">
                     <Link href="/quotations/request">Find a Workshop</Link>
-                  </Button>
-                  <Button variant="secondary" asChild>
-                    <Link href="/auth/register?type=workshop">Join as Workshop</Link>
                   </Button>
                 </>
               )}
-            </div>
+          </div>
 
-            {/* Mobile Menu Button */}
+          {/* Mobile Menu Button */}
+          <div className="lg:hidden flex-shrink-0">
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden"
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open mobile menu"
             >
               <Menu className="h-6 w-6" aria-hidden="true" />
             </Button>
-          </nav>
-        </div>
+          </div>
+        </nav>
       </motion.header>
 
       {/* Mobile Menu Dialog */}

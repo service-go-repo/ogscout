@@ -1,5 +1,4 @@
-/* Import Inter Tight from Google Fonts - NextSaaS Design System */
-@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap');
+/* Inter Tight font is now loaded via <link> in layout.tsx for better performance */
 
 @tailwind base;
 @tailwind components;
@@ -51,15 +50,15 @@
     /* === NextSaaS Design System v2.0 === */
 
     /* Primary Purple Scale */
-    --primary-50: #f4f2fe;
-    --primary-100: #ece8ff;
-    --primary-200: #dcd4ff;
-    --primary-300: #c3b1ff;
-    --primary-400: #a585ff;
-    --primary-500: #864ffe;  /* Main brand color */
-    --primary-600: #7c31f6;
-    --primary-700: #6d1fe2;
-    --primary-800: #5a19be;
+    --primary-50:  #f1f6ff;
+    --primary-100: #e3edff;
+    --primary-200: #c7dbff;
+    --primary-300: #9fbfff;
+    --primary-400: #6fa0ff;
+    --primary-500: #448efb;  /* Main brand color */
+    --primary-600: #2f79f0;
+    --primary-700: #1f63db;
+    --primary-800: #1b4fb3;
 
     /* Semantic Colors */
     --secondary: #1a1a1c;  /* Dark text/backgrounds */
@@ -102,18 +101,23 @@
     --ns-yellow-light: #fdf7bc;
 
     /* Gradients */
-    --gradient-1: linear-gradient(135deg, #a585ff 0%, #ffc2ad 100%);
+    --gradient-1: linear-gradient(135deg, #6fa0ff 0%, #ffc2ad 100%);
     --gradient-2: linear-gradient(135deg, #f9eb57 0%, #f99988 100%);
     --gradient-3: linear-gradient(135deg, #83e7ee 0%, #f9eb57 100%);
-    --gradient-4: linear-gradient(135deg, #864ffe 0%, #23eed6 100%);
+    --gradient-4: linear-gradient(135deg, #448efb 0%, #23eed6 100%);
     --gradient-5: linear-gradient(165deg, rgba(255,255,255,0.5) 0.51%, rgba(255,255,255,0) 64.43%);
     --gradient-6: linear-gradient(#83e7ee 0%, #c6f56f 100%);
     --gradient-7: linear-gradient(#ffffff 0%, #83e7ee 100%);
-    --gradient-8: linear-gradient(156deg, #ffffff 32.92%, #a585ff 91%);
-    --gradient-9: linear-gradient(156deg, #dfb0ff 32.92%, #fdbedc 91%);
+    --gradient-8: linear-gradient(156deg, #ffffff 32.92%, #6fa0ff 91%);
+    --gradient-9: linear-gradient(156deg, #c7dbff 32.92%, #fdbedc 91%);
     --gradient-10: linear-gradient(135deg, #83e7ee 0%, #c6f56f 100%);
     --gradient-11: linear-gradient(179deg, rgba(255,255,255,0) 0.68%, #fff 79.47%);
-    --gradient-12: radial-gradient(73.01% 80.77% at 19.23% 47.79%, #83e7ee 0%, rgba(134,79,254,0) 100%);
+    --gradient-12: radial-gradient(
+      73.01% 80.77% at 19.23% 47.79%,
+      #83e7ee 0%,
+      rgba(68,142,251,0) 100%
+    );
+
 
     /* Soft Shadow System (replaces hard offset shadows) */
     --shadow-1: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
@@ -228,6 +232,141 @@
   }
 }
 
+@layer components {
+  /* === NextSaaS Button Components === */
+  .btn {
+    @apply cursor-pointer text-center font-normal whitespace-nowrap lowercase transition-all duration-500 ease-in-out border rounded-full inline-block relative overflow-hidden;
+  }
+
+  @media (hover: hover) {
+    .btn:hover {
+      @apply scale-[1.02];
+    }
+  }
+
+  .btn span {
+    @apply transition-transform duration-300 ease-in-out inline-block;
+  }
+
+  .btn span:first-letter {
+    @apply uppercase;
+  }
+
+  .btn::before {
+    content: "";
+    @apply absolute top-1/2 right-0 h-0 w-0 -translate-y-1/2 opacity-0 transition-all duration-300 ease-in-out;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='white' viewBox='0 0 256 256'%3E%3Cpath d='M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z'%3E%3C/path%3E%3C/svg%3E");
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .btn:hover::before {
+    @apply w-3 h-3 -translate-x-4 opacity-100;
+  }
+
+  .btn:hover span {
+    @apply -translate-x-2;
+  }
+
+  /* Button Variants */
+  .btn-primary {
+    @apply bg-primary-500 text-white shadow-sm;
+    border-color: var(--primary-600);
+  }
+
+  .dark .btn-primary {
+    border-color: var(--primary-400);
+  }
+
+  .btn-primary::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='white' viewBox='0 0 256 256'%3E%3Cpath d='M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z'%3E%3C/path%3E%3C/svg%3E");
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-white shadow-sm;
+    border-color: #000;
+  }
+
+  .dark .btn-secondary {
+    @apply bg-accent text-secondary;
+  }
+
+  .btn-secondary::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='white' viewBox='0 0 256 256'%3E%3Cpath d='M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z'%3E%3C/path%3E%3C/svg%3E");
+  }
+
+  .btn-accent {
+    @apply bg-accent text-secondary shadow-sm;
+    border-color: var(--stroke-3);
+  }
+
+  .btn-accent::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%231a1a1c' viewBox='0 0 256 256'%3E%3Cpath d='M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z'%3E%3C/path%3E%3C/svg%3E");
+  }
+
+  .btn-white {
+    @apply text-secondary shadow-sm;
+    background-color: var(--background-1);
+    border-color: var(--stroke-3);
+  }
+
+  .btn-white::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%231a1a1c' viewBox='0 0 256 256'%3E%3Cpath d='M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z'%3E%3C/path%3E%3C/svg%3E");
+  }
+
+  /* Button Sizes */
+  .btn-md {
+    @apply py-2 px-4 text-sm;
+  }
+
+  .btn-lg {
+    @apply py-3 px-6 text-base;
+  }
+
+  .btn-xl {
+    @apply py-4 px-8 text-lg;
+  }
+
+  /* === NextSaaS Badge Components === */
+  .badge {
+    @apply inline-flex items-center justify-center px-3 py-1 text-sm font-normal rounded-full transition-all;
+  }
+
+  .badge:first-letter {
+    @apply uppercase;
+  }
+
+  .badge-secondary {
+    @apply bg-secondary text-white;
+  }
+
+  .dark .badge-secondary {
+    @apply bg-accent text-secondary;
+  }
+
+  .badge-gray-light {
+    @apply text-secondary;
+    background-color: var(--background-10);
+  }
+
+  .dark .badge-gray-light {
+    @apply text-accent;
+    background-color: var(--background-9);
+  }
+
+  .badge-white-v2 {
+    @apply bg-white text-secondary shadow-sm;
+  }
+
+  .badge-blur-v2 {
+    @apply backdrop-blur-sm bg-white/10 text-secondary border border-white/20;
+  }
+
+  .dark .badge-blur-v2 {
+    @apply bg-black/10 text-accent;
+  }
+}
+
 @layer utilities {
   /* Gradient Background Utilities - NextSaaS Design System */
   .bg-gradient-1 {
@@ -274,5 +413,214 @@
   }
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Stack Cards Component */
+  .stack-cards {
+    --stack-cards-gap: 24px;
+  }
+
+  .stack-cards__item {
+    top: calc(var(--spacing) * 28);
+    transform-origin: top;
+    position: sticky;
+    overflow: hidden;
+  }
+
+  /* === NextSaaS Extracted Animations === */
+  @keyframes top-to-bottom {
+    0% {
+      top: -30%;
+    }
+    50% {
+      top: 50%;
+    }
+    100% {
+      top: 100%;
+    }
+  }
+
+  @keyframes textAnimate {
+    0% {
+      background-position: 0%;
+    }
+    50% {
+      background-position: 100%;
+    }
+    100% {
+      background-position: 0%;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(15px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes gradientFadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes menuSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes menuSlideOut {
+    from {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(10px) scale(0.98);
+    }
+  }
+
+  @keyframes horizontal-marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* Gradient Line Animations */
+  .gradient-line-1 {
+    animation: 6s linear infinite top-to-bottom;
+  }
+  .gradient-line-2 {
+    animation: 6s linear 0.9s infinite top-to-bottom;
+  }
+  .gradient-line-3 {
+    animation: 6s linear 1.5s infinite top-to-bottom;
+  }
+  .gradient-line-4 {
+    animation: 6s linear 0.01s infinite top-to-bottom;
+  }
+  .gradient-line-5 {
+    animation: 6s linear 1.8s infinite top-to-bottom;
+  }
+  .gradient-line-6 {
+    animation: 6s linear 0.6s infinite top-to-bottom;
+  }
+  .gradient-line-7 {
+    animation: 6s linear 2s infinite top-to-bottom;
+  }
+  .gradient-line-8 {
+    animation: 6s linear 1.2s infinite top-to-bottom;
+  }
+
+  /* Animated Text Gradient Effect */
+  .hero-text-gradient {
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    background-repeat: no-repeat;
+    background-size: 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: 5s linear infinite textAnimate;
+    display: inline-block;
+  }
+
+  .hero-text-color-1 {
+    background-image: linear-gradient(45deg, #a585ff, #ffc2ad, #a585ff);
+  }
+
+  .hero-text-color-2 {
+    background-image: linear-gradient(45deg, #83e7ee, #f9eb57, #83e7ee);
+  }
+
+  /* Fade In Up Animation */
+  .animate-fade-in-up {
+    animation: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both fadeInUp;
+  }
+
+  .animate-fade-in-up-delay-1 {
+    animation: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s both fadeInUp;
+  }
+
+  .animate-fade-in-up-delay-2 {
+    animation: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both fadeInUp;
+  }
+
+  .animate-fade-in-up-delay-3 {
+    animation: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s both fadeInUp;
+  }
+
+  /* Slide Up Animation */
+  .animate-slide-up {
+    animation: 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) slideUp;
+  }
+
+  /* Gradient Fade In */
+  .animate-gradient-fade-in {
+    animation: 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) gradientFadeIn;
+  }
+
+  /* Menu Animations */
+  .menu-slide-in {
+    animation: 0.3s forwards menuSlideIn;
+  }
+
+  .menu-slide-out {
+    animation: 0.3s forwards menuSlideOut;
+  }
+
+  /* Horizontal Marquee */
+  .horizontal-marquee {
+    display: flex;
+    gap: var(--marquee-gap, 1rem);
+    flex-wrap: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .horizontal-marquee-inner {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: var(--marquee-gap, 1rem);
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    animation: horizontal-marquee var(--marquee-speed, 20s) linear infinite;
+  }
+
+  .horizontal-marquee.smooth {
+    -webkit-mask: linear-gradient(90deg, transparent, white 20% 80%, transparent);
+    mask: linear-gradient(90deg, transparent, white 20% 80%, transparent);
+  }
+
+  .horizontal-marquee.paused .horizontal-marquee-inner {
+    animation-play-state: paused;
   }
 }

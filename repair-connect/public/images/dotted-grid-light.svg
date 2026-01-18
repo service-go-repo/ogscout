@@ -1,0 +1,8 @@
+<svg width="1365" height="800" viewBox="0 0 1365 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="dotted-grid-light" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.5" fill="#E5E7EB" opacity="0.4"/>
+    </pattern>
+  </defs>
+  <rect width="1365" height="800" fill="url(#dotted-grid-light)"/>
+</svg>
