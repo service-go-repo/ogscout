@@ -194,7 +194,7 @@ export default function CustomerManagementComponent() {
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold">Customer Management</h1>
-        <p className="text-gray-600 mt-2">
+        <p className="text-secondary/60 dark:text-accent/60 mt-2">
           View and manage your customer relationships
         </p>
       </div>
@@ -205,10 +205,10 @@ export default function CustomerManagementComponent() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Customers</p>
+                <p className="text-sm font-medium text-secondary/60 dark:text-accent/60">Total Customers</p>
                 <p className="text-2xl font-bold">{totalCustomers}</p>
               </div>
-              <Users className="h-8 w-8 text-blue-600" />
+              <Users className="h-8 w-8 text-primary-500" />
             </div>
           </CardContent>
         </Card>
@@ -217,10 +217,10 @@ export default function CustomerManagementComponent() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Active Customers</p>
+                <p className="text-sm font-medium text-secondary/60 dark:text-accent/60">Active Customers</p>
                 <p className="text-2xl font-bold">{activeCustomers}</p>
               </div>
-              <TrendingUp className="h-8 w-8 text-green-600" />
+              <TrendingUp className="h-8 w-8 text-[var(--ns-green)]" />
             </div>
           </CardContent>
         </Card>
@@ -229,10 +229,10 @@ export default function CustomerManagementComponent() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Revenue</p>
+                <p className="text-sm font-medium text-secondary/60 dark:text-accent/60">Total Revenue</p>
                 <p className="text-2xl font-bold">${totalRevenue.toFixed(2)}</p>
               </div>
-              <DollarSign className="h-8 w-8 text-yellow-600" />
+              <DollarSign className="h-8 w-8 text-[var(--ns-yellow)]" />
             </div>
           </CardContent>
         </Card>
@@ -240,7 +240,7 @@ export default function CustomerManagementComponent() {
 
       {/* Search */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-secondary/40 dark:text-accent/40" />
         <Input
           placeholder="Search by name, email, or phone..."
           value={searchQuery}
@@ -253,11 +253,11 @@ export default function CustomerManagementComponent() {
       {filteredCustomers.length === 0 ? (
         <Card>
           <CardContent className="p-12 text-center">
-            <Users className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
+            <Users className="h-12 w-12 text-secondary/30 dark:text-accent/30 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-secondary dark:text-accent mb-2">
               {searchQuery ? 'No customers found' : 'No customers yet'}
             </h3>
-            <p className="text-gray-500">
+            <p className="text-secondary/60 dark:text-accent/60">
               {searchQuery
                 ? 'Try adjusting your search query'
                 : 'Start accepting appointments to build your customer base'}
@@ -273,14 +273,14 @@ export default function CustomerManagementComponent() {
                   {/* Customer Header */}
                   <div className="flex items-start gap-4">
                     <Avatar className="h-12 w-12">
-                      <AvatarFallback className="bg-blue-100 text-blue-700">
+                      <AvatarFallback className="bg-primary-100 text-primary-700">
                         {getInitials(customer.customerName)}
                       </AvatarFallback>
                     </Avatar>
 
                     <div className="flex-1">
                       <h3 className="text-lg font-semibold">{customer.customerName}</h3>
-                      <div className="flex flex-wrap gap-3 mt-1 text-sm text-gray-600">
+                      <div className="flex flex-wrap gap-3 mt-1 text-sm text-secondary/60 dark:text-accent/60">
                         <div className="flex items-center gap-1">
                           <Mail className="h-3 w-3" />
                           <span>{customer.customerEmail}</span>
@@ -293,7 +293,7 @@ export default function CustomerManagementComponent() {
                     </div>
 
                     <div className="text-right">
-                      <div className="text-sm text-gray-500">Customer ID</div>
+                      <div className="text-sm text-secondary/60 dark:text-accent/60">Customer ID</div>
                       <div className="text-xs font-mono">
                         #{customer.customerId.slice(-8).toUpperCase()}
                       </div>
@@ -303,26 +303,26 @@ export default function CustomerManagementComponent() {
                   {/* Stats Grid */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-3 border-t">
                     <div>
-                      <div className="text-xs font-medium text-gray-500 mb-1">TOTAL VISITS</div>
+                      <div className="text-xs font-medium text-secondary/60 dark:text-accent/60 mb-1">TOTAL VISITS</div>
                       <div className="text-lg font-bold">{customer.totalAppointments}</div>
                     </div>
                     <div>
-                      <div className="text-xs font-medium text-gray-500 mb-1">COMPLETED</div>
-                      <div className="text-lg font-bold text-green-600">{customer.completedAppointments}</div>
+                      <div className="text-xs font-medium text-secondary/60 dark:text-accent/60 mb-1">COMPLETED</div>
+                      <div className="text-lg font-bold text-[var(--ns-green)]">{customer.completedAppointments}</div>
                     </div>
                     <div>
-                      <div className="text-xs font-medium text-gray-500 mb-1">IN PROGRESS</div>
-                      <div className="text-lg font-bold text-blue-600">{customer.inProgressAppointments}</div>
+                      <div className="text-xs font-medium text-secondary/60 dark:text-accent/60 mb-1">IN PROGRESS</div>
+                      <div className="text-lg font-bold text-[var(--ns-cyan)]">{customer.inProgressAppointments}</div>
                     </div>
                     <div>
-                      <div className="text-xs font-medium text-gray-500 mb-1">UPCOMING</div>
-                      <div className="text-lg font-bold text-orange-600">{customer.upcomingAppointments}</div>
+                      <div className="text-xs font-medium text-secondary/60 dark:text-accent/60 mb-1">UPCOMING</div>
+                      <div className="text-lg font-bold text-[var(--ns-yellow)]">{customer.upcomingAppointments}</div>
                     </div>
                   </div>
 
                   {/* Vehicles */}
                   <div className="pt-3 border-t">
-                    <div className="text-xs font-medium text-gray-500 mb-2">VEHICLES</div>
+                    <div className="text-xs font-medium text-secondary/60 dark:text-accent/60 mb-2">VEHICLES</div>
                     <div className="flex flex-wrap gap-2">
                       {customer.vehicles.map((vehicle, idx) => (
                         <Badge key={idx} variant="outline" className="text-xs">
@@ -336,7 +336,7 @@ export default function CustomerManagementComponent() {
                   {/* Last Appointment & Revenue */}
                   <div className="grid grid-cols-2 gap-4 pt-3 border-t">
                     <div>
-                      <div className="text-xs font-medium text-gray-500 mb-1">LAST VISIT</div>
+                      <div className="text-xs font-medium text-secondary/60 dark:text-accent/60 mb-1">LAST VISIT</div>
                       <div className="text-sm">
                         {customer.lastAppointmentDate
                           ? format(customer.lastAppointmentDate, 'MMM dd, yyyy')
@@ -344,8 +344,8 @@ export default function CustomerManagementComponent() {
                       </div>
                     </div>
                     <div>
-                      <div className="text-xs font-medium text-gray-500 mb-1">TOTAL REVENUE</div>
-                      <div className="text-sm font-semibold text-green-600">
+                      <div className="text-xs font-medium text-secondary/60 dark:text-accent/60 mb-1">TOTAL REVENUE</div>
+                      <div className="text-sm font-semibold text-[var(--ns-green)]">
                         ${customer.totalRevenue.toFixed(2)}
                       </div>
                     </div>
@@ -354,21 +354,21 @@ export default function CustomerManagementComponent() {
                   {/* Recent Appointments */}
                   {expandedCustomer === customer.customerId && (
                     <div className="pt-3 border-t">
-                      <div className="text-xs font-medium text-gray-500 mb-3">RECENT APPOINTMENTS</div>
+                      <div className="text-xs font-medium text-secondary/60 dark:text-accent/60 mb-3">RECENT APPOINTMENTS</div>
                       <div className="space-y-2">
                         {customer.recentAppointments.map((appointment) => (
                           <Link
                             key={appointment._id.toString()}
                             href={`/appointments/${appointment._id.toString()}`}
                           >
-                            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-md hover:bg-gray-100 transition-colors">
+                            <div className="flex items-center justify-between p-3 bg-[var(--background-3)] dark:bg-[var(--background-7)] rounded-md hover:bg-[var(--background-4)] dark:hover:bg-[var(--background-9)] transition-colors">
                               <div className="flex items-center gap-3">
-                                <Calendar className="h-4 w-4 text-gray-400" />
+                                <Calendar className="h-4 w-4 text-secondary/40 dark:text-accent/40" />
                                 <div>
                                   <div className="text-sm font-medium">
                                     {format(new Date(appointment.scheduledDate), 'MMM dd, yyyy')}
                                   </div>
-                                  <div className="text-xs text-gray-500">
+                                  <div className="text-xs text-secondary/60 dark:text-accent/60">
                                     {appointment.services.length} service{appointment.services.length !== 1 ? 's' : ''}
                                   </div>
                                 </div>

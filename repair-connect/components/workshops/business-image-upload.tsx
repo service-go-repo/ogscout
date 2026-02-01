@@ -56,7 +56,7 @@ export default function BusinessImageUpload({
       {/* Logo Upload */}
       <div>
         <Label className="text-base font-medium">Workshop Logo</Label>
-        <p className="text-sm text-gray-600 mb-3">
+        <p className="text-sm text-secondary/60 dark:text-accent/60 mb-3">
           Upload your workshop logo (recommended: square format, 200x200px)
         </p>
         
@@ -64,7 +64,7 @@ export default function BusinessImageUpload({
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
+                <div className="w-16 h-16 rounded-lg overflow-hidden bg-background-3 dark:bg-background-7 flex-shrink-0">
                   <img
                     src={logoUrl}
                     alt="Workshop Logo"
@@ -73,7 +73,7 @@ export default function BusinessImageUpload({
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">Current Logo</p>
-                  <p className="text-xs text-gray-600">Click to change or remove</p>
+                  <p className="text-xs text-secondary/60 dark:text-accent/60">Click to change or remove</p>
                 </div>
                 <div className="flex gap-2">
                   <Button
@@ -101,8 +101,8 @@ export default function BusinessImageUpload({
           <Card>
             <CardContent className="p-6">
               <div className="text-center">
-                <Building2 className="w-12 h-12 mx-auto mb-3 text-gray-400" />
-                <p className="text-sm text-gray-600 mb-3">No logo uploaded</p>
+                <Building2 className="w-12 h-12 mx-auto mb-3 text-secondary/40 dark:text-accent/40" />
+                <p className="text-sm text-secondary/60 dark:text-accent/60 mb-3">No logo uploaded</p>
                 <Button
                   onClick={() => setShowLogoUpload(true)}
                   disabled={disabled}
@@ -141,7 +141,7 @@ export default function BusinessImageUpload({
       {/* Cover Image Upload */}
       <div>
         <Label className="text-base font-medium">Cover Image</Label>
-        <p className="text-sm text-gray-600 mb-3">
+        <p className="text-sm text-secondary/60 dark:text-accent/60 mb-3">
           Upload a cover image for your workshop (recommended: 1200x400px)
         </p>
         
@@ -149,7 +149,7 @@ export default function BusinessImageUpload({
           <Card>
             <CardContent className="p-4">
               <div className="space-y-3">
-                <div className="aspect-[3/1] rounded-lg overflow-hidden bg-gray-100">
+                <div className="aspect-[3/1] rounded-lg overflow-hidden bg-background-3 dark:bg-background-7">
                   <img
                     src={coverImageUrl}
                     alt="Workshop Cover"
@@ -159,7 +159,7 @@ export default function BusinessImageUpload({
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium">Current Cover Image</p>
-                    <p className="text-xs text-gray-600">This will be displayed on your workshop profile</p>
+                    <p className="text-xs text-secondary/60 dark:text-accent/60">This will be displayed on your workshop profile</p>
                   </div>
                   <div className="flex gap-2">
                     <Button
@@ -188,10 +188,10 @@ export default function BusinessImageUpload({
           <Card>
             <CardContent className="p-6">
               <div className="text-center">
-                <div className="aspect-[3/1] rounded-lg bg-gray-100 flex items-center justify-center mb-3">
-                  <Camera className="w-12 h-12 text-gray-400" />
+                <div className="aspect-[3/1] rounded-lg bg-background-3 dark:bg-background-7 flex items-center justify-center mb-3">
+                  <Camera className="w-12 h-12 text-secondary/40 dark:text-accent/40" />
                 </div>
-                <p className="text-sm text-gray-600 mb-3">No cover image uploaded</p>
+                <p className="text-sm text-secondary/60 dark:text-accent/60 mb-3">No cover image uploaded</p>
                 <Button
                   onClick={() => setShowCoverUpload(true)}
                   disabled={disabled}

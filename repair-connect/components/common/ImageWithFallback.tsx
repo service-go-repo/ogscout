@@ -95,11 +95,11 @@ export default function ImageWithFallback({
   // If all fallbacks failed, show placeholder
   if (imageError && imageSrc === (fallbackSrc || localPath)) {
     return (
-      <div 
-        className={`bg-gray-100 flex items-center justify-center ${className}`}
+      <div
+        className={`bg-background-3 dark:bg-background-7 flex items-center justify-center ${className}`}
         style={!fill ? { width, height } : undefined}
       >
-        <div className="text-center text-gray-400">
+        <div className="text-center text-secondary/40 dark:text-accent/40">
           <ImageIcon className="w-8 h-8 mx-auto mb-2" />
           <p className="text-xs">Image unavailable</p>
         </div>

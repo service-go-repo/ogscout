@@ -313,7 +313,7 @@ export function ServiceRequestForm({
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex items-center gap-4 p-4 bg-blue-50 rounded-lg">
+            <div className="flex items-center gap-4 p-4 bg-primary-100 rounded-lg">
               {car.thumbnailUrl ? (
                 <img
                   src={car.thumbnailUrl}
@@ -333,7 +333,7 @@ export function ServiceRequestForm({
                   {car.color} • {car.fuelType} • {car.transmission}
                 </div>
                 {car.mileage && (
-                  <div className="text-sm text-gray-500">
+                  <div className="text-sm text-secondary/60 dark:text-accent/60">
                     {car.mileage.toLocaleString()} km
                   </div>
                 )}
@@ -357,7 +357,7 @@ export function ServiceRequestForm({
                 maxLength={100}
               />
               {errors.title && (
-                <p className="text-red-600 text-sm mt-1">
+                <p className="text-[var(--ns-red)] text-sm mt-1">
                   {errors.title.message}
                 </p>
               )}
@@ -377,7 +377,7 @@ export function ServiceRequestForm({
                 quotes
               </p>
               {errors.description && (
-                <p className="text-red-600 text-sm mt-1">
+                <p className="text-[var(--ns-red)] text-sm mt-1">
                   {errors.description.message}
                 </p>
               )}
@@ -429,9 +429,9 @@ export function ServiceRequestForm({
                         </div>
 
                         {isExpanded ? (
-                          <ChevronUp className="h-5 w-5 text-gray-500" />
+                          <ChevronUp className="h-5 w-5 text-secondary/60 dark:text-accent/60" />
                         ) : (
-                          <ChevronDown className="h-5 w-5 text-gray-500" />
+                          <ChevronDown className="h-5 w-5 text-secondary/60 dark:text-accent/60" />
                         )}
                       </button>
 
@@ -470,7 +470,7 @@ export function ServiceRequestForm({
               </div>
 
               {errors.requestedServices && (
-                <p className="text-red-600 text-sm mt-1">
+                <p className="text-[var(--ns-red)] text-sm mt-1">
                   {errors.requestedServices.message}
                 </p>
               )}
@@ -553,10 +553,10 @@ export function ServiceRequestForm({
           </CardHeader>
           <CardContent>
             {damageAssessments.length === 0 ? (
-              <div className="text-center py-6 border-2 border-dashed border-gray-300 rounded-lg">
+              <div className="text-center py-6 border-2 border-dashed border-[var(--stroke-3)] rounded-lg">
                 <AlertCircle className="h-8 w-8 text-muted-foreground/60 mx-auto mb-2" />
                 <p className="text-muted-foreground">No damage reported</p>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-secondary/60 dark:text-accent/60">
                   Add damage assessments if your car has visible damage
                 </p>
               </div>
@@ -746,7 +746,7 @@ export function ServiceRequestForm({
                 <Label htmlFor="city">City *</Label>
                 <Input id="city" {...register("city")} placeholder="City" />
                 {errors.city && (
-                  <p className="text-red-600 text-sm mt-1">
+                  <p className="text-[var(--ns-red)] text-sm mt-1">
                     {errors.city.message}
                   </p>
                 )}
@@ -756,7 +756,7 @@ export function ServiceRequestForm({
                 <Label htmlFor="state">State *</Label>
                 <Input id="state" {...register("state")} placeholder="State" />
                 {errors.state && (
-                  <p className="text-red-600 text-sm mt-1">
+                  <p className="text-[var(--ns-red)] text-sm mt-1">
                     {errors.state.message}
                   </p>
                 )}
@@ -827,7 +827,7 @@ export function ServiceRequestForm({
                   Your request will be sent to qualified workshops in your area
                 </p>
                 {!isValid && (
-                  <p className="text-sm text-orange-600 mt-2 flex items-center gap-1">
+                  <p className="text-sm text-[var(--ns-red)] mt-2 flex items-center gap-1">
                     <AlertCircle className="h-4 w-4" />
                     Please fill in all required fields
                   </p>

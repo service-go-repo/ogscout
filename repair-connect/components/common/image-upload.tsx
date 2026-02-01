@@ -171,28 +171,28 @@ export default function ImageUpload({
             {...getRootProps()}
             className={`
               border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors
-              ${isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300'}
-              ${disabled || uploading ? 'opacity-50 cursor-not-allowed' : 'hover:border-blue-400 hover:bg-gray-50'}
+              ${isDragActive ? 'border-primary-500 bg-primary-100' : 'border-[var(--stroke-3)]'}
+              ${disabled || uploading ? 'opacity-50 cursor-not-allowed' : 'hover:border-primary-500 hover:bg-background-3'}
             `}
           >
             <input {...getInputProps()} />
             
             <div className="flex flex-col items-center gap-4">
-              <div className="text-gray-400">
+              <div className="text-secondary/40 dark:text-accent/40">
                 {uploading ? (
                   <Loader2 className="w-8 h-8 animate-spin" />
                 ) : (
                   getUploadTypeIcon()
                 )}
               </div>
-              
+
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                <h3 className="text-lg font-medium text-secondary dark:text-accent mb-2">
                   {uploading ? 'Uploading...' : `Upload ${getUploadTypeLabel()}`}
                 </h3>
-                
+
                 {!uploading && (
-                  <div className="text-sm text-gray-600 space-y-1">
+                  <div className="text-sm text-secondary/60 dark:text-accent/60 space-y-1">
                     <p>
                       {isDragActive 
                         ? 'Drop the files here...' 
@@ -222,13 +222,13 @@ export default function ImageUpload({
 
       {/* Error Messages */}
       {errors.length > 0 && (
-        <Card className="border-red-200">
+        <Card className="border-[var(--ns-red)]">
           <CardContent className="p-4">
             <div className="flex items-start gap-2">
-              <AlertCircle className="w-5 h-5 text-red-500 mt-0.5" />
+              <AlertCircle className="w-5 h-5 text-[var(--ns-red)] mt-0.5" />
               <div>
-                <h4 className="text-sm font-medium text-red-800 mb-1">Upload Errors</h4>
-                <ul className="text-sm text-red-600 space-y-1">
+                <h4 className="text-sm font-medium text-[var(--secondary)] mb-1">Upload Errors</h4>
+                <ul className="text-sm text-[var(--ns-red)] space-y-1">
                   {errors.map((error, index) => (
                     <li key={index}>• {error}</li>
                   ))}
@@ -244,8 +244,8 @@ export default function ImageUpload({
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center gap-2 mb-3">
-              <CheckCircle className="w-5 h-5 text-green-500" />
-              <h4 className="text-sm font-medium text-green-800">
+              <CheckCircle className="w-5 h-5 text-[var(--ns-green)]" />
+              <h4 className="text-sm font-medium text-[var(--secondary)]">
                 Successfully Uploaded ({uploadedFiles.length})
               </h4>
             </div>
@@ -253,7 +253,7 @@ export default function ImageUpload({
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
               {uploadedFiles.map((file, index) => (
                 <div key={index} className="relative group">
-                  <div className="aspect-square rounded-lg overflow-hidden bg-gray-100">
+                  <div className="aspect-square rounded-lg overflow-hidden bg-background-3 dark:bg-background-7">
                     <img
                       src={file.secure_url}
                       alt={file.name}
@@ -289,7 +289,7 @@ export default function ImageUpload({
       )}
 
       {/* File Count Info */}
-      <div className="text-sm text-gray-600 text-center">
+      <div className="text-sm text-secondary/60 dark:text-accent/60 text-center">
         {existingImages.length + uploadedFiles.length} of {maxFiles} files
       </div>
     </div>

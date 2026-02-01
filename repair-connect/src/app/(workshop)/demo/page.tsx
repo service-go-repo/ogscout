@@ -120,23 +120,23 @@ export default function WorkshopDemoPage() {
     <div className="container mx-auto p-6 space-y-8">
       {/* Header */}
       <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-gray-900">
+        <h1 className="text-4xl font-bold text-foreground">
           Workshop Profile Management Demo
         </h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
           Comprehensive workshop profile management system with image uploads, portfolio management, 
           certification tracking, and gallery organization.
         </p>
         <div className="flex items-center justify-center gap-2">
-          <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+          <Badge variant="outline" className="bg-[var(--ns-green-light)] text-[var(--ns-green)] border-[var(--ns-green)]/20">
             <CheckCircle className="w-3 h-3 mr-1" />
             Fully Functional
           </Badge>
-          <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+          <Badge variant="outline" className="bg-[var(--ns-cyan-light)] text-[var(--ns-cyan)] border-[var(--ns-cyan)]/20">
             <Upload className="w-3 h-3 mr-1" />
             Cloudinary Integration
           </Badge>
-          <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">
+          <Badge variant="outline" className="bg-[var(--primary-100)] text-[var(--primary-700)] border-[var(--primary-300)]">
             <Star className="w-3 h-3 mr-1" />
             Production Ready
           </Badge>
@@ -185,19 +185,19 @@ export default function WorkshopDemoPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">Business information forms</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">Logo & cover image upload</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">Contact & location management</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">Operating hours configuration</span>
                 </div>
               </CardContent>
@@ -212,19 +212,19 @@ export default function WorkshopDemoPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">Before/after photo uploads</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">Service type categorization</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">Featured project highlighting</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">Project completion tracking</span>
                 </div>
               </CardContent>
@@ -239,19 +239,19 @@ export default function WorkshopDemoPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">Professional certification tracking</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">Expiration date monitoring</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">Certificate image uploads</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">Verification status display</span>
                 </div>
               </CardContent>
@@ -266,19 +266,19 @@ export default function WorkshopDemoPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">Photo categorization system</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">Bulk photo operations</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">Grid & list view modes</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">Featured image highlighting</span>
                 </div>
               </CardContent>
@@ -293,19 +293,19 @@ export default function WorkshopDemoPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">Drag & drop interface</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">Cloudinary integration</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">Automatic image optimization</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">File validation & error handling</span>
                 </div>
               </CardContent>
@@ -320,19 +320,19 @@ export default function WorkshopDemoPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">React Hook Form + Zod validation</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">TypeScript type safety</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">Responsive design</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[var(--ns-green)]" />
                   <span className="text-sm">Real-time form validation</span>
                 </div>
               </CardContent>
@@ -429,17 +429,17 @@ export default function WorkshopDemoPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <h4 className="font-medium mb-2">Workshop Profile API</h4>
-              <div className="space-y-1 text-sm text-gray-600">
-                <div><code className="bg-gray-100 px-2 py-1 rounded">GET /api/workshops/profile</code> - Fetch profile</div>
-                <div><code className="bg-gray-100 px-2 py-1 rounded">POST /api/workshops/profile</code> - Create profile</div>
-                <div><code className="bg-gray-100 px-2 py-1 rounded">PUT /api/workshops/profile</code> - Update profile</div>
+              <div className="space-y-1 text-sm text-muted-foreground">
+                <div><code className="bg-muted px-2 py-1 rounded">GET /api/workshops/profile</code> - Fetch profile</div>
+                <div><code className="bg-muted px-2 py-1 rounded">POST /api/workshops/profile</code> - Create profile</div>
+                <div><code className="bg-muted px-2 py-1 rounded">PUT /api/workshops/profile</code> - Update profile</div>
               </div>
             </div>
             <div>
               <h4 className="font-medium mb-2">Image Upload API</h4>
-              <div className="space-y-1 text-sm text-gray-600">
-                <div><code className="bg-gray-100 px-2 py-1 rounded">POST /api/workshops/upload</code> - Upload images</div>
-                <div><code className="bg-gray-100 px-2 py-1 rounded">DELETE /api/workshops/upload</code> - Delete images</div>
+              <div className="space-y-1 text-sm text-muted-foreground">
+                <div><code className="bg-muted px-2 py-1 rounded">POST /api/workshops/upload</code> - Upload images</div>
+                <div><code className="bg-muted px-2 py-1 rounded">DELETE /api/workshops/upload</code> - Delete images</div>
               </div>
             </div>
           </div>

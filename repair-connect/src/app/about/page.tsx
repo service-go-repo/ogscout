@@ -169,19 +169,19 @@ export default function AboutPage() {
 
       <div className="flex flex-col">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-b from-background via-muted/20 to-background py-20 lg:py-32 border-b overflow-hidden">
+        <section className="relative bg-gradient-to-b from-background via-background-3/20 dark:via-background-7/20 to-background py-20 lg:py-32 border-b overflow-hidden">
           <div className="absolute inset-0 bg-grid-primary/[0.02] pointer-events-none" />
 
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
             <AnimatedSection>
               <div className="max-w-4xl mx-auto text-center space-y-8">
-                <Badge variant="outline" className="border-primary text-primary px-4 py-2">
+                <Badge variant="outline" className="border-primary-500 text-primary-500 px-4 py-2">
                   About Us
                 </Badge>
 
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-secondary dark:text-accent leading-tight">
                   Connecting Dubai's Car Owners with{' '}
-                  <span className="text-primary relative">
+                  <span className="text-primary-500 relative">
                     Trusted Workshops
                     <svg
                       className="absolute -bottom-2 left-0 w-full"
@@ -195,13 +195,13 @@ export default function AboutPage() {
                         stroke="currentColor"
                         strokeWidth="2"
                         strokeLinecap="round"
-                        className="text-primary"
+                        className="text-primary-500"
                       />
                     </svg>
                   </span>
                 </h1>
 
-                <p className="text-lg sm:text-xl text-muted-foreground">
+                <p className="text-lg sm:text-xl text-secondary/60 dark:text-accent/60">
                   Connecting Dubai's car owners with trusted workshops since 2024. We're on a mission to make car repairs transparent, convenient, and reliable for everyone.
                 </p>
 
@@ -222,7 +222,7 @@ export default function AboutPage() {
         </section>
 
         {/* Mission & Vision Section */}
-        <section className="py-20 bg-background">
+        <section className="py-20 bg-background-2 dark:bg-background-5">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <SectionHeader
@@ -235,10 +235,10 @@ export default function AboutPage() {
             <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
               <StaggerItem variants={staggerItemVariants}>
                 <HoverScale>
-                  <Card className="border-2 hover:border-primary/50 hover:shadow-xl transition-all h-full">
+                  <Card className="border-2 hover:border-primary-500/50 hover:shadow-xl transition-all h-full">
                     <CardHeader>
-                      <div className="h-16 w-16 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                        <Target className="h-8 w-8 text-primary" />
+                      <div className="h-16 w-16 rounded-xl bg-primary-500/10 flex items-center justify-center mb-4">
+                        <Target className="h-8 w-8 text-primary-500" />
                       </div>
                       <CardTitle className="text-2xl">Our Mission</CardTitle>
                     </CardHeader>
@@ -253,10 +253,10 @@ export default function AboutPage() {
 
               <StaggerItem variants={staggerItemVariants}>
                 <HoverScale>
-                  <Card className="border-2 hover:border-primary/50 hover:shadow-xl transition-all h-full">
+                  <Card className="border-2 hover:border-primary-500/50 hover:shadow-xl transition-all h-full">
                     <CardHeader>
-                      <div className="h-16 w-16 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                        <Eye className="h-8 w-8 text-primary" />
+                      <div className="h-16 w-16 rounded-xl bg-primary-500/10 flex items-center justify-center mb-4">
+                        <Eye className="h-8 w-8 text-primary-500" />
                       </div>
                       <CardTitle className="text-2xl">Our Vision</CardTitle>
                     </CardHeader>
@@ -273,7 +273,7 @@ export default function AboutPage() {
         </section>
 
         {/* Why Choose Section */}
-        <section className="py-20 bg-muted/30">
+        <section className="py-20 bg-background dark:bg-background-6">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <SectionHeader
@@ -290,10 +290,10 @@ export default function AboutPage() {
                 return (
                   <StaggerItem key={index} variants={staggerItemVariants}>
                     <HoverScale>
-                      <Card className="border-2 hover:border-primary/50 hover:shadow-lg transition-all h-full group">
+                      <Card className="border-2 hover:border-primary-500/50 hover:shadow-lg transition-all h-full group">
                         <CardHeader>
-                          <div className="h-14 w-14 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors flex items-center justify-center mb-4">
-                            <IconComponent className="h-7 w-7 text-primary" />
+                          <div className="h-14 w-14 rounded-xl bg-primary-500/10 group-hover:bg-primary-500/20 transition-colors flex items-center justify-center mb-4">
+                            <IconComponent className="h-7 w-7 text-primary-500" />
                           </div>
                           <CardTitle className="text-xl">{benefit.title}</CardTitle>
                         </CardHeader>
@@ -312,7 +312,7 @@ export default function AboutPage() {
         </section>
 
         {/* Timeline Section */}
-        <section className="py-20 bg-background">
+        <section className="py-20 bg-background-2 dark:bg-background-5">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <SectionHeader
@@ -330,22 +330,22 @@ export default function AboutPage() {
                   return (
                     <StaggerItem key={index} variants={staggerItemVariants}>
                       <HoverScale scale={1.01}>
-                        <Card className="border-2 hover:border-primary/50 hover:shadow-lg transition-all">
+                        <Card className="border-2 hover:border-primary-500/50 hover:shadow-lg transition-all">
                           <CardContent className="p-6 sm:p-8">
                             <div className="flex flex-col sm:flex-row gap-6 items-start">
                               <div className="flex-shrink-0">
-                                <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
-                                  <IconComponent className="h-8 w-8 text-primary" />
+                                <div className="h-16 w-16 rounded-full bg-primary-500/10 flex items-center justify-center">
+                                  <IconComponent className="h-8 w-8 text-primary-500" />
                                 </div>
                               </div>
                               <div className="flex-1 space-y-2">
                                 <Badge variant="secondary" className="mb-2">
                                   {milestone.year}
                                 </Badge>
-                                <h3 className="text-xl font-bold text-foreground">
+                                <h3 className="text-xl font-bold text-secondary dark:text-accent">
                                   {milestone.title}
                                 </h3>
-                                <p className="text-muted-foreground leading-relaxed">
+                                <p className="text-secondary/60 dark:text-accent/60 leading-relaxed">
                                   {milestone.description}
                                 </p>
                               </div>
@@ -362,7 +362,7 @@ export default function AboutPage() {
         </section>
 
         {/* Team Section */}
-        <section className="py-20 bg-muted/30">
+        <section className="py-20 bg-background dark:bg-background-6">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <SectionHeader
@@ -379,10 +379,10 @@ export default function AboutPage() {
                 return (
                   <StaggerItem key={index} variants={staggerItemVariants}>
                     <HoverScale>
-                      <Card className="border-2 hover:border-primary/50 hover:shadow-xl transition-all h-full text-center">
+                      <Card className="border-2 hover:border-primary-500/50 hover:shadow-xl transition-all h-full text-center">
                         <CardHeader>
-                          <div className="h-24 w-24 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center mx-auto mb-4 border-2 border-primary/20">
-                            <IconComponent className="h-12 w-12 text-primary" />
+                          <div className="h-24 w-24 rounded-full bg-gradient-to-br from-primary-500/20 to-primary/5 flex items-center justify-center mx-auto mb-4 border-2 border-primary-500/20">
+                            <IconComponent className="h-12 w-12 text-primary-500" />
                           </div>
                           <CardTitle className="text-xl">{member.name}</CardTitle>
                           <Badge variant="secondary" className="w-fit mx-auto">
@@ -404,7 +404,7 @@ export default function AboutPage() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-20 bg-background">
+        <section className="py-20 bg-background-2 dark:bg-background-5">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <SectionHeader
@@ -424,7 +424,7 @@ export default function AboutPage() {
                           <AccordionTrigger className="text-left font-semibold">
                             {faq.question}
                           </AccordionTrigger>
-                          <AccordionContent className="text-muted-foreground leading-relaxed">
+                          <AccordionContent className="text-secondary/60 dark:text-accent/60 leading-relaxed">
                             {faq.answer}
                           </AccordionContent>
                         </AccordionItem>
@@ -438,7 +438,7 @@ export default function AboutPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-br from-primary to-primary/80 text-primary-foreground relative overflow-hidden">
+        <section className="py-20 bg-gradient-to-br from-primary-500 to-primary-500/80 text-primary-foreground relative overflow-hidden">
           <div className="absolute inset-0 bg-grid-white/[0.05] pointer-events-none" />
 
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -469,7 +469,7 @@ export default function AboutPage() {
                     size="xl"
                     variant="outline"
                     asChild
-                    className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+                    className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary-500"
                   >
                     <Link href="/auth/workshop/register">Join as Workshop</Link>
                   </Button>

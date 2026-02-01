@@ -266,7 +266,7 @@ export default function WorkshopDetailPage({
           href={getWhatsAppLink()}
           target="_blank"
           rel="noopener noreferrer"
-          className="floating-action-btn flex items-center justify-center w-14 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+          className="floating-action-btn flex items-center justify-center w-14 h-14 bg-[var(--ns-green)] hover:bg-[var(--ns-green)]/90 text-[var(--secondary)] rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
           aria-label="Contact via WhatsApp"
         >
           <MessageCircle className="w-6 h-6" />
@@ -319,7 +319,7 @@ export default function WorkshopDetailPage({
                   {workshop.isVerified && (
                     <Badge
                       variant="secondary"
-                      className="bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200 text-xs sm:text-sm"
+                      className="bg-[var(--ns-green-light)] text-[var(--ns-green)] text-xs sm:text-sm"
                     >
                       <CheckCircle className="w-3 h-3 mr-1" />
                       Verified
@@ -461,7 +461,7 @@ export default function WorkshopDetailPage({
                   </Button>
                   <Button
                     size="sm"
-                    className="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white border-0"
+                    className="flex-1 bg-[var(--ns-green)] hover:bg-[var(--ns-green)]/90 text-[var(--secondary)] border-0"
                     asChild
                   >
                     <a
@@ -650,7 +650,7 @@ export default function WorkshopDetailPage({
                       key={index}
                       className="flex items-center py-2 px-3 rounded-lg hover:bg-muted/50 transition-colors"
                     >
-                      <CheckCircle className="w-4 h-4 mr-3 text-emerald-500 dark:text-emerald-400 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 mr-3 text-[var(--ns-green)] flex-shrink-0" />
                       <span className="text-sm font-medium">{feature}</span>
                     </div>
                   ))}

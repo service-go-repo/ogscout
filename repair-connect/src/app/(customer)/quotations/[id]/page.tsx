@@ -278,17 +278,17 @@ export default function QuotationDetailPage({
   const getStatusColor = (status: string) => {
     switch (status) {
       case "pending":
-        return "bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200";
+        return "bg-[var(--ns-yellow-light)] text-[var(--ns-yellow)]";
       case "quoted":
         return "bg-primary/10 text-primary dark:bg-primary/20";
       case "accepted":
-        return "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200";
+        return "bg-[var(--ns-green-light)] text-[var(--ns-green)]";
       case "declined":
         return "bg-destructive/10 text-destructive";
       case "expired":
         return "bg-muted text-muted-foreground";
       case "completed":
-        return "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200";
+        return "bg-[var(--ns-green-light)] text-[var(--ns-green)]";
       case "cancelled":
         return "bg-destructive/10 text-destructive";
       default:

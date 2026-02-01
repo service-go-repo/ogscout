@@ -72,14 +72,14 @@ export default function MapView({
   // For now, we'll create a placeholder map component
   // In a real implementation, you would integrate with Google Maps, Mapbox, or OpenStreetMap
   const renderPlaceholderMap = () => (
-    <div 
-      className="relative bg-gray-100 rounded-lg overflow-hidden"
+    <div
+      className="relative bg-background-3 dark:bg-background-7 rounded-lg overflow-hidden"
       style={{ height }}
     >
       {/* Map Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-green-100">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-100 to-[var(--ns-green-light)]">
         <div className="absolute inset-0 opacity-20">
-          <svg width="100%" height="100%" viewBox="0 0 100 100" className="text-gray-400">
+          <svg width="100%" height="100%" viewBox="0 0 100 100" className="text-secondary/40 dark:text-accent/40">
             <defs>
               <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
                 <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" strokeWidth="0.5"/>
@@ -133,15 +133,15 @@ export default function MapView({
               onClick={() => onWorkshopSelect?.(workshop)}
             >
               <div className={`relative ${isSelected ? 'animate-pulse' : ''}`}>
-                <MapPin 
+                <MapPin
                   className={`w-8 h-8 ${
-                    isSelected 
-                      ? 'text-blue-600 fill-blue-200' 
-                      : 'text-red-600 fill-red-200'
+                    isSelected
+                      ? 'text-primary-500 fill-primary-100'
+                      : 'text-[var(--ns-red)] fill-[var(--ns-red)]/20'
                   } drop-shadow-lg`}
                 />
                 {workshop.isVerified && (
-                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white" />
+                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-[var(--ns-green)] rounded-full border-2 border-white" />
                 )}
               </div>
               
@@ -151,7 +151,7 @@ export default function MapView({
                   <div className="flex items-start gap-3">
                     <div className="flex-1">
                       <h4 className="font-medium text-sm">{workshop.profile.businessName}</h4>
-                      <p className="text-xs text-gray-600 mb-2">
+                      <p className="text-xs text-secondary/60 dark:text-accent/60 mb-2">
                         {workshop.contact.address.city}, {workshop.contact.address.state}
                       </p>
                       <div className="flex items-center gap-2 mb-2">
@@ -161,15 +161,15 @@ export default function MapView({
                               key={i}
                               className={`text-xs ${
                                 i < Math.floor(workshop.stats.averageRating)
-                                  ? 'text-yellow-400'
-                                  : 'text-gray-300'
+                                  ? 'text-[var(--ns-yellow)]'
+                                  : 'text-secondary/40 dark:text-accent/40'
                               }`}
                             >
                               ★
                             </span>
                           ))}
                         </div>
-                        <span className="text-xs text-gray-600">
+                        <span className="text-xs text-secondary/60 dark:text-accent/60">
                           {workshop.stats.averageRating.toFixed(1)} ({workshop.stats.totalReviews})
                         </span>
                       </div>
@@ -203,22 +203,22 @@ export default function MapView({
           style={{ left: '50%', top: '50%' }}
         >
           <div className="relative">
-            <div className="w-4 h-4 bg-blue-600 rounded-full border-2 border-white shadow-lg animate-pulse" />
-            <div className="absolute inset-0 w-4 h-4 bg-blue-600 rounded-full animate-ping opacity-75" />
+            <div className="w-4 h-4 bg-primary-500 rounded-full border-2 border-white shadow-lg animate-pulse" />
+            <div className="absolute inset-0 w-4 h-4 bg-primary-500 rounded-full animate-ping opacity-75" />
           </div>
         </div>
       )}
 
       {/* Error Message */}
       {mapError && (
-        <div className="absolute bottom-4 left-4 right-4 bg-red-50 border border-red-200 rounded-lg p-3 flex items-center gap-2">
-          <AlertCircle className="w-4 h-4 text-red-600" />
-          <span className="text-sm text-red-700">{mapError}</span>
+        <div className="absolute bottom-4 left-4 right-4 bg-[var(--ns-red)]/20 border border-[var(--ns-red)] rounded-lg p-3 flex items-center gap-2">
+          <AlertCircle className="w-4 h-4 text-[var(--ns-red)]" />
+          <span className="text-sm text-[var(--ns-red)]">{mapError}</span>
         </div>
       )}
 
       {/* Map Attribution */}
-      <div className="absolute bottom-2 left-2 text-xs text-gray-500 bg-white bg-opacity-75 px-2 py-1 rounded">
+      <div className="absolute bottom-2 left-2 text-xs text-secondary/60 dark:text-accent/60 bg-white bg-opacity-75 px-2 py-1 rounded">
         Map placeholder - Integrate with real mapping service
       </div>
     </div>
@@ -252,13 +252,13 @@ export function CompactMapView({
   className?: string
 }) {
   return (
-    <div 
-      className={`relative bg-gray-100 rounded-lg overflow-hidden ${className}`}
+    <div
+      className={`relative bg-background-3 dark:bg-background-7 rounded-lg overflow-hidden ${className}`}
       style={{ height }}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-green-100">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-100 to-[var(--ns-green-light)]">
         <div className="absolute inset-0 opacity-20">
-          <svg width="100%" height="100%" viewBox="0 0 100 100" className="text-gray-400">
+          <svg width="100%" height="100%" viewBox="0 0 100 100" className="text-secondary/40 dark:text-accent/40">
             <defs>
               <pattern id="compact-grid" width="10" height="10" patternUnits="userSpaceOnUse">
                 <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" strokeWidth="0.5"/>
@@ -272,16 +272,16 @@ export function CompactMapView({
       {/* Workshop Marker */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="relative">
-          <MapPin className="w-8 h-8 text-red-600 fill-red-200 drop-shadow-lg" />
+          <MapPin className="w-8 h-8 text-[var(--ns-red)] fill-[var(--ns-red)]/20 drop-shadow-lg" />
           {workshop.isVerified && (
-            <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white" />
+            <div className="absolute -top-1 -right-1 w-3 h-3 bg-[var(--ns-green)] rounded-full border-2 border-white" />
           )}
         </div>
       </div>
 
       {/* Address */}
       <div className="absolute bottom-2 left-2 right-2 bg-white bg-opacity-90 rounded px-2 py-1">
-        <p className="text-xs text-gray-700 truncate">
+        <p className="text-xs text-secondary dark:text-accent truncate">
           {workshop.contact.address.street}, {workshop.contact.address.city}
         </p>
       </div>

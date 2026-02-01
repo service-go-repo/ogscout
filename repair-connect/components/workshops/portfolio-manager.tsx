@@ -191,7 +191,7 @@ export default function PortfolioManager({
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-lg font-semibold">Portfolio Management</h3>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-secondary/60 dark:text-accent/60">
             Showcase your best work with before and after photos
           </p>
         </div>
@@ -220,7 +220,7 @@ export default function PortfolioManager({
                     placeholder="Engine Rebuild - 2018 BMW M3"
                   />
                   {form.formState.errors.title && (
-                    <p className="text-sm text-red-600 mt-1">
+                    <p className="text-sm text-[var(--ns-red)] mt-1">
                       {form.formState.errors.title.message}
                     </p>
                   )}
@@ -255,7 +255,7 @@ export default function PortfolioManager({
                   rows={3}
                 />
                 {form.formState.errors.description && (
-                  <p className="text-sm text-red-600 mt-1">
+                  <p className="text-sm text-[var(--ns-red)] mt-1">
                     {form.formState.errors.description.message}
                   </p>
                 )}
@@ -289,7 +289,7 @@ export default function PortfolioManager({
                     {...form.register('completedDate')}
                   />
                   {form.formState.errors.completedDate && (
-                    <p className="text-sm text-red-600 mt-1">
+                    <p className="text-sm text-[var(--ns-red)] mt-1">
                       {form.formState.errors.completedDate.message}
                     </p>
                   )}
@@ -309,7 +309,7 @@ export default function PortfolioManager({
               <div className="space-y-6">
                 <div>
                   <Label className="text-base font-medium">Before Photos</Label>
-                  <p className="text-sm text-gray-600 mb-3">
+                  <p className="text-sm text-secondary/60 dark:text-accent/60 mb-3">
                     Upload photos showing the condition before work began
                   </p>
                   <ImageUpload
@@ -330,7 +330,7 @@ export default function PortfolioManager({
 
                 <div>
                   <Label className="text-base font-medium">After Photos</Label>
-                  <p className="text-sm text-gray-600 mb-3">
+                  <p className="text-sm text-secondary/60 dark:text-accent/60 mb-3">
                     Upload photos showing the completed work
                   </p>
                   <ImageUpload
@@ -373,9 +373,9 @@ export default function PortfolioManager({
         {items.length === 0 ? (
           <Card>
             <CardContent className="text-center py-12">
-              <Camera className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No Portfolio Items</h3>
-              <p className="text-gray-600 mb-4">
+              <Camera className="w-12 h-12 mx-auto mb-4 text-secondary/40 dark:text-accent/40" />
+              <h3 className="text-lg font-medium text-secondary dark:text-accent mb-2">No Portfolio Items</h3>
+              <p className="text-secondary/60 dark:text-accent/60 mb-4">
                 Start building your portfolio by adding your first project
               </p>
               <Button onClick={handleAddNew}>
@@ -388,7 +388,7 @@ export default function PortfolioManager({
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {items.map((item) => (
               <Card key={item.id} className="overflow-hidden">
-                <div className="aspect-video bg-gray-100 relative">
+                <div className="aspect-video bg-background-3 dark:bg-background-7 relative">
                   {item.afterImages.length > 0 ? (
                     <img
                       src={item.afterImages[0]}
@@ -397,11 +397,11 @@ export default function PortfolioManager({
                     />
                   ) : (
                     <div className="flex items-center justify-center h-full">
-                      <Camera className="w-8 h-8 text-gray-400" />
+                      <Camera className="w-8 h-8 text-secondary/40 dark:text-accent/40" />
                     </div>
                   )}
                   {item.featured && (
-                    <Badge className="absolute top-2 right-2 bg-yellow-500">
+                    <Badge className="absolute top-2 right-2 bg-[var(--ns-yellow)]">
                       <Star className="w-3 h-3 mr-1" />
                       Featured
                     </Badge>
@@ -431,7 +431,7 @@ export default function PortfolioManager({
                     </div>
                   </div>
                   
-                  <p className="text-xs text-gray-600 mb-3 line-clamp-2">
+                  <p className="text-xs text-secondary/60 dark:text-accent/60 mb-3 line-clamp-2">
                     {item.description}
                   </p>
                   
@@ -439,7 +439,7 @@ export default function PortfolioManager({
                     <Badge variant="outline">
                       {getServiceTypeLabel(item.serviceType)}
                     </Badge>
-                    <div className="flex items-center text-gray-500">
+                    <div className="flex items-center text-secondary/60 dark:text-accent/60">
                       <Calendar className="w-3 h-3 mr-1" />
                       {new Date(item.completedDate).toLocaleDateString()}
                     </div>
@@ -487,10 +487,10 @@ export default function PortfolioManager({
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <h3 className="text-xl font-bold">{viewingPortfolio.title}</h3>
-                  <p className="text-sm text-muted-foreground mt-1">{viewingPortfolio.description}</p>
+                  <p className="text-sm text-secondary/60 dark:text-accent/60 mt-1">{viewingPortfolio.description}</p>
                 </div>
                 {viewingPortfolio.featured && (
-                  <Badge className="bg-yellow-500">
+                  <Badge className="bg-[var(--ns-yellow)]">
                     <Star className="w-3 h-3 mr-1" />
                     Featured
                   </Badge>
@@ -507,7 +507,7 @@ export default function PortfolioManager({
                       {viewingPortfolio.beforeImages.map((img, idx) => (
                         <div
                           key={idx}
-                          className="aspect-video rounded-lg overflow-hidden border bg-gray-50 cursor-pointer hover:opacity-90 transition-opacity"
+                          className="aspect-video rounded-lg overflow-hidden border bg-background-3 dark:bg-background-7 cursor-pointer hover:opacity-90 transition-opacity"
                           onClick={() => setLightboxImage({ images: viewingPortfolio.beforeImages, index: idx, type: 'before' })}
                         >
                           <img
@@ -519,8 +519,8 @@ export default function PortfolioManager({
                       ))}
                     </div>
                   ) : (
-                    <div className="aspect-video rounded-lg border bg-gray-50 flex items-center justify-center">
-                      <Camera className="w-8 h-8 text-gray-400" />
+                    <div className="aspect-video rounded-lg border bg-background-3 dark:bg-background-7 flex items-center justify-center">
+                      <Camera className="w-8 h-8 text-secondary/40 dark:text-accent/40" />
                     </div>
                   )}
                 </div>
@@ -533,7 +533,7 @@ export default function PortfolioManager({
                       {viewingPortfolio.afterImages.map((img, idx) => (
                         <div
                           key={idx}
-                          className="aspect-video rounded-lg overflow-hidden border bg-gray-50 cursor-pointer hover:opacity-90 transition-opacity"
+                          className="aspect-video rounded-lg overflow-hidden border bg-background-3 dark:bg-background-7 cursor-pointer hover:opacity-90 transition-opacity"
                           onClick={() => setLightboxImage({ images: viewingPortfolio.afterImages, index: idx, type: 'after' })}
                         >
                           <img
@@ -545,8 +545,8 @@ export default function PortfolioManager({
                       ))}
                     </div>
                   ) : (
-                    <div className="aspect-video rounded-lg border bg-gray-50 flex items-center justify-center">
-                      <Camera className="w-8 h-8 text-gray-400" />
+                    <div className="aspect-video rounded-lg border bg-background-3 dark:bg-background-7 flex items-center justify-center">
+                      <Camera className="w-8 h-8 text-secondary/40 dark:text-accent/40" />
                     </div>
                   )}
                 </div>
@@ -555,7 +555,7 @@ export default function PortfolioManager({
               {/* Project Information */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t">
                 <div>
-                  <Label className="text-sm text-muted-foreground">Service Type</Label>
+                  <Label className="text-sm text-secondary/60 dark:text-accent/60">Service Type</Label>
                   <div className="font-medium mt-1">
                     <Badge variant="outline">
                       {getServiceTypeLabel(viewingPortfolio.serviceType)}
@@ -565,7 +565,7 @@ export default function PortfolioManager({
 
                 {viewingPortfolio.carBrand && (
                   <div>
-                    <Label className="text-sm text-muted-foreground">Car Brand</Label>
+                    <Label className="text-sm text-secondary/60 dark:text-accent/60">Car Brand</Label>
                     <div className="font-medium mt-1">
                       <Badge variant="secondary">
                         {getCarBrandLabel(viewingPortfolio.carBrand)}
@@ -575,7 +575,7 @@ export default function PortfolioManager({
                 )}
 
                 <div>
-                  <Label className="text-sm text-muted-foreground">Completion Date</Label>
+                  <Label className="text-sm text-secondary/60 dark:text-accent/60">Completion Date</Label>
                   <p className="font-medium flex items-center gap-2 mt-1">
                     <Calendar className="w-4 h-4" />
                     {new Date(viewingPortfolio.completedDate).toLocaleDateString('en-US', {

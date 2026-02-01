@@ -11,12 +11,12 @@ export default function ImageTest({ imageUrl }: ImageTestProps) {
   return (
     <div className="p-4 border rounded-lg space-y-4">
       <h3 className="font-bold">Image Test Component</h3>
-      <p className="text-sm text-gray-600">Testing URL: {imageUrl}</p>
+      <p className="text-sm text-secondary/60 dark:text-accent/60">Testing URL: {imageUrl}</p>
       
       {/* Test with regular Next.js Image */}
       <div>
         <h4 className="font-semibold mb-2">Regular Next.js Image:</h4>
-        <div className="w-48 h-48 bg-gray-100 border">
+        <div className="w-48 h-48 bg-[var(--background-3)] dark:bg-[var(--background-7)] border">
           <Image
             src={imageUrl}
             alt="Test image"
@@ -32,7 +32,7 @@ export default function ImageTest({ imageUrl }: ImageTestProps) {
       {/* Test with ImageWithFallback */}
       <div>
         <h4 className="font-semibold mb-2">ImageWithFallback Component:</h4>
-        <div className="w-48 h-48 bg-gray-100 border">
+        <div className="w-48 h-48 bg-[var(--background-3)] dark:bg-[var(--background-7)] border">
           <ImageWithFallback
             src={imageUrl}
             localPath=""
@@ -49,7 +49,7 @@ export default function ImageTest({ imageUrl }: ImageTestProps) {
       {/* Test with regular img tag */}
       <div>
         <h4 className="font-semibold mb-2">Regular HTML img tag:</h4>
-        <div className="w-48 h-48 bg-gray-100 border">
+        <div className="w-48 h-48 bg-[var(--background-3)] dark:bg-[var(--background-7)] border">
           <img
             src={imageUrl}
             alt="Test image HTML"

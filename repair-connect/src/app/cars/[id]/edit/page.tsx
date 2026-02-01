@@ -171,8 +171,8 @@ export default function CarEditPage({ params }: CarEditPageProps) {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-2xl mx-auto text-center">
-          <h1 className="text-2xl font-bold text-red-600 mb-4">Error</h1>
-          <p className="text-gray-600 mb-6">{error}</p>
+          <h1 className="text-2xl font-bold text-destructive mb-4">Error</h1>
+          <p className="text-muted-foreground mb-6">{error}</p>
           <Button asChild>
             <Link href="/cars">
               <ArrowLeft className="w-4 h-4 mr-2" />
@@ -189,7 +189,7 @@ export default function CarEditPage({ params }: CarEditPageProps) {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-2xl mx-auto text-center">
           <h1 className="text-2xl font-bold mb-4">Car Not Found</h1>
-          <p className="text-gray-600 mb-6">The car you&apos;re trying to edit doesn&apos;t exist or you don&apos;t have permission to edit it.</p>
+          <p className="text-muted-foreground mb-6">The car you&apos;re trying to edit doesn&apos;t exist or you don&apos;t have permission to edit it.</p>
           <Button asChild>
             <Link href="/cars">
               <ArrowLeft className="w-4 h-4 mr-2" />
@@ -213,7 +213,7 @@ export default function CarEditPage({ params }: CarEditPageProps) {
         </Button>
         <div>
           <h1 className="text-3xl font-bold">Edit Car</h1>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             {car.year} {car.make} {car.model}
           </p>
         </div>
@@ -221,8 +221,8 @@ export default function CarEditPage({ params }: CarEditPageProps) {
 
       {/* Error Message */}
       {error && (
-        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-          <p className="text-red-600">{error}</p>
+        <div className="mb-6 p-4 bg-destructive/10 border border-destructive/20 rounded-lg">
+          <p className="text-destructive">{error}</p>
         </div>
       )}
 
@@ -251,7 +251,7 @@ export default function CarEditPage({ params }: CarEditPageProps) {
                   </SelectContent>
                 </Select>
                 {errors.make && (
-                  <p className="text-sm text-red-600">{errors.make.message}</p>
+                  <p className="text-sm text-destructive">{errors.make.message}</p>
                 )}
               </div>
 
@@ -263,7 +263,7 @@ export default function CarEditPage({ params }: CarEditPageProps) {
                   placeholder="e.g., Camry, Accord, Model 3"
                 />
                 {errors.model && (
-                  <p className="text-sm text-red-600">{errors.model.message}</p>
+                  <p className="text-sm text-destructive">{errors.model.message}</p>
                 )}
               </div>
 
@@ -276,7 +276,7 @@ export default function CarEditPage({ params }: CarEditPageProps) {
                   placeholder="e.g., 2023"
                 />
                 {errors.year && (
-                  <p className="text-sm text-red-600">{errors.year.message}</p>
+                  <p className="text-sm text-destructive">{errors.year.message}</p>
                 )}
               </div>
 
@@ -296,7 +296,7 @@ export default function CarEditPage({ params }: CarEditPageProps) {
                   </SelectContent>
                 </Select>
                 {errors.color && (
-                  <p className="text-sm text-red-600">{errors.color.message}</p>
+                  <p className="text-sm text-destructive">{errors.color.message}</p>
                 )}
               </div>
 
@@ -310,7 +310,7 @@ export default function CarEditPage({ params }: CarEditPageProps) {
                   maxLength={17}
                 />
                 {errors.vin && (
-                  <p className="text-sm text-red-600">{errors.vin.message}</p>
+                  <p className="text-sm text-destructive">{errors.vin.message}</p>
                 )}
               </div>
 
@@ -322,7 +322,7 @@ export default function CarEditPage({ params }: CarEditPageProps) {
                   placeholder="e.g., ABC123"
                 />
                 {errors.licensePlate && (
-                  <p className="text-sm text-red-600">{errors.licensePlate.message}</p>
+                  <p className="text-sm text-destructive">{errors.licensePlate.message}</p>
                 )}
               </div>
 
@@ -335,7 +335,7 @@ export default function CarEditPage({ params }: CarEditPageProps) {
                   placeholder="e.g., 50000"
                 />
                 {errors.mileage && (
-                  <p className="text-sm text-red-600">{errors.mileage.message}</p>
+                  <p className="text-sm text-destructive">{errors.mileage.message}</p>
                 )}
               </div>
 
@@ -347,7 +347,7 @@ export default function CarEditPage({ params }: CarEditPageProps) {
                   placeholder="e.g., 2.0L, V6, 1.8T"
                 />
                 {errors.engineSize && (
-                  <p className="text-sm text-red-600">{errors.engineSize.message}</p>
+                  <p className="text-sm text-destructive">{errors.engineSize.message}</p>
                 )}
               </div>
 
@@ -369,7 +369,7 @@ export default function CarEditPage({ params }: CarEditPageProps) {
                   </SelectContent>
                 </Select>
                 {errors.transmission && (
-                  <p className="text-sm text-red-600">{errors.transmission.message}</p>
+                  <p className="text-sm text-destructive">{errors.transmission.message}</p>
                 )}
               </div>
 
@@ -391,7 +391,7 @@ export default function CarEditPage({ params }: CarEditPageProps) {
                   </SelectContent>
                 </Select>
                 {errors.fuelType && (
-                  <p className="text-sm text-red-600">{errors.fuelType.message}</p>
+                  <p className="text-sm text-destructive">{errors.fuelType.message}</p>
                 )}
               </div>
 
@@ -411,7 +411,7 @@ export default function CarEditPage({ params }: CarEditPageProps) {
                   </SelectContent>
                 </Select>
                 {errors.status && (
-                  <p className="text-sm text-red-600">{errors.status.message}</p>
+                  <p className="text-sm text-destructive">{errors.status.message}</p>
                 )}
               </div>
             </div>
@@ -424,7 +424,7 @@ export default function CarEditPage({ params }: CarEditPageProps) {
                 placeholder="Give your car a friendly name (optional)"
               />
               {errors.nickname && (
-                <p className="text-sm text-red-600">{errors.nickname.message}</p>
+                <p className="text-sm text-destructive">{errors.nickname.message}</p>
               )}
             </div>
 
@@ -437,7 +437,7 @@ export default function CarEditPage({ params }: CarEditPageProps) {
                 rows={4}
               />
               {errors.notes && (
-                <p className="text-sm text-red-600">{errors.notes.message}</p>
+                <p className="text-sm text-destructive">{errors.notes.message}</p>
               )}
             </div>
           </CardContent>

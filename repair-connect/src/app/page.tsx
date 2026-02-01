@@ -118,7 +118,7 @@ export default function HomePage() {
 
       <div className="flex flex-col">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-b from-background via-muted/20 to-background py-20 lg:py-32 border-b overflow-hidden">
+        <section className="relative bg-gradient-to-b from-background via-background-3/20 dark:via-background-7/20 to-background py-20 lg:py-32 border-b overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 bg-grid-primary/[0.02] pointer-events-none" />
 
@@ -127,13 +127,13 @@ export default function HomePage() {
               <AnimatedSection direction="left">
                 <div className="space-y-8">
                   <div className="space-y-6">
-                    <Badge variant="outline" className="border-primary text-primary px-4 py-2">
+                    <Badge variant="outline" className="border-primary-500 text-primary-500 px-4 py-2">
                       🚗 Dubai's #1 Workshop Matching Platform
                     </Badge>
 
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-secondary dark:text-accent leading-tight">
                       Find the{' '}
-                      <span className="text-primary relative">
+                      <span className="text-primary-500 relative">
                         Right Workshop
                         <svg
                           className="absolute -bottom-2 left-0 w-full"
@@ -147,14 +147,14 @@ export default function HomePage() {
                             stroke="currentColor"
                             strokeWidth="2"
                             strokeLinecap="round"
-                            className="text-primary"
+                            className="text-primary-500"
                           />
                         </svg>
                       </span>{' '}
                       for Your Car in Seconds
                     </h1>
 
-                    <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl">
+                    <p className="text-lg sm:text-xl text-secondary/60 dark:text-accent/60 max-w-2xl">
                       Connect with trusted repair workshops across Dubai. Get instant quotes, compare services, and book with confidence. From mechanical repairs to bodywork, we've got you covered.
                     </p>
                   </div>
@@ -176,9 +176,9 @@ export default function HomePage() {
                     {trustIndicators.map((indicator, index) => {
                       const IconComponent = indicator.icon;
                       return (
-                        <div key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
-                            <IconComponent className="h-4 w-4 text-primary" />
+                        <div key={index} className="flex items-center gap-2 text-sm text-secondary/60 dark:text-accent/60">
+                          <div className="h-8 w-8 rounded-full bg-primary-500/10 flex items-center justify-center">
+                            <IconComponent className="h-4 w-4 text-primary-500" />
                           </div>
                           <span>{indicator.label}</span>
                         </div>
@@ -190,18 +190,18 @@ export default function HomePage() {
 
               <AnimatedSection direction="right" delay={0.2}>
                 <div className="relative">
-                  <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-2xl blur-2xl opacity-50" />
-                  <Card className="border-2 shadow-2xl relative bg-background/95 backdrop-blur">
+                  <div className="absolute -inset-4 bg-gradient-to-r from-primary-500/20 to-primary-500/20 rounded-2xl blur-2xl opacity-50" />
+                  <Card className="border-2 shadow-2xl relative bg-background-2 dark:bg-background-5/95 backdrop-blur">
                     <CardContent className="p-8 sm:p-12">
                       <div className="space-y-6">
-                        <div className="h-32 w-32 mx-auto bg-gradient-to-br from-primary/20 to-primary/5 rounded-full flex items-center justify-center border-2 border-primary/20">
-                          <TrendingUp className="h-16 w-16 text-primary" />
+                        <div className="h-32 w-32 mx-auto bg-gradient-to-br from-primary-500/20 to-primary-500/5 rounded-full flex items-center justify-center border-2 border-primary-500/20">
+                          <TrendingUp className="h-16 w-16 text-primary-500" />
                         </div>
                         <div className="text-center space-y-3">
-                          <p className="text-2xl font-bold text-foreground">
+                          <p className="text-2xl font-bold text-secondary dark:text-accent">
                             Get Matched Instantly
                           </p>
-                          <p className="text-muted-foreground">
+                          <p className="text-secondary/60 dark:text-accent/60">
                             Quick, transparent, and hassle-free
                           </p>
                           <div className="flex items-center justify-center gap-2 pt-2">
@@ -209,11 +209,11 @@ export default function HomePage() {
                               {[...Array(4)].map((_, i) => (
                                 <div
                                   key={i}
-                                  className="h-8 w-8 rounded-full bg-primary/20 border-2 border-background"
+                                  className="h-8 w-8 rounded-full bg-primary-500/20 border-2 border-background"
                                 />
                               ))}
                             </div>
-                            <span className="text-sm text-muted-foreground">
+                            <span className="text-sm text-secondary/60 dark:text-accent/60">
                               +10k customers served
                             </span>
                           </div>
@@ -228,7 +228,7 @@ export default function HomePage() {
         </section>
 
         {/* Service Categories Section */}
-        <section className="py-20 bg-background">
+        <section className="py-20 bg-background-2 dark:bg-background-5">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <SectionHeader
@@ -246,12 +246,12 @@ export default function HomePage() {
                   <StaggerItem key={service.slug} variants={staggerItemVariants}>
                     <HoverScale>
                       <Link href={`/services/${service.slug}`}>
-                        <Card className="h-full border-2 hover:border-primary/50 hover:shadow-lg transition-all group cursor-pointer">
+                        <Card className="h-full border-2 hover:border-primary-500/50 hover:shadow-lg transition-all group cursor-pointer">
                           <CardHeader>
-                            <div className="h-14 w-14 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors flex items-center justify-center mb-4">
-                              <IconComponent className="h-7 w-7 text-primary" />
+                            <div className="h-14 w-14 rounded-xl bg-primary-500/10 group-hover:bg-primary-500/20 transition-colors flex items-center justify-center mb-4">
+                              <IconComponent className="h-7 w-7 text-primary-500" />
                             </div>
-                            <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                            <CardTitle className="text-xl group-hover:text-primary-600 transition-colors">
                               {service.name}
                             </CardTitle>
                           </CardHeader>
@@ -259,7 +259,7 @@ export default function HomePage() {
                             <CardDescription className="text-base">
                               {service.description}
                             </CardDescription>
-                            <div className="mt-4 flex items-center text-sm text-primary font-medium">
+                            <div className="mt-4 flex items-center text-sm text-primary-500 font-medium">
                               Explore workshops
                               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                             </div>
@@ -275,7 +275,7 @@ export default function HomePage() {
         </section>
 
         {/* How It Works Teaser */}
-        <section className="py-20 bg-muted/30">
+        <section className="py-20 bg-background dark:bg-background-6">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <SectionHeader
@@ -292,13 +292,13 @@ export default function HomePage() {
                 return (
                   <StaggerItem key={index} variants={staggerItemVariants}>
                     <Card className="text-center border-2 h-full relative overflow-hidden group">
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-transparent rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform" />
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-500/10 to-transparent rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform" />
                       <CardHeader className="relative">
                         <div className="mx-auto mb-4 relative">
-                          <div className="h-20 w-20 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors flex items-center justify-center mx-auto">
-                            <IconComponent className="h-10 w-10 text-primary" />
+                          <div className="h-20 w-20 rounded-full bg-primary-500/10 group-hover:bg-primary-500/20 transition-colors flex items-center justify-center mx-auto">
+                            <IconComponent className="h-10 w-10 text-primary-500" />
                           </div>
-                          <div className="absolute -top-2 -right-2 h-8 w-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">
+                          <div className="absolute -top-2 -right-2 h-8 w-8 rounded-full bg-primary-500 text-primary-foreground flex items-center justify-center text-sm font-bold">
                             {index + 1}
                           </div>
                         </div>
@@ -329,7 +329,7 @@ export default function HomePage() {
         </section>
 
         {/* Featured Workshops */}
-        <section className="py-20 bg-background">
+        <section className="py-20 bg-background-2 dark:bg-background-5">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <SectionHeader
@@ -343,29 +343,29 @@ export default function HomePage() {
               {featuredWorkshops.map((workshop, index) => (
                 <StaggerItem key={index} variants={staggerItemVariants}>
                   <HoverScale>
-                    <Card className="border-2 hover:border-primary/50 hover:shadow-xl transition-all h-full">
+                    <Card className="border-2 hover:border-primary-500/50 hover:shadow-xl transition-all h-full">
                       <CardHeader>
                         <div className="flex items-start justify-between mb-2">
                           <CardTitle className="text-lg">{workshop.name}</CardTitle>
                           <Badge variant="secondary" className="flex items-center gap-1">
-                            <Star className="h-3 w-3 fill-primary text-primary" />
+                            <Star className="h-3 w-3 fill-primary-500 text-primary-500" />
                             {workshop.rating}
                           </Badge>
                         </div>
-                        <p className="text-sm text-muted-foreground">{workshop.reviews} reviews</p>
+                        <p className="text-sm text-secondary/60 dark:text-accent/60">{workshop.reviews} reviews</p>
                       </CardHeader>
                       <CardContent className="space-y-3">
                         <div className="space-y-2">
                           <div className="flex items-center gap-2 text-sm">
-                            <Wrench className="h-4 w-4 text-primary" />
+                            <Wrench className="h-4 w-4 text-primary-500" />
                             <span>{workshop.specialty}</span>
                           </div>
                           <div className="flex items-center gap-2 text-sm">
-                            <Car className="h-4 w-4 text-primary" />
+                            <Car className="h-4 w-4 text-primary-500" />
                             <span>{workshop.location}</span>
                           </div>
                           <div className="flex items-center gap-2 text-sm">
-                            <Clock className="h-4 w-4 text-primary" />
+                            <Clock className="h-4 w-4 text-primary-500" />
                             <span>Response: {workshop.responseTime}</span>
                           </div>
                         </div>
@@ -393,7 +393,7 @@ export default function HomePage() {
         </section>
 
         {/* Stats Section */}
-        <section className="py-20 bg-gradient-to-br from-primary to-primary/80 text-primary-foreground relative overflow-hidden">
+        <section className="py-20 bg-gradient-to-br from-primary-500 to-primary-500/80 text-primary-foreground relative overflow-hidden">
           <div className="absolute inset-0 bg-grid-white/[0.05] pointer-events-none" />
 
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -427,18 +427,18 @@ export default function HomePage() {
         </section>
 
         {/* CTA Banner */}
-        <section className="py-20 bg-background">
+        <section className="py-20 bg-background-2 dark:bg-background-5">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <Card className="border-2 shadow-2xl relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-purple-500/10 to-primary/10" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-purple-500/10 to-primary-500/10" />
                 <CardContent className="p-12 sm:p-16 text-center relative">
                   <div className="space-y-8 max-w-3xl mx-auto">
                     <div className="space-y-4">
-                      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">
+                      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary dark:text-accent">
                         Start Your Car Service Journey Today
                       </h2>
-                      <p className="text-lg sm:text-xl text-muted-foreground">
+                      <p className="text-lg sm:text-xl text-secondary/60 dark:text-accent/60">
                         Join thousands of satisfied customers who trust Repair Connect for their car repair needs across Dubai.
                       </p>
                     </div>
@@ -453,8 +453,8 @@ export default function HomePage() {
                         <Link href="/about">Learn More About Us</Link>
                       </Button>
                     </div>
-                    <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground pt-4">
-                      <CheckCircle className="h-4 w-4 text-primary" />
+                    <div className="flex items-center justify-center gap-2 text-sm text-secondary/60 dark:text-accent/60 pt-4">
+                      <CheckCircle className="h-4 w-4 text-primary-500" />
                       <span>No registration required to browse workshops</span>
                     </div>
                   </div>

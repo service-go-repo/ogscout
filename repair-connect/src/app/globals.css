@@ -1,8 +1,11 @@
+/* Import Inter Tight from Google Fonts - NextSaaS Design System */
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Local Fonts */
+/* Fallback: Keep DM Sans local fonts for backward compatibility during migration */
 @font-face {
   font-family: 'DM Sans';
   font-style: normal;
@@ -45,111 +48,171 @@
 
 @layer base {
   :root {
-    --background: oklch(1.0000 0 0);
-    --foreground: oklch(0 0 0);
-    --card: oklch(1.0000 0 0);
-    --card-foreground: oklch(0 0 0);
-    --popover: oklch(1.0000 0 0);
-    --popover-foreground: oklch(0 0 0);
-    --primary: oklch(0.6489 0.2370 26.9728);
-    --primary-foreground: oklch(1.0000 0 0);
-    --secondary: oklch(0.9680 0.2110 109.7692);
-    --secondary-foreground: oklch(0 0 0);
-    --muted: oklch(0.9551 0 0);
-    --muted-foreground: oklch(0.3211 0 0);
-    --accent: oklch(0.5635 0.2408 260.8178);
-    --accent-foreground: oklch(1.0000 0 0);
-    --destructive: oklch(0 0 0);
-    --destructive-foreground: oklch(1.0000 0 0);
-    --border: oklch(0 0 0);
-    --input: oklch(0 0 0);
-    --ring: oklch(0.6489 0.2370 26.9728);
-    --chart-1: oklch(0.6489 0.2370 26.9728);
-    --chart-2: oklch(0.9680 0.2110 109.7692);
-    --chart-3: oklch(0.5635 0.2408 260.8178);
-    --chart-4: oklch(0.7323 0.2492 142.4953);
-    --chart-5: oklch(0.5931 0.2726 328.3634);
-    --sidebar: oklch(0.9551 0 0);
-    --sidebar-foreground: oklch(0 0 0);
-    --sidebar-primary: oklch(0.6489 0.2370 26.9728);
-    --sidebar-primary-foreground: oklch(1.0000 0 0);
-    --sidebar-accent: oklch(0.5635 0.2408 260.8178);
-    --sidebar-accent-foreground: oklch(1.0000 0 0);
-    --sidebar-border: oklch(0 0 0);
-    --sidebar-ring: oklch(0.6489 0.2370 26.9728);
-    --font-sans: DM Sans, sans-serif;
+    /* === NextSaaS Design System v2.0 === */
+
+    /* Primary Purple Scale */
+    --primary-50: #f4f2fe;
+    --primary-100: #ece8ff;
+    --primary-200: #dcd4ff;
+    --primary-300: #c3b1ff;
+    --primary-400: #a585ff;
+    --primary-500: #864ffe;  /* Main brand color */
+    --primary-600: #7c31f6;
+    --primary-700: #6d1fe2;
+    --primary-800: #5a19be;
+
+    /* Semantic Colors */
+    --secondary: #1a1a1c;  /* Dark text/backgrounds */
+    --accent: #fcfcfc;     /* Light text/backgrounds */
+
+    /* Background System (Light: 1-4, 10-12; Dark: 5-9) */
+    --background-1: #fcfcfd;  /* Lightest - card surfaces */
+    --background-2: #f9fafb;  /* Page backgrounds */
+    --background-3: #f4f5f8;  /* Elevated cards */
+    --background-4: #f0f2f6;  /* Buttons, high elevation */
+    --background-5: #13171e;  /* Dark mode primary body */
+    --background-6: #0f1217;  /* Dark cards */
+    --background-7: #181d26;  /* Lighter dark cards */
+    --background-8: #070b10;  /* Darkest backgrounds */
+    --background-9: #1f252f;  /* Form elements */
+    --background-10: #ebebeb; /* Neutral gray */
+    --background-11: #b5b5b9; /* Dark gray */
+    --background-12: #eaeceb; /* Ash gray */
+
+    /* Stroke/Border Colors (Light) */
+    --stroke-1: #dfe4eb;
+    --stroke-2: #e3e7ed;
+    --stroke-3: #d7dde5;
+    --stroke-4: #eceff4;
+
+    /* Stroke/Border Colors (Dark) */
+    --stroke-5: #1b232f;
+    --stroke-6: #202731;
+    --stroke-7: #2a333e;
+    --stroke-8: #303b49;
+    --stroke-9: var(--background-8);
+
+    /* Brand Accent Colors */
+    --ns-yellow: #f9eb57;
+    --ns-green: #c6f56f;
+    --ns-red: #ffb9a2;
+    --ns-cyan: #83e7ee;
+    --ns-green-light: #e8fbc6;
+    --ns-cyan-light: #cdf5f8;
+    --ns-yellow-light: #fdf7bc;
+
+    /* Gradients */
+    --gradient-1: linear-gradient(135deg, #a585ff 0%, #ffc2ad 100%);
+    --gradient-2: linear-gradient(135deg, #f9eb57 0%, #f99988 100%);
+    --gradient-3: linear-gradient(135deg, #83e7ee 0%, #f9eb57 100%);
+    --gradient-4: linear-gradient(135deg, #864ffe 0%, #23eed6 100%);
+    --gradient-5: linear-gradient(165deg, rgba(255,255,255,0.5) 0.51%, rgba(255,255,255,0) 64.43%);
+    --gradient-6: linear-gradient(#83e7ee 0%, #c6f56f 100%);
+    --gradient-7: linear-gradient(#ffffff 0%, #83e7ee 100%);
+    --gradient-8: linear-gradient(156deg, #ffffff 32.92%, #a585ff 91%);
+    --gradient-9: linear-gradient(156deg, #dfb0ff 32.92%, #fdbedc 91%);
+    --gradient-10: linear-gradient(135deg, #83e7ee 0%, #c6f56f 100%);
+    --gradient-11: linear-gradient(179deg, rgba(255,255,255,0) 0.68%, #fff 79.47%);
+    --gradient-12: radial-gradient(73.01% 80.77% at 19.23% 47.79%, #83e7ee 0%, rgba(134,79,254,0) 100%);
+
+    /* Soft Shadow System (replaces hard offset shadows) */
+    --shadow-1: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+    --shadow-2: 0px 1px 3px 0px rgba(16, 24, 40, 0.1), 0px 1px 2px 0px rgba(16, 24, 40, 0.06);
+    --shadow-3: 0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06);
+    --shadow-4: 0px 12px 16px -4px rgba(16, 24, 40, 0.08), 0px 4px 6px -2px rgba(16, 24, 40, 0.03);
+    --shadow-5: 0px 20px 24px -4px rgba(16, 24, 40, 0.08), 0px 8px 8px -4px rgba(16, 24, 40, 0.03);
+
+    /* Typography - Inter Tight Font System */
+    --font-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-    --font-mono: Space Mono, monospace;
-    --radius: 0px;
-    --shadow-x: 4px;
-    --shadow-y: 4px;
-    --shadow-blur: 0px;
-    --shadow-spread: 0px;
-    --shadow-opacity: 1;
-    --shadow-color: hsl(0 0% 0%);
-    --shadow-2xs: 4px 4px 0px 0px hsl(0 0% 0% / 0.50);
-    --shadow-xs: 4px 4px 0px 0px hsl(0 0% 0% / 0.50);
-    --shadow-sm: 4px 4px 0px 0px hsl(0 0% 0% / 1.00), 4px 1px 2px -1px hsl(0 0% 0% / 1.00);
-    --shadow: 4px 4px 0px 0px hsl(0 0% 0% / 1.00), 4px 1px 2px -1px hsl(0 0% 0% / 1.00);
-    --shadow-md: 4px 4px 0px 0px hsl(0 0% 0% / 1.00), 4px 2px 4px -1px hsl(0 0% 0% / 1.00);
-    --shadow-lg: 4px 4px 0px 0px hsl(0 0% 0% / 1.00), 4px 4px 6px -1px hsl(0 0% 0% / 1.00);
-    --shadow-xl: 4px 4px 0px 0px hsl(0 0% 0% / 1.00), 4px 8px 10px -1px hsl(0 0% 0% / 1.00);
-    --shadow-2xl: 4px 4px 0px 0px hsl(0 0% 0% / 2.50);
-    --tracking-normal: 0em;
+    --font-mono: Space Mono, ui-monospace, Menlo, Monaco, monospace;
+
+    /* === Legacy shadcn Compatibility Mappings === */
+    --background: var(--background-2);
+    --foreground: var(--secondary);
+    --card: var(--background-1);
+    --card-foreground: var(--secondary);
+    --popover: var(--background-1);
+    --popover-foreground: var(--secondary);
+    --primary: var(--primary-500);
+    --primary-foreground: #ffffff;
+    --muted: var(--background-3);
+    --muted-foreground: #64748b;
+    --destructive: var(--ns-red);
+    --destructive-foreground: var(--secondary);
+    --border: var(--stroke-3);
+    --input: var(--stroke-3);
+    --ring: var(--primary-500);
+
+    /* Chart Colors */
+    --chart-1: var(--primary-500);
+    --chart-2: var(--ns-cyan);
+    --chart-3: var(--ns-green);
+    --chart-4: var(--ns-yellow);
+    --chart-5: var(--primary-300);
+
+    /* Sidebar - using NextSaaS colors */
+    --sidebar: var(--background-1);
+    --sidebar-foreground: var(--secondary);
+    --sidebar-primary: var(--primary-500);
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: var(--primary-100);
+    --sidebar-accent-foreground: var(--secondary);
+    --sidebar-border: var(--stroke-2);
+    --sidebar-ring: var(--primary-500);
+
+    /* Legacy Utilities */
+    --radius: 0.5rem;  /* Updated from 0px */
     --spacing: 0.25rem;
+    --tracking-normal: 0em;
   }
 
   .dark {
-    --background: oklch(0 0 0);
-    --foreground: oklch(1.0000 0 0);
-    --card: oklch(0.3211 0 0);
-    --card-foreground: oklch(1.0000 0 0);
-    --popover: oklch(0.3211 0 0);
-    --popover-foreground: oklch(1.0000 0 0);
-    --primary: oklch(0.7044 0.1872 23.1858);
-    --primary-foreground: oklch(0 0 0);
-    --secondary: oklch(0.9691 0.2005 109.6228);
-    --secondary-foreground: oklch(0 0 0);
-    --muted: oklch(0.2178 0 0);
-    --muted-foreground: oklch(0.8452 0 0);
-    --accent: oklch(0.6755 0.1765 252.2592);
-    --accent-foreground: oklch(0 0 0);
-    --destructive: oklch(1.0000 0 0);
-    --destructive-foreground: oklch(0 0 0);
-    --border: oklch(1.0000 0 0);
-    --input: oklch(1.0000 0 0);
-    --ring: oklch(0.7044 0.1872 23.1858);
-    --chart-1: oklch(0.7044 0.1872 23.1858);
-    --chart-2: oklch(0.9691 0.2005 109.6228);
-    --chart-3: oklch(0.6755 0.1765 252.2592);
-    --chart-4: oklch(0.7395 0.2268 142.8504);
-    --chart-5: oklch(0.6131 0.2458 328.0714);
-    --sidebar: oklch(0 0 0);
-    --sidebar-foreground: oklch(1.0000 0 0);
-    --sidebar-primary: oklch(0.7044 0.1872 23.1858);
-    --sidebar-primary-foreground: oklch(0 0 0);
-    --sidebar-accent: oklch(0.6755 0.1765 252.2592);
-    --sidebar-accent-foreground: oklch(0 0 0);
-    --sidebar-border: oklch(1.0000 0 0);
-    --sidebar-ring: oklch(0.7044 0.1872 23.1858);
-    --font-sans: DM Sans, sans-serif;
-    --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-    --font-mono: Space Mono, monospace;
-    --radius: 0px;
-    --shadow-x: 4px;
-    --shadow-y: 4px;
-    --shadow-blur: 0px;
-    --shadow-spread: 0px;
-    --shadow-opacity: 1;
-    --shadow-color: hsl(0 0% 0%);
-    --shadow-2xs: 4px 4px 0px 0px hsl(0 0% 0% / 0.50);
-    --shadow-xs: 4px 4px 0px 0px hsl(0 0% 0% / 0.50);
-    --shadow-sm: 4px 4px 0px 0px hsl(0 0% 0% / 1.00), 4px 1px 2px -1px hsl(0 0% 0% / 1.00);
-    --shadow: 4px 4px 0px 0px hsl(0 0% 0% / 1.00), 4px 1px 2px -1px hsl(0 0% 0% / 1.00);
-    --shadow-md: 4px 4px 0px 0px hsl(0 0% 0% / 1.00), 4px 2px 4px -1px hsl(0 0% 0% / 1.00);
-    --shadow-lg: 4px 4px 0px 0px hsl(0 0% 0% / 1.00), 4px 4px 6px -1px hsl(0 0% 0% / 1.00);
-    --shadow-xl: 4px 4px 0px 0px hsl(0 0% 0% / 1.00), 4px 8px 10px -1px hsl(0 0% 0% / 1.00);
-    --shadow-2xl: 4px 4px 0px 0px hsl(0 0% 0% / 2.50);
+    /* Dark Mode Overrides - NextSaaS Design System */
+
+    /* Swap background layers for dark mode */
+    --background-1: var(--background-6);
+    --background-2: var(--background-5);
+    --background-3: var(--background-7);
+    --background-4: var(--background-9);
+
+    /* Dark Mode Shadows (reduced opacity) */
+    --shadow-1: 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+    --shadow-2: 0px 2px 4px 0px rgba(0, 0, 0, 0.4);
+    --shadow-3: 0px 4px 8px -2px rgba(0, 0, 0, 0.5);
+    --shadow-4: 0px 12px 16px -4px rgba(0, 0, 0, 0.6);
+    --shadow-5: 0px 20px 24px -4px rgba(0, 0, 0, 0.7);
+
+    /* Legacy shadcn Compatibility (Dark Mode) */
+    --background: var(--background-5);
+    --foreground: var(--accent);
+    --card: var(--background-6);
+    --card-foreground: var(--accent);
+    --popover: var(--background-6);
+    --popover-foreground: var(--accent);
+    --primary: var(--primary-500);
+    --primary-foreground: #ffffff;
+    --secondary: var(--background-7);
+    --secondary-foreground: var(--accent);
+    --muted: var(--background-7);
+    --muted-foreground: #94a3b8;
+    --accent: var(--background-7);
+    --accent-foreground: var(--accent);
+    --destructive: var(--ns-red);
+    --destructive-foreground: var(--accent);
+    --border: var(--stroke-7);
+    --input: var(--stroke-7);
+    --ring: var(--primary-500);
+
+    /* Sidebar Dark Mode */
+    --sidebar: var(--background-6);
+    --sidebar-foreground: var(--accent);
+    --sidebar-primary: var(--primary-500);
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: var(--background-7);
+    --sidebar-accent-foreground: var(--accent);
+    --sidebar-border: var(--stroke-7);
+    --sidebar-ring: var(--primary-500);
   }
 }
 
@@ -166,6 +229,45 @@
 }
 
 @layer utilities {
+  /* Gradient Background Utilities - NextSaaS Design System */
+  .bg-gradient-1 {
+    background-image: var(--gradient-1);
+  }
+  .bg-gradient-2 {
+    background-image: var(--gradient-2);
+  }
+  .bg-gradient-3 {
+    background-image: var(--gradient-3);
+  }
+  .bg-gradient-4 {
+    background-image: var(--gradient-4);
+  }
+  .bg-gradient-5 {
+    background-image: var(--gradient-5);
+  }
+  .bg-gradient-6 {
+    background-image: var(--gradient-6);
+  }
+  .bg-gradient-7 {
+    background-image: var(--gradient-7);
+  }
+  .bg-gradient-8 {
+    background-image: var(--gradient-8);
+  }
+  .bg-gradient-9 {
+    background-image: var(--gradient-9);
+  }
+  .bg-gradient-10 {
+    background-image: var(--gradient-10);
+  }
+  .bg-gradient-11 {
+    background-image: var(--gradient-11);
+  }
+  .bg-gradient-12 {
+    background-image: var(--gradient-12);
+  }
+
+  /* Scrollbar Utilities */
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;

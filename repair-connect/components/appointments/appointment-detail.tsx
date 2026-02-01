@@ -279,9 +279,9 @@ export default function AppointmentDetail({ appointment, userRole, onStatusUpdat
         <CardContent>
           <div className="relative">
             {/* Progress Line */}
-            <div className="absolute top-6 left-0 right-0 h-0.5 bg-gray-200">
+            <div className="absolute top-6 left-0 right-0 h-0.5 bg-[var(--stroke-3)]">
               <div
-                className="h-full bg-blue-600 transition-all duration-500"
+                className="h-full bg-primary-500 transition-all duration-500"
                 style={{
                   width: `${(currentStepIndex / (statusSteps.length - 1)) * 100}%`
                 }}
@@ -300,24 +300,24 @@ export default function AppointmentDetail({ appointment, userRole, onStatusUpdat
                     <div
                       className={`
                         w-12 h-12 rounded-full flex items-center justify-center border-2 z-10
-                        ${isCompleted ? 'border-blue-600 bg-blue-600' : ''}
-                        ${isCurrent ? 'border-blue-600 bg-blue-50' : ''}
-                        ${!isCompleted && !isCurrent ? 'border-gray-300 bg-white' : ''}
+                        ${isCompleted ? 'border-primary-500 bg-primary-500' : ''}
+                        ${isCurrent ? 'border-primary-500 bg-primary-50' : ''}
+                        ${!isCompleted && !isCurrent ? 'border-[var(--stroke-3)] bg-white' : ''}
                       `}
                     >
                       <Icon
                         className={`
                           w-6 h-6
                           ${isCompleted ? 'text-white' : ''}
-                          ${isCurrent ? 'text-blue-600' : ''}
-                          ${!isCompleted && !isCurrent ? 'text-gray-400' : ''}
+                          ${isCurrent ? 'text-primary-500' : ''}
+                          ${!isCompleted && !isCurrent ? 'text-secondary/40 dark:text-accent/40' : ''}
                         `}
                       />
                     </div>
                     <span
                       className={`
                         mt-2 text-xs font-medium
-                        ${isCurrent ? 'text-blue-600' : 'text-gray-600'}
+                        ${isCurrent ? 'text-primary-500' : 'text-secondary/60 dark:text-accent/60'}
                       `}
                     >
                       {step.label}
@@ -362,10 +362,10 @@ export default function AppointmentDetail({ appointment, userRole, onStatusUpdat
               </div>
               {appointment.isMultiDayService && (
                 <div className="col-span-2">
-                  <div className="bg-amber-50 border border-amber-100 rounded-lg p-4">
+                  <div className="bg-[var(--ns-yellow-light)] border border-[var(--ns-yellow)] rounded-lg p-4">
                     <div className="flex items-start gap-3">
                       <div className="flex-shrink-0">
-                        <div className="w-6 h-6 rounded-full bg-amber-400 flex items-center justify-center">
+                        <div className="w-6 h-6 rounded-full bg-[var(--ns-yellow)] flex items-center justify-center">
                           <AlertCircle className="h-4 w-4 text-white" />
                         </div>
                       </div>
@@ -414,10 +414,10 @@ export default function AppointmentDetail({ appointment, userRole, onStatusUpdat
                 {appointment.vehicleInfo.year} {appointment.vehicleInfo.make} {appointment.vehicleInfo.model}
               </div>
               {appointment.vehicleInfo.color && (
-                <div className="text-sm text-gray-600">Color: {appointment.vehicleInfo.color}</div>
+                <div className="text-sm text-secondary/60 dark:text-accent/60">Color: {appointment.vehicleInfo.color}</div>
               )}
               {appointment.vehicleInfo.licensePlate && (
-                <div className="text-sm text-gray-600">License: {appointment.vehicleInfo.licensePlate}</div>
+                <div className="text-sm text-secondary/60 dark:text-accent/60">License: {appointment.vehicleInfo.licensePlate}</div>
               )}
             </div>
           </div>
@@ -434,16 +434,16 @@ export default function AppointmentDetail({ appointment, userRole, onStatusUpdat
               <div className="font-medium">
                 {isCustomer ? appointment.workshopName : appointment.customerName}
               </div>
-              <div className="flex items-center gap-2 text-sm text-gray-600">
+              <div className="flex items-center gap-2 text-sm text-secondary/60 dark:text-accent/60">
                 <Phone className="h-4 w-4" />
                 <span>{isCustomer ? appointment.workshopPhone : appointment.customerPhone}</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-gray-600">
+              <div className="flex items-center gap-2 text-sm text-secondary/60 dark:text-accent/60">
                 <Mail className="h-4 w-4" />
                 <span>{isCustomer ? appointment.workshopEmail : appointment.customerEmail}</span>
               </div>
               {isCustomer && (
-                <div className="flex items-center gap-2 text-sm text-gray-600">
+                <div className="flex items-center gap-2 text-sm text-secondary/60 dark:text-accent/60">
                   <MapPin className="h-4 w-4" />
                   <span>{appointment.workshopAddress}</span>
                 </div>
@@ -461,7 +461,7 @@ export default function AppointmentDetail({ appointment, userRole, onStatusUpdat
             </h4>
             <div className="pl-6 space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-gray-600">Total Amount</span>
+                <span className="text-secondary/60 dark:text-accent/60">Total Amount</span>
                 <span className="text-xl font-bold">
                   {appointment.currency} {appointment.totalAmount.toFixed(2)}
                 </span>
@@ -471,8 +471,8 @@ export default function AppointmentDetail({ appointment, userRole, onStatusUpdat
                 <Badge
                   className={
                     appointment.paymentStatus === 'paid'
-                      ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200'
-                      : 'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200'
+                      ? 'bg-[var(--ns-green-light)] text-[var(--secondary)] dark:bg-[var(--ns-green)] dark:text-[var(--secondary)]'
+                      : 'bg-[var(--ns-yellow-light)] text-[var(--secondary)] dark:bg-[var(--ns-yellow)] dark:text-[var(--secondary)]'
                   }
                 >
                   {appointment.paymentStatus.toUpperCase()}
@@ -485,7 +485,7 @@ export default function AppointmentDetail({ appointment, userRole, onStatusUpdat
                   <Button
                     onClick={handleConfirmPayment}
                     disabled={confirmingPayment}
-                    className="w-full bg-green-600 hover:bg-green-700"
+                    className="w-full bg-[var(--ns-green)] hover:bg-[var(--ns-green)]/90"
                   >
                     {confirmingPayment ? (
                       <>
@@ -516,16 +516,16 @@ export default function AppointmentDetail({ appointment, userRole, onStatusUpdat
                 <div className="pl-6 space-y-3">
                   {appointment.customerNotes && (
                     <div>
-                      <div className="text-sm font-medium text-gray-500">Customer Notes</div>
-                      <div className="mt-1 p-3 bg-gray-50 rounded-md text-sm">
+                      <div className="text-sm font-medium text-secondary/60 dark:text-accent/60">Customer Notes</div>
+                      <div className="mt-1 p-3 bg-background-3 dark:bg-background-7 rounded-md text-sm">
                         {appointment.customerNotes}
                       </div>
                     </div>
                   )}
                   {appointment.workshopNotes && (
                     <div>
-                      <div className="text-sm font-medium text-gray-500">Workshop Notes</div>
-                      <div className="mt-1 p-3 bg-blue-50 rounded-md text-sm">
+                      <div className="text-sm font-medium text-secondary/60 dark:text-accent/60">Workshop Notes</div>
+                      <div className="mt-1 p-3 bg-primary-50 rounded-md text-sm">
                         {appointment.workshopNotes}
                       </div>
                     </div>
@@ -539,7 +539,7 @@ export default function AppointmentDetail({ appointment, userRole, onStatusUpdat
 
       {/* Workshop Actions */}
       {isWorkshop && availableActions.length > 0 && (
-        <Card className="border-blue-200 bg-blue-50">
+        <Card className="border-primary-200 bg-primary-50">
           <CardContent className="pt-6">
             <div className="space-y-3">
               {/* Confirm and Decline buttons side by side for requested appointments */}
@@ -548,7 +548,7 @@ export default function AppointmentDetail({ appointment, userRole, onStatusUpdat
                   <Button
                     onClick={() => handleStatusUpdate('confirmed')}
                     disabled={updating}
-                    className="flex-1 bg-green-600 hover:bg-green-700"
+                    className="flex-1 bg-[var(--ns-green)] hover:bg-[var(--ns-green)]/90"
                   >
                     {updating ? (
                       <Loader2 className="h-4 w-4 mr-2 animate-spin" />
@@ -561,7 +561,7 @@ export default function AppointmentDetail({ appointment, userRole, onStatusUpdat
                     onClick={handleDeclineAppointment}
                     disabled={updating}
                     variant="outline"
-                    className="flex-1 border-red-300 text-red-700 hover:bg-red-50"
+                    className="flex-1 border-[var(--ns-red)] text-[var(--secondary)] hover:bg-[var(--ns-red)]/10"
                   >
                     {updating ? (
                       <Loader2 className="h-4 w-4 mr-2 animate-spin" />
@@ -661,7 +661,7 @@ export default function AppointmentDetail({ appointment, userRole, onStatusUpdat
                 <Button
                   onClick={() => handleStatusUpdate('completed')}
                   disabled={updating}
-                  className="w-full bg-green-600 hover:bg-green-700"
+                  className="w-full bg-[var(--ns-green)] hover:bg-[var(--ns-green)]/90"
                 >
                   {updating ? (
                     <Loader2 className="h-4 w-4 mr-2 animate-spin" />

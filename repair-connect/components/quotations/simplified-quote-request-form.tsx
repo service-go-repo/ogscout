@@ -175,15 +175,15 @@ export default function SimplifiedQuoteRequestForm({ onSubmit, isLoading, initia
                       className={cn(
                         "p-4 border rounded-lg cursor-pointer transition-colors",
                         selectedCar?._id === car._id
-                          ? "border-blue-500 bg-blue-50"
-                          : "border-gray-200 hover:border-gray-300"
+                          ? "border-primary-500 bg-primary-100"
+                          : "border-[var(--stroke-3)] hover:border-[var(--stroke-3)]"
                       )}
                       onClick={() => handleCarSelection(car._id?.toString() || '')}
                     >
                       <div className="font-medium">
                         {car.basicInfo.year} {car.basicInfo.make} {car.basicInfo.model}
                       </div>
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm text-secondary/60 dark:text-accent/60">
                         {car.basicInfo.licensePlate} • {car.basicInfo.color}
                       </div>
                     </div>
@@ -192,13 +192,13 @@ export default function SimplifiedQuoteRequestForm({ onSubmit, isLoading, initia
                     className={cn(
                       "p-4 border rounded-lg cursor-pointer transition-colors border-dashed",
                       showNewCarForm
-                        ? "border-blue-500 bg-blue-50"
-                        : "border-gray-300 hover:border-gray-400"
+                        ? "border-primary-500 bg-primary-100"
+                        : "border-[var(--stroke-3)] hover:border-[var(--stroke-3)]"
                     )}
                     onClick={() => handleCarSelection('new')}
                   >
-                    <div className="font-medium text-blue-600">+ Add New Vehicle</div>
-                    <div className="text-sm text-gray-500">Enter vehicle details manually</div>
+                    <div className="font-medium text-primary-500">+ Add New Vehicle</div>
+                    <div className="text-sm text-secondary/60 dark:text-accent/60">Enter vehicle details manually</div>
                   </div>
                 </div>
               </div>
@@ -285,10 +285,10 @@ export default function SimplifiedQuoteRequestForm({ onSubmit, isLoading, initia
             )}
 
             {userCars.length === 0 && (
-              <div className="text-center py-6 text-gray-500">
+              <div className="text-center py-6 text-secondary/60 dark:text-accent/60">
                 <AlertCircle className="h-8 w-8 mx-auto mb-2" />
                 <p>No cars registered yet.</p>
-                <Link href="/cars/register" className="text-blue-600 hover:underline">
+                <Link href="/cars/register" className="text-primary-500 hover:underline">
                   Register your car first
                 </Link>
               </div>

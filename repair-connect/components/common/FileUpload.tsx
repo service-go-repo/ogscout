@@ -169,7 +169,7 @@ export function FileUpload({
           relative border-2 border-dashed rounded-lg p-6 transition-colors cursor-pointer
           ${isDragActive || dragActive
             ? 'border-primary bg-primary/5'
-            : 'border-gray-300 hover:border-gray-400'
+            : 'border-[var(--stroke-3)] hover:border-[var(--stroke-3)]'
           }
           ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
           ${files.length >= maxFiles ? 'opacity-50 cursor-not-allowed' : ''}
@@ -178,17 +178,17 @@ export function FileUpload({
         <input {...getInputProps()} />
         
         <div className="text-center">
-          <Upload className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-          
+          <Upload className="mx-auto h-12 w-12 text-secondary/40 dark:text-accent/40 mb-4" />
+
           <div className="space-y-2">
-            <p className="text-lg font-medium text-gray-900">
+            <p className="text-lg font-medium text-secondary dark:text-accent">
               {isDragActive || dragActive
                 ? 'Drop files here'
                 : 'Drag & drop files here'
               }
             </p>
-            
-            <p className="text-sm text-gray-500">
+
+            <p className="text-sm text-secondary/60 dark:text-accent/60">
               or{' '}
               <button
                 type="button"
@@ -198,8 +198,8 @@ export function FileUpload({
                 browse files
               </button>
             </p>
-            
-            <div className="text-xs text-gray-400 space-y-1">
+
+            <div className="text-xs text-secondary/40 dark:text-accent/40 space-y-1">
               <p>
                 Accepts:{' '}
                 {acceptedFileTypes === 'photo' && 'JPG, PNG, WebP'}
@@ -216,7 +216,7 @@ export function FileUpload({
       {/* File List */}
       {files.length > 0 && (
         <div className="space-y-2">
-          <h4 className="text-sm font-medium text-gray-900">
+          <h4 className="text-sm font-medium text-secondary dark:text-accent">
             Uploaded Files ({files.length}/{maxFiles})
           </h4>
           
@@ -224,7 +224,7 @@ export function FileUpload({
             {files.map((file) => (
               <div
                 key={file.id}
-                className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg border"
+                className="flex items-center space-x-3 p-3 bg-background-3 dark:bg-background-7 rounded-lg border"
               >
                 {/* File Preview */}
                 <div className="flex-shrink-0">
@@ -235,18 +235,18 @@ export function FileUpload({
                       className="w-12 h-12 object-cover rounded border"
                     />
                   ) : (
-                    <div className="w-12 h-12 bg-gray-200 rounded border flex items-center justify-center">
+                    <div className="w-12 h-12 bg-background-3 dark:bg-background-7 rounded border flex items-center justify-center">
                       {getFileIcon(file)}
                     </div>
                   )}
                 </div>
-                
+
                 {/* File Info */}
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900 truncate">
+                  <p className="text-sm font-medium text-secondary dark:text-accent truncate">
                     {file.name}
                   </p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-secondary/60 dark:text-accent/60">
                     {formatFileSize(file.size)}
                   </p>
                   {file.error && (

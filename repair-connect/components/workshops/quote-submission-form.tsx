@@ -325,10 +325,10 @@ export default function QuoteSubmissionForm({
                   <h3 className="text-xl font-bold">
                     {workshop.profile.businessName}
                   </h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-secondary/60 dark:text-accent/60">
                     {workshop.profile.description}
                   </p>
-                  <div className="flex flex-wrap gap-4 mt-2 text-sm text-muted-foreground">
+                  <div className="flex flex-wrap gap-4 mt-2 text-sm text-secondary/60 dark:text-accent/60">
                     <div className="flex items-center gap-1">
                       <Phone className="h-3 w-3" />
                       {workshop.contact.phone}
@@ -345,10 +345,10 @@ export default function QuoteSubmissionForm({
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+                  <div className="text-2xl font-bold text-[var(--ns-green)] dark:text-[var(--ns-green)]">
                     AED {totals.totalAmount.toLocaleString()}
                   </div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="text-sm text-secondary/60 dark:text-accent/60">
                     Total Quote
                   </div>
                 </div>
@@ -421,7 +421,7 @@ export default function QuoteSubmissionForm({
                     className="w-full"
                   />
                   {errors.estimatedDuration && (
-                    <p className="text-red-600 text-sm mt-1">
+                    <p className="text-[var(--ns-red)] text-sm mt-1">
                       {errors.estimatedDuration.message}
                     </p>
                   )}
@@ -436,7 +436,7 @@ export default function QuoteSubmissionForm({
                     className="w-full"
                   />
                   {errors.validUntil && (
-                    <p className="text-red-600 text-sm mt-1">
+                    <p className="text-[var(--ns-red)] text-sm mt-1">
                       {errors.validUntil.message}
                     </p>
                   )}
@@ -461,7 +461,7 @@ export default function QuoteSubmissionForm({
                     className="w-full"
                   />
                   {errors.warranty && (
-                    <p className="text-red-600 text-sm mt-1">
+                    <p className="text-[var(--ns-red)] text-sm mt-1">
                       {errors.warranty.message}
                     </p>
                   )}
@@ -475,7 +475,7 @@ export default function QuoteSubmissionForm({
                     className="w-full"
                   />
                   {errors.paymentTerms && (
-                    <p className="text-red-600 text-sm mt-1">
+                    <p className="text-[var(--ns-red)] text-sm mt-1">
                       {errors.paymentTerms.message}
                     </p>
                   )}
@@ -532,7 +532,7 @@ export default function QuoteSubmissionForm({
                     <span>AED {totals.subtotal.toLocaleString()}</span>
                   </div>
                   {(watchedDiscount ?? 0) > 0 && (
-                    <div className="flex justify-between text-sm text-green-600">
+                    <div className="flex justify-between text-sm text-[var(--ns-green)]">
                       <span>Discount:</span>
                       <span>-AED {(watchedDiscount ?? 0).toLocaleString()}</span>
                     </div>
@@ -544,7 +544,7 @@ export default function QuoteSubmissionForm({
                   <Separator />
                   <div className="flex justify-between font-bold text-lg">
                     <span>Total:</span>
-                    <span className="text-emerald-600 dark:text-emerald-400">
+                    <span className="text-[var(--ns-green)] dark:text-[var(--ns-green)]">
                       AED {totals.totalAmount.toLocaleString()}
                     </span>
                   </div>
@@ -577,7 +577,7 @@ export default function QuoteSubmissionForm({
             type="submit"
             onClick={handleSubmit(onSubmit)}
             disabled={isSubmitting}
-            className="bg-emerald-600 hover:bg-emerald-700 flex-1 sm:flex-none"
+            className="bg-primary-500 hover:bg-primary-600 flex-1 sm:flex-none"
           >
             {isSubmitting ? (
               <div className="flex items-center gap-2">
@@ -650,7 +650,7 @@ function ServiceFieldGroup({
             variant="outline"
             size="sm"
             onClick={onRemove}
-            className="text-red-600 border-red-300 hover:bg-red-50"
+            className="text-[var(--ns-red)] border-[var(--ns-red)]/30 hover:bg-[var(--ns-red)]/10"
           >
             <Trash2 className="h-4 w-4" />
           </Button>
@@ -674,7 +674,7 @@ function ServiceFieldGroup({
             ))}
           </select>
           {errors.services?.[index]?.serviceType && (
-            <p className="text-red-600 text-sm mt-1">
+            <p className="text-[var(--ns-red)] text-sm mt-1">
               {errors.services[index].serviceType.message}
             </p>
           )}
@@ -690,7 +690,7 @@ function ServiceFieldGroup({
             })}
           />
           {errors.services?.[index]?.laborHours && (
-            <p className="text-red-600 text-sm mt-1">
+            <p className="text-[var(--ns-red)] text-sm mt-1">
               {errors.services[index].laborHours.message}
             </p>
           )}
@@ -706,7 +706,7 @@ function ServiceFieldGroup({
             })}
           />
           {errors.services?.[index]?.laborRate && (
-            <p className="text-red-600 text-sm mt-1">
+            <p className="text-[var(--ns-red)] text-sm mt-1">
               {errors.services[index].laborRate.message}
             </p>
           )}
@@ -721,7 +721,7 @@ function ServiceFieldGroup({
           rows={3}
         />
         {errors.services?.[index]?.description && (
-          <p className="text-red-600 text-sm mt-1">
+          <p className="text-[var(--ns-red)] text-sm mt-1">
             {errors.services[index].description.message}
           </p>
         )}
@@ -754,7 +754,7 @@ function ServiceFieldGroup({
         {partFields.map((partField, partIndex) => (
           <div
             key={partField.id}
-            className="grid grid-cols-1 md:grid-cols-4 gap-2 items-end border-l-2 border-gray-200 pl-4"
+            className="grid grid-cols-1 md:grid-cols-4 gap-2 items-end border-l-2 border-[var(--stroke-3)] pl-4"
           >
             <div>
               <Label className="text-xs">Part Name *</Label>
@@ -794,7 +794,7 @@ function ServiceFieldGroup({
               variant="outline"
               size="sm"
               onClick={() => removePart(partIndex)}
-              className="text-red-600"
+              className="text-[var(--ns-red)]"
             >
               <Trash2 className="h-3 w-3" />
             </Button>

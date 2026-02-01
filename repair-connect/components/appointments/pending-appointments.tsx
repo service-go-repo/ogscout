@@ -153,7 +153,7 @@ export default function PendingAppointments({ onUpdate }: PendingAppointmentsPro
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <AlertCircle className="h-5 w-5 text-yellow-600" />
+            <AlertCircle className="h-5 w-5 text-[var(--ns-yellow)]" />
             Pending Appointment Requests
           </CardTitle>
         </CardHeader>
@@ -171,13 +171,13 @@ export default function PendingAppointments({ onUpdate }: PendingAppointmentsPro
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <CheckCircle className="h-5 w-5 text-green-600" />
+            <CheckCircle className="h-5 w-5 text-[var(--ns-green)]" />
             Pending Appointment Requests
           </CardTitle>
         </CardHeader>
         <CardContent>
           <Alert>
-            <CheckCircle className="h-4 w-4 text-green-600" />
+            <CheckCircle className="h-4 w-4 text-[var(--ns-green)]" />
             <AlertDescription>
               No pending requests. All appointments are confirmed!
             </AlertDescription>
@@ -188,14 +188,14 @@ export default function PendingAppointments({ onUpdate }: PendingAppointmentsPro
   }
 
   return (
-    <Card className="border-yellow-200 bg-yellow-50/30">
+    <Card className="border-[var(--ns-yellow)] bg-[var(--ns-yellow-light)]/30">
       <CardHeader>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
-            <AlertCircle className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+            <AlertCircle className="h-5 w-5 text-[var(--ns-yellow)] dark:text-[var(--ns-yellow)]" />
             Pending Appointment Requests
           </CardTitle>
-          <Badge variant="secondary" className="bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200 self-start sm:self-auto">
+          <Badge variant="secondary" className="bg-[var(--ns-yellow-light)] text-[var(--secondary)] dark:bg-[var(--ns-yellow)] dark:text-[var(--secondary)] self-start sm:self-auto">
             {appointments.length} {appointments.length === 1 ? 'request' : 'requests'}
           </Badge>
         </div>
@@ -218,7 +218,7 @@ export default function PendingAppointments({ onUpdate }: PendingAppointmentsPro
                           #{appointment._id.toString().slice(-8).toUpperCase()}
                         </Badge>
                       </div>
-                      <div className="flex items-center gap-1 text-sm text-gray-600">
+                      <div className="flex items-center gap-1 text-sm text-secondary/60 dark:text-accent/60">
                         <Phone className="h-3 w-3" />
                         <span>{appointment.customerPhone}</span>
                         <span className="mx-2">•</span>
@@ -232,10 +232,10 @@ export default function PendingAppointments({ onUpdate }: PendingAppointmentsPro
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-3 border-t border-b">
                     {/* Date & Time */}
                     <div>
-                      <div className="text-xs font-medium text-gray-500 mb-1">REQUESTED DATE & TIME</div>
+                      <div className="text-xs font-medium text-secondary/60 dark:text-accent/60 mb-1">REQUESTED DATE & TIME</div>
                       <div className="space-y-1">
                         <div className="flex items-center gap-2 text-sm font-medium">
-                          <Calendar className="h-4 w-4 text-blue-600" />
+                          <Calendar className="h-4 w-4 text-primary-500" />
                           <span>{format(new Date(appointment.scheduledDate), 'EEEE, MMM dd, yyyy')}</span>
                         </div>
                         <div className="flex items-center gap-2 text-sm font-medium">
@@ -244,7 +244,7 @@ export default function PendingAppointments({ onUpdate }: PendingAppointmentsPro
                             {appointment.scheduledStartTime?.substring(0, 5)} - {appointment.scheduledEndTime?.substring(0, 5)}
                           </span>
                           {appointment.isMultiDayService && (
-                            <Badge variant="secondary" className="bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200 text-xs font-medium">
+                            <Badge variant="secondary" className="bg-[var(--ns-yellow-light)] text-[var(--secondary)] dark:bg-[var(--ns-yellow)] dark:text-[var(--secondary)] text-xs font-medium">
                               Multi-day Service
                             </Badge>
                           )}
@@ -254,15 +254,15 @@ export default function PendingAppointments({ onUpdate }: PendingAppointmentsPro
 
                     {/* Vehicle */}
                     <div>
-                      <div className="text-xs font-medium text-gray-500 mb-1">VEHICLE</div>
+                      <div className="text-xs font-medium text-secondary/60 dark:text-accent/60 mb-1">VEHICLE</div>
                       <div className="flex items-center gap-2 text-sm font-medium">
-                        <Car className="h-4 w-4 text-gray-600" />
+                        <Car className="h-4 w-4 text-secondary/60 dark:text-accent/60" />
                         <span>
                           {appointment.vehicleInfo.year} {appointment.vehicleInfo.make} {appointment.vehicleInfo.model}
                         </span>
                       </div>
                       {appointment.vehicleInfo.licensePlate && (
-                        <div className="text-xs text-gray-500 ml-6 mt-1">
+                        <div className="text-xs text-secondary/60 dark:text-accent/60 ml-6 mt-1">
                           License: {appointment.vehicleInfo.licensePlate}
                         </div>
                       )}
@@ -285,8 +285,8 @@ export default function PendingAppointments({ onUpdate }: PendingAppointmentsPro
                   {/* Customer Notes */}
                   {appointment.customerNotes && (
                     <div>
-                      <div className="text-xs font-medium text-gray-500 mb-1">CUSTOMER NOTES</div>
-                      <p className="text-sm text-gray-700 bg-gray-50 p-3 rounded-md">
+                      <div className="text-xs font-medium text-secondary/60 dark:text-accent/60 mb-1">CUSTOMER NOTES</div>
+                      <p className="text-sm text-secondary/60 dark:text-accent/60 bg-background-3 dark:bg-background-7 p-3 rounded-md">
                         {appointment.customerNotes}
                       </p>
                     </div>
@@ -298,7 +298,7 @@ export default function PendingAppointments({ onUpdate }: PendingAppointmentsPro
                       <Button
                         onClick={() => handleAccept(appointment._id.toString())}
                         disabled={processing === appointment._id.toString()}
-                        className="flex-1 bg-green-600 hover:bg-green-700"
+                        className="flex-1 bg-[var(--ns-green)] hover:bg-[var(--ns-green)]/90"
                       >
                         {processing === appointment._id.toString() ? (
                           <Loader2 className="h-4 w-4 mr-2 animate-spin text-white" />
@@ -311,7 +311,7 @@ export default function PendingAppointments({ onUpdate }: PendingAppointmentsPro
                         onClick={() => handleReject(appointment._id.toString())}
                         disabled={processing === appointment._id.toString()}
                         variant="outline"
-                        className="flex-1 border-red-300 text-red-700 hover:bg-red-50"
+                        className="flex-1 border-[var(--ns-red)] text-[var(--secondary)] hover:bg-[var(--ns-red)]/10"
                       >
                         <XCircle className="h-4 w-4 mr-2" />
                         Decline

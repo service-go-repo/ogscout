@@ -183,7 +183,7 @@ export default function WorkshopProfile({
           <CardTitle>About {workshop.profile.businessName}</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-foreground/90 leading-relaxed">
+          <p className="text-secondary/90 dark:text-accent/90 leading-relaxed">
             {workshop.profile.description}
           </p>
         </CardContent>
@@ -200,24 +200,24 @@ export default function WorkshopProfile({
           </CardHeader>
           <CardContent>
             <div className="relative">
-              <div className="overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent hover:scrollbar-thumb-primary/40">
+              <div className="overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-primary-500/20 scrollbar-track-transparent hover:scrollbar-thumb-primary-500/40">
                 <div className="flex gap-4 w-max min-w-full">
                   {workshop.profile.certifications?.map((cert, index) => (
                     <div
                       key={index}
-                      className="border rounded-lg p-4 hover:border-primary/50 transition-colors w-[320px] sm:w-[360px] flex-shrink-0"
+                      className="border rounded-lg p-4 hover:border-primary-500/50 transition-colors w-[320px] sm:w-[360px] flex-shrink-0"
                     >
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex-1">
                           <h4 className="font-medium text-base mb-1">{cert.name}</h4>
-                          <p className="text-sm text-muted-foreground">
+                          <p className="text-sm text-secondary/60 dark:text-accent/60">
                             {getCertificationTypeLabel(cert.type)}
                           </p>
-                          <p className="text-sm text-muted-foreground">
+                          <p className="text-sm text-secondary/60 dark:text-accent/60">
                             Issued by {cert.issuedBy}
                           </p>
                           {cert.certificateNumber && (
-                            <p className="text-xs text-muted-foreground/80 mt-1">
+                            <p className="text-xs text-secondary/60 dark:text-accent/60/80 mt-1">
                               Certificate #: {cert.certificateNumber}
                             </p>
                           )}
@@ -225,14 +225,14 @@ export default function WorkshopProfile({
                         {cert.verified && (
                           <Badge
                             variant="secondary"
-                            className="bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200 flex-shrink-0"
+                            className="bg-[var(--ns-green-light)] text-[var(--secondary)] dark:bg-[var(--ns-green)] dark:text-[var(--secondary)] flex-shrink-0"
                           >
                             <CheckCircle className="w-3 h-3 mr-1" />
                             Verified
                           </Badge>
                         )}
                       </div>
-                      <div className="flex items-center justify-between text-xs text-muted-foreground/80 gap-4 mb-3">
+                      <div className="flex items-center justify-between text-xs text-secondary/60 dark:text-accent/60/80 gap-4 mb-3">
                         <span>
                           Issued: {new Date(cert.issuedDate).toLocaleDateString()}
                         </span>
@@ -283,21 +283,21 @@ export default function WorkshopProfile({
               <CardTitle className="flex items-center">
                 <Camera className="w-5 h-5 mr-2" />
                 Workshop Gallery ({allGalleryImages.length} {allGalleryImages.length === 1 ? 'photo' : 'photos'})
-                {loadingImages && <Loader2 className="w-4 h-4 ml-2 animate-spin text-primary" />}
+                {loadingImages && <Loader2 className="w-4 h-4 ml-2 animate-spin text-primary-500" />}
               </CardTitle>
             </CardHeader>
             <CardContent>
               {allGalleryImages.length === 0 ? (
                 <div className="text-center py-8">
-                  <Loader2 className="w-8 h-8 animate-spin text-primary mx-auto mb-2" />
-                  <p className="text-sm text-muted-foreground">Loading gallery images...</p>
+                  <Loader2 className="w-8 h-8 animate-spin text-primary-500 mx-auto mb-2" />
+                  <p className="text-sm text-secondary/60 dark:text-accent/60">Loading gallery images...</p>
                 </div>
               ) : (
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                   {allGalleryImages.map((image, index) => (
                     <div
                       key={index}
-                      className="group relative aspect-square rounded-lg overflow-hidden bg-muted/50 cursor-pointer hover:ring-2 hover:ring-primary transition-all"
+                      className="group relative aspect-square rounded-lg overflow-hidden bg-background-3 dark:bg-background-7 cursor-pointer hover:ring-2 hover:ring-primary-500-500 transition-all"
                       onClick={() => setSelectedGalleryImage(index)}
                     >
                       <img
@@ -328,13 +328,13 @@ export default function WorkshopProfile({
       {workshop.profile.portfolio?.length === 0 ? (
         <Card>
           <CardContent className="text-center py-12">
-            <div className="w-16 h-16 mx-auto mb-4 bg-muted/50 rounded-full flex items-center justify-center">
-              <Camera className="w-8 h-8 text-muted-foreground/60" />
+            <div className="w-16 h-16 mx-auto mb-4 bg-background-3 dark:bg-background-7 rounded-full flex items-center justify-center">
+              <Camera className="w-8 h-8 text-secondary/60 dark:text-accent/60/60" />
             </div>
-            <h3 className="text-lg font-medium text-foreground mb-2">
+            <h3 className="text-lg font-medium text-secondary dark:text-accent mb-2">
               No Portfolio Items
             </h3>
-            <p className="text-muted-foreground">
+            <p className="text-secondary/60 dark:text-accent/60">
               This workshop hasn't added any portfolio items yet.
             </p>
           </CardContent>
@@ -343,7 +343,7 @@ export default function WorkshopProfile({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {workshop.profile.portfolio?.map((item) => (
             <Card key={item.id} className="overflow-hidden">
-              <div className="aspect-video bg-muted/50 relative">
+              <div className="aspect-video bg-background-3 dark:bg-background-7 relative">
                 {item.afterImages?.length > 0 && (
                   <img
                     src={item.afterImages?.[0]}
@@ -352,7 +352,7 @@ export default function WorkshopProfile({
                   />
                 )}
                 {item.featured && (
-                  <Badge className="absolute top-2 right-2 bg-yellow-500">
+                  <Badge className="absolute top-2 right-2 bg-[var(--ns-yellow)]">
                     Featured
                   </Badge>
                 )}
@@ -364,10 +364,10 @@ export default function WorkshopProfile({
                     {getServiceTypeLabel(item.serviceType)}
                   </Badge>
                 </div>
-                <p className="text-sm text-muted-foreground mb-3">
+                <p className="text-sm text-secondary/60 dark:text-accent/60 mb-3">
                   {item.description}
                 </p>
-                <div className="flex items-center justify-between text-xs text-muted-foreground/80">
+                <div className="flex items-center justify-between text-xs text-secondary/60 dark:text-accent/60/80">
                   {item.carBrand && (
                     <span>{getCarBrandLabel(item.carBrand)}</span>
                   )}
@@ -376,7 +376,7 @@ export default function WorkshopProfile({
                   </span>
                 </div>
                 <div className="flex items-center gap-2 mt-3">
-                  <span className="text-xs text-muted-foreground/80">
+                  <span className="text-xs text-secondary/60 dark:text-accent/60/80">
                     {item.beforeImages?.length || 0} before,{" "}
                     {item.afterImages?.length || 0} after
                   </span>
@@ -401,7 +401,7 @@ export default function WorkshopProfile({
     if (loadingReviews) {
       return (
         <div className="flex items-center justify-center py-12">
-          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+          <Loader2 className="w-8 h-8 animate-spin text-primary-500" />
         </div>
       );
     }
@@ -423,9 +423,9 @@ export default function WorkshopProfile({
                 />
               </div>
               <div className="text-center sm:text-right">
-                <p className="text-sm text-muted-foreground">Based on</p>
+                <p className="text-sm text-secondary/60 dark:text-accent/60">Based on</p>
                 <p className="text-2xl font-bold">{reviewStats.totalReviews}</p>
-                <p className="text-sm text-muted-foreground">reviews</p>
+                <p className="text-sm text-secondary/60 dark:text-accent/60">reviews</p>
               </div>
             </div>
 
@@ -443,14 +443,14 @@ export default function WorkshopProfile({
                 return (
                   <div key={rating} className="flex items-center gap-2">
                     <span className="text-sm w-8">{rating}</span>
-                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    <div className="flex-1 bg-muted rounded-full h-2">
+                    <Star className="w-4 h-4 fill-[var(--ns-yellow)] text-[var(--ns-yellow)]" />
+                    <div className="flex-1 bg-background-3 dark:bg-background-7 rounded-full h-2">
                       <div
-                        className="bg-yellow-400 h-2 rounded-full"
+                        className="bg-[var(--ns-yellow)] h-2 rounded-full"
                         style={{ width: `${percentage}%` }}
                       />
                     </div>
-                    <span className="text-sm text-muted-foreground w-8">
+                    <span className="text-sm text-secondary/60 dark:text-accent/60 w-8">
                       {count}
                     </span>
                   </div>
@@ -464,13 +464,13 @@ export default function WorkshopProfile({
         {reviews.length === 0 ? (
           <Card>
             <CardContent className="text-center py-12">
-              <div className="w-16 h-16 mx-auto mb-4 bg-muted/50 rounded-full flex items-center justify-center">
-                <MessageSquare className="w-8 h-8 text-muted-foreground/60" />
+              <div className="w-16 h-16 mx-auto mb-4 bg-background-3 dark:bg-background-7 rounded-full flex items-center justify-center">
+                <MessageSquare className="w-8 h-8 text-secondary/60 dark:text-accent/60/60" />
               </div>
-              <h3 className="text-lg font-medium text-foreground mb-2">
+              <h3 className="text-lg font-medium text-secondary dark:text-accent mb-2">
                 No Reviews Yet
               </h3>
-              <p className="text-muted-foreground">
+              <p className="text-secondary/60 dark:text-accent/60">
                 Be the first to leave a review for this workshop!
               </p>
             </CardContent>
@@ -495,7 +495,7 @@ export default function WorkshopProfile({
                             showText={false}
                             size="sm"
                           />
-                          <span className="text-sm text-muted-foreground">
+                          <span className="text-sm text-secondary/60 dark:text-accent/60">
                             {new Date(review.updatedAt).toLocaleDateString()}
                           </span>
                         </div>
@@ -509,7 +509,7 @@ export default function WorkshopProfile({
                       )}
                       <Badge
                         variant="secondary"
-                        className="bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200"
+                        className="bg-[var(--ns-green-light)] text-[var(--secondary)] dark:bg-[var(--ns-green)] dark:text-[var(--secondary)]"
                       >
                         <CheckCircle className="w-3 h-3 mr-1" />
                         Verified
@@ -517,7 +517,7 @@ export default function WorkshopProfile({
                     </div>
                   </div>
 
-                  <p className="text-foreground/90 mb-3">
+                  <p className="text-secondary/90 dark:text-accent/90 mb-3">
                     {review.customerReview}
                   </p>
 
@@ -531,7 +531,7 @@ export default function WorkshopProfile({
                     </div>
                   )}
 
-                  <div className="flex items-center justify-between text-sm text-muted-foreground/80">
+                  <div className="flex items-center justify-between text-sm text-secondary/60 dark:text-accent/60/80">
                     <span>
                       Completed:{" "}
                       {new Date(review.updatedAt).toLocaleDateString()}
@@ -634,7 +634,7 @@ export default function WorkshopProfile({
         <DialogContent className="max-w-2xl">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              <Award className="w-5 h-5 text-primary" />
+              <Award className="w-5 h-5 text-primary-500" />
               Certificate Details
             </DialogTitle>
             <DialogDescription>
@@ -647,29 +647,29 @@ export default function WorkshopProfile({
                 const cert = workshop.profile.certifications[selectedCertificate];
                 return (
                   <>
-                    <div className="space-y-3 p-4 bg-muted/30 rounded-lg">
+                    <div className="space-y-3 p-4 bg-background-3/30 dark:bg-background-7/30 rounded-lg">
                       <div>
                         <h3 className="font-semibold text-lg">{cert.name}</h3>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-secondary/60 dark:text-accent/60">
                           {getCertificationTypeLabel(cert.type)}
                         </p>
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
                         <div>
-                          <p className="text-muted-foreground/80">Issued By</p>
+                          <p className="text-secondary/60 dark:text-accent/60/80">Issued By</p>
                           <p className="font-medium">{cert.issuedBy}</p>
                         </div>
 
                         {cert.certificateNumber && (
                           <div>
-                            <p className="text-muted-foreground/80">Certificate Number</p>
+                            <p className="text-secondary/60 dark:text-accent/60/80">Certificate Number</p>
                             <p className="font-medium">{cert.certificateNumber}</p>
                           </div>
                         )}
 
                         <div>
-                          <p className="text-muted-foreground/80">Issue Date</p>
+                          <p className="text-secondary/60 dark:text-accent/60/80">Issue Date</p>
                           <p className="font-medium">
                             {new Date(cert.issuedDate).toLocaleDateString()}
                           </p>
@@ -677,7 +677,7 @@ export default function WorkshopProfile({
 
                         {cert.expiryDate && (
                           <div>
-                            <p className="text-muted-foreground/80">Expiry Date</p>
+                            <p className="text-secondary/60 dark:text-accent/60/80">Expiry Date</p>
                             <p className="font-medium">
                               {new Date(cert.expiryDate).toLocaleDateString()}
                             </p>
@@ -689,12 +689,12 @@ export default function WorkshopProfile({
                         <div className="flex items-center gap-2 pt-2 border-t">
                           <Badge
                             variant="secondary"
-                            className="bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200"
+                            className="bg-[var(--ns-green-light)] text-[var(--secondary)] dark:bg-[var(--ns-green)] dark:text-[var(--secondary)]"
                           >
                             <CheckCircle className="w-3 h-3 mr-1" />
                             Verified Certificate
                           </Badge>
-                          <p className="text-xs text-muted-foreground">
+                          <p className="text-xs text-secondary/60 dark:text-accent/60">
                             This certificate has been verified by {workshop.profile.businessName}
                           </p>
                         </div>
@@ -702,8 +702,8 @@ export default function WorkshopProfile({
                     </div>
 
                     {/* Certificate Image - Not yet implemented */}
-                    <div className="text-center text-sm text-muted-foreground p-4 bg-muted/20 rounded-lg">
-                      <FileText className="w-10 h-10 mx-auto mb-2 text-muted-foreground/40" />
+                    <div className="text-center text-sm text-secondary/60 dark:text-accent/60 p-4 bg-background-3/20 dark:bg-background-7/20 rounded-lg">
+                      <FileText className="w-10 h-10 mx-auto mb-2 text-secondary/60 dark:text-accent/60/40" />
                       <p>Certificate document not yet uploaded</p>
                       <p className="text-xs mt-1">The workshop can upload certificate images for verification</p>
                     </div>
@@ -733,7 +733,7 @@ export default function WorkshopProfile({
                     <DialogTitle className="text-2xl mb-2 flex items-center gap-2">
                       {portfolioItem.title}
                       {portfolioItem.featured && (
-                        <Badge className="bg-yellow-500 text-yellow-950">
+                        <Badge className="bg-[var(--ns-yellow)] text-[var(--secondary)]">
                           Featured
                         </Badge>
                       )}
@@ -747,23 +747,23 @@ export default function WorkshopProfile({
 
               <div className="space-y-6">
                 {/* Portfolio Details */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 bg-muted/30 rounded-lg">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 bg-background-3/30 dark:bg-background-7/30 rounded-lg">
                   <div>
-                    <p className="text-sm text-muted-foreground/80">Service Type</p>
+                    <p className="text-sm text-secondary/60 dark:text-accent/60/80">Service Type</p>
                     <p className="font-medium">{getServiceTypeLabel(portfolioItem.serviceType)}</p>
                   </div>
                   {portfolioItem.carBrand && (
                     <div>
-                      <p className="text-sm text-muted-foreground/80">Vehicle Brand</p>
+                      <p className="text-sm text-secondary/60 dark:text-accent/60/80">Vehicle Brand</p>
                       <p className="font-medium">{getCarBrandLabel(portfolioItem.carBrand)}</p>
                     </div>
                   )}
                   <div>
-                    <p className="text-sm text-muted-foreground/80">Completed Date</p>
+                    <p className="text-sm text-secondary/60 dark:text-accent/60/80">Completed Date</p>
                     <p className="font-medium">{new Date(portfolioItem.completedDate).toLocaleDateString()}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground/80">Images</p>
+                    <p className="text-sm text-secondary/60 dark:text-accent/60/80">Images</p>
                     <p className="font-medium">
                       {portfolioItem.beforeImages?.length || 0} Before, {portfolioItem.afterImages?.length || 0} After
                     </p>
@@ -774,7 +774,7 @@ export default function WorkshopProfile({
                 {portfolioItem.description && (
                   <div>
                     <h4 className="font-semibold mb-2">Project Description</h4>
-                    <p className="text-foreground/90 leading-relaxed">
+                    <p className="text-secondary/90 dark:text-accent/90 leading-relaxed">
                       {portfolioItem.description}
                     </p>
                   </div>
@@ -786,8 +786,8 @@ export default function WorkshopProfile({
                     onClick={() => setPortfolioImageType('before')}
                     className={`px-4 py-2 font-medium text-sm transition-colors ${
                       portfolioImageType === 'before'
-                        ? 'border-b-2 border-primary text-primary'
-                        : 'text-muted-foreground hover:text-foreground'
+                        ? 'border-b-2 border-primary-500 text-primary-500'
+                        : 'text-secondary/60 dark:text-accent/60 hover:text-secondary dark:hover:text-accent'
                     }`}
                   >
                     Before ({portfolioItem.beforeImages?.length || 0})
@@ -796,8 +796,8 @@ export default function WorkshopProfile({
                     onClick={() => setPortfolioImageType('after')}
                     className={`px-4 py-2 font-medium text-sm transition-colors ${
                       portfolioImageType === 'after'
-                        ? 'border-b-2 border-primary text-primary'
-                        : 'text-muted-foreground hover:text-foreground'
+                        ? 'border-b-2 border-primary-500 text-primary-500'
+                        : 'text-secondary/60 dark:text-accent/60 hover:text-secondary dark:hover:text-accent'
                     }`}
                   >
                     After ({portfolioItem.afterImages?.length || 0})
@@ -808,7 +808,7 @@ export default function WorkshopProfile({
                 {allImages.length > 0 ? (
                   <div className="space-y-4">
                     {/* Main Image Display */}
-                    <div className="relative bg-muted/20 rounded-lg overflow-hidden">
+                    <div className="relative bg-background-3/20 dark:bg-background-7/20 rounded-lg overflow-hidden">
                       <img
                         src={allImages[selectedPortfolioImageIndex]}
                         alt={`${portfolioItem.title} - ${portfolioImageType} ${selectedPortfolioImageIndex + 1}`}
@@ -857,7 +857,7 @@ export default function WorkshopProfile({
                               onClick={() => setSelectedPortfolioImageIndex(idx)}
                               className={`relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 transition-all ${
                                 idx === selectedPortfolioImageIndex
-                                  ? 'ring-2 ring-primary scale-105'
+                                  ? 'ring-2 ring-primary-500 scale-105'
                                   : 'opacity-60 hover:opacity-100'
                               }`}
                             >
@@ -873,8 +873,8 @@ export default function WorkshopProfile({
                     )}
                   </div>
                 ) : (
-                  <div className="text-center py-8 text-muted-foreground">
-                    <Camera className="w-12 h-12 mx-auto mb-2 text-muted-foreground/40" />
+                  <div className="text-center py-8 text-secondary/60 dark:text-accent/60">
+                    <Camera className="w-12 h-12 mx-auto mb-2 text-secondary/60 dark:text-accent/60/40" />
                     <p>No {portfolioImageType} images available</p>
                   </div>
                 )}

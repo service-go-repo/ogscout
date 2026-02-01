@@ -139,7 +139,7 @@ export default function SentQuotesPage() {
         </Card>
         <Card>
           <CardContent className="p-4">
-            <div className="text-2xl font-bold text-emerald-600">
+            <div className="text-2xl font-bold text-[var(--ns-cyan)]">
               {stats.submitted || 0}
             </div>
             <div className="text-xs text-muted-foreground">Pending Response</div>
@@ -147,7 +147,7 @@ export default function SentQuotesPage() {
         </Card>
         <Card>
           <CardContent className="p-4">
-            <div className="text-2xl font-bold text-indigo-600">
+            <div className="text-2xl font-bold text-[var(--primary-500)]">
               {stats.quoted || 0}
             </div>
             <div className="text-xs text-muted-foreground">Quotes Received</div>
@@ -155,7 +155,7 @@ export default function SentQuotesPage() {
         </Card>
         <Card>
           <CardContent className="p-4">
-            <div className="text-2xl font-bold text-green-600">
+            <div className="text-2xl font-bold text-[var(--ns-green)]">
               {stats.accepted || 0}
             </div>
             <div className="text-xs text-muted-foreground">Accepted</div>
@@ -272,7 +272,7 @@ export default function SentQuotesPage() {
                       )}
 
                       {quote.expiresAt && quote.status === "quoted" && (
-                        <div className="flex items-center gap-1.5 text-orange-600">
+                        <div className="flex items-center gap-1.5 text-[var(--ns-red)]">
                           <span>
                             Expires:{" "}
                             {formatDistanceToNow(new Date(quote.expiresAt), {

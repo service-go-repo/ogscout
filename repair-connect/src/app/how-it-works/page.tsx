@@ -68,7 +68,7 @@ const mainSteps = [
       'Upload photos if needed for accurate quotes',
       'Set your preferred location and budget',
     ],
-    color: 'from-blue-500/20 to-blue-500/5',
+    color: 'from-primary-500/20 to-primary-500/5',
   },
   {
     number: 2,
@@ -81,7 +81,7 @@ const mainSteps = [
       'Check workshop ratings and customer reviews',
       'Compare response times and availability',
     ],
-    color: 'from-purple-500/20 to-purple-500/5',
+    color: 'from-primary-500/20 to-primary-500/5',
   },
   {
     number: 3,
@@ -94,7 +94,7 @@ const mainSteps = [
       'Receive booking confirmation instantly',
       'Track your repair status in real-time',
     ],
-    color: 'from-green-500/20 to-green-500/5',
+    color: 'from-primary-500/20 to-primary-500/5',
   },
 ];
 
@@ -169,19 +169,19 @@ export default function HowItWorksPage() {
 
       <div className="flex flex-col">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-b from-background via-muted/20 to-background py-20 lg:py-32 border-b overflow-hidden">
+        <section className="relative bg-gradient-to-b from-background via-background-3/20 dark:via-background-7/20 to-background py-20 lg:py-32 border-b overflow-hidden">
           <div className="absolute inset-0 bg-grid-primary/[0.02] pointer-events-none" />
 
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
             <AnimatedSection>
               <div className="max-w-4xl mx-auto text-center space-y-8">
-                <Badge variant="outline" className="border-primary text-primary px-4 py-2">
+                <Badge variant="outline" className="border-primary-500 text-primary-500 px-4 py-2">
                   Simple Process
                 </Badge>
 
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-secondary dark:text-accent leading-tight">
                   Your Car, Our Network,{' '}
-                  <span className="text-primary relative">
+                  <span className="text-primary-500 relative">
                     Perfect Match
                     <svg
                       className="absolute -bottom-2 left-0 w-full"
@@ -195,13 +195,13 @@ export default function HowItWorksPage() {
                         stroke="currentColor"
                         strokeWidth="2"
                         strokeLinecap="round"
-                        className="text-primary"
+                        className="text-primary-500"
                       />
                     </svg>
                   </span>
                 </h1>
 
-                <p className="text-lg sm:text-xl text-muted-foreground">
+                <p className="text-lg sm:text-xl text-secondary/60 dark:text-accent/60">
                   Getting your car repaired has never been easier. Follow our simple 3-step process to connect with verified workshops and get your car back on the road.
                 </p>
               </div>
@@ -210,7 +210,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* Main Process Steps */}
-        <section className="py-20 bg-background">
+        <section className="py-20 bg-background-2 dark:bg-background-5">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <SectionHeader
@@ -230,28 +230,28 @@ export default function HowItWorksPage() {
                     <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${!isEven ? 'lg:flex-row-reverse' : ''}`}>
                       <div className={`space-y-6 ${!isEven ? 'lg:order-2' : ''}`}>
                         <div className="flex items-center gap-4">
-                          <div className="flex-shrink-0 h-16 w-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-2xl font-bold shadow-lg">
+                          <div className="flex-shrink-0 h-16 w-16 rounded-full bg-primary-500 text-primary-foreground flex items-center justify-center text-2xl font-bold shadow-lg">
                             {step.number}
                           </div>
                           <div className="flex-1">
                             <Badge variant="secondary" className="mb-2">
                               Step {step.number}
                             </Badge>
-                            <h3 className="text-2xl sm:text-3xl font-bold text-foreground">
+                            <h3 className="text-2xl sm:text-3xl font-bold text-secondary dark:text-accent">
                               {step.title}
                             </h3>
                           </div>
                         </div>
 
-                        <p className="text-lg text-muted-foreground leading-relaxed">
+                        <p className="text-lg text-secondary/60 dark:text-accent/60 leading-relaxed">
                           {step.description}
                         </p>
 
                         <ul className="space-y-3">
                           {step.details.map((detail, idx) => (
                             <li key={idx} className="flex items-start gap-3">
-                              <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                              <span className="text-base text-muted-foreground">{detail}</span>
+                              <CheckCircle className="h-5 w-5 text-primary-500 flex-shrink-0 mt-0.5" />
+                              <span className="text-base text-secondary/60 dark:text-accent/60">{detail}</span>
                             </li>
                           ))}
                         </ul>
@@ -261,7 +261,7 @@ export default function HowItWorksPage() {
                         <Card className="border-2 overflow-hidden shadow-xl">
                           <div className={`bg-gradient-to-br ${step.color} p-16 flex items-center justify-center`}>
                             <div className="h-32 w-32 rounded-full bg-white/50 backdrop-blur flex items-center justify-center">
-                              <IconComponent className="h-16 w-16 text-primary" />
+                              <IconComponent className="h-16 w-16 text-primary-500" />
                             </div>
                           </div>
                         </Card>
@@ -275,7 +275,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* Service Categories */}
-        <section className="py-20 bg-muted/30" id="step-1">
+        <section className="py-20 bg-background dark:bg-background-6" id="step-1">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <SectionHeader
@@ -292,12 +292,12 @@ export default function HowItWorksPage() {
                 return (
                   <StaggerItem key={service.slug} variants={staggerItemVariants}>
                     <HoverScale>
-                      <Card className="border-2 hover:border-primary/50 hover:shadow-lg transition-all h-full group">
+                      <Card className="border-2 hover:border-primary-500/50 hover:shadow-lg transition-all h-full group">
                         <CardHeader>
-                          <div className="h-14 w-14 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors flex items-center justify-center mb-4">
-                            <IconComponent className="h-7 w-7 text-primary" />
+                          <div className="h-14 w-14 rounded-xl bg-primary-500/10 group-hover:bg-primary-500/20 transition-colors flex items-center justify-center mb-4">
+                            <IconComponent className="h-7 w-7 text-primary-500" />
                           </div>
-                          <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                          <CardTitle className="text-xl group-hover:text-primary-600 transition-colors">
                             {service.name}
                           </CardTitle>
                         </CardHeader>
@@ -316,7 +316,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* Visual Flow */}
-        <section className="py-20 bg-gradient-to-br from-primary/10 via-purple-500/10 to-primary/10">
+        <section className="py-20 bg-gradient-to-br from-primary/10 via-primary-500/10 to-primary/10">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <SectionHeader
@@ -336,17 +336,17 @@ export default function HowItWorksPage() {
                       <div key={index} className="relative">
                         <Card className="border-2 text-center">
                           <CardContent className="p-6">
-                            <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
-                              <IconComponent className="h-6 w-6 text-primary" />
+                            <div className="h-12 w-12 rounded-full bg-primary-500/10 flex items-center justify-center mx-auto mb-3">
+                              <IconComponent className="h-6 w-6 text-primary-500" />
                             </div>
-                            <p className="text-sm font-medium text-foreground">
+                            <p className="text-sm font-medium text-secondary dark:text-accent">
                               {step.label}
                             </p>
                           </CardContent>
                         </Card>
                         {index < flowSteps.length - 1 && (
                           <div className="hidden md:block absolute top-1/2 -right-1 transform translate-x-1/2 -translate-y-1/2 z-10">
-                            <ArrowRight className="h-5 w-5 text-primary" />
+                            <ArrowRight className="h-5 w-5 text-primary-500" />
                           </div>
                         )}
                       </div>
@@ -359,7 +359,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* For Workshops Section */}
-        <section className="py-20 bg-background">
+        <section className="py-20 bg-background-2 dark:bg-background-5">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <SectionHeader
@@ -376,10 +376,10 @@ export default function HowItWorksPage() {
                 return (
                   <StaggerItem key={index} variants={staggerItemVariants}>
                     <HoverScale>
-                      <Card className="border-2 hover:border-primary/50 hover:shadow-lg transition-all h-full text-center group">
+                      <Card className="border-2 hover:border-primary-500/50 hover:shadow-lg transition-all h-full text-center group">
                         <CardHeader>
-                          <div className="h-16 w-16 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors flex items-center justify-center mx-auto mb-4">
-                            <IconComponent className="h-8 w-8 text-primary" />
+                          <div className="h-16 w-16 rounded-full bg-primary-500/10 group-hover:bg-primary-500/20 transition-colors flex items-center justify-center mx-auto mb-4">
+                            <IconComponent className="h-8 w-8 text-primary-500" />
                           </div>
                           <CardTitle className="text-lg">{benefit.title}</CardTitle>
                         </CardHeader>
@@ -409,7 +409,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-20 bg-muted/30">
+        <section className="py-20 bg-background dark:bg-background-6">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <SectionHeader
@@ -429,7 +429,7 @@ export default function HowItWorksPage() {
                           <AccordionTrigger className="text-left font-semibold">
                             {faq.question}
                           </AccordionTrigger>
-                          <AccordionContent className="text-muted-foreground leading-relaxed">
+                          <AccordionContent className="text-secondary/60 dark:text-accent/60 leading-relaxed">
                             {faq.answer}
                           </AccordionContent>
                         </AccordionItem>

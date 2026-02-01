@@ -365,14 +365,14 @@ function QuotationRequestCard({
     const colors = {
       not_quoted: "bg-primary/10 text-primary",
       pending:
-        "bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200",
+        "bg-[var(--ns-yellow-light)] text-[var(--ns-yellow)]",
       submitted:
-        "bg-violet-100 text-violet-800 dark:bg-violet-950 dark:text-violet-200",
+        "bg-[var(--primary-100)] text-[var(--primary-700)]",
       accepted:
-        "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200",
+        "bg-[var(--ns-green-light)] text-[var(--ns-green)]",
       declined: "bg-destructive/10 text-destructive",
       missed:
-        "bg-orange-100 text-orange-800 dark:bg-orange-950 dark:text-orange-200",
+        "bg-[var(--ns-red)] text-[var(--secondary)]",
     };
 
     const labels = {
@@ -512,7 +512,7 @@ function QuotationRequestCard({
                   Submitted {format(new Date(myQuote.submittedAt), "MMM dd")}
                 </div>
                 {myQuote.status === "accepted" && (
-                  <div className="text-emerald-600 dark:text-emerald-400 font-medium text-sm">
+                  <div className="text-[var(--ns-green)] font-medium text-sm">
                     🎉 Accepted!
                   </div>
                 )}

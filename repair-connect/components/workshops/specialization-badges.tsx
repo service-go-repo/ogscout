@@ -44,7 +44,7 @@ export default function SpecializationBadges({
             key={item}
             variant={variant}
             className={`${sizeClasses[size]} ${
-              type === 'service' ? 'bg-blue-50 text-blue-700 border-blue-200' : 'bg-green-50 text-green-700 border-green-200'
+              type === 'service' ? 'bg-primary-500/10 text-primary-500 border-primary-500/20' : 'bg-[var(--ns-green-light)] text-[var(--secondary)] border-[var(--ns-green)]'
             }`}
           >
             {labels[item] || item}
@@ -53,7 +53,7 @@ export default function SpecializationBadges({
         {remainingCount > 0 && (
           <Badge
             variant="secondary"
-            className={`${sizeClasses[size]} bg-gray-100 text-gray-600`}
+            className={`${sizeClasses[size]} bg-background-3 dark:bg-background-7 text-secondary/60 dark:text-accent/60`}
           >
             +{remainingCount} more
           </Badge>
@@ -76,13 +76,13 @@ export default function SpecializationBadges({
     <div className="space-y-2">
       {serviceTypes.length > 0 && (
         <div>
-          <h4 className="text-sm font-medium text-gray-700 mb-1">Services</h4>
+          <h4 className="text-sm font-medium text-secondary dark:text-accent mb-1">Services</h4>
           {renderBadges(serviceTypes, serviceLabels, 'service')}
         </div>
       )}
       {carBrands.length > 0 && (
         <div>
-          <h4 className="text-sm font-medium text-gray-700 mb-1">Car Brands</h4>
+          <h4 className="text-sm font-medium text-secondary dark:text-accent mb-1">Car Brands</h4>
           {renderBadges(carBrands, brandLabels, 'brand')}
         </div>
       )}
@@ -113,8 +113,8 @@ export function CompactSpecializationBadges({
           variant="outline"
           className={`text-xs px-2 py-1 ${
             item.type === 'service' 
-              ? 'bg-blue-50 text-blue-700 border-blue-200' 
-              : 'bg-green-50 text-green-700 border-green-200'
+              ? 'bg-primary-500/10 text-primary-500 border-primary-500/20' 
+              : 'bg-[var(--ns-green-light)] text-[var(--secondary)] border-[var(--ns-green)]'
           }`}
         >
           {item.label}
@@ -123,7 +123,7 @@ export function CompactSpecializationBadges({
       {remainingCount > 0 && (
         <Badge
           variant="secondary"
-          className="text-xs px-2 py-1 bg-gray-100 text-gray-600"
+          className="text-xs px-2 py-1 bg-background-3 dark:bg-background-7 text-secondary/60 dark:text-accent/60"
         >
           +{remainingCount}
         </Badge>

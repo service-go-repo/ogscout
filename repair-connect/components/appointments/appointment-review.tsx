@@ -91,7 +91,7 @@ export default function AppointmentReview({
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <CheckCircle className="h-5 w-5 text-green-600" />
+            <CheckCircle className="h-5 w-5 text-[var(--ns-green)]" />
             Customer Review
           </CardTitle>
         </CardHeader>
@@ -99,13 +99,13 @@ export default function AppointmentReview({
           {/* Customer Info */}
           <div className="flex items-center gap-3">
             <Avatar className="h-10 w-10">
-              <AvatarFallback className="bg-blue-100 text-blue-700">
+              <AvatarFallback className="bg-primary-100 text-primary-500">
                 {getInitials(existingReview.customerName)}
               </AvatarFallback>
             </Avatar>
             <div>
               <div className="font-medium">{existingReview.customerName}</div>
-              <div className="text-xs text-gray-500">
+              <div className="text-xs text-secondary/60 dark:text-accent/60">
                 {format(new Date(existingReview.createdAt), 'MMM dd, yyyy')}
               </div>
             </div>
@@ -118,8 +118,8 @@ export default function AppointmentReview({
                 key={star}
                 className={`h-6 w-6 ${
                   star <= existingReview.rating
-                    ? 'fill-yellow-400 text-yellow-400'
-                    : 'text-gray-300'
+                    ? 'fill-[var(--ns-yellow)] text-[var(--ns-yellow)]'
+                    : 'text-secondary/40 dark:text-accent/40'
                 }`}
               />
             ))}
@@ -129,8 +129,8 @@ export default function AppointmentReview({
           </div>
 
           {/* Comment */}
-          <div className="p-4 bg-gray-50 rounded-md">
-            <p className="text-gray-700">{existingReview.comment}</p>
+          <div className="p-4 bg-background-3 dark:bg-background-7 rounded-md">
+            <p className="text-secondary/60 dark:text-accent/60">{existingReview.comment}</p>
           </div>
         </CardContent>
       </Card>
@@ -143,7 +143,7 @@ export default function AppointmentReview({
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <CheckCircle className="h-5 w-5 text-green-600" />
+            <CheckCircle className="h-5 w-5 text-[var(--ns-green)]" />
             Your Review
           </CardTitle>
         </CardHeader>
@@ -154,8 +154,8 @@ export default function AppointmentReview({
                 key={star}
                 className={`h-6 w-6 ${
                   star <= existingReview.rating
-                    ? 'fill-yellow-400 text-yellow-400'
-                    : 'text-gray-300'
+                    ? 'fill-[var(--ns-yellow)] text-[var(--ns-yellow)]'
+                    : 'text-secondary/40 dark:text-accent/40'
                 }`}
               />
             ))}
@@ -164,11 +164,11 @@ export default function AppointmentReview({
             </span>
           </div>
 
-          <div className="p-4 bg-gray-50 rounded-md">
-            <p className="text-gray-700">{existingReview.comment}</p>
+          <div className="p-4 bg-background-3 dark:bg-background-7 rounded-md">
+            <p className="text-secondary/60 dark:text-accent/60">{existingReview.comment}</p>
           </div>
 
-          <div className="text-xs text-gray-500">
+          <div className="text-xs text-secondary/60 dark:text-accent/60">
             Reviewed on {format(new Date(existingReview.createdAt), 'MMMM dd, yyyy')}
           </div>
         </CardContent>
@@ -182,7 +182,7 @@ export default function AppointmentReview({
       <Card>
         <CardHeader>
           <CardTitle>Rate Your Experience</CardTitle>
-          <p className="text-sm text-gray-600 mt-1">
+          <p className="text-sm text-secondary/60 dark:text-accent/60 mt-1">
             How was your service experience at {workshopName}?
           </p>
         </CardHeader>
@@ -190,7 +190,7 @@ export default function AppointmentReview({
           {/* Star Rating */}
           <div>
             <label className="text-sm font-medium mb-2 block">
-              Your Rating <span className="text-red-500">*</span>
+              Your Rating <span className="text-[var(--ns-red)]">*</span>
             </label>
             <div className="flex items-center gap-2">
               {[1, 2, 3, 4, 5].map((star) => (
@@ -205,8 +205,8 @@ export default function AppointmentReview({
                   <Star
                     className={`h-8 w-8 ${
                       star <= (hoveredRating || rating)
-                        ? 'fill-yellow-400 text-yellow-400'
-                        : 'text-gray-300'
+                        ? 'fill-[var(--ns-yellow)] text-[var(--ns-yellow)]'
+                        : 'text-secondary/40 dark:text-accent/40'
                     }`}
                   />
                 </button>
@@ -226,7 +226,7 @@ export default function AppointmentReview({
           {/* Comment */}
           <div>
             <label htmlFor="review-comment" className="text-sm font-medium mb-2 block">
-              Your Review <span className="text-red-500">*</span>
+              Your Review <span className="text-[var(--ns-red)]">*</span>
             </label>
             <Textarea
               id="review-comment"
@@ -236,7 +236,7 @@ export default function AppointmentReview({
               rows={5}
               className="resize-none"
             />
-            <div className="text-xs text-gray-500 mt-1">
+            <div className="text-xs text-secondary/60 dark:text-accent/60 mt-1">
               {comment.length} characters (minimum 10)
             </div>
           </div>
@@ -267,8 +267,8 @@ export default function AppointmentReview({
   // Workshop view (no review submitted yet)
   return (
     <Card>
-      <CardContent className="p-6 text-center text-gray-500">
-        <Star className="h-8 w-8 text-gray-300 mx-auto mb-2" />
+      <CardContent className="p-6 text-center text-secondary/60 dark:text-accent/60">
+        <Star className="h-8 w-8 text-secondary/40 dark:text-accent/40 mx-auto mb-2" />
         <p className="text-sm">Customer hasn't submitted a review yet</p>
       </CardContent>
     </Card>

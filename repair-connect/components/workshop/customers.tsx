@@ -75,20 +75,20 @@ const getServiceTypeLabel = (serviceType: string): string => {
 const getStatusColor = (status: string): string => {
   const colors: Record<string, string> = {
     // Quotation statuses
-    'pending': 'bg-yellow-100 text-yellow-800 border-yellow-200',
-    'quoted': 'bg-blue-100 text-blue-800 border-blue-200',
-    'accepted': 'bg-green-100 text-green-800 border-green-200',
-    'declined': 'bg-red-100 text-red-800 border-red-200',
-    'completed': 'bg-purple-100 text-purple-800 border-purple-200',
-    'expired': 'bg-gray-100 text-gray-800 border-gray-200',
+    'pending': 'bg-[var(--ns-yellow-light)] text-secondary border-[var(--ns-yellow)]',
+    'quoted': 'bg-primary-100 text-secondary border-primary-300',
+    'accepted': 'bg-[var(--ns-green-light)] text-secondary border-[var(--ns-green)]',
+    'declined': 'bg-[var(--ns-red)]/30 text-secondary border-[var(--ns-red)]',
+    'completed': 'bg-primary-100 text-secondary border-primary-300',
+    'expired': 'bg-[var(--background-3)] text-secondary/60 dark:text-accent/60 border-[var(--stroke-3)] dark:border-[var(--stroke-7)]',
     // Appointment statuses
-    'requested': 'bg-yellow-100 text-yellow-800 border-yellow-200',
-    'confirmed': 'bg-blue-100 text-blue-800 border-blue-200',
-    'scheduled': 'bg-purple-100 text-purple-800 border-purple-200',
-    'in_progress': 'bg-orange-100 text-orange-800 border-orange-200',
-    'cancelled': 'bg-red-100 text-red-800 border-red-200',
+    'requested': 'bg-[var(--ns-yellow-light)] text-secondary border-[var(--ns-yellow)]',
+    'confirmed': 'bg-primary-100 text-secondary border-primary-300',
+    'scheduled': 'bg-primary-100 text-secondary border-primary-300',
+    'in_progress': 'bg-[var(--ns-cyan-light)] text-secondary border-[var(--ns-cyan)]',
+    'cancelled': 'bg-[var(--ns-red)]/30 text-secondary border-[var(--ns-red)]',
   }
-  return colors[status.toLowerCase()] || 'bg-gray-100 text-gray-800 border-gray-200'
+  return colors[status.toLowerCase()] || 'bg-[var(--background-3)] text-secondary/60 dark:text-accent/60 border-[var(--stroke-3)] dark:border-[var(--stroke-7)]'
 }
 
 const getUniqueVehicles = (customer: Customer) => {
@@ -191,7 +191,7 @@ export default function CustomersComponent() {
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold">Customers</h1>
-        <p className="text-gray-600 mt-2">
+        <p className="text-secondary/60 dark:text-accent/60 mt-2">
           Manage your customer relationships and service history
         </p>
       </div>
@@ -202,10 +202,10 @@ export default function CustomersComponent() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Customers</p>
+                <p className="text-sm font-medium text-secondary/60 dark:text-accent/60">Total Customers</p>
                 <p className="text-2xl font-bold">{customers.length}</p>
               </div>
-              <Users className="h-8 w-8 text-blue-600" />
+              <Users className="h-8 w-8 text-primary-500" />
             </div>
           </CardContent>
         </Card>
@@ -214,12 +214,12 @@ export default function CustomersComponent() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Quotations</p>
+                <p className="text-sm font-medium text-secondary/60 dark:text-accent/60">Total Quotations</p>
                 <p className="text-2xl font-bold">
                   {customers.reduce((sum, c) => sum + c.totalQuotations, 0)}
                 </p>
               </div>
-              <FileText className="h-8 w-8 text-green-600" />
+              <FileText className="h-8 w-8 text-[var(--ns-green)]" />
             </div>
           </CardContent>
         </Card>
@@ -228,12 +228,12 @@ export default function CustomersComponent() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Revenue</p>
+                <p className="text-sm font-medium text-secondary/60 dark:text-accent/60">Total Revenue</p>
                 <p className="text-2xl font-bold">
                   AED {customers.reduce((sum, c) => sum + c.totalSpent, 0).toFixed(2)}
                 </p>
               </div>
-              <DollarSign className="h-8 w-8 text-purple-600" />
+              <DollarSign className="h-8 w-8 text-primary-500" />
             </div>
           </CardContent>
         </Card>
@@ -241,7 +241,7 @@ export default function CustomersComponent() {
 
       {/* Search Bar */}
       <div className="relative flex-1">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-500" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-secondary/40 dark:text-accent/40" />
         <Input
           placeholder="Search by name, email, phone, or car..."
           value={searchQuery}
@@ -254,11 +254,11 @@ export default function CustomersComponent() {
       {filteredCustomers.length === 0 ? (
         <Card>
           <CardContent className="p-12 text-center">
-            <Users className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
+            <Users className="h-12 w-12 text-secondary/30 dark:text-accent/30 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-secondary dark:text-accent mb-2">
               {customers.length === 0 ? 'No customers yet' : 'No customers match your search'}
             </h3>
-            <p className="text-gray-500">
+            <p className="text-secondary/60 dark:text-accent/60">
               {customers.length === 0
                 ? 'Your customers will appear here once they request quotes from your workshop'
                 : 'Try adjusting your search criteria'}
@@ -270,36 +270,36 @@ export default function CustomersComponent() {
           <CardContent className="p-0">
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-gray-50 border-b">
+                <thead className="bg-[var(--background-3)] dark:bg-[var(--background-7)] border-b border-[var(--stroke-3)] dark:border-[var(--stroke-7)]">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-secondary/60 dark:text-accent/60 uppercase tracking-wider">
                       Customer
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-secondary/60 dark:text-accent/60 uppercase tracking-wider">
                       Contact
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-secondary/60 dark:text-accent/60 uppercase tracking-wider">
                       Vehicles
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-secondary/60 dark:text-accent/60 uppercase tracking-wider">
                       Quotations
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-secondary/60 dark:text-accent/60 uppercase tracking-wider">
                       Total Spent
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-secondary/60 dark:text-accent/60 uppercase tracking-wider">
                       Last Interaction
                     </th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-right text-xs font-medium text-secondary/60 dark:text-accent/60 uppercase tracking-wider">
                       Action
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-[var(--background-1)] dark:bg-[var(--background-6)] divide-y divide-[var(--stroke-3)] dark:divide-[var(--stroke-7)]">
                   {filteredCustomers.map((customer) => (
                     <tr
                       key={customer._id}
-                      className="hover:bg-gray-50 cursor-pointer transition-colors"
+                      className="hover:bg-[var(--background-3)] dark:hover:bg-[var(--background-7)] cursor-pointer transition-colors"
                       onClick={() => openCustomerDetails(customer)}
                     >
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -308,52 +308,52 @@ export default function CustomersComponent() {
                             <UserIcon className="h-5 w-5 text-primary" />
                           </div>
                           <div className="ml-4">
-                            <div className="text-sm font-medium text-gray-900">
+                            <div className="text-sm font-medium text-secondary dark:text-accent">
                               {customer.name}
                             </div>
                             {customer.phone && (
-                              <div className="text-xs text-gray-500">{customer.phone}</div>
+                              <div className="text-xs text-secondary/60 dark:text-accent/60">{customer.phone}</div>
                             )}
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">{customer.email}</div>
+                        <div className="text-sm text-secondary dark:text-accent">{customer.email}</div>
                         {customer.phone && (
-                          <div className="text-sm text-gray-500">{customer.phone}</div>
+                          <div className="text-sm text-secondary/60 dark:text-accent/60">{customer.phone}</div>
                         )}
                       </td>
                       <td className="px-6 py-4">
-                        <div className="text-sm text-gray-900">
+                        <div className="text-sm text-secondary dark:text-accent">
                           {(() => {
                             const vehicles = getUniqueVehicles(customer)
                             return vehicles.length > 0 ? (
                               <>
                                 {vehicles[0].year} {vehicles[0].make} {vehicles[0].model}
                                 {vehicles.length > 1 && (
-                                  <span className="text-gray-500 ml-2">
+                                  <span className="text-secondary/60 dark:text-accent/60 ml-2">
                                     +{vehicles.length - 1} more
                                   </span>
                                 )}
                               </>
                             ) : (
-                              <span className="text-gray-500">No vehicles</span>
+                              <span className="text-secondary/60 dark:text-accent/60">No vehicles</span>
                             )
                           })()}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm font-medium text-gray-900">
+                        <div className="text-sm font-medium text-secondary dark:text-accent">
                           {customer.totalQuotations}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm font-medium text-green-600">
+                        <div className="text-sm font-medium text-[var(--ns-green)]">
                           AED {customer.totalSpent.toFixed(2)}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">
+                        <div className="text-sm text-secondary dark:text-accent">
                           {customer.lastInteraction
                             ? format(new Date(customer.lastInteraction), 'MMM dd, yyyy')
                             : 'Never'}
@@ -392,24 +392,24 @@ export default function CustomersComponent() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div className="flex items-center gap-3">
-                    <UserIcon className="h-5 w-5 text-gray-400" />
+                    <UserIcon className="h-5 w-5 text-secondary/40 dark:text-accent/40" />
                     <div>
-                      <p className="text-sm text-gray-500">Name</p>
+                      <p className="text-sm text-secondary/60 dark:text-accent/60">Name</p>
                       <p className="font-medium">{selectedCustomer.name}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Mail className="h-5 w-5 text-gray-400" />
+                    <Mail className="h-5 w-5 text-secondary/40 dark:text-accent/40" />
                     <div>
-                      <p className="text-sm text-gray-500">Email</p>
+                      <p className="text-sm text-secondary/60 dark:text-accent/60">Email</p>
                       <p className="font-medium">{selectedCustomer.email}</p>
                     </div>
                   </div>
                   {selectedCustomer.phone && (
                     <div className="flex items-center gap-3">
-                      <Phone className="h-5 w-5 text-gray-400" />
+                      <Phone className="h-5 w-5 text-secondary/40 dark:text-accent/40" />
                       <div>
-                        <p className="text-sm text-gray-500">Phone</p>
+                        <p className="text-sm text-secondary/60 dark:text-accent/60">Phone</p>
                         <p className="font-medium">{selectedCustomer.phone}</p>
                       </div>
                     </div>
@@ -430,22 +430,22 @@ export default function CustomersComponent() {
                         {vehicles.map((car, idx) => (
                           <div
                             key={idx}
-                            className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg"
+                            className="flex items-center gap-3 p-3 bg-[var(--background-3)] dark:bg-[var(--background-7)] rounded-lg"
                           >
-                            <Car className="h-5 w-5 text-gray-400" />
+                            <Car className="h-5 w-5 text-secondary/40 dark:text-accent/40" />
                             <div className="flex-1">
                               <p className="font-medium">
                                 {car.year} {car.make} {car.model}
                               </p>
                               {car.licensePlate && (
-                                <p className="text-sm text-gray-500">{car.licensePlate}</p>
+                                <p className="text-sm text-secondary/60 dark:text-accent/60">{car.licensePlate}</p>
                               )}
                             </div>
                           </div>
                         ))}
                       </div>
                     ) : (
-                      <p className="text-gray-500 text-center py-4">No vehicles</p>
+                      <p className="text-secondary/60 dark:text-accent/60 text-center py-4">No vehicles</p>
                     )
                   })()}
                 </CardContent>
@@ -464,11 +464,11 @@ export default function CustomersComponent() {
                         .map((quotation) => (
                           <div
                             key={quotation._id}
-                            className="border rounded-lg p-4 hover:bg-gray-50 transition-colors"
+                            className="border border-[var(--stroke-3)] dark:border-[var(--stroke-7)] rounded-lg p-4 hover:bg-[var(--background-3)] dark:hover:bg-[var(--background-7)] transition-colors"
                           >
                             <div className="flex items-start justify-between mb-3">
                               <div className="flex items-center gap-2 flex-wrap">
-                                <Calendar className="h-4 w-4 text-gray-400" />
+                                <Calendar className="h-4 w-4 text-secondary/40 dark:text-accent/40" />
                                 <span className="text-sm font-medium">
                                   {format(new Date(quotation.createdAt), 'MMM dd, yyyy')}
                                 </span>
@@ -477,13 +477,13 @@ export default function CustomersComponent() {
                                 </Badge>
                               </div>
                               {quotation.totalAmount && quotation.totalAmount > 0 && (
-                                <span className="text-sm font-semibold text-green-600 whitespace-nowrap">
+                                <span className="text-sm font-semibold text-[var(--ns-green)] whitespace-nowrap">
                                   AED {quotation.totalAmount.toFixed(2)}
                                 </span>
                               )}
                             </div>
                             {quotation.vehicle && (
-                              <div className="text-sm text-gray-600 mb-2">
+                              <div className="text-sm text-secondary/60 dark:text-accent/60 mb-2">
                                 {quotation.vehicle.year} {quotation.vehicle.make} {quotation.vehicle.model}
                               </div>
                             )}
@@ -498,7 +498,7 @@ export default function CustomersComponent() {
                         ))}
                     </div>
                   ) : (
-                    <p className="text-gray-500 text-center py-4">No quotation history</p>
+                    <p className="text-secondary/60 dark:text-accent/60 text-center py-4">No quotation history</p>
                   )}
                 </CardContent>
               </Card>
@@ -507,21 +507,21 @@ export default function CustomersComponent() {
               <div className="grid grid-cols-3 gap-4">
                 <Card>
                   <CardContent className="p-4 text-center">
-                    <p className="text-sm text-gray-600">Total Quotations</p>
+                    <p className="text-sm text-secondary/60 dark:text-accent/60">Total Quotations</p>
                     <p className="text-2xl font-bold">{selectedCustomer.totalQuotations}</p>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardContent className="p-4 text-center">
-                    <p className="text-sm text-gray-600">Total Spent</p>
-                    <p className="text-2xl font-bold text-green-600">
+                    <p className="text-sm text-secondary/60 dark:text-accent/60">Total Spent</p>
+                    <p className="text-2xl font-bold text-[var(--ns-green)]">
                       AED {selectedCustomer.totalSpent.toFixed(2)}
                     </p>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardContent className="p-4 text-center">
-                    <p className="text-sm text-gray-600">Vehicles</p>
+                    <p className="text-sm text-secondary/60 dark:text-accent/60">Vehicles</p>
                     <p className="text-2xl font-bold">{getUniqueVehicles(selectedCustomer).length}</p>
                   </CardContent>
                 </Card>

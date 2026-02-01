@@ -75,9 +75,9 @@ export function CarImageGallery({ media, carName }: CarImageGalleryProps) {
   if (media.length === 0) {
     return (
       <div className="text-center py-12">
-        <Camera className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-        <h3 className="text-lg font-medium text-gray-900 mb-2">No media uploaded</h3>
-        <p className="text-gray-500">Upload photos and videos to showcase your vehicle.</p>
+        <Camera className="w-16 h-16 text-secondary/40 dark:text-accent/40 mx-auto mb-4" />
+        <h3 className="text-lg font-medium text-secondary dark:text-accent mb-2">No media uploaded</h3>
+        <p className="text-secondary/60 dark:text-accent/60">Upload photos and videos to showcase your vehicle.</p>
       </div>
     )
   }
@@ -85,8 +85,8 @@ export function CarImageGallery({ media, carName }: CarImageGalleryProps) {
   if (photos.length === 0) {
     return (
       <div className="text-center py-8">
-        <Camera className="w-12 h-12 text-gray-300 mx-auto mb-2" />
-        <p className="text-gray-500">No photos available</p>
+        <Camera className="w-12 h-12 text-secondary/40 dark:text-accent/40 mx-auto mb-2" />
+        <p className="text-secondary/60 dark:text-accent/60">No photos available</p>
       </div>
     )
   }
@@ -97,7 +97,7 @@ export function CarImageGallery({ media, carName }: CarImageGalleryProps) {
       <div className="flex flex-col lg:flex-row gap-4">
         {/* Featured Image - Left Side */}
         <div className="lg:w-2/3">
-          <div className="relative bg-gray-100 rounded-lg overflow-hidden group cursor-pointer">
+          <div className="relative bg-background-3 dark:bg-background-7 rounded-lg overflow-hidden group cursor-pointer">
             <div className="aspect-[4/3] relative">
               <img
                 src={photos[selectedImageIndex]?.url}
@@ -167,8 +167,8 @@ export function CarImageGallery({ media, carName }: CarImageGalleryProps) {
             {photos.map((photo, index) => (
               <div
                 key={`thumb-${index}-${photo.publicId || photo.id}`}
-                className={`relative bg-gray-100 rounded overflow-hidden cursor-pointer group transition-all duration-200 ${
-                  index === selectedImageIndex ? 'ring-2 ring-blue-500' : 'hover:ring-2 hover:ring-gray-300'
+                className={`relative bg-background-3 dark:bg-background-7 rounded overflow-hidden cursor-pointer group transition-all duration-200 ${
+                  index === selectedImageIndex ? 'ring-2 ring-primary-500' : 'hover:ring-2 hover:ring-[var(--stroke-3)]'
                 }`}
                 onClick={() => setSelectedImageIndex(index)}
               >
@@ -211,7 +211,7 @@ export function CarImageGallery({ media, carName }: CarImageGalleryProps) {
       {/* Videos Section */}
       {videos.length > 0 && (
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 flex items-center mb-4">
+          <h3 className="text-lg font-semibold text-secondary dark:text-accent flex items-center mb-4">
             <Play className="w-5 h-5 mr-2" />
             Videos ({videos.length})
           </h3>
@@ -219,7 +219,7 @@ export function CarImageGallery({ media, carName }: CarImageGalleryProps) {
             {videos.map((video, index) => (
               <div
                 key={`video-${index}-${video.publicId || video.id}`}
-                className="relative bg-gray-100 rounded-lg overflow-hidden"
+                className="relative bg-background-3 dark:bg-background-7 rounded-lg overflow-hidden"
               >
                 <video
                   src={video.url}
@@ -242,26 +242,26 @@ export function CarImageGallery({ media, carName }: CarImageGalleryProps) {
       )}
 
       {/* Media Summary */}
-      <div className="bg-gray-50 rounded-lg p-4">
-        <h4 className="font-medium text-gray-900 mb-2 flex items-center">
+      <div className="bg-background-3 dark:bg-background-7 rounded-lg p-4">
+        <h4 className="font-medium text-secondary dark:text-accent mb-2 flex items-center">
           <FileText className="w-4 h-4 mr-2" />
           Media Summary
         </h4>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
           <div>
-            <span className="text-gray-500">Total Items:</span>
+            <span className="text-secondary/60 dark:text-accent/60">Total Items:</span>
             <span className="ml-2 font-medium">{media.length}</span>
           </div>
           <div>
-            <span className="text-gray-500">Photos:</span>
+            <span className="text-secondary/60 dark:text-accent/60">Photos:</span>
             <span className="ml-2 font-medium">{photos.length}</span>
           </div>
           <div>
-            <span className="text-gray-500">Videos:</span>
+            <span className="text-secondary/60 dark:text-accent/60">Videos:</span>
             <span className="ml-2 font-medium">{videos.length}</span>
           </div>
           <div>
-            <span className="text-gray-500">Total Size:</span>
+            <span className="text-secondary/60 dark:text-accent/60">Total Size:</span>
             <span className="ml-2 font-medium">{formatFileSize(totalSize)}</span>
           </div>
         </div>

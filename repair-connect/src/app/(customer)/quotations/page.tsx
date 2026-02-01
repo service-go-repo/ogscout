@@ -40,20 +40,20 @@ function getStatusColor(status: string): string {
     case "requested":
       return "bg-primary/10 text-primary";
     case "confirmed":
-      return "bg-cyan-100 text-cyan-800 dark:bg-cyan-950 dark:text-cyan-200";
+      return "bg-[var(--ns-cyan-light)] text-[var(--ns-cyan)]";
     case "scheduled":
-      return "bg-violet-100 text-violet-800 dark:bg-violet-950 dark:text-violet-200";
+      return "bg-[var(--primary-100)] text-[var(--primary-700)]";
     case "in_progress":
-      return "bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200";
+      return "bg-[var(--ns-yellow-light)] text-[var(--ns-yellow)]";
     case "completed":
-      return "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200";
+      return "bg-[var(--ns-green-light)] text-[var(--ns-green)]";
     // Quotation statuses
     case "pending":
-      return "bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200";
+      return "bg-[var(--ns-yellow-light)] text-[var(--ns-yellow)]";
     case "quoted":
       return "bg-primary/10 text-primary";
     case "accepted":
-      return "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200";
+      return "bg-[var(--ns-green-light)] text-[var(--ns-green)]";
     case "rejected":
       return "bg-destructive/10 text-destructive";
     default:
@@ -66,9 +66,9 @@ function getPriorityColor(priority: string): string {
     case "high":
       return "text-destructive";
     case "medium":
-      return "text-amber-600 dark:text-amber-400";
+      return "text-[var(--ns-yellow)]";
     case "low":
-      return "text-emerald-600 dark:text-emerald-400";
+      return "text-[var(--ns-green)]";
     default:
       return "text-muted-foreground";
   }
@@ -632,7 +632,7 @@ function QuotationCard({ quotation, appointment, onView }: QuotationCardProps) {
                     {formatCurrency(summary.priceRange.max)}
                   </div>
                 ) : summary.acceptedQuote ? (
-                  <div className="text-emerald-600 dark:text-emerald-400 font-semibold text-base">
+                  <div className="text-[var(--ns-green)] font-semibold text-base">
                     {formatCurrency(summary.acceptedQuote.totalAmount)}
                   </div>
                 ) : (

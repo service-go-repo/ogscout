@@ -198,10 +198,10 @@ export default function AppointmentCalendar({
         </div>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-7 gap-px bg-gray-200 rounded-lg overflow-hidden">
+        <div className="grid grid-cols-7 gap-px bg-[var(--stroke-3)] rounded-lg overflow-hidden">
           {/* Weekday Headers */}
           {weekdays.map((day) => (
-            <div key={day} className="bg-gray-50 p-2 text-center text-sm font-medium text-gray-600">
+            <div key={day} className="bg-background-3 dark:bg-background-7 p-2 text-center text-sm font-medium text-secondary/60 dark:text-accent/60">
               {day}
             </div>
           ))}
@@ -214,10 +214,10 @@ export default function AppointmentCalendar({
                   <PopoverTrigger asChild>
                     <button
                       className={cn(
-                        "w-full h-24 bg-white p-2 text-left hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors",
-                        !day.isCurrentMonth && "text-gray-400 bg-gray-50",
-                        day.isToday && "bg-blue-50 border border-blue-200",
-                        selectedDate && isSameDay(day.date, selectedDate) && "bg-blue-100 border border-blue-300"
+                        "w-full h-24 bg-white p-2 text-left hover:bg-background-3 dark:bg-background-7 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors",
+                        !day.isCurrentMonth && "text-secondary/40 dark:text-accent/40 bg-background-3 dark:bg-background-7",
+                        day.isToday && "bg-primary-50 border border-primary-200",
+                        selectedDate && isSameDay(day.date, selectedDate) && "bg-primary-100 border border-primary-300"
                       )}
                       onClick={() => handleDayClick(day)}
                     >
@@ -232,7 +232,7 @@ export default function AppointmentCalendar({
                       <h4 className="font-semibold">
                         {format(day.date, 'EEEE, MMMM dd, yyyy')}
                       </h4>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-secondary/60 dark:text-accent/60">
                         {day.appointments.length} appointment{day.appointments.length !== 1 ? 's' : ''}
                       </p>
                     </div>
@@ -240,7 +240,7 @@ export default function AppointmentCalendar({
                       {day.appointments.map((appointment) => (
                         <div
                           key={appointment._id.toString()}
-                          className="p-3 border-b last:border-b-0 hover:bg-gray-50 cursor-pointer"
+                          className="p-3 border-b last:border-b-0 hover:bg-background-3 dark:bg-background-7 cursor-pointer"
                           onClick={() => onAppointmentClick?.(appointment)}
                         >
                           <div className="flex items-start justify-between mb-2">
@@ -258,7 +258,7 @@ export default function AppointmentCalendar({
                             </Badge>
                           </div>
 
-                          <div className="space-y-1 text-xs text-gray-600">
+                          <div className="space-y-1 text-xs text-secondary/60 dark:text-accent/60">
                             <div className="flex items-center gap-2">
                               <Car className="h-3 w-3" />
                               <span>
@@ -280,7 +280,7 @@ export default function AppointmentCalendar({
                               )}
                             </div>
 
-                            <div className="text-gray-500 truncate">
+                            <div className="text-secondary/60 dark:text-accent/60 truncate">
                               Services: {appointment.services.map(s => s.serviceType).join(', ')}
                             </div>
                           </div>
@@ -292,10 +292,10 @@ export default function AppointmentCalendar({
               ) : (
                 <button
                   className={cn(
-                    "w-full h-24 bg-white p-2 text-left hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors",
-                    !day.isCurrentMonth && "text-gray-400 bg-gray-50",
-                    day.isToday && "bg-blue-50 border border-blue-200",
-                    selectedDate && isSameDay(day.date, selectedDate) && "bg-blue-100 border border-blue-300"
+                    "w-full h-24 bg-white p-2 text-left hover:bg-background-3 dark:bg-background-7 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors",
+                    !day.isCurrentMonth && "text-secondary/40 dark:text-accent/40 bg-background-3 dark:bg-background-7",
+                    day.isToday && "bg-primary-50 border border-primary-200",
+                    selectedDate && isSameDay(day.date, selectedDate) && "bg-primary-100 border border-primary-300"
                   )}
                   onClick={() => handleDayClick(day)}
                 >
@@ -310,8 +310,8 @@ export default function AppointmentCalendar({
 
         {loading && (
           <div className="text-center py-4">
-            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600 mx-auto"></div>
-            <p className="text-sm text-gray-500 mt-2">Loading appointments...</p>
+            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary-500 mx-auto"></div>
+            <p className="text-sm text-secondary/60 dark:text-accent/60 mt-2">Loading appointments...</p>
           </div>
         )}
       </CardContent>

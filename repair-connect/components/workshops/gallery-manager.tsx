@@ -46,11 +46,11 @@ interface GalleryManagerProps {
 }
 
 const imageCategories = [
-  { value: 'facility', label: 'Facility & Workshop', color: 'bg-blue-100 text-blue-800' },
-  { value: 'equipment', label: 'Tools & Equipment', color: 'bg-green-100 text-green-800' },
-  { value: 'team', label: 'Team & Staff', color: 'bg-purple-100 text-purple-800' },
-  { value: 'work', label: 'Work in Progress', color: 'bg-orange-100 text-orange-800' },
-  { value: 'other', label: 'Other', color: 'bg-gray-100 text-gray-800' }
+  { value: 'facility', label: 'Facility & Workshop', color: 'bg-primary-500/10 text-primary-500' },
+  { value: 'equipment', label: 'Tools & Equipment', color: 'bg-[var(--ns-green-light)] text-[var(--secondary)]' },
+  { value: 'team', label: 'Team & Staff', color: 'bg-primary-500/10 text-primary-500' },
+  { value: 'work', label: 'Work in Progress', color: 'bg-[var(--ns-yellow-light)] text-[var(--secondary)]' },
+  { value: 'other', label: 'Other', color: 'bg-background-3 dark:bg-background-7 text-secondary dark:text-accent' }
 ]
 
 export default function GalleryManager({ 
@@ -187,7 +187,7 @@ export default function GalleryManager({
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-lg font-semibold">Gallery Management</h3>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-secondary/60 dark:text-accent/60">
             Manage your workshop photos and showcase your facility
           </p>
         </div>
@@ -209,7 +209,7 @@ export default function GalleryManager({
           <select
             value={filterCategory}
             onChange={(e) => setFilterCategory(e.target.value)}
-            className="px-3 py-1 border border-gray-300 rounded-md text-sm"
+            className="px-3 py-1 border border-[var(--stroke-3)] rounded-md text-sm"
           >
             <option value="all">All Categories</option>
             {imageCategories.map(category => (
@@ -222,7 +222,7 @@ export default function GalleryManager({
           {/* Selection Controls */}
           {selectedImages.length > 0 && (
             <div className="flex items-center gap-2">
-              <span className="text-sm text-gray-600">
+              <span className="text-sm text-secondary/60 dark:text-accent/60">
                 {selectedImages.length} selected
               </span>
               <Button
@@ -291,9 +291,9 @@ export default function GalleryManager({
       {filteredImages.length === 0 ? (
         <Card>
           <CardContent className="text-center py-12">
-            <ImageIcon className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No Images</h3>
-            <p className="text-gray-600 mb-4">
+            <ImageIcon className="w-12 h-12 mx-auto mb-4 text-secondary/40 dark:text-accent/40" />
+            <h3 className="text-lg font-medium text-secondary dark:text-accent mb-2">No Images</h3>
+            <p className="text-secondary/60 dark:text-accent/60 mb-4">
               Upload photos of your workshop to showcase your facility and capabilities
             </p>
             <Button onClick={() => setShowUpload(true)}>
@@ -309,7 +309,7 @@ export default function GalleryManager({
             const isSelected = selectedImages.includes(image.id)
             
             return (
-              <Card key={image.id} className={`overflow-hidden ${isSelected ? 'ring-2 ring-blue-500' : ''}`}>
+              <Card key={image.id} className={`overflow-hidden ${isSelected ? 'ring-2 ring-primary-500' : ''}`}>
                 <div className="relative aspect-square cursor-pointer" onClick={() => handleViewImage(image)}>
                   <img
                     src={image.url}
@@ -354,7 +354,7 @@ export default function GalleryManager({
 
                   {/* Featured Badge */}
                   {image.featured && (
-                    <Badge className="absolute top-2 right-2 bg-yellow-500">
+                    <Badge className="absolute top-2 right-2 bg-[var(--ns-yellow)]">
                       <Star className="w-3 h-3" />
                     </Badge>
                   )}
@@ -367,7 +367,7 @@ export default function GalleryManager({
                   </Badge>
 
                   <div className="flex items-center justify-between mt-2">
-                    <span className="text-xs text-gray-500">
+                    <span className="text-xs text-secondary/60 dark:text-accent/60">
                       {new Date(image.uploadDate).toLocaleDateString()}
                     </span>
                     <Button
@@ -379,7 +379,7 @@ export default function GalleryManager({
                       }}
                       disabled={isSaving}
                     >
-                      <Star className={`w-3 h-3 ${image.featured ? 'fill-yellow-400 text-yellow-400' : ''}`} />
+                      <Star className={`w-3 h-3 ${image.featured ? 'fill-[var(--ns-yellow)] text-[var(--ns-yellow)]' : ''}`} />
                     </Button>
                   </div>
                 </CardContent>
@@ -394,7 +394,7 @@ export default function GalleryManager({
             const isSelected = selectedImages.includes(image.id)
             
             return (
-              <Card key={image.id} className={`${isSelected ? 'ring-2 ring-blue-500' : ''}`}>
+              <Card key={image.id} className={`${isSelected ? 'ring-2 ring-primary-500' : ''}`}>
                 <CardContent className="p-4">
                   <div className="flex items-center gap-4">
                     <Checkbox
@@ -414,13 +414,13 @@ export default function GalleryManager({
                       <div className="flex items-center gap-2 mb-1">
                         <h4 className="font-medium text-sm">{image.title}</h4>
                         {image.featured && (
-                          <Badge className="bg-yellow-500">
+                          <Badge className="bg-[var(--ns-yellow)]">
                             <Star className="w-3 h-3" />
                           </Badge>
                         )}
                       </div>
                       
-                      <div className="flex items-center gap-2 text-xs text-gray-600">
+                      <div className="flex items-center gap-2 text-xs text-secondary/60 dark:text-accent/60">
                         <Badge className={categoryInfo.color}>
                           {categoryInfo.label}
                         </Badge>
@@ -429,7 +429,7 @@ export default function GalleryManager({
                       </div>
                       
                       {image.description && (
-                        <p className="text-xs text-gray-600 mt-1 line-clamp-1">
+                        <p className="text-xs text-secondary/60 dark:text-accent/60 mt-1 line-clamp-1">
                           {image.description}
                         </p>
                       )}
@@ -442,7 +442,7 @@ export default function GalleryManager({
                         onClick={() => handleToggleFeatured(image.id)}
                         disabled={isSaving}
                       >
-                        <Star className={`w-3 h-3 ${image.featured ? 'fill-yellow-400 text-yellow-400' : ''}`} />
+                        <Star className={`w-3 h-3 ${image.featured ? 'fill-[var(--ns-yellow)] text-[var(--ns-yellow)]' : ''}`} />
                       </Button>
                       <Button
                         size="sm"
@@ -509,7 +509,7 @@ export default function GalleryManager({
                     ...editingImage,
                     category: e.target.value as any
                   })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  className="w-full px-3 py-2 border border-[var(--stroke-3)] rounded-md"
                 >
                   {imageCategories.map(category => (
                     <option key={category.value} value={category.value}>
@@ -584,7 +584,7 @@ export default function GalleryManager({
                   Image {lightboxImage.index + 1} / {lightboxImage.images.length}
                 </div>
                 {lightboxImage.images[lightboxImage.index].title && (
-                  <div className="text-xs text-gray-300">
+                  <div className="text-xs text-accent/80">
                     {lightboxImage.images[lightboxImage.index].title}
                   </div>
                 )}

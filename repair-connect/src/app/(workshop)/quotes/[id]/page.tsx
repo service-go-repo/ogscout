@@ -124,17 +124,17 @@ export default function QuoteRequestDetailPage({
   const getStatusColor = (status: string) => {
     switch (status) {
       case "pending":
-        return "bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200";
+        return "bg-[var(--ns-yellow-light)] text-[var(--ns-yellow)]";
       case "quoted":
         return "bg-primary/10 text-primary";
       case "accepted":
-        return "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200";
+        return "bg-[var(--ns-green-light)] text-[var(--ns-green)]";
       case "declined":
         return "bg-destructive/10 text-destructive";
       case "expired":
         return "bg-muted text-muted-foreground";
       case "completed":
-        return "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200";
+        return "bg-[var(--ns-green-light)] text-[var(--ns-green)]";
       case "cancelled":
         return "bg-destructive/10 text-destructive";
       default:
@@ -325,7 +325,7 @@ export default function QuoteRequestDetailPage({
               <div className="flex-1 space-y-3">
                 {myQuote.status === "accepted" && (
                   <>
-                    <div className="text-emerald-600 dark:text-emerald-400 font-semibold text-xl">
+                    <div className="text-[var(--ns-green)] font-semibold text-xl">
                       🎉 Congratulations!
                     </div>
                     <p className="text-muted-foreground">
@@ -341,7 +341,7 @@ export default function QuoteRequestDetailPage({
                     </Badge>
                     {myQuote.updatedAt &&
                       new Date(myQuote.updatedAt).getTime() !== new Date(myQuote.submittedAt).getTime() && (
-                      <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950 dark:text-blue-200 dark:border-blue-800">
+                      <Badge variant="outline" className="bg-[var(--ns-cyan-light)] text-[var(--ns-cyan)] border-[var(--ns-cyan)]/20">
                         <Clock className="h-3 w-3 mr-1" />
                         Edited {format(new Date(myQuote.updatedAt), "MMM dd, HH:mm")}
                       </Badge>
@@ -368,7 +368,7 @@ export default function QuoteRequestDetailPage({
               {/* Right Column */}
               {myQuote.status === "accepted" && (
                 <div className="flex items-center justify-center md:justify-end">
-                  <CheckCircle className="h-16 w-16 md:h-32 md:w-32 text-emerald-500 dark:text-emerald-400" strokeWidth={1.5} />
+                  <CheckCircle className="h-16 w-16 md:h-32 md:w-32 text-[var(--ns-green)]" strokeWidth={1.5} />
                 </div>
               )}
             </div>
@@ -441,7 +441,7 @@ export default function QuoteRequestDetailPage({
               // Show full results after customer decision
               <div className="space-y-3">
                 <div className="text-center mb-4">
-                  <Badge className="bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200">
+                  <Badge className="bg-[var(--ns-green-light)] text-[var(--ns-green)]">
                     Competition Closed - Winner Selected
                   </Badge>
                 </div>

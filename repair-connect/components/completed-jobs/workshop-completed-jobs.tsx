@@ -158,7 +158,7 @@ export default function WorkshopCompletedJobsComponent() {
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold">Completed Jobs</h1>
-        <p className="text-gray-600 mt-2">
+        <p className="text-secondary/60 dark:text-accent/60 mt-2">
           View your completed jobs and service history
         </p>
       </div>
@@ -169,10 +169,10 @@ export default function WorkshopCompletedJobsComponent() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Completed</p>
+                <p className="text-sm font-medium text-secondary/60 dark:text-accent/60">Total Completed</p>
                 <p className="text-2xl font-bold">{totalCompleted}</p>
               </div>
-              <CheckCircle className="h-8 w-8 text-green-600" />
+              <CheckCircle className="h-8 w-8 text-[var(--ns-green)]" />
             </div>
           </CardContent>
         </Card>
@@ -181,11 +181,11 @@ export default function WorkshopCompletedJobsComponent() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Revenue</p>
+                <p className="text-sm font-medium text-secondary/60 dark:text-accent/60">Total Revenue</p>
                 <p className="text-2xl font-bold">AED {totalRevenue.toFixed(2)}</p>
-                <p className="text-xs text-gray-500 mt-1">{paidCount} of {totalCompleted} paid</p>
+                <p className="text-xs text-secondary/40 dark:text-accent/40 mt-1">{paidCount} of {totalCompleted} paid</p>
               </div>
-              <DollarSign className="h-8 w-8 text-green-600" />
+              <DollarSign className="h-8 w-8 text-[var(--ns-green)]" />
             </div>
           </CardContent>
         </Card>
@@ -194,10 +194,10 @@ export default function WorkshopCompletedJobsComponent() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Avg. Rating</p>
+                <p className="text-sm font-medium text-secondary/60 dark:text-accent/60">Avg. Rating</p>
                 <p className="text-2xl font-bold">{averageRating.toFixed(1)}</p>
               </div>
-              <Star className="h-8 w-8 text-yellow-600" />
+              <Star className="h-8 w-8 text-[var(--ns-yellow)]" />
             </div>
           </CardContent>
         </Card>
@@ -206,10 +206,10 @@ export default function WorkshopCompletedJobsComponent() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Reviews</p>
+                <p className="text-sm font-medium text-secondary/60 dark:text-accent/60">Total Reviews</p>
                 <p className="text-2xl font-bold">{reviewsCount}</p>
               </div>
-              <TrendingUp className="h-8 w-8 text-blue-600" />
+              <TrendingUp className="h-8 w-8 text-primary-500" />
             </div>
           </CardContent>
         </Card>
@@ -218,7 +218,7 @@ export default function WorkshopCompletedJobsComponent() {
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-500" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-secondary/40 dark:text-accent/40" />
           <Input
             placeholder="Search by customer, car, or service..."
             value={searchQuery}
@@ -227,7 +227,7 @@ export default function WorkshopCompletedJobsComponent() {
           />
         </div>
         <div className="flex items-center gap-2">
-          <Filter className="h-4 w-4 text-gray-500" />
+          <Filter className="h-4 w-4 text-secondary/40 dark:text-accent/40" />
           <select
             value={filterYear}
             onChange={(e) => {
@@ -264,11 +264,11 @@ export default function WorkshopCompletedJobsComponent() {
       {filteredAppointments.length === 0 ? (
         <Card>
           <CardContent className="p-12 text-center">
-            <CheckCircle className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
+            <CheckCircle className="h-12 w-12 text-secondary/30 dark:text-accent/30 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-secondary dark:text-accent mb-2">
               {appointments.length === 0 ? 'No completed jobs yet' : 'No jobs match your filters'}
             </h3>
-            <p className="text-gray-500">
+            <p className="text-secondary/60 dark:text-accent/60">
               {appointments.length === 0
                 ? 'Your completed service jobs will appear here'
                 : 'Try adjusting your search or filter criteria'}
@@ -286,12 +286,12 @@ export default function WorkshopCompletedJobsComponent() {
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
                         <h3 className="text-xl font-semibold">{appointment.customerName}</h3>
-                        <Badge className="bg-green-100 text-green-800">
+                        <Badge className="bg-[var(--ns-green-light)] text-secondary dark:text-secondary">
                           <CheckCircle className="h-3 w-3 mr-1" />
                           Completed
                         </Badge>
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <div className="flex items-center gap-2 text-sm text-secondary/60 dark:text-accent/60">
                         <Phone className="h-4 w-4" />
                         <span>{appointment.customerPhone}</span>
                       </div>
@@ -304,13 +304,13 @@ export default function WorkshopCompletedJobsComponent() {
                               key={i}
                               className={`h-4 w-4 ${
                                 i < appointment.customerRating!
-                                  ? 'fill-yellow-400 text-yellow-400'
-                                  : 'text-gray-300'
+                                  ? 'fill-[var(--ns-yellow)] text-[var(--ns-yellow)]'
+                                  : 'text-secondary/30 dark:text-accent/30'
                               }`}
                             />
                           ))}
                         </div>
-                        <span className="text-xs text-gray-600">{appointment.customerRating}.0</span>
+                        <span className="text-xs text-secondary/60 dark:text-accent/60">{appointment.customerRating}.0</span>
                       </div>
                     )}
                   </div>
@@ -318,9 +318,9 @@ export default function WorkshopCompletedJobsComponent() {
                   {/* Details Grid */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-3 border-t">
                     <div>
-                      <div className="text-xs font-medium text-gray-500 mb-1">VEHICLE</div>
+                      <div className="text-xs font-medium text-secondary/40 dark:text-accent/40 mb-1">VEHICLE</div>
                       <div className="flex items-center gap-2 text-sm">
-                        <Car className="h-4 w-4 text-gray-600" />
+                        <Car className="h-4 w-4 text-secondary/60 dark:text-accent/60" />
                         <span className="font-medium">
                           {appointment.vehicleInfo.year} {appointment.vehicleInfo.make} {appointment.vehicleInfo.model}
                         </span>
@@ -328,22 +328,22 @@ export default function WorkshopCompletedJobsComponent() {
                     </div>
 
                     <div>
-                      <div className="text-xs font-medium text-gray-500 mb-1">COMPLETED DATE</div>
+                      <div className="text-xs font-medium text-secondary/40 dark:text-accent/40 mb-1">COMPLETED DATE</div>
                       <div className="flex items-center gap-2 text-sm">
-                        <Calendar className="h-4 w-4 text-gray-600" />
+                        <Calendar className="h-4 w-4 text-secondary/60 dark:text-accent/60" />
                         <span>{format(new Date(appointment.updatedAt), 'MMM dd, yyyy')}</span>
                       </div>
                     </div>
 
                     <div>
-                      <div className="text-xs font-medium text-gray-500 mb-1">REVENUE</div>
+                      <div className="text-xs font-medium text-secondary/40 dark:text-accent/40 mb-1">REVENUE</div>
                       <div className="flex items-center gap-2">
-                        <div className="text-sm font-semibold text-green-600">
+                        <div className="text-sm font-semibold text-[var(--ns-green)]">
                           AED {appointment.totalAmount?.toFixed(2) || '0.00'}
                         </div>
                         <Badge
                           variant={appointment.paymentStatus === 'paid' ? 'default' : 'secondary'}
-                          className={`text-xs ${appointment.paymentStatus === 'paid' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}
+                          className={`text-xs ${appointment.paymentStatus === 'paid' ? 'bg-[var(--ns-green-light)] text-secondary' : 'bg-[var(--ns-yellow-light)] text-secondary'}`}
                         >
                           {appointment.paymentStatus?.toUpperCase() || 'PENDING'}
                         </Badge>
@@ -353,7 +353,7 @@ export default function WorkshopCompletedJobsComponent() {
 
                   {/* Services */}
                   <div className="pt-3 border-t">
-                    <div className="text-xs font-medium text-gray-500 mb-2">SERVICES PERFORMED</div>
+                    <div className="text-xs font-medium text-secondary/40 dark:text-accent/40 mb-2">SERVICES PERFORMED</div>
                     <div className="flex flex-wrap gap-1">
                       {appointment.services.slice(0, 4).map((service, idx) => (
                         <Badge key={idx} variant="outline" className="text-xs bg-black text-white border-black hover:bg-black/90">
@@ -371,8 +371,8 @@ export default function WorkshopCompletedJobsComponent() {
                   {/* Customer Review */}
                   {appointment.customerReview && (
                     <div className="pt-3 border-t">
-                      <div className="text-xs font-medium text-gray-500 mb-1">CUSTOMER REVIEW</div>
-                      <p className="text-sm text-gray-700 line-clamp-2">{appointment.customerReview}</p>
+                      <div className="text-xs font-medium text-secondary/40 dark:text-accent/40 mb-1">CUSTOMER REVIEW</div>
+                      <p className="text-sm text-secondary/80 dark:text-accent/80 line-clamp-2">{appointment.customerReview}</p>
                     </div>
                   )}
 
@@ -394,7 +394,7 @@ export default function WorkshopCompletedJobsComponent() {
 
       {/* Results Count */}
       {filteredAppointments.length > 0 && filteredAppointments.length !== appointments.length && (
-        <div className="text-center text-sm text-gray-600">
+        <div className="text-center text-sm text-secondary/60 dark:text-accent/60">
           Showing {filteredAppointments.length} of {appointments.length} completed jobs
         </div>
       )}

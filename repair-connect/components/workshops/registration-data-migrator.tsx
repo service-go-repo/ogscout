@@ -123,7 +123,7 @@ export default function RegistrationDataMigrator({ onMigrationComplete }: Regist
     return Object.entries(hours).map(([day, schedule]) => (
       <div key={day} className="flex justify-between text-sm">
         <span className="capitalize font-medium">{day}:</span>
-        <span className={schedule.closed ? 'text-gray-500' : 'text-gray-700'}>
+        <span className={schedule.closed ? 'text-secondary/60 dark:text-accent/60' : 'text-secondary dark:text-accent'}>
           {schedule.closed ? 'Closed' : `${schedule.open} - ${schedule.close}`}
         </span>
       </div>
@@ -168,7 +168,7 @@ export default function RegistrationDataMigrator({ onMigrationComplete }: Regist
           <div className="space-y-2">
             <p className="font-medium">Workshop profile created successfully!</p>
             <p className="text-sm">Your registration data has been migrated to your workshop profile. You can now manage your complete business profile.</p>
-            <div className="text-xs text-gray-600">
+            <div className="text-xs text-secondary/60 dark:text-accent/60">
               <p>Migrated: {migrationResult.migratedData.businessName}</p>
               <p>Services: {migrationResult.migratedData.servicesOffered.join(', ')}</p>
             </div>
@@ -274,12 +274,12 @@ export default function RegistrationDataMigrator({ onMigrationComplete }: Regist
               </Badge>
             </div>
             
-            <div className="flex items-center gap-2 text-sm text-gray-600">
+            <div className="flex items-center gap-2 text-sm text-secondary/60 dark:text-accent/60">
               <Phone className="w-4 h-4" />
               {registrationData.businessPhone}
             </div>
             
-            <div className="flex items-start gap-2 text-sm text-gray-600">
+            <div className="flex items-start gap-2 text-sm text-secondary/60 dark:text-accent/60">
               <MapPin className="w-4 h-4 mt-0.5" />
               <div>
                 <p>{registrationData.businessAddress.street}</p>
@@ -336,19 +336,19 @@ export default function RegistrationDataMigrator({ onMigrationComplete }: Regist
               <p className="font-medium">
                 {registrationData.ownerInfo.firstName} {registrationData.ownerInfo.lastName}
               </p>
-              <p className="text-sm text-gray-600">{registrationData.ownerInfo.phone}</p>
+              <p className="text-sm text-secondary/60 dark:text-accent/60">{registrationData.ownerInfo.phone}</p>
             </div>
             
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-sm">
-                <Shield className="w-4 h-4 text-blue-500" />
+                <Shield className="w-4 h-4 text-primary-500" />
                 <span className="font-medium">Business License:</span>
-                <span className="text-gray-600">{registrationData.businessLicense}</span>
+                <span className="text-secondary/60 dark:text-accent/60">{registrationData.businessLicense}</span>
               </div>
               <div className="flex items-center gap-2 text-sm">
-                <Shield className="w-4 h-4 text-green-500" />
+                <Shield className="w-4 h-4 text-[var(--ns-green)]" />
                 <span className="font-medium">Insurance:</span>
-                <span className="text-gray-600">{registrationData.insuranceInfo}</span>
+                <span className="text-secondary/60 dark:text-accent/60">{registrationData.insuranceInfo}</span>
               </div>
             </div>
           </CardContent>

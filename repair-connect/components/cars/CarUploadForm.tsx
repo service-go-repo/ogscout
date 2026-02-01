@@ -175,8 +175,8 @@ export function CarUploadForm({ onSubmit, isLoading = false }: CarUploadFormProp
           <div className="space-y-6">
             <div className="text-center mb-6">
               <CarIcon className="mx-auto h-12 w-12 text-primary mb-4" />
-              <h2 className="text-2xl font-bold text-gray-900">Car Information</h2>
-              <p className="text-gray-600">Tell us about your vehicle</p>
+              <h2 className="text-2xl font-bold text-secondary dark:text-accent">Car Information</h2>
+              <p className="text-secondary/60 dark:text-accent/60">Tell us about your vehicle</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -283,8 +283,8 @@ export function CarUploadForm({ onSubmit, isLoading = false }: CarUploadFormProp
           <div className="space-y-6">
             <div className="text-center mb-6">
               <AlertTriangle className="mx-auto h-12 w-12 text-warning mb-4" />
-              <h2 className="text-2xl font-bold text-gray-900">Damage Assessment</h2>
-              <p className="text-gray-600">Help us understand the damage to your vehicle</p>
+              <h2 className="text-2xl font-bold text-secondary dark:text-accent">Damage Assessment</h2>
+              <p className="text-secondary/60 dark:text-accent/60">Help us understand the damage to your vehicle</p>
             </div>
 
             <div className="space-y-6">
@@ -317,7 +317,7 @@ export function CarUploadForm({ onSubmit, isLoading = false }: CarUploadFormProp
                   {DAMAGE_SEVERITIES.map((severity) => (
                     <label
                       key={severity}
-                      className="flex items-center space-x-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50"
+                      className="flex items-center space-x-2 p-3 border rounded-lg cursor-pointer hover:bg-background-3"
                     >
                       <input
                         type="radio"
@@ -378,14 +378,14 @@ export function CarUploadForm({ onSubmit, isLoading = false }: CarUploadFormProp
           <div className="space-y-6">
             <div className="text-center mb-6">
               <Camera className="mx-auto h-12 w-12 text-primary mb-4" />
-              <h2 className="text-2xl font-bold text-gray-900">Photos & Videos</h2>
-              <p className="text-gray-600">Upload images and videos of the damage</p>
+              <h2 className="text-2xl font-bold text-secondary dark:text-accent">Photos & Videos</h2>
+              <p className="text-secondary/60 dark:text-accent/60">Upload images and videos of the damage</p>
             </div>
 
             <div className="space-y-6">
               <div className="space-y-4">
                 <h3 className="text-lg font-medium">Damage Photos</h3>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-secondary/60 dark:text-accent/60">
                   Upload clear photos showing all damage. Multiple angles are helpful.
                 </p>
                 <FileUpload
@@ -399,7 +399,7 @@ export function CarUploadForm({ onSubmit, isLoading = false }: CarUploadFormProp
 
               <div className="space-y-4">
                 <h3 className="text-lg font-medium">Damage Videos (Optional)</h3>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-secondary/60 dark:text-accent/60">
                   Upload videos for a more comprehensive view of the damage.
                 </p>
                 <FileUpload
@@ -419,8 +419,8 @@ export function CarUploadForm({ onSubmit, isLoading = false }: CarUploadFormProp
           <div className="space-y-6">
             <div className="text-center mb-6">
               <MapPin className="mx-auto h-12 w-12 text-primary mb-4" />
-              <h2 className="text-2xl font-bold text-gray-900">Location & Service</h2>
-              <p className="text-gray-600">Where is your vehicle and how can we reach you?</p>
+              <h2 className="text-2xl font-bold text-secondary dark:text-accent">Location & Service</h2>
+              <p className="text-secondary/60 dark:text-accent/60">Where is your vehicle and how can we reach you?</p>
             </div>
 
             <div className="space-y-6">
@@ -553,7 +553,7 @@ export function CarUploadForm({ onSubmit, isLoading = false }: CarUploadFormProp
                       ? 'border-primary bg-primary text-white'
                       : isCompleted
                       ? 'border-success bg-success text-white'
-                      : 'border-gray-300 bg-white text-gray-400'
+                      : 'border-[var(--stroke-3)] bg-white text-secondary/40 dark:text-accent/40'
                     }
                   `}
                 >
@@ -562,7 +562,7 @@ export function CarUploadForm({ onSubmit, isLoading = false }: CarUploadFormProp
                 
                 <div className="ml-3 hidden sm:block">
                   <p className={`text-sm font-medium ${
-                    isActive ? 'text-primary' : isCompleted ? 'text-success' : 'text-gray-500'
+                    isActive ? 'text-primary' : isCompleted ? 'text-success' : 'text-secondary/60 dark:text-accent/60'
                   }`}>
                     {step.title}
                   </p>
@@ -571,7 +571,7 @@ export function CarUploadForm({ onSubmit, isLoading = false }: CarUploadFormProp
                 {index < FORM_STEPS.length - 1 && (
                   <div className={`
                     w-12 h-0.5 mx-4 transition-colors
-                    ${isCompleted ? 'bg-success' : 'bg-gray-300'}
+                    ${isCompleted ? 'bg-success' : 'bg-secondary/40 dark:bg-accent/40'}
                   `} />
                 )}
               </div>

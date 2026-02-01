@@ -480,7 +480,7 @@ export default function QuoteRequestForm({ onSubmit, isLoading, initialData, use
                     />
                     <label
                       htmlFor={`images-${index}`}
-                      className="cursor-pointer inline-flex items-center gap-2 px-3 py-2 border border-dashed border-gray-300 rounded-md hover:border-gray-400"
+                      className="cursor-pointer inline-flex items-center gap-2 px-3 py-2 border border-dashed border-[var(--stroke-3)] rounded-md hover:border-[var(--stroke-3)]"
                     >
                       <Upload className="h-4 w-4" />
                       Upload Images

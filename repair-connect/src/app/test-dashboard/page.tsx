@@ -200,12 +200,12 @@ export default function TestDashboardPage() {
               <Card className="h-full transition-all duration-200 hover:border-primary/30 hover:shadow-sm cursor-pointer">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-semibold">Won Quotes</CardTitle>
-                  <div className="p-2 rounded-lg bg-green-500/10">
-                    <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-500" />
+                  <div className="p-2 rounded-lg bg-[var(--ns-green-light)]">
+                    <CheckCircle className="h-4 w-4 text-[var(--ns-green)]" />
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-green-600 dark:text-green-500">{stats.wonQuotes}</div>
+                  <div className="text-2xl font-bold text-[var(--ns-green)]">{stats.wonQuotes}</div>
                   <p className="text-xs text-muted-foreground mt-2">
                     Accepted this month
                   </p>
@@ -218,12 +218,12 @@ export default function TestDashboardPage() {
               <Card className="h-full transition-all duration-200 hover:border-primary/30 hover:shadow-sm cursor-pointer">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-semibold">Completed Jobs</CardTitle>
-                  <div className="p-2 rounded-lg bg-green-500/10">
-                    <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-500" />
+                  <div className="p-2 rounded-lg bg-[var(--ns-green-light)]">
+                    <CheckCircle className="h-4 w-4 text-[var(--ns-green)]" />
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-green-600 dark:text-green-500">{stats.completedJobs}</div>
+                  <div className="text-2xl font-bold text-[var(--ns-green)]">{stats.completedJobs}</div>
                   <p className="text-xs text-muted-foreground mt-2">
                     All time completed
                   </p>
@@ -239,12 +239,12 @@ export default function TestDashboardPage() {
               <Card className="h-full transition-all duration-200 hover:border-primary/30 hover:shadow-sm cursor-pointer">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-semibold">Total Revenue</CardTitle>
-                  <div className="p-2 rounded-lg bg-green-500/10">
-                    <DollarSign className="h-4 w-4 text-green-600 dark:text-green-500" />
+                  <div className="p-2 rounded-lg bg-[var(--ns-green-light)]">
+                    <DollarSign className="h-4 w-4 text-[var(--ns-green)]" />
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-green-600 dark:text-green-500">AED {stats.totalRevenue.toFixed(2)}</div>
+                  <div className="text-2xl font-bold text-[var(--ns-green)]">AED {stats.totalRevenue.toFixed(2)}</div>
                   <p className="text-xs text-muted-foreground mt-2">
                     From paid jobs
                   </p>
@@ -257,12 +257,12 @@ export default function TestDashboardPage() {
               <Card className="h-full transition-all duration-200 hover:border-primary/30 hover:shadow-sm cursor-pointer">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-semibold">Average Rating</CardTitle>
-                  <div className="p-2 rounded-lg bg-yellow-500/10">
-                    <Star className="h-4 w-4 text-yellow-600 dark:text-yellow-500" />
+                  <div className="p-2 rounded-lg bg-[var(--ns-yellow-light)]">
+                    <Star className="h-4 w-4 text-[var(--ns-yellow)]" />
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-yellow-600 dark:text-yellow-500">{stats.averageRating.toFixed(1)}</div>
+                  <div className="text-2xl font-bold text-[var(--ns-yellow)]">{stats.averageRating.toFixed(1)}</div>
                   <p className="text-xs text-muted-foreground mt-2">
                     {stats.totalReviews} reviews
                   </p>
@@ -310,12 +310,12 @@ export default function TestDashboardPage() {
               <Card className="h-full transition-all duration-200 hover:border-primary/30 hover:shadow-sm cursor-pointer">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-semibold">Today's Schedule</CardTitle>
-                  <div className="p-2 rounded-lg bg-green-500/10">
-                    <CalendarIcon className="h-4 w-4 text-green-600 dark:text-green-500" />
+                  <div className="p-2 rounded-lg bg-[var(--ns-green-light)]">
+                    <CalendarIcon className="h-4 w-4 text-[var(--ns-green)]" />
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-green-600 dark:text-green-500">{stats.todayAppointments}</div>
+                  <div className="text-2xl font-bold text-[var(--ns-green)]">{stats.todayAppointments}</div>
                   <p className="text-xs text-muted-foreground mt-2">
                     Appointments today
                   </p>
@@ -325,12 +325,12 @@ export default function TestDashboardPage() {
               <Card className="h-full transition-all duration-200 hover:border-primary/30 hover:shadow-sm cursor-pointer">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-semibold">Pending Confirmations</CardTitle>
-                  <div className="p-2 rounded-lg bg-orange-500/10">
-                    <AlertCircle className="h-4 w-4 text-orange-600 dark:text-orange-500" />
+                  <div className="p-2 rounded-lg bg-[var(--ns-red)]/10">
+                    <AlertCircle className="h-4 w-4 text-[var(--ns-red)]" />
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-orange-600 dark:text-orange-500">{stats.pendingAppointments}</div>
+                  <div className="text-2xl font-bold text-[var(--ns-red)]">{stats.pendingAppointments}</div>
                   <p className="text-xs text-muted-foreground mt-2">
                     Need your confirmation
                   </p>
@@ -366,12 +366,12 @@ export default function TestDashboardPage() {
                 <CardContent>
                   {stats.todayAppointments > 0 ? (
                     <div className="space-y-3">
-                      <div className="flex items-center justify-between p-3 bg-green-500/10 rounded-lg">
+                      <div className="flex items-center justify-between p-3 bg-[var(--ns-green-light)] rounded-lg">
                         <div>
-                          <p className="font-semibold text-green-600 dark:text-green-500">Active Appointments</p>
+                          <p className="font-semibold text-[var(--ns-green)]">Active Appointments</p>
                           <p className="text-sm text-muted-foreground">{stats.todayAppointments} scheduled today</p>
                         </div>
-                        <CheckCircle className="h-8 w-8 text-green-600 dark:text-green-500" />
+                        <CheckCircle className="h-8 w-8 text-[var(--ns-green)]" />
                       </div>
                       <Button className="w-full" variant="outline">
                         <CalendarIcon className="h-4 w-4 mr-2" />
@@ -399,12 +399,12 @@ export default function TestDashboardPage() {
                 <CardContent>
                   {stats.pendingAppointments > 0 ? (
                     <div className="space-y-3">
-                      <div className="flex items-center justify-between p-3 bg-orange-500/10 rounded-lg">
+                      <div className="flex items-center justify-between p-3 bg-[var(--ns-red)]/10 rounded-lg">
                         <div>
-                          <p className="font-semibold text-orange-600 dark:text-orange-500">Confirmation Needed</p>
+                          <p className="font-semibold text-[var(--ns-red)]">Confirmation Needed</p>
                           <p className="text-sm text-muted-foreground">{stats.pendingAppointments} waiting for confirmation</p>
                         </div>
-                        <AlertCircle className="h-8 w-8 text-orange-600 dark:text-orange-500" />
+                        <AlertCircle className="h-8 w-8 text-[var(--ns-red)]" />
                       </div>
                       <Button className="w-full" variant="outline" asChild>
                         <Link href="/appointments">
@@ -415,8 +415,8 @@ export default function TestDashboardPage() {
                     </div>
                   ) : (
                     <div className="text-center py-8">
-                      <CheckCircle className="h-12 w-12 mx-auto mb-4 text-green-600/30 dark:text-green-500/30" />
-                      <p className="text-green-600 dark:text-green-500 font-semibold">All caught up!</p>
+                      <CheckCircle className="h-12 w-12 mx-auto mb-4 text-[var(--ns-green)]/30" />
+                      <p className="text-[var(--ns-green)] font-semibold">All caught up!</p>
                       <p className="text-sm text-muted-foreground">No pending confirmations</p>
                     </div>
                   )}

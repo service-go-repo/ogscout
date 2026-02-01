@@ -204,13 +204,13 @@ export default function LocationPicker({
 
         {/* Selected Location */}
         {selectedLocation && (
-          <div className="p-3 bg-green-50 border border-green-200 rounded-md">
+          <div className="p-3 bg-[var(--ns-green-light)] border border-[var(--ns-green)] rounded-md">
             <div className="flex items-start gap-2">
-              <MapPin className="w-4 h-4 text-green-600 mt-0.5" />
+              <MapPin className="w-4 h-4 text-[var(--ns-green)] mt-0.5" />
               <div>
-                <p className="text-sm font-medium text-green-800">Selected Location:</p>
-                <p className="text-sm text-green-700">{selectedLocation.address}</p>
-                <p className="text-xs text-green-600">
+                <p className="text-sm font-medium text-[var(--secondary)]">Selected Location:</p>
+                <p className="text-sm text-[var(--secondary)]">{selectedLocation.address}</p>
+                <p className="text-xs text-[var(--ns-green)]">
                   Coordinates: {selectedLocation.coordinates[1].toFixed(4)}, {selectedLocation.coordinates[0].toFixed(4)}
                 </p>
               </div>
@@ -221,11 +221,11 @@ export default function LocationPicker({
         {/* Map Placeholder */}
         <div className="space-y-2">
           <Label>Map Preview:</Label>
-          <div 
+          <div
             ref={mapRef}
-            className="w-full h-64 bg-gray-100 border border-gray-200 rounded-md flex items-center justify-center"
+            className="w-full h-64 bg-background-3 dark:bg-background-7 border border-[var(--stroke-3)] rounded-md flex items-center justify-center"
           >
-            <div className="text-center text-gray-500">
+            <div className="text-center text-secondary/60 dark:text-accent/60">
               <MapPin className="w-8 h-8 mx-auto mb-2" />
               <p className="text-sm">Map will appear here</p>
               <p className="text-xs">Google Maps integration ready</p>
@@ -234,7 +234,7 @@ export default function LocationPicker({
         </div>
 
         {/* Instructions */}
-        <div className="text-xs text-gray-600 space-y-1">
+        <div className="text-xs text-secondary/60 dark:text-accent/60 space-y-1">
           <p>• Search for your workshop address or use current location</p>
           <p>• Click on search results to select a location</p>
           <p>• Google Maps integration can be added with API key</p>

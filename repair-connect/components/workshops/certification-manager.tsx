@@ -187,7 +187,7 @@ export default function CertificationManager({
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-lg font-semibold">Certification Management</h3>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-secondary/60 dark:text-accent/60">
             Manage your professional certifications and credentials
           </p>
         </div>
@@ -216,7 +216,7 @@ export default function CertificationManager({
                     placeholder="ASE Master Technician"
                   />
                   {form.formState.errors.name && (
-                    <p className="text-sm text-red-600 mt-1">
+                    <p className="text-sm text-[var(--ns-red)] mt-1">
                       {form.formState.errors.name.message}
                     </p>
                   )}
@@ -230,7 +230,7 @@ export default function CertificationManager({
                     placeholder="National Institute for Automotive Service Excellence"
                   />
                   {form.formState.errors.issuedBy && (
-                    <p className="text-sm text-red-600 mt-1">
+                    <p className="text-sm text-[var(--ns-red)] mt-1">
                       {form.formState.errors.issuedBy.message}
                     </p>
                   )}
@@ -267,7 +267,7 @@ export default function CertificationManager({
                     {...form.register('issuedDate')}
                   />
                   {form.formState.errors.issuedDate && (
-                    <p className="text-sm text-red-600 mt-1">
+                    <p className="text-sm text-[var(--ns-red)] mt-1">
                       {form.formState.errors.issuedDate.message}
                     </p>
                   )}
@@ -306,7 +306,7 @@ export default function CertificationManager({
               {/* Certificate Image Upload */}
               <div>
                 <Label className="text-base font-medium">Certificate Image</Label>
-                <p className="text-sm text-gray-600 mb-3">
+                <p className="text-sm text-secondary/60 dark:text-accent/60 mb-3">
                   Upload a photo or scan of your certificate
                 </p>
                 <ImageUpload
@@ -347,9 +347,9 @@ export default function CertificationManager({
         {items.length === 0 ? (
           <Card>
             <CardContent className="text-center py-12">
-              <Award className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No Certifications</h3>
-              <p className="text-gray-600 mb-4">
+              <Award className="w-12 h-12 mx-auto mb-4 text-secondary/40 dark:text-accent/40" />
+              <h3 className="text-lg font-medium text-secondary dark:text-accent mb-2">No Certifications</h3>
+              <p className="text-secondary/60 dark:text-accent/60 mb-4">
                 Add your professional certifications to build trust with customers
               </p>
               <Button onClick={handleAddNew}>
@@ -366,16 +366,16 @@ export default function CertificationManager({
               const expiringSoon = isExpiringSoon(item.expiryDate)
               
               return (
-                <Card key={item.id} className={`${expired ? 'border-red-200' : expiringSoon ? 'border-yellow-200' : ''}`}>
+                <Card key={item.id} className={`${expired ? 'border-[var(--ns-red)]/30' : expiringSoon ? 'border-[var(--ns-yellow)]' : ''}`}>
                   <CardContent className="p-4">
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-start gap-3">
-                        <div className={`p-2 rounded-lg ${expired ? 'bg-red-100' : expiringSoon ? 'bg-yellow-100' : 'bg-blue-100'}`}>
-                          <TypeIcon className={`w-5 h-5 ${expired ? 'text-red-600' : expiringSoon ? 'text-yellow-600' : 'text-blue-600'}`} />
+                        <div className={`p-2 rounded-lg ${expired ? 'bg-[var(--ns-red)]/20' : expiringSoon ? 'bg-[var(--ns-yellow-light)]' : 'bg-primary-500/10'}`}>
+                          <TypeIcon className={`w-5 h-5 ${expired ? 'text-[var(--ns-red)]' : expiringSoon ? 'text-[var(--secondary)]' : 'text-primary-500'}`} />
                         </div>
                         <div className="flex-1">
                           <h4 className="font-medium text-sm mb-1">{item.name}</h4>
-                          <p className="text-xs text-gray-600">{item.issuedBy}</p>
+                          <p className="text-xs text-secondary/60 dark:text-accent/60">{item.issuedBy}</p>
                         </div>
                       </div>
                       
@@ -403,14 +403,14 @@ export default function CertificationManager({
 
                     <div className="space-y-2">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-gray-500">Issued:</span>
+                        <span className="text-secondary/60 dark:text-accent/60">Issued:</span>
                         <span>{new Date(item.issuedDate).toLocaleDateString()}</span>
                       </div>
                       
                       {item.expiryDate && (
                         <div className="flex items-center justify-between text-xs">
-                          <span className="text-gray-500">Expires:</span>
-                          <span className={expired ? 'text-red-600 font-medium' : expiringSoon ? 'text-yellow-600 font-medium' : ''}>
+                          <span className="text-secondary/60 dark:text-accent/60">Expires:</span>
+                          <span className={expired ? 'text-[var(--ns-red)] font-medium' : expiringSoon ? 'text-[var(--secondary)] font-medium' : ''}>
                             {new Date(item.expiryDate).toLocaleDateString()}
                           </span>
                         </div>
@@ -418,7 +418,7 @@ export default function CertificationManager({
                       
                       {item.certificateNumber && (
                         <div className="flex items-center justify-between text-xs">
-                          <span className="text-gray-500">Number:</span>
+                          <span className="text-secondary/60 dark:text-accent/60">Number:</span>
                           <span className="font-mono">{item.certificateNumber}</span>
                         </div>
                       )}
@@ -472,7 +472,7 @@ export default function CertificationManager({
             <div className="space-y-6">
               {/* Certificate Image */}
               {viewingCertificate.imageUrl && (
-                <div className="border rounded-lg overflow-hidden bg-gray-50">
+                <div className="border rounded-lg overflow-hidden bg-background-3 dark:bg-background-7">
                   <img
                     src={viewingCertificate.imageUrl}
                     alt={viewingCertificate.name}
@@ -484,18 +484,18 @@ export default function CertificationManager({
               {/* Certificate Information */}
               <div className="space-y-4">
                 <div>
-                  <Label className="text-sm text-muted-foreground">Certification Name</Label>
+                  <Label className="text-sm text-secondary/60 dark:text-accent/60">Certification Name</Label>
                   <p className="text-lg font-semibold">{viewingCertificate.name}</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label className="text-sm text-muted-foreground">Issuing Organization</Label>
+                    <Label className="text-sm text-secondary/60 dark:text-accent/60">Issuing Organization</Label>
                     <p className="font-medium">{viewingCertificate.issuedBy}</p>
                   </div>
 
                   <div>
-                    <Label className="text-sm text-muted-foreground">Certification Type</Label>
+                    <Label className="text-sm text-secondary/60 dark:text-accent/60">Certification Type</Label>
                     <p className="font-medium">
                       {certificationTypes.find(t => t.value === viewingCertificate.type)?.label || viewingCertificate.type}
                     </p>
@@ -504,7 +504,7 @@ export default function CertificationManager({
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label className="text-sm text-muted-foreground">Issue Date</Label>
+                    <Label className="text-sm text-secondary/60 dark:text-accent/60">Issue Date</Label>
                     <p className="font-medium flex items-center gap-2">
                       <Calendar className="w-4 h-4" />
                       {new Date(viewingCertificate.issuedDate).toLocaleDateString('en-US', {
@@ -517,10 +517,10 @@ export default function CertificationManager({
 
                   {viewingCertificate.expiryDate && (
                     <div>
-                      <Label className="text-sm text-muted-foreground">Expiry Date</Label>
+                      <Label className="text-sm text-secondary/60 dark:text-accent/60">Expiry Date</Label>
                       <p className={`font-medium flex items-center gap-2 ${
-                        isExpired(viewingCertificate.expiryDate) ? 'text-red-600' :
-                        isExpiringSoon(viewingCertificate.expiryDate) ? 'text-yellow-600' : ''
+                        isExpired(viewingCertificate.expiryDate) ? 'text-[var(--ns-red)]' :
+                        isExpiringSoon(viewingCertificate.expiryDate) ? 'text-[var(--secondary)]' : ''
                       }`}>
                         <Calendar className="w-4 h-4" />
                         {new Date(viewingCertificate.expiryDate).toLocaleDateString('en-US', {
@@ -535,7 +535,7 @@ export default function CertificationManager({
 
                 {viewingCertificate.certificateNumber && (
                   <div>
-                    <Label className="text-sm text-muted-foreground">Certificate Number</Label>
+                    <Label className="text-sm text-secondary/60 dark:text-accent/60">Certificate Number</Label>
                     <p className="font-mono font-medium text-lg">{viewingCertificate.certificateNumber}</p>
                   </div>
                 )}
